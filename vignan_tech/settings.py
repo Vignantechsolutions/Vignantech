@@ -129,6 +129,8 @@ COMPANY_PHONE = config('COMPANY_PHONE', default='+91-9110478047 / +91-9148215446
 COMPANY_ADDRESS = config('COMPANY_ADDRESS', default='Kalaburagi, Karnataka, India')
 
 # Production security settings (enable when DEBUG=False)
+CSRF_TRUSTED_ORIGINS = ['https://vignantech.onrender.com']
+
 if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_CONTENT_TYPE_NOSNIFF = True

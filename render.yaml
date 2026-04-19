@@ -6,7 +6,7 @@ databases:
 
 services:
   - type: web
-    name: vignan-techsolutions
+    name: vignantech
     region: singapore
     plan: free
     runtime: python
@@ -20,7 +20,7 @@ services:
       - key: DEBUG
         value: "False"
       - key: ALLOWED_HOSTS
-        value: "vignan-techsolutions.onrender.com"
+        value: "vignantech.onrender.com"
       - key: SECRET_KEY
         generateValue: true
       - key: PYTHON_VERSION

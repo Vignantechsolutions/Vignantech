@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% block title %}{{ course.title }}{% endblock %}
+{% block content %}
+
+<section style="background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 55%,#1d4ed8 100%);padding:72px 0 48px;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px"></div>
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 65% 40%,rgba(59,130,246,.18) 0%,transparent 65%)"></div>
+    <div class="container position-relative">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" style="color:rgba(255,255,255,.6)">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'courses:list' %}" style="color:rgba(255,255,255,.6)">Courses</a></li>
+                <li class="breadcrumb-item active" style="color:#93C5FD">{{ course.title }}</li>
+            </ol>
+        </nav>
+        <h1 class="fw-800 mb-3" style="font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;line-height:1.2">{{ course.title }}</h1>
+        <div class="d-flex flex-wrap gap-2 align-items-center">
+            <span style="background:rgba(59,130,246,.2);border:1px solid rgba(59,130,246,.4);color:#93C5FD;padding:4px 14px;border-radius:50px;font-size:.78rem;font-weight:700">{{ course.get_level_display }}</span>
+            <span style="color:rgba(255,255,255,.7);font-size:.85rem"><i class="bi bi-clock-fill me-1" style="color:#FCD34D"></i>{{ course.duration }}</span>
+            <span style="color:rgba(255,255,255,.7);font-size:.85rem"><i class="bi bi-person-fill me-1" style="color:#FCD34D"></i>{{ course.instructor }}</span>
+            <span style="color:rgba(255,255,255,.7);font-size:.85rem"><i class="bi bi-award-fill me-1" style="color:#FCD34D"></i>Certificate Included</span>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm p-4 mb-4">
+                    <h5 class="fw-700 mb-3">About This Course</h5>
+                    <p class="text-muted" style="line-height:1.8">{{ course.description }}</p>
+                    {% if course.instructor_bio %}
+                    <hr>
+                    <div class="d-flex align-items-start gap-3 mt-3">
+                        {% if course.instructor_photo %}
+                        <img src="{{ course.instructor_photo.url }}" class="rounded-circle" width="56" height="56" style="object-fit:cover" alt="{{ course.instructor }}">
+                        {% else %}
+                        <div class="bg-primary-soft rounded-circle d-flex align-items-center justify-content-center fw-700 text-primary" style="width:56px;height:56px;font-size:1.3rem">{{ course.instructor|first }}</div>
+                        {% endif %}
+                        <div>
+                            <div class="fw-700">{{ course.instructor }}</div>
+                            <div class="text-muted small">Instructor</div>
+                            <p class="text-muted small mt-1 mb-0">{{ course.instructor_bio }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                {% if modules %}
+                <div class="card border-0 shadow-sm p-4">
+                    <h5 class="fw-700 mb-3">Course Curriculum</h5>
+                    <div class="text-muted small mb-3">{{ modules.count }} modules</div>
+                    <div class="accordion" id="curriculum">
+                        {% for module in modules %}
+                        <div class="accordion-item border mb-2 rounded-3 overflow-hidden">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button {% if not forloop.first %}collapsed{% endif %} fw-600" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#mod{{ module.id }}">
+                                    <span class="badge bg-primary-soft text-primary me-2">{{ forloop.counter }}</span>
+                                    {{ module.title }}
+                                    {% if module.duration %}<span class="ms-auto text-muted small fw-400 me-3">{{ module.duration }}</span>{% endif %}
+                                </button>
+                            </h2>
+                            <div id="mod{{ module.id }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}">
+                                <div class="accordion-body pt-2">
+                                    {% if module.description %}<p class="text-muted small mb-3">{{ module.description }}</p>{% endif %}
+                                    {% if is_enrolled and module.materials.all %}
+                                    <ul class="list-unstyled mb-0">
+                                        {% for mat in module.materials.all %}
+                                        <li class="d-flex align-items-center gap-2 py-2 border-bottom">
+                                            <i class="bi bi-{% if mat.material_type == 'pdf' %}file-pdf-fill text-danger{% elif mat.material_type == 'video' %}play-circle-fill text-primary{% else %}file-earmark-fill text-secondary{% endif %}"></i>
+                                            <span class="small flex-grow-1">{{ mat.title }}</span>
+                                            {% if mat.file %}<a href="{{ mat.file.url }}" class="btn btn-xs btn-outline-primary" download>Download</a>
+                                            {% elif mat.url %}<a href="{{ mat.url }}" class="btn btn-xs btn-outline-primary" target="_blank">Open</a>{% endif %}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% else %}
+                                    <div class="d-flex align-items-center gap-2 text-muted small py-1">
+                                        <i class="bi bi-lock-fill"></i>
+                                        <span>Enroll to access course materials</span>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm p-4 sticky-top" style="top:80px">
+                    {% if course.thumbnail %}
+                    <img src="{{ course.thumbnail.url }}" class="rounded-xl mb-3 w-100" style="height:180px;object-fit:cover" alt="{{ course.title }}">
+                    {% endif %}
+                    <div class="text-center mb-3">
+                        <div class="text-muted small">One-time fee · Lifetime access</div>
+                    </div>
+
+                    {% if is_enrolled %}
+                    <div class="alert alert-success text-center py-2 mb-3">
+                        <i class="bi bi-check-circle-fill me-2"></i>You are enrolled!
+                    </div>
+                    <a href="{% url 'accounts:dashboard' %}" class="btn btn-success w-100 mb-2">
+                        <i class="bi bi-speedometer2 me-2"></i>Go to Dashboard
+                    </a>
+                    {% else %}
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'payments:initiate' 'course' course.id %}" class="btn btn-primary w-100 btn-lg mb-2 fw-600">
+                        <i class="bi bi-rocket-takeoff me-2"></i>Enroll Now
+                    </a>
+                    {% else %}
+                    <a href="{% url 'accounts:login' %}?next={% url 'courses:detail' course.slug %}" class="btn btn-primary w-100 btn-lg mb-2 fw-600">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Login to Enroll
+                    </a>
+                    {% endif %}
+                    {% endif %}
+
+                    <a href="https://wa.me/919876543210?text=I'm interested in {{ course.title }} course" class="btn btn-success w-100 mb-3" target="_blank">
+                        <i class="bi bi-whatsapp me-2"></i>Enquire on WhatsApp
+                    </a>
+
+                    <hr>
+                    <ul class="list-unstyled mb-0">
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                            <span class="text-muted small">Duration</span><span class="fw-600 small">{{ course.duration }}</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                            <span class="text-muted small">Level</span><span class="fw-600 small">{{ course.get_level_display }}</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                            <span class="text-muted small">Instructor</span><span class="fw-600 small">{{ course.instructor }}</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                            <span class="text-muted small">Modules</span><span class="fw-600 small">{{ modules.count }}</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2">
+                            <span class="text-muted small">Certificate</span>
+                            <span class="fw-600 small text-success"><i class="bi bi-check-circle me-1"></i>Included</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Verify OTP — Vignan TechSolutions{% endblock %}
+{% block content %}
+<div class="auth-wrapper">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-5 col-md-7">
+        <div class="auth-card">
+
+          <div class="text-center mb-4">
+            <div style="width:64px;height:64px;background:linear-gradient(135deg,#7C3AED,#4F46E5);border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.8rem">🔐</div>
+            <h3 class="fw-700">Check Your Email</h3>
+            <p class="text-muted small">We sent a 6-digit OTP to</p>
+            <div style="background:#F5F3FF;border:1px solid rgba(124,58,237,.2);border-radius:10px;padding:8px 16px;display:inline-block;color:#6D28D9;font-weight:700;font-size:.9rem">{{ email }}</div>
+            {% if purpose == 'register' %}
+            <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
+              <div style="width:32px;height:32px;border-radius:50%;background:#E2E8F0;color:#94A3B8;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem">1</div>
+              <div style="width:40px;height:2px;background:linear-gradient(90deg,#7C3AED,#4F46E5)"></div>
+              <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#7C3AED,#4F46E5);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem">2</div>
+              <div style="font-size:.75rem;color:#94A3B8;margin-left:6px">Step 2 of 2 — Verify OTP</div>
+            </div>
+            {% endif %}
+          </div>
+
+          {% if messages %}
+          {% for msg in messages %}
+          <div class="alert alert-{{ msg.tags|default:'info' }} alert-dismissible fade show">
+            {{ msg }}<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+          {% endfor %}
+          {% endif %}
+
+          <form method="post" novalidate>
+            {% csrf_token %}
+            <input type="hidden" name="action" value="verify">
+            <div class="mb-4">
+              <label class="form-label fw-600">Enter 6-Digit OTP</label>
+              <!-- OTP digit boxes -->
+              <div class="d-flex gap-2 justify-content-center mb-2" id="otpBoxes">
+                {% for i in "123456" %}
+                <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]"
+                       class="form-control text-center fw-800 otp-digit"
+                       style="width:52px;height:56px;font-size:1.5rem;border-radius:12px;border:2px solid #E2E8F0"
+                       autocomplete="off">
+                {% endfor %}
+              </div>
+              <input type="hidden" name="otp" id="otpHidden">
+              <div class="form-text text-center"><i class="bi bi-clock me-1"></i>Valid for 10 minutes</div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 btn-lg fw-600 mb-3" id="verifyBtn" disabled>
+              <i class="bi bi-check-circle me-2"></i>Verify OTP
+            </button>
+          </form>
+
+          <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="resend">
+            <div class="text-center">
+              <p class="text-muted small mb-2">Didn't receive the code?</p>
+              <button type="submit" class="btn btn-outline-secondary btn-sm px-4" id="resendBtn">
+                <i class="bi bi-arrow-clockwise me-1"></i>Resend OTP
+              </button>
+            </div>
+          </form>
+
+          <div class="text-center mt-3">
+            {% if purpose == 'register' %}
+            <a href="{% url 'accounts:register' %}" class="text-muted small"><i class="bi bi-arrow-left me-1"></i>Back to Register</a>
+            {% else %}
+            <a href="{% url 'accounts:forgot_password' %}" class="text-muted small"><i class="bi bi-arrow-left me-1"></i>Back</a>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.otp-digit:focus { border-color:#7C3AED !important; box-shadow:0 0 0 3px rgba(124,58,237,.15); outline:none; }
+.otp-digit.filled { border-color:#10B981 !important; background:#F0FDF4; }
+</style>
+<script>
+const digits = document.querySelectorAll('.otp-digit');
+const hidden = document.getElementById('otpHidden');
+const verifyBtn = document.getElementById('verifyBtn');
+
+digits.forEach((d, i) => {
+  d.addEventListener('input', () => {
+    d.value = d.value.replace(/\D/g, '');
+    d.classList.toggle('filled', d.value !== '');
+    if (d.value && i < digits.length - 1) digits[i + 1].focus();
+    const val = [...digits].map(x => x.value).join('');
+    hidden.value = val;
+    verifyBtn.disabled = val.length < 6;
+  });
+  d.addEventListener('keydown', e => {
+    if (e.key === 'Backspace' && !d.value && i > 0) digits[i - 1].focus();
+  });
+  d.addEventListener('paste', e => {
+    e.preventDefault();
+    const paste = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 6);
+    paste.split('').forEach((ch, j) => { if (digits[j]) { digits[j].value = ch; digits[j].classList.add('filled'); } });
+    hidden.value = paste;
+    verifyBtn.disabled = paste.length < 6;
+    if (digits[paste.length - 1]) digits[paste.length - 1].focus();
+  });
+});
+</script>
+{% endblock %}

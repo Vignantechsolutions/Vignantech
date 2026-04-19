@@ -1,0 +1,293 @@
+{% extends 'base.html' %}
+{% block title %}Verify Certificate — Vignan TechSolutions{% endblock %}
+{% block meta_description %}Verify the authenticity of any Vignan TechSolutions certificate instantly. Enter the certificate ID to confirm it's genuine.{% endblock %}
+
+{% block extra_css %}
+<style>
+.verify-hero {
+    background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 55%, #0F172A 100%);
+    padding: 80px 0 60px; position: relative; overflow: hidden;
+}
+.verify-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 60% 40%, rgba(124,58,237,.18) 0%, transparent 65%);
+}
+.verify-hero .grid-bg {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+.verify-input-wrap {
+    background: #fff;
+    border-radius: 20px;
+    padding: 36px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 8px 32px rgba(15,23,42,.07);
+}
+.verify-input-group {
+    display: flex; gap: 0;
+    border: 2px solid #E2E8F0;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color .2s;
+}
+.verify-input-group:focus-within { border-color: #7C3AED; box-shadow: 0 0 0 3px rgba(124,58,237,.12); }
+.verify-input-group .vi-icon {
+    width: 52px; display: flex; align-items: center; justify-content: center;
+    background: #F8FAFC; color: #7C3AED; font-size: 1.2rem; flex-shrink: 0;
+    border-right: 1px solid #E2E8F0;
+}
+.verify-input-group input {
+    flex: 1; border: none; outline: none;
+    padding: .85rem 1rem; font-size: .9rem;
+    font-family: 'Roboto Mono', monospace, sans-serif;
+    background: #fff;
+}
+.verify-input-group input::placeholder { color: #94A3B8; }
+.verify-btn {
+    background: linear-gradient(135deg, #7C3AED, #6D28D9);
+    color: #fff; border: none;
+    padding: .85rem 2rem;
+    font-family: 'Poppins', sans-serif; font-weight: 700;
+    font-size: .9rem; cursor: pointer;
+    transition: all .2s; white-space: nowrap;
+}
+.verify-btn:hover { background: linear-gradient(135deg, #6D28D9, #5B21B6); }
+.result-valid {
+    background: linear-gradient(135deg, #F0FDF4, #DCFCE7);
+    border: 1px solid #BBF7D0;
+    border-radius: 20px; padding: 32px;
+}
+.result-invalid {
+    background: linear-gradient(135deg, #FEF2F2, #FEE2E2);
+    border: 1px solid #FECACA;
+    border-radius: 20px; padding: 32px;
+}
+.cert-detail-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.cert-detail-row:last-child { border-bottom: none; }
+.cert-detail-label { color: #64748B; font-size: .82rem; font-weight: 600; }
+.cert-detail-value { font-weight: 700; color: #0F172A; font-size: .9rem; }
+.how-card {
+    background: #fff; border-radius: 16px;
+    border: 1px solid #E2E8F0; padding: 24px;
+    transition: all .3s;
+}
+.how-card:hover { border-color: #A78BFA; box-shadow: 0 8px 24px rgba(124,58,237,.1); transform: translateY(-3px); }
+.how-num {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: linear-gradient(135deg, #7C3AED, #6D28D9);
+    color: #fff; font-family: 'Poppins', sans-serif;
+    font-weight: 800; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ── Hero ── -->
+<section class="verify-hero">
+    <div class="grid-bg"></div>
+    <div class="container position-relative">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" style="color:rgba(255,255,255,.6)">Home</a></li>
+                <li class="breadcrumb-item active" style="color:#C4B5FD">Verify Certificate</li>
+            </ol>
+        </nav>
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7" data-aos="fade-right">
+                <div class="d-inline-flex align-items-center gap-2 mb-3"
+                     style="background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.4);color:#C4B5FD;padding:6px 16px;border-radius:50px;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase">
+                    <i class="bi bi-patch-check-fill"></i> Instant Verification
+                </div>
+                <h1 style="font-size:clamp(2rem,5vw,3rem);font-weight:800;color:#fff;line-height:1.15">
+                    Certificate<br>
+                    <span style="background:linear-gradient(90deg,#A78BFA,#818CF8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Verification Portal</span>
+                </h1>
+                <p style="color:rgba(255,255,255,.75);font-size:1rem;line-height:1.8;max-width:520px;margin-top:1rem">
+                    Instantly verify the authenticity of any Vignan TechSolutions certificate. Every certificate is blockchain-traceable with a unique UUID.
+                </p>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    <div class="d-flex align-items-center gap-2" style="color:rgba(255,255,255,.8);font-size:.85rem">
+                        <i class="bi bi-check-circle-fill" style="color:#34D399"></i> Instant Results
+                    </div>
+                    <div class="d-flex align-items-center gap-2" style="color:rgba(255,255,255,.8);font-size:.85rem">
+                        <i class="bi bi-check-circle-fill" style="color:#34D399"></i> Tamper-Proof UUID
+                    </div>
+                    <div class="d-flex align-items-center gap-2" style="color:rgba(255,255,255,.8);font-size:.85rem">
+                        <i class="bi bi-check-circle-fill" style="color:#34D399"></i> MSME Verified Issuer
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-flex justify-content-center" data-aos="fade-left">
+                <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:28px;width:100%;max-width:340px;text-align:center">
+                    <div style="font-size:4rem;margin-bottom:12px">🏆</div>
+                    <div style="color:#fff;font-weight:800;font-size:1.1rem;margin-bottom:6px">Trusted Certificates</div>
+                    <div style="color:rgba(255,255,255,.6);font-size:.85rem;line-height:1.7">Every certificate issued by Vignan TechSolutions carries a unique UUID that can be verified here at any time.</div>
+                    <div class="d-flex justify-content-center gap-3 mt-4">
+                        <div style="text-align:center">
+                            <div style="font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:800;color:#FCD34D">500+</div>
+                            <div style="color:rgba(255,255,255,.5);font-size:.72rem">Issued</div>
+                        </div>
+                        <div style="width:1px;background:rgba(255,255,255,.15)"></div>
+                        <div style="text-align:center">
+                            <div style="font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:800;color:#FCD34D">100%</div>
+                            <div style="color:rgba(255,255,255,.5);font-size:.72rem">Authentic</div>
+                        </div>
+                        <div style="width:1px;background:rgba(255,255,255,.15)"></div>
+                        <div style="text-align:center">
+                            <div style="font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:800;color:#FCD34D">0</div>
+                            <div style="color:rgba(255,255,255,.5);font-size:.72rem">Fakes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── Verify Section ── -->
+<section style="padding:70px 0;background:#F8FAFC">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <!-- Input Card -->
+                <div class="verify-input-wrap mb-4" data-aos="fade-up">
+                    <div class="mb-4">
+                        <span class="section-badge">Enter Certificate ID</span>
+                        <h4 class="fw-800 mt-2 mb-1">Verify Your Certificate</h4>
+                        <p class="text-muted small">Enter the unique UUID found on your certificate document (format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)</p>
+                    </div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="verify-input-group mb-3">
+                            <div class="vi-icon"><i class="bi bi-award-fill"></i></div>
+                            <input type="text" name="cert_id"
+                                   placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+                                   value="{{ cert_id|default:'' }}" required
+                                   autocomplete="off" spellcheck="false">
+                            <button type="submit" class="verify-btn">
+                                <i class="bi bi-search me-2"></i>Verify Now
+                            </button>
+                        </div>
+                        <div class="text-muted small">
+                            <i class="bi bi-info-circle me-1 text-primary"></i>
+                            The Certificate ID is printed at the bottom of your certificate document.
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Result: Invalid -->
+                {% if certificate == 'invalid' %}
+                <div class="result-invalid mb-4" data-aos="fade-up">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div style="width:56px;height:56px;background:#FEE2E2;border-radius:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                            <i class="bi bi-x-circle-fill" style="color:#DC2626;font-size:1.5rem"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-800 text-danger mb-1">Certificate Not Found</h5>
+                            <p class="text-muted small mb-0">No valid certificate found with ID: <code class="text-danger">{{ cert_id }}</code></p>
+                        </div>
+                    </div>
+                    <div style="background:rgba(220,38,38,.06);border-radius:10px;padding:14px 16px">
+                        <p class="text-muted small mb-0">
+                            <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
+                            Please double-check the Certificate ID and try again. If you believe this is an error, <a href="{% url 'core:contact' %}" class="text-danger fw-600">contact us</a>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Result: Valid -->
+                {% elif certificate %}
+                <div class="result-valid mb-4" data-aos="fade-up">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div style="width:64px;height:64px;background:linear-gradient(135deg,#10B981,#059669);border-radius:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 24px rgba(16,185,129,.3)">
+                            <i class="bi bi-patch-check-fill" style="color:#fff;font-size:1.8rem"></i>
+                        </div>
+                        <div>
+                            <h4 class="fw-800 text-success mb-1">✅ Certificate Verified!</h4>
+                            <p class="text-muted small mb-0">This is an authentic certificate issued by Vignan TechSolutions</p>
+                        </div>
+                    </div>
+                    <div style="background:#fff;border-radius:14px;padding:20px;border:1px solid #BBF7D0">
+                        <div class="cert-detail-row">
+                            <span class="cert-detail-label"><i class="bi bi-person-fill me-2 text-success"></i>Student Name</span>
+                            <span class="cert-detail-value">{{ certificate.student.get_full_name }}</span>
+                        </div>
+                        <div class="cert-detail-row">
+                            <span class="cert-detail-label"><i class="bi bi-mortarboard-fill me-2 text-primary"></i>Program</span>
+                            <span class="cert-detail-value">{{ certificate.enrollment.course.title|default:certificate.enrollment.internship.title }}</span>
+                        </div>
+                        <div class="cert-detail-row">
+                            <span class="cert-detail-label"><i class="bi bi-calendar-check-fill me-2 text-warning"></i>Issue Date</span>
+                            <span class="cert-detail-value">{{ certificate.issued_date|date:"d F Y" }}</span>
+                        </div>
+                        <div class="cert-detail-row">
+                            <span class="cert-detail-label"><i class="bi bi-fingerprint me-2 text-purple"></i>Certificate ID</span>
+                            <code class="small text-muted">{{ certificate.certificate_id }}</code>
+                        </div>
+                        <div class="cert-detail-row">
+                            <span class="cert-detail-label"><i class="bi bi-building-fill-check me-2 text-success"></i>Issued By</span>
+                            <span class="cert-detail-value">Vignan TechSolutions <span class="badge bg-success ms-1" style="font-size:.65rem">MSME Verified</span></span>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 mt-3 flex-wrap">
+                        <a href="{% url 'certificates:download' certificate.certificate_id %}"
+                           class="btn btn-success rounded-pill px-4 fw-700">
+                            <i class="bi bi-download me-2"></i>Download Certificate
+                        </a>
+                        <a href="{% url 'core:contact' %}" class="btn btn-outline-success rounded-pill px-4 fw-600">
+                            <i class="bi bi-chat-dots me-2"></i>Contact Us
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- How to Verify -->
+                <div data-aos="fade-up">
+                    <h5 class="fw-800 mb-3">How to Verify</h5>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="how-card">
+                                <div class="d-flex align-items-center gap-3 mb-2">
+                                    <div class="how-num">1</div>
+                                    <div class="fw-700 small">Find the ID</div>
+                                </div>
+                                <p class="text-muted small mb-0">Locate the Certificate ID (UUID) printed at the bottom of your certificate document.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="how-card">
+                                <div class="d-flex align-items-center gap-3 mb-2">
+                                    <div class="how-num">2</div>
+                                    <div class="fw-700 small">Enter & Verify</div>
+                                </div>
+                                <p class="text-muted small mb-0">Paste the UUID in the field above and click "Verify Now" to check authenticity.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="how-card">
+                                <div class="d-flex align-items-center gap-3 mb-2">
+                                    <div class="how-num">3</div>
+                                    <div class="fw-700 small">Get Results</div>
+                                </div>
+                                <p class="text-muted small mb-0">A green checkmark confirms the certificate is genuine and issued by Vignan TechSolutions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

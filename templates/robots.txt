@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /accounts/dashboard/
+Disallow: /accounts/profile/
+Disallow: /payments/
+Disallow: /media/certificates/
+
+Sitemap: https://vignantechsolutions.com/sitemap.xml

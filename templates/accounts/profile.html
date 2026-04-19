@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm text-center p-4">
+                    {% if profile.profile_photo %}
+                    <img src="{{ profile.profile_photo.url }}" class="rounded-circle mx-auto mb-3" width="120" height="120" style="object-fit:cover" alt="Profile">
+                    {% else %}
+                    <div class="bg-primary text-white rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center fw-bold" style="width:120px;height:120px;font-size:2.5rem">
+                        {{ user.first_name|first }}{{ user.last_name|first }}
+                    </div>
+                    {% endif %}
+                    <h5 class="fw-bold">{{ user.get_full_name }}</h5>
+                    <p class="text-muted small">{{ user.email }}</p>
+                    {% if profile.college %}<p class="text-muted small"><i class="bi bi-building me-1"></i>{{ profile.college }}</p>{% endif %}
+                    <div class="d-flex justify-content-center gap-3 mt-2">
+                        {% if profile.linkedin_url %}<a href="{{ profile.linkedin_url }}" target="_blank" class="text-primary"><i class="bi bi-linkedin fs-5"></i></a>{% endif %}
+                        {% if profile.github_url %}<a href="{{ profile.github_url }}" target="_blank" class="text-dark"><i class="bi bi-github fs-5"></i></a>{% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm p-4">
+                    <h5 class="fw-bold mb-4">Edit Profile</h5>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-500">First Name</label>
+                                <input type="text" name="first_name" class="form-control" value="{{ user.first_name }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-500">Last Name</label>
+                                <input type="text" name="last_name" class="form-control" value="{{ user.last_name }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-500">Phone</label>
+                                <input type="tel" name="phone" class="form-control" value="{{ profile.phone }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-500">College/University</label>
+                                <input type="text" name="college" class="form-control" value="{{ profile.college }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-500">Course of Study</label>
+                                <input type="text" name="course_of_study" class="form-control" value="{{ profile.course_of_study }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-500">Year of Study</label>
+                                <select name="year_of_study" class="form-select">
+                                    <option value="">Select year</option>
+                                    {% for y in "1234" %}<option {% if profile.year_of_study == y %}selected{% endif %}>{{ y }}</option>{% endfor %}
+                                    <option {% if profile.year_of_study == 'Graduated' %}selected{% endif %}>Graduated</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-500">Bio</label>
+                                <textarea name="bio" class="form-control" rows="3">{{ profile.bio }}</textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-500">LinkedIn URL</label>
+                                <input type="url" name="linkedin_url" class="form-control" value="{{ profile.linkedin_url }}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-500">GitHub URL</label>
+                                <input type="url" name="github_url" class="form-control" value="{{ profile.github_url }}">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-500">Profile Photo</label>
+                                <input type="file" name="profile_photo" class="form-control" accept="image/*">
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary px-4">
+                                    <i class="bi bi-save me-2"></i>Save Changes
+                                </button>
+                                <a href="{% url 'accounts:dashboard' %}" class="btn btn-outline-secondary ms-2">Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

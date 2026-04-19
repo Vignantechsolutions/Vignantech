@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Register Free — Join Vignan TechSolutions{% endblock %}
+
+{% block extra_css %}
+<style>
+.auth-split { min-height: 100vh; display: flex; }
+.auth-left {
+    flex: 0 0 38%;
+    background: linear-gradient(135deg, #0F172A 0%, #065F46 55%, #0F172A 100%);
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 60px 48px;
+}
+.auth-left::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(16,185,129,.2) 0%, transparent 70%);
+}
+.auth-left .grid-bg {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+.auth-right {
+    flex: 1; background: #F8FAFC;
+    display: flex; align-items: center; justify-content: center;
+    padding: 40px 24px;
+}
+.auth-form-card {
+    background: #fff; border-radius: 24px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 8px 40px rgba(15,23,42,.08);
+    padding: 40px 36px;
+    width: 100%; max-width: 560px;
+}
+.auth-feature {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 14px; position: relative; z-index: 1;
+}
+.auth-feature-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
+    display: flex; align-items: center; justify-content: center;
+    color: #FCD34D; font-size: .95rem; flex-shrink: 0;
+}
+.form-control { border-radius: 10px !important; border: 1.5px solid #E2E8F0 !important; }
+.form-control:focus { border-color: #10B981 !important; box-shadow: 0 0 0 3px rgba(16,185,129,.12) !important; }
+.btn-register {
+    background: linear-gradient(135deg, #059669, #10B981);
+    border: none; border-radius: 12px;
+    font-family: 'Poppins', sans-serif; font-weight: 700;
+    font-size: 1rem; padding: .85rem;
+    box-shadow: 0 8px 24px rgba(5,150,105,.3);
+    transition: all .3s;
+}
+.btn-register:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(5,150,105,.4); }
+.step-indicator {
+    display: flex; align-items: center; gap: 8px;
+    justify-content: center; margin-bottom: 24px;
+}
+.step-dot {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: .82rem;
+}
+.step-dot.active { background: linear-gradient(135deg, #059669, #10B981); color: #fff; }
+.step-dot.inactive { background: #F1F5F9; color: #94A3B8; }
+.step-line { width: 40px; height: 2px; background: #E2E8F0; }
+@media (max-width: 991px) {
+    .auth-split { flex-direction: column; }
+    .auth-left { flex: none; padding: 36px 24px; min-height: auto; }
+    .auth-right { padding: 28px 16px; }
+    .auth-form-card { padding: 28px 20px; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="auth-split">
+
+    <!-- Left Panel -->
+    <div class="auth-left">
+        <div class="grid-bg"></div>
+        <div style="position:relative;z-index:1">
+            <a href="{% url 'core:home' %}">
+                <img src="{% static 'images/vignan_logo_final.png' %}" alt="Vignan TechSolutions"
+                     style="height:48px;width:auto;object-fit:contain;filter:brightness(0) invert(1);margin-bottom:36px">
+            </a>
+            <div style="color:rgba(255,255,255,.5);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px">Join Free Today</div>
+            <h2 style="color:#fff;font-weight:800;font-size:clamp(1.5rem,2.5vw,2rem);line-height:1.2;margin-bottom:10px">
+                Start Your Journey<br><span style="color:#FCD34D">From Student to Pro</span>
+            </h2>
+            <p style="color:rgba(255,255,255,.65);font-size:.88rem;line-height:1.8;margin-bottom:28px">
+                Join 500+ students building real tech careers with Vignan TechSolutions.
+            </p>
+            <div class="auth-feature">
+                <div class="auth-feature-icon"><i class="bi bi-kanban-fill"></i></div>
+                <div style="color:rgba(255,255,255,.85);font-size:.85rem;font-weight:500">Access 75+ MCA Major Projects</div>
+            </div>
+            <div class="auth-feature">
+                <div class="auth-feature-icon"><i class="bi bi-briefcase-fill"></i></div>
+                <div style="color:rgba(255,255,255,.85);font-size:.85rem;font-weight:500">Apply for live internships</div>
+            </div>
+            <div class="auth-feature">
+                <div class="auth-feature-icon"><i class="bi bi-book-fill"></i></div>
+                <div style="color:rgba(255,255,255,.85);font-size:.85rem;font-weight:500">Enroll in industry courses</div>
+            </div>
+            <div class="auth-feature">
+                <div class="auth-feature-icon"><i class="bi bi-award-fill"></i></div>
+                <div style="color:rgba(255,255,255,.85);font-size:.85rem;font-weight:500">Earn verified certificates</div>
+            </div>
+            <div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1)">
+                <div style="display:flex;align-items:center;gap:10px">
+                    <span style="background:rgba(16,185,129,.2);border:1px solid rgba(16,185,129,.3);color:#34D399;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:50px"><i class="bi bi-patch-check-fill me-1"></i>MSME Registered</span>
+                    <span style="color:rgba(255,255,255,.5);font-size:.82rem">Free to join</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="auth-right">
+        <div class="auth-form-card">
+            <div class="text-center mb-4">
+                <div style="width:56px;height:56px;background:linear-gradient(135deg,#059669,#10B981);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
+                    <i class="bi bi-person-plus-fill" style="color:#fff;font-size:1.4rem"></i>
+                </div>
+                <h3 class="fw-800 mb-1">Create Your Account</h3>
+                <p class="text-muted small">Join students building their tech careers</p>
+                <div class="step-indicator">
+                    <div class="step-dot active">1</div>
+                    <div class="step-line"></div>
+                    <div class="step-dot inactive">2</div>
+                    <span style="font-size:.72rem;color:#94A3B8;margin-left:4px">Step 1 of 2 — Your Details</span>
+                </div>
+            </div>
+
+            {% if messages %}
+            {% for msg in messages %}
+            <div class="alert alert-{{ msg.tags|default:'info' }} alert-dismissible fade show" role="alert">
+                {{ msg }}<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <form method="post" novalidate>
+                {% csrf_token %}
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-600 small">First Name <span class="text-danger">*</span></label>
+                        <input type="text" name="first_name" class="form-control" placeholder="First name" required autofocus>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-600 small">Last Name <span class="text-danger">*</span></label>
+                        <input type="text" name="last_name" class="form-control" placeholder="Last name" required>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-600 small">Email Address <span class="text-danger">*</span></label>
+                        <input type="email" name="email" class="form-control" placeholder="your@email.com" required>
+                        <div class="form-text small"><i class="bi bi-shield-check text-success me-1"></i>An OTP will be sent to this email for verification.</div>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label fw-600 small">Phone Number <span class="text-danger">*</span></label>
+                        <input type="tel" name="phone" class="form-control" placeholder="+91 XXXXX XXXXX" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-600 small">Password <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <input type="password" name="password1" id="password1" class="form-control" placeholder="Min 8 characters" required>
+                            <button class="btn btn-outline-secondary" type="button" data-toggle-pass="password1"
+                                    style="border-radius:0 10px 10px 0;border-left:none"><i class="bi bi-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-600 small">Confirm Password <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <input type="password" name="password2" id="password2" class="form-control" placeholder="Repeat password" required>
+                            <button class="btn btn-outline-secondary" type="button" data-toggle-pass="password2"
+                                    style="border-radius:0 10px 10px 0;border-left:none"><i class="bi bi-eye"></i></button>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="terms" required>
+                            <label class="form-check-label small" for="terms">
+                                I agree to the <a href="#" class="text-primary">Terms of Service</a> and <a href="#" class="text-primary">Privacy Policy</a>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-register w-100 text-white">
+                            <i class="bi bi-send me-2"></i>Send OTP & Continue
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div class="text-center mt-4 pt-3" style="border-top:1px solid #F1F5F9">
+                <p class="text-muted mb-0 small">
+                    Already have an account?
+                    <a href="{% url 'accounts:login' %}" class="text-primary fw-700">Sign In</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

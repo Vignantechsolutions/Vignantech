@@ -1,0 +1,516 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Student Dashboard{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<style>
+  body { overflow-x:hidden; }
+  /* hide base navbar/footer inside dashboard */
+  nav.navbar, footer { display:none !important; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="db-wrap">
+
+  <!-- ── Sidebar ── -->
+  <aside class="db-sidebar" id="dbSidebar">
+
+    <div class="db-sidebar-logo">
+      <img src="{% static 'images/vignan_logo_final.png' %}" alt="Vignan TechSolutions">
+    </div>
+
+    <div class="db-sidebar-user">
+      <div class="db-avatar">
+        {% if profile.profile_photo %}
+          <img src="{{ profile.profile_photo.url }}" alt="avatar">
+        {% else %}
+          {{ user.first_name|first|upper }}{{ user.last_name|first|upper }}
+        {% endif %}
+      </div>
+      <div>
+        <div class="db-user-name">{{ user.get_full_name|default:user.email }}</div>
+        <div class="db-user-email">{{ user.email }}</div>
+      </div>
+    </div>
+
+    <nav class="db-nav">
+      <div class="db-nav-label">Main</div>
+      <button class="db-nav-link active" onclick="showTab('overview')">
+        <i class="bi bi-grid-1x2-fill"></i> Overview
+      </button>
+      <button class="db-nav-link" onclick="showTab('enrollments')">
+        <i class="bi bi-journal-check"></i> My Enrollments
+        {% if pending_count %}<span class="db-badge">{{ pending_count }}</span>{% endif %}
+      </button>
+      <button class="db-nav-link" onclick="showTab('certificates')">
+        <i class="bi bi-award"></i> Certificates
+        {% if cert_count %}<span class="db-badge" style="background:rgba(79,70,229,.8)">{{ cert_count }}</span>{% endif %}
+      </button>
+      <button class="db-nav-link" onclick="showTab('payments')">
+        <i class="bi bi-receipt"></i> Payments
+      </button>
+
+      <div class="db-nav-label mt-2">Account</div>
+      <a href="{% url 'accounts:profile' %}" class="db-nav-link">
+        <i class="bi bi-person-gear"></i> Edit Profile
+      </a>
+      <a href="{% url 'courses:list' %}" class="db-nav-link">
+        <i class="bi bi-mortarboard"></i> Browse Courses
+      </a>
+      <a href="{% url 'internships:list' %}" class="db-nav-link">
+        <i class="bi bi-briefcase"></i> Browse Internships
+      </a>
+    </nav>
+
+    <div class="db-sidebar-footer">
+      <a href="{% url 'accounts:logout' %}" class="db-nav-link" style="color:rgba(239,68,68,.8)">
+        <i class="bi bi-box-arrow-left"></i> Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- overlay for mobile -->
+  <div class="db-overlay" id="dbOverlay" onclick="closeSidebar()"></div>
+
+  <!-- ── Main ── -->
+  <div class="db-main">
+
+    <!-- Top bar -->
+    <div class="db-topbar">
+      <div class="d-flex align-items-center gap-3">
+        <button class="db-hamburger" onclick="openSidebar()"><i class="bi bi-list"></i></button>
+        <div>
+          <div class="db-topbar-title" id="topbarTitle">Overview</div>
+          <div class="db-topbar-sub">Welcome back, {{ user.first_name }}! 👋</div>
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <a href="{% url 'accounts:profile' %}" class="btn btn-sm btn-outline-secondary d-none d-md-inline-flex align-items-center gap-1">
+          <i class="bi bi-person-gear"></i> Profile
+        </a>
+        <a href="{% url 'core:home' %}" class="btn btn-sm btn-outline-secondary d-none d-md-inline-flex align-items-center gap-1">
+          <i class="bi bi-house"></i> Home
+        </a>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="db-content">
+
+      {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags|default:'info' }}{% endif %} alert-dismissible fade show d-flex align-items-center gap-2 mb-3" role="alert">
+          <i class="bi bi-{% if message.tags == 'success' %}check-circle-fill{% elif message.tags == 'error' %}exclamation-circle-fill{% else %}info-circle-fill{% endif %}"></i>
+          <span>{{ message }}</span>
+          <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
+        </div>
+        {% endfor %}
+      {% endif %}
+
+      <!-- ══ TAB: OVERVIEW ══ -->
+      <div id="tab-overview">
+
+        <!-- Stat cards -->
+        <div class="row g-3 mb-4">
+          <div class="col-6 col-lg-3">
+            <div class="db-stat-card c1">
+              <div class="db-stat-icon" style="background:rgba(79,70,229,.1);color:#4F46E5">
+                <i class="bi bi-journal-check"></i>
+              </div>
+              <div class="db-stat-num">{{ enrollments.count }}</div>
+              <div class="db-stat-lbl">Total Enrollments</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="db-stat-card c2">
+              <div class="db-stat-icon" style="background:rgba(16,185,129,.1);color:#10B981">
+                <i class="bi bi-play-circle-fill"></i>
+              </div>
+              <div class="db-stat-num">{{ active_count }}</div>
+              <div class="db-stat-lbl">Active Programs</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="db-stat-card c3">
+              <div class="db-stat-icon" style="background:rgba(245,158,11,.1);color:#F59E0B">
+                <i class="bi bi-trophy-fill"></i>
+              </div>
+              <div class="db-stat-num">{{ completed_count }}</div>
+              <div class="db-stat-lbl">Completed</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="db-stat-card c4">
+              <div class="db-stat-icon" style="background:rgba(59,130,246,.1);color:#3B82F6">
+                <i class="bi bi-award-fill"></i>
+              </div>
+              <div class="db-stat-num">{{ cert_count }}</div>
+              <div class="db-stat-lbl">Certificates</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4">
+
+          <!-- Recent Enrollments -->
+          <div class="col-lg-7">
+            <div class="db-card h-100">
+              <div class="db-card-header">
+                <span class="db-card-title"><i class="bi bi-journal-check text-primary"></i> Recent Enrollments</span>
+                <button class="btn btn-sm btn-outline-primary" onclick="showTab('enrollments')">View All</button>
+              </div>
+              <div class="db-card-body">
+                {% if enrollments %}
+                  {% for enrollment in enrollments|slice:":5" %}
+                  <div class="db-enroll-row">
+                    <div class="db-enroll-icon {% if enrollment.enrollment_type == 'course' %}bg-primary bg-opacity-10 text-primary{% else %}bg-success bg-opacity-10 text-success{% endif %}">
+                      <i class="bi bi-{% if enrollment.enrollment_type == 'course' %}book{% else %}briefcase{% endif %}"></i>
+                    </div>
+                    <div class="flex-grow-1 overflow-hidden">
+                      <div class="db-enroll-title text-truncate">
+                        {% if enrollment.course %}{{ enrollment.course.title }}{% else %}{{ enrollment.internship.title }}{% endif %}
+                      </div>
+                      <div class="db-enroll-meta">
+                        {{ enrollment.get_enrollment_type_display }} &nbsp;·&nbsp; {{ enrollment.enrolled_at|date:"d M Y" }}
+                      </div>
+                    </div>
+                    <span class="db-status-pill db-status-{{ enrollment.status }}">{{ enrollment.get_status_display }}</span>
+                    <div class="flex-shrink-0 ms-2">
+                      {% if enrollment.status == 'active' %}
+                        <a href="{% url 'accounts:submit_assignment' enrollment.id %}" class="btn btn-xs btn-outline-primary" style="font-size:.72rem;padding:3px 8px">
+                          <i class="bi bi-upload"></i>
+                        </a>
+                      {% elif enrollment.status == 'completed' and enrollment.certificate %}
+                        <a href="{% url 'certificates:download' enrollment.certificate.certificate_id %}" class="btn btn-xs btn-success" style="font-size:.72rem;padding:3px 8px">
+                          <i class="bi bi-download"></i>
+                        </a>
+                      {% endif %}
+                    </div>
+                  </div>
+                  {% endfor %}
+                {% else %}
+                  <div class="db-empty">
+                    <i class="bi bi-journal-x"></i>
+                    <p>No enrollments yet.<br>
+                      <a href="{% url 'courses:list' %}">Browse Courses</a> or
+                      <a href="{% url 'internships:list' %}">Internships</a>
+                    </p>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <!-- Right column -->
+          <div class="col-lg-5">
+
+            <!-- Profile completion -->
+            <div class="db-card mb-4">
+              <div class="db-card-header">
+                <span class="db-card-title"><i class="bi bi-person-check text-primary"></i> Profile Completion</span>
+                <a href="{% url 'accounts:profile' %}" class="btn btn-xs btn-outline-secondary" style="font-size:.72rem;padding:3px 8px">Edit</a>
+              </div>
+              <div class="db-card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span style="font-size:.82rem;font-weight:600;color:var(--db-text)">{{ profile_pct }}% complete</span>
+                  {% if profile_pct == 100 %}
+                    <span class="badge bg-success">Complete!</span>
+                  {% elif profile_pct >= 60 %}
+                    <span class="badge bg-warning text-dark">Almost there</span>
+                  {% else %}
+                    <span class="badge bg-danger">Incomplete</span>
+                  {% endif %}
+                </div>
+                <div class="db-progress-bar">
+                  <div class="db-progress-fill" style="width:{{ profile_pct }}%"></div>
+                </div>
+                {% if profile_pct < 100 %}
+                <p class="mt-2 mb-0" style="font-size:.75rem;color:var(--db-muted)">
+                  Complete your profile to stand out to employers.
+                </p>
+                {% endif %}
+              </div>
+            </div>
+
+            <!-- Quick actions -->
+            <div class="db-card mb-4">
+              <div class="db-card-header">
+                <span class="db-card-title"><i class="bi bi-lightning-fill text-warning"></i> Quick Actions</span>
+              </div>
+              <div class="db-card-body">
+                <a href="{% url 'courses:list' %}" class="db-quick-btn">
+                  <i class="bi bi-mortarboard text-primary"></i> Browse Courses
+                </a>
+                <a href="{% url 'internships:list' %}" class="db-quick-btn">
+                  <i class="bi bi-briefcase text-success"></i> Browse Internships
+                </a>
+                <a href="{% url 'certificates:verify' %}" class="db-quick-btn">
+                  <i class="bi bi-patch-check text-info"></i> Verify Certificate
+                </a>
+                <button class="db-quick-btn w-100 text-start" data-bs-toggle="modal" data-bs-target="#reviewModal">
+                  <i class="bi bi-star-fill text-warning"></i>
+                  {% if user_review %}Edit My Review{% else %}Write a Review{% endif %}
+                </button>
+              </div>
+            </div>
+
+            <!-- Total spent -->
+            {% if total_spent %}
+            <div class="db-card">
+              <div class="db-card-body text-center">
+                <div style="font-size:.78rem;color:var(--db-muted);font-weight:600">Total Invested in Learning</div>
+                <div style="font-size:2rem;font-weight:900;color:#10B981;margin:4px 0">₹{{ total_spent }}</div>
+                <a href="{% url 'payments:history' %}" class="btn btn-sm btn-outline-success mt-1">View Payment History</a>
+              </div>
+            </div>
+            {% endif %}
+
+          </div>
+        </div>
+      </div><!-- /tab-overview -->
+
+      <!-- ══ TAB: ENROLLMENTS ══ -->
+      <div id="tab-enrollments" style="display:none">
+        <div class="db-card">
+          <div class="db-card-header">
+            <span class="db-card-title"><i class="bi bi-journal-check text-primary"></i> My Enrollments</span>
+            <div class="d-flex gap-2">
+              <a href="{% url 'courses:list' %}" class="btn btn-sm btn-primary"><i class="bi bi-plus me-1"></i>Course</a>
+              <a href="{% url 'internships:list' %}" class="btn btn-sm btn-outline-primary"><i class="bi bi-plus me-1"></i>Internship</a>
+            </div>
+          </div>
+          <div class="db-card-body">
+            <!-- Filter tabs -->
+            <div class="db-tabs mb-4">
+              <button class="db-tab active" onclick="filterEnroll('all', this)">All ({{ enrollments.count }})</button>
+              <button class="db-tab" onclick="filterEnroll('active', this)">Active ({{ active_count }})</button>
+              <button class="db-tab" onclick="filterEnroll('completed', this)">Completed ({{ completed_count }})</button>
+              <button class="db-tab" onclick="filterEnroll('pending', this)">Pending ({{ pending_count }})</button>
+            </div>
+
+            {% if enrollments %}
+              {% for enrollment in enrollments %}
+              <div class="db-enroll-row enroll-item" data-status="{{ enrollment.status }}">
+                <div class="db-enroll-icon {% if enrollment.enrollment_type == 'course' %}bg-primary bg-opacity-10 text-primary{% else %}bg-success bg-opacity-10 text-success{% endif %}">
+                  <i class="bi bi-{% if enrollment.enrollment_type == 'course' %}book{% else %}briefcase{% endif %}"></i>
+                </div>
+                <div class="flex-grow-1 overflow-hidden">
+                  <div class="db-enroll-title text-truncate">
+                    {% if enrollment.course %}{{ enrollment.course.title }}{% else %}{{ enrollment.internship.title }}{% endif %}
+                  </div>
+                  <div class="db-enroll-meta">
+                    {{ enrollment.get_enrollment_type_display }} &nbsp;·&nbsp; Enrolled {{ enrollment.enrolled_at|date:"d M Y" }}
+                  </div>
+                </div>
+                <span class="db-status-pill db-status-{{ enrollment.status }}">{{ enrollment.get_status_display }}</span>
+                <div class="flex-shrink-0 ms-2">
+                  {% if enrollment.status == 'active' %}
+                    <a href="{% url 'accounts:submit_assignment' enrollment.id %}" class="btn btn-sm btn-outline-primary">
+                      <i class="bi bi-upload me-1"></i>Submit
+                    </a>
+                  {% elif enrollment.status == 'completed' %}
+                    {% if enrollment.certificate %}
+                      <a href="{% url 'certificates:download' enrollment.certificate.certificate_id %}" class="btn btn-sm btn-success">
+                        <i class="bi bi-download me-1"></i>Certificate
+                      </a>
+                    {% else %}
+                      <span class="db-status-pill" style="background:#F1F5F9;color:var(--db-muted)">Cert Pending</span>
+                    {% endif %}
+                  {% elif enrollment.status == 'pending' %}
+                    <span class="db-status-pill db-status-pending">Awaiting Payment</span>
+                  {% endif %}
+                </div>
+              </div>
+              {% endfor %}
+            {% else %}
+              <div class="db-empty">
+                <i class="bi bi-journal-x"></i>
+                <p>No enrollments yet. Start your learning journey!</p>
+                <a href="{% url 'courses:list' %}" class="btn btn-primary btn-sm me-2">Browse Courses</a>
+                <a href="{% url 'internships:list' %}" class="btn btn-outline-primary btn-sm">Browse Internships</a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div><!-- /tab-enrollments -->
+
+      <!-- ══ TAB: CERTIFICATES ══ -->
+      <div id="tab-certificates" style="display:none">
+        <div class="db-card">
+          <div class="db-card-header">
+            <span class="db-card-title"><i class="bi bi-award text-warning"></i> My Certificates</span>
+            <a href="{% url 'certificates:verify' %}" class="btn btn-sm btn-outline-secondary">Verify a Certificate</a>
+          </div>
+          <div class="db-card-body">
+            {% if certificates %}
+              <div class="row g-3">
+                {% for cert in certificates %}
+                <div class="col-md-6">
+                  <div class="db-cert-card">
+                    <div class="d-flex justify-content-between align-items-start">
+                      <div class="flex-grow-1 me-3">
+                        <div class="db-cert-name">
+                          {{ cert.enrollment.course.title|default:cert.enrollment.internship.title }}
+                        </div>
+                        <div class="db-cert-date"><i class="bi bi-calendar me-1"></i>{{ cert.issued_date|date:"d M Y" }}</div>
+                        <div class="db-cert-id">ID: {{ cert.certificate_id }}</div>
+                      </div>
+                      <a href="{% url 'certificates:download' cert.certificate_id %}" class="btn btn-sm btn-light flex-shrink-0">
+                        <i class="bi bi-download"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            {% else %}
+              <div class="db-empty">
+                <i class="bi bi-award"></i>
+                <p>No certificates yet.<br>Complete a program to earn your certificate!</p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div><!-- /tab-certificates -->
+
+      <!-- ══ TAB: PAYMENTS ══ -->
+      <div id="tab-payments" style="display:none">
+        <div class="db-card">
+          <div class="db-card-header">
+            <span class="db-card-title"><i class="bi bi-receipt text-success"></i> Payment History</span>
+            {% if total_spent %}
+            <span style="font-weight:800;color:#10B981">Total: ₹{{ total_spent }}</span>
+            {% endif %}
+          </div>
+          <div class="db-card-body">
+            {% if payments %}
+              {% for payment in payments %}
+              <div class="db-pay-row">
+                <div>
+                  <div class="db-pay-amount">₹{{ payment.amount }}</div>
+                  <div class="db-pay-date">{{ payment.created_at|date:"d M Y, h:i A" }}</div>
+                  {% if payment.razorpay_payment_id %}
+                  <div style="font-size:.68rem;color:var(--db-muted);font-family:monospace">{{ payment.razorpay_payment_id }}</div>
+                  {% endif %}
+                </div>
+                <span class="db-status-pill
+                  {% if payment.status == 'paid' %}db-status-active
+                  {% elif payment.status == 'failed' %}db-status-cancelled
+                  {% elif payment.status == 'refunded' %}db-status-completed
+                  {% else %}db-status-pending{% endif %}">
+                  {{ payment.get_status_display }}
+                </span>
+              </div>
+              {% endfor %}
+            {% else %}
+              <div class="db-empty">
+                <i class="bi bi-receipt"></i>
+                <p>No payment history yet.</p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div><!-- /tab-payments -->
+
+    </div><!-- /db-content -->
+  </div><!-- /db-main -->
+</div><!-- /db-wrap -->
+
+<!-- ── Review Modal ── -->
+<div class="modal fade" id="reviewModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold">
+          <i class="bi bi-star-fill text-warning me-2"></i>
+          {% if user_review %}Edit{% else %}Write a{% endif %} Review
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <form method="post" action="{% url 'accounts:submit_review' %}">
+        {% csrf_token %}
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label fw-600 small">Your Role / Designation <span class="text-danger">*</span></label>
+            <input type="text" name="designation" class="form-control" placeholder="e.g. MCA Student, Software Engineer"
+              value="{% if user_review %}{{ user_review.designation }}{% endif %}" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-600 small">Rating <span class="text-danger">*</span></label>
+            <div class="d-flex gap-1 mb-1" id="starRow">
+              {% for i in "12345" %}
+              <span class="db-star {% if user_review and user_review.rating >= forloop.counter %}on{% endif %}"
+                data-val="{{ forloop.counter }}" onclick="setRating({{ forloop.counter }})">★</span>
+              {% endfor %}
+            </div>
+            <input type="hidden" name="rating" id="ratingInput" value="{% if user_review %}{{ user_review.rating }}{% else %}5{% endif %}">
+          </div>
+          <div class="mb-3">
+            <label class="form-label fw-600 small">Your Review <span class="text-danger">*</span></label>
+            <textarea name="message" class="form-control" rows="4" placeholder="Share your experience..." required>{% if user_review %}{{ user_review.message }}{% endif %}</textarea>
+          </div>
+          <div class="alert alert-info small py-2 mb-0">
+            <i class="bi bi-info-circle me-1"></i>Your review will be visible after admin approval.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-warning btn-sm fw-600">
+            <i class="bi bi-send me-1"></i>Submit Review
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const tabs = ['overview','enrollments','certificates','payments'];
+const navLinks = document.querySelectorAll('.db-nav-link');
+const titles = {overview:'Overview',enrollments:'My Enrollments',certificates:'Certificates',payments:'Payments'};
+
+function showTab(name) {
+  tabs.forEach(t => {
+    document.getElementById('tab-'+t).style.display = t===name ? '' : 'none';
+  });
+  navLinks.forEach(l => l.classList.remove('active'));
+  event && event.currentTarget && event.currentTarget.classList.add('active');
+  document.getElementById('topbarTitle').textContent = titles[name] || name;
+}
+
+function filterEnroll(status, btn) {
+  document.querySelectorAll('.enroll-item').forEach(row => {
+    row.style.display = (status==='all' || row.dataset.status===status) ? '' : 'none';
+  });
+  btn.closest('.db-tabs').querySelectorAll('.db-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function setRating(val) {
+  document.getElementById('ratingInput').value = val;
+  document.querySelectorAll('.db-star').forEach(s => {
+    s.classList.toggle('on', parseInt(s.dataset.val) <= val);
+  });
+}
+
+function openSidebar() {
+  document.getElementById('dbSidebar').classList.add('open');
+  document.getElementById('dbOverlay').classList.add('show');
+}
+function closeSidebar() {
+  document.getElementById('dbSidebar').classList.remove('open');
+  document.getElementById('dbOverlay').classList.remove('show');
+}
+
+// init star rating display
+(function(){
+  const v = parseInt(document.getElementById('ratingInput').value)||5;
+  document.querySelectorAll('.db-star').forEach(s => {
+    s.classList.toggle('on', parseInt(s.dataset.val) <= v);
+  });
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,273 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Professional Courses — Vignan TechSolutions{% endblock %}
+{% block meta_description %}Industry-aligned tech courses taught by experienced professionals. Python, Django, React, ML, Data Science and more. Enroll today at Vignan TechSolutions, Kalaburagi.{% endblock %}
+
+{% block extra_css %}
+<style>
+.courses-hero {
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 55%, #1d4ed8 100%);
+    padding: 72px 0 56px; position: relative; overflow: hidden;
+}
+.courses-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 70% 40%, rgba(59,130,246,.18) 0%, transparent 65%),
+                radial-gradient(ellipse 40% 50% at 10% 70%, rgba(6,182,212,.1) 0%, transparent 60%);
+}
+.courses-hero .grid-bg {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+/* Filter chips */
+.filter-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 20px; border-radius: 50px;
+    font-size: .82rem; font-weight: 600;
+    border: 1.5px solid #E2E8F0;
+    background: #fff; color: #64748B;
+    text-decoration: none; transition: all .2s;
+    white-space: nowrap;
+}
+.filter-chip:hover { border-color: #1E3A8A; color: #1E3A8A; background: rgba(30,58,138,.05); }
+.filter-chip.active { background: #1E3A8A; border-color: #1E3A8A; color: #fff; }
+/* Course card */
+.course-card {
+    background: #fff; border-radius: 20px;
+    overflow: hidden; border: 1px solid #E2E8F0;
+    transition: all .3s ease; display: flex; flex-direction: column; height: 100%;
+}
+.course-card:hover { transform: translateY(-8px); box-shadow: 0 24px 56px rgba(30,58,138,.13); border-color: transparent; }
+.course-thumb { height: 200px; position: relative; overflow: hidden; }
+.course-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.course-card:hover .course-thumb img { transform: scale(1.06); }
+.course-thumb-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center; font-size: 3.5rem;
+}
+.course-badge {
+    position: absolute; top: 12px; left: 12px;
+    padding: 4px 12px; border-radius: 50px;
+    font-size: .72rem; font-weight: 700;
+    backdrop-filter: blur(8px);
+}
+.course-body { padding: 22px; flex: 1; }
+.course-meta { display: flex; gap: 14px; color: #64748B; font-size: .8rem; margin-bottom: 12px; }
+.course-footer {
+    padding: 14px 22px;
+    background: #F8FAFC; border-top: 1px solid #E2E8F0;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.price-tag { font-family: 'Poppins',sans-serif; font-size: 1.35rem; font-weight: 800; color: #1E3A8A; }
+.enroll-btn {
+    background: linear-gradient(135deg, #1E3A8A, #1d4ed8);
+    color: #fff; font-family: 'Poppins',sans-serif;
+    font-weight: 600; font-size: .82rem;
+    padding: .5rem 1.25rem; border-radius: 50px;
+    text-decoration: none; transition: all .3s;
+    border: none;
+}
+.enroll-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(30,58,138,.35); color: #fff; }
+/* Level badges */
+.lvl-beginner     { background: rgba(16,185,129,.15); color: #065F46; }
+.lvl-intermediate { background: rgba(245,158,11,.15);  color: #92400E; }
+.lvl-advanced     { background: rgba(239,68,68,.15);   color: #991B1B; }
+/* Stats strip */
+.stats-strip { background: rgba(255,255,255,.06); border-top: 1px solid rgba(255,255,255,.08); padding: 14px 0; }
+.stat-item-strip { text-align: center; }
+.stat-item-strip .num { font-family: 'Poppins',sans-serif; font-size: 1.5rem; font-weight: 800; color: #FCD34D; line-height: 1; }
+.stat-item-strip .lbl { font-size: .72rem; color: rgba(255,255,255,.6); margin-top: 2px; }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ── Hero ── -->
+<section class="courses-hero">
+    <div class="grid-bg"></div>
+    <div class="container position-relative">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" style="color:rgba(255,255,255,.6)">Home</a></li>
+                <li class="breadcrumb-item active" style="color:#93C5FD">Courses</li>
+            </ol>
+        </nav>
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7" data-aos="fade-right">
+                <div class="d-inline-flex align-items-center gap-2 mb-3"
+                     style="background:rgba(59,130,246,.2);border:1px solid rgba(59,130,246,.4);color:#93C5FD;padding:6px 16px;border-radius:50px;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase">
+                    <i class="bi bi-book-fill"></i> Industry-Aligned Curriculum
+                </div>
+                <h1 style="font-size:clamp(2rem,5vw,3rem);font-weight:800;color:#fff;line-height:1.15">
+                    Professional <span style="background:linear-gradient(90deg,#60A5FA,#34D399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Courses</span><br>
+                    Built for the Industry
+                </h1>
+                <p style="color:rgba(255,255,255,.75);font-size:1rem;line-height:1.8;max-width:520px;margin-top:1rem">
+                    Structured, mentor-led courses built around what companies actually hire for — not outdated syllabi. Learn by building real projects.
+                </p>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    <a href="https://wa.me/919110478047?text=Hi%2C%20I%20want%20to%20enroll%20in%20a%20course"
+                       target="_blank" rel="noopener"
+                       class="btn btn-lg fw-700 rounded-pill px-4"
+                       style="background:#25D366;color:#fff;border:none;box-shadow:0 8px 24px rgba(37,211,102,.35)">
+                        <i class="bi bi-whatsapp me-2"></i>Enquire on WhatsApp
+                    </a>
+                    <a href="#courses-grid" class="btn btn-outline-light btn-lg rounded-pill px-4 fw-600">
+                        <i class="bi bi-grid me-2"></i>Browse Courses
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block" data-aos="fade-left">
+                <div class="row g-3">
+                    {% for item in "1234"|make_list %}
+                    <div class="col-6">
+                        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px;text-align:center">
+                            {% if forloop.counter == 1 %}
+                            <div style="font-size:2rem;margin-bottom:8px">🐍</div>
+                            <div style="color:#fff;font-weight:700;font-size:.9rem">Python & Django</div>
+                            <div style="color:rgba(255,255,255,.5);font-size:.75rem">Full Stack</div>
+                            {% elif forloop.counter == 2 %}
+                            <div style="font-size:2rem;margin-bottom:8px">🤖</div>
+                            <div style="color:#fff;font-weight:700;font-size:.9rem">AI & ML</div>
+                            <div style="color:rgba(255,255,255,.5);font-size:.75rem">Deep Learning</div>
+                            {% elif forloop.counter == 3 %}
+                            <div style="font-size:2rem;margin-bottom:8px">🌐</div>
+                            <div style="color:#fff;font-weight:700;font-size:.9rem">React & Node</div>
+                            <div style="color:rgba(255,255,255,.5);font-size:.75rem">MERN Stack</div>
+                            {% else %}
+                            <div style="font-size:2rem;margin-bottom:8px">📊</div>
+                            <div style="color:#fff;font-weight:700;font-size:.9rem">Data Science</div>
+                            <div style="color:rgba(255,255,255,.5);font-size:.75rem">Analytics</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Stats strip -->
+    <div class="stats-strip mt-5">
+        <div class="container">
+            <div class="row g-3 text-center">
+                <div class="col-6 col-md-3"><div class="stat-item-strip"><div class="num">15+</div><div class="lbl">Active Courses</div></div></div>
+                <div class="col-6 col-md-3"><div class="stat-item-strip"><div class="num">500+</div><div class="lbl">Students Enrolled</div></div></div>
+                <div class="col-6 col-md-3"><div class="stat-item-strip"><div class="num">100%</div><div class="lbl">Certificate Included</div></div></div>
+                <div class="col-6 col-md-3"><div class="stat-item-strip"><div class="num">5★</div><div class="lbl">Average Rating</div></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── Filter + Grid ── -->
+<section id="courses-grid" style="padding:60px 0;background:#F8FAFC">
+    <div class="container">
+        <!-- Filter bar -->
+        <div class="d-flex flex-wrap gap-2 mb-5 align-items-center" data-aos="fade-up">
+            <span class="text-muted fw-600 me-1" style="font-size:.85rem">Filter:</span>
+            <a href="{% url 'courses:list' %}" class="filter-chip {% if not request.GET.level %}active{% endif %}">
+                <i class="bi bi-grid-fill"></i> All Courses
+            </a>
+            <a href="?level=beginner"     class="filter-chip {% if request.GET.level == 'beginner' %}active{% endif %}">🟢 Beginner</a>
+            <a href="?level=intermediate" class="filter-chip {% if request.GET.level == 'intermediate' %}active{% endif %}">🟡 Intermediate</a>
+            <a href="?level=advanced"     class="filter-chip {% if request.GET.level == 'advanced' %}active{% endif %}">🔴 Advanced</a>
+            <span class="ms-auto text-muted" style="font-size:.82rem">
+                <strong class="text-dark">{{ courses|length }}</strong> course{{ courses|length|pluralize }} found
+            </span>
+        </div>
+
+        {% if courses %}
+        <div class="row g-4">
+            {% for course in courses %}
+            <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+                <div class="course-card">
+                    <div class="course-thumb">
+                        {% if course.thumbnail %}
+                        <img src="{{ course.thumbnail.url }}" alt="{{ course.title }}">
+                        {% else %}
+                        <div class="course-thumb-placeholder" style="background:linear-gradient(135deg,#1E3A8A,#3B82F6)">
+                            <i class="bi bi-book-fill text-white"></i>
+                        </div>
+                        {% endif %}
+                        <span class="course-badge lvl-{{ course.level }}" style="backdrop-filter:blur(8px)">
+                            {{ course.get_level_display }}
+                        </span>
+                        {% if course.is_featured %}
+                        <span class="course-badge" style="top:12px;right:12px;left:auto;background:rgba(245,158,11,.9);color:#fff">
+                            <i class="bi bi-star-fill me-1"></i>Featured
+                        </span>
+                        {% endif %}
+                    </div>
+                    <div class="course-body">
+                        {% if course.category %}
+                        <span style="background:rgba(30,58,138,.08);color:#1E3A8A;font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:50px;display:inline-block;margin-bottom:10px">
+                            {{ course.category.name }}
+                        </span>
+                        {% endif %}
+                        <h6 class="fw-700 mb-2" style="font-size:.97rem;line-height:1.4;color:#0F172A">{{ course.title }}</h6>
+                        <p class="text-muted small mb-3" style="line-height:1.65">{{ course.description|truncatewords:18 }}</p>
+                        <div class="course-meta">
+                            <span><i class="bi bi-clock-fill me-1 text-primary"></i>{{ course.duration }}</span>
+                            <span><i class="bi bi-person-fill me-1 text-primary"></i>{{ course.instructor }}</span>
+                        </div>
+                        <!-- Includes strip -->
+                        <div class="d-flex flex-wrap gap-1 mt-2">
+                            <span style="background:#F0FDF4;color:#16A34A;font-size:.68rem;font-weight:600;padding:2px 8px;border-radius:50px"><i class="bi bi-check me-1"></i>Certificate</span>
+                            <span style="background:#EFF6FF;color:#1D4ED8;font-size:.68rem;font-weight:600;padding:2px 8px;border-radius:50px"><i class="bi bi-check me-1"></i>Mentorship</span>
+                            <span style="background:#FFFBEB;color:#D97706;font-size:.68rem;font-weight:600;padding:2px 8px;border-radius:50px"><i class="bi bi-check me-1"></i>Projects</span>
+                        </div>
+                    </div>
+                    <div class="course-footer">
+                        <div>
+                            <div class="price-tag">₹{{ course.fees }}</div>
+                            <div style="font-size:.7rem;color:#94A3B8">One-time · Lifetime access</div>
+                        </div>
+                        <a href="{% url 'courses:detail' course.slug %}" class="enroll-btn">
+                            View Course <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <div style="font-size:5rem;opacity:.2">📚</div>
+            <h5 class="mt-3 text-muted fw-600">No courses found</h5>
+            <p class="text-muted small">Try a different filter or <a href="{% url 'core:contact' %}">contact us</a> for upcoming programs.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- ── CTA ── -->
+<section style="padding:60px 0;background:#fff">
+    <div class="container">
+        <div style="background:linear-gradient(135deg,#0F172A 0%,#1E3A8A 50%,#1d4ed8 100%);border-radius:24px;padding:48px 40px;position:relative;overflow:hidden" data-aos="fade-up">
+            <div style="position:absolute;top:-60px;right:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(59,130,246,.2),transparent 70%)"></div>
+            <div class="row align-items-center position-relative g-4" style="z-index:1">
+                <div class="col-lg-8">
+                    <h3 class="text-white fw-800 mb-2" style="font-size:clamp(1.5rem,3vw,2.2rem)">
+                        Not sure which course to pick?
+                    </h3>
+                    <p style="color:rgba(255,255,255,.75);line-height:1.8;margin:0">
+                        Talk to our counsellors — we'll help you choose the right course based on your goals, background, and career path.
+                    </p>
+                </div>
+                <div class="col-lg-4 d-flex flex-column gap-2 align-items-lg-end">
+                    <a href="{% url 'core:contact' %}" class="btn btn-light fw-700 rounded-pill px-4" style="color:#1E3A8A">
+                        <i class="bi bi-chat-dots-fill me-2"></i>Talk to a Counsellor
+                    </a>
+                    <a href="https://wa.me/919110478047" target="_blank" rel="noopener"
+                       class="btn fw-700 rounded-pill px-4" style="background:#25D366;color:#fff;border:none">
+                        <i class="bi bi-whatsapp me-2"></i>WhatsApp Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

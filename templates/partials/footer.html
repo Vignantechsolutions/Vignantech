@@ -1,0 +1,102 @@
+<footer class="footer pt-5 pb-3 mt-5" style="background:#0F172A">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- Brand -->
+            <div class="col-lg-4">
+                {% load static %}
+                <div class="mb-3">
+                    <img src="{% static 'images/vignan_logo_final.png' %}" alt="Vignan TechSolutions"
+                         style="height:80px;width:auto;object-fit:contain;
+                                filter:brightness(0) invert(1) drop-shadow(0 0 16px rgba(59,130,246,.5))">
+                </div>
+                <p class="small mb-3" style="color:#94A3B8;line-height:1.8;max-width:300px">
+                    Empowering students and professionals with industry-ready skills through internships, courses, and corporate training.
+                </p>
+                <div class="mb-4">
+                    <span class="badge me-2" style="background:rgba(22,163,74,.2);color:#4ADE80;border:1px solid rgba(22,163,74,.3);font-size:.75rem;padding:5px 12px">
+                        <i class="bi bi-patch-check-fill me-1"></i>MSME Registered
+                    </span>
+                    <span class="badge" style="background:rgba(59,130,246,.15);color:#93C5FD;border:1px solid rgba(59,130,246,.2);font-size:.75rem;padding:5px 12px">
+                        <i class="bi bi-shield-check me-1"></i>ISO Certified
+                    </span>
+                </div>
+                <div class="d-flex gap-2">
+                    <a href="https://www.linkedin.com/company/vignantechsolutions/?viewAsMember=true" target="_blank" rel="noopener" class="footer-social"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://www.instagram.com/vignan_techsolutions/" target="_blank" rel="noopener" class="footer-social"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.youtube.com/@VignanTechSolutions" target="_blank" rel="noopener" class="footer-social"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-2 col-md-4 col-6">
+                <h6 class="fw-bold mb-3" style="color:#3B82F6;text-transform:uppercase;font-size:0.75rem;letter-spacing:0.08em">Quick Links</h6>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2"><a href="{% url 'core:home' %}" class="footer-link">Home</a></li>
+                    <li class="mb-2"><a href="{% url 'core:about' %}" class="footer-link">About Us</a></li>
+                    <li class="mb-2"><a href="{% url 'internships:list' %}" class="footer-link">Internships</a></li>
+                    <li class="mb-2"><a href="{% url 'courses:list' %}" class="footer-link">Courses</a></li>
+                    <li class="mb-2"><a href="{% url 'projects:list' %}" class="footer-link">Projects</a></li>
+                    <li class="mb-2"><a href="{% url 'core:contact' %}" class="footer-link">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Services -->
+            <div class="col-lg-3 col-md-4 col-6">
+                <h6 class="fw-bold mb-3" style="color:#3B82F6;text-transform:uppercase;font-size:0.75rem;letter-spacing:0.08em">Services</h6>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2"><a href="{% url 'internships:list' %}" class="footer-link"><i class="bi bi-chevron-right me-1" style="font-size:0.7rem"></i>Internship Programs</a></li>
+                    <li class="mb-2"><a href="{% url 'courses:list' %}" class="footer-link"><i class="bi bi-chevron-right me-1" style="font-size:0.7rem"></i>Professional Courses</a></li>
+                    <li class="mb-2"><a href="{% url 'core:corporate_training' %}" class="footer-link"><i class="bi bi-chevron-right me-1" style="font-size:0.7rem"></i>Corporate Training</a></li>
+                    <li class="mb-2"><a href="{% url 'projects:list' %}" class="footer-link"><i class="bi bi-chevron-right me-1" style="font-size:0.7rem"></i>Real-Time Projects</a></li>
+                    <li class="mb-2"><a href="{% url 'core:contact' %}" class="footer-link"><i class="bi bi-chevron-right me-1" style="font-size:0.7rem"></i>Software Development</a></li>
+                    <li class="mb-2"><a href="{% url 'certificates:verify' %}" class="footer-link"><i class="bi bi-chevron-right me-1" style="font-size:0.7rem"></i>Verify Certificate</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-lg-3 col-md-4">
+                <h6 class="fw-bold mb-3" style="color:#3B82F6;text-transform:uppercase;font-size:0.75rem;letter-spacing:0.08em">Contact Info</h6>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-3 d-flex align-items-start gap-2">
+                        <i class="bi bi-geo-alt-fill mt-1 flex-shrink-0" style="color:#3B82F6"></i>
+                        <span class="small" style="color:#CBD5E1">{{ COMPANY_ADDRESS }}</span>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-telephone-fill flex-shrink-0" style="color:#3B82F6"></i>
+                        <div>
+                            <a href="tel:+919110478047" class="footer-link small d-block">+91-9110478047</a>
+                            <a href="tel:+919148215446" class="footer-link small d-block">+91-9148215446</a>
+                        </div>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-envelope-fill flex-shrink-0" style="color:#3B82F6"></i>
+                        <a href="mailto:{{ COMPANY_EMAIL }}" class="footer-link small">{{ COMPANY_EMAIL }}</a>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-clock-fill flex-shrink-0" style="color:#3B82F6"></i>
+                        <span class="small" style="color:#CBD5E1">Mon–Sat: 9AM – 6PM IST</span>
+                    </li>
+                </ul>
+                <div class="mt-2">
+                    <span class="badge" style="background:#16A34A;font-size:0.8rem;padding:6px 12px">
+                        <i class="bi bi-patch-check-fill me-1"></i>MSME Registered
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <hr style="border-color:#1E293B;margin-top:2rem">
+
+        <div class="row align-items-center py-2">
+            <div class="col-md-6 small mb-2 mb-md-0" style="color:#64748B">
+                © 2025 Vignan TechSolutions. All rights reserved.
+            </div>
+            <div class="col-md-6 text-md-end">
+                <a href="/sitemap.xml" class="footer-link small me-3">Sitemap</a>
+                <a href="/robots.txt" class="footer-link small me-3">Robots.txt</a>
+                <a href="{% url 'certificates:verify' %}" class="footer-link small">Verify Certificate</a>
+            </div>
+        </div>
+    </div>
+</footer>

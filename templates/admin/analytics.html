@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analytics Dashboard — Vignan TechSolutions</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<style>
+  body { background: #f1f5f9; font-family: 'Segoe UI', sans-serif; }
+  .navbar-brand span { color: #3B82F6; }
+  .kpi-card { background: #fff; border-radius: 12px; padding: 20px 24px; border-left: 4px solid var(--c); box-shadow: 0 1px 6px rgba(0,0,0,.07); transition: transform .15s; }
+  .kpi-card:hover { transform: translateY(-2px); }
+  .kpi-val { font-size: 2rem; font-weight: 700; color: var(--c); }
+  .kpi-lbl { font-size: .8rem; color: #6b7280; margin-top: 2px; }
+  .card-box { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 6px rgba(0,0,0,.07); }
+  .section-title { font-size: .95rem; font-weight: 600; color: #1e293b; margin-bottom: 14px; }
+  .stat-pill { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #f1f5f9; font-size: .875rem; }
+  .stat-pill:last-child { border-bottom: none; }
+  .badge-blue { background: #EFF6FF; color: #1E3A8A; padding: 2px 10px; border-radius: 20px; font-weight: 600; font-size: .8rem; }
+  .badge-green { background: #F0FDF4; color: #16A34A; padding: 2px 10px; border-radius: 20px; font-weight: 600; font-size: .8rem; }
+  .tbl thead th { background: #f8fafc; color: #6b7280; font-weight: 500; font-size: .8rem; padding: 10px 12px; border: none; }
+  .tbl tbody td { padding: 9px 12px; font-size: .85rem; vertical-align: middle; border-color: #f1f5f9; }
+  .status-badge { padding: 2px 10px; border-radius: 20px; font-size: .75rem; font-weight: 600; text-transform: capitalize; }
+  .s-active    { background: #F0FDF4; color: #16A34A; }
+  .s-completed { background: #EFF6FF; color: #1E3A8A; }
+  .s-pending   { background: #FFFBEB; color: #D97706; }
+  .s-paid      { background: #F0FDF4; color: #16A34A; }
+  .s-failed    { background: #FEF2F2; color: #DC2626; }
+  .stars { color: #F59E0B; letter-spacing: 1px; }
+  .action-btn { padding: 3px 10px; border-radius: 6px; border: 1.5px solid; cursor: pointer; font-size: .75rem; font-weight: 600; transition: all .15s; }
+  .btn-approve { border-color: #16A34A; color: #16A34A; background: #F0FDF4; }
+  .btn-approve:hover { background: #16A34A; color: #fff; }
+  .btn-delete   { border-color: #DC2626; color: #DC2626; background: #FEF2F2; }
+  .btn-delete:hover   { background: #DC2626; color: #fff; }
+  .empty-state { text-align: center; padding: 32px 0; color: #9ca3af; font-size: .875rem; }
+  .msg-alert { background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 10px; padding: 14px 18px; }
+  @media(max-width:576px) { .kpi-val { font-size: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<!-- ── Navbar ── -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background:#1e293b;padding:0 24px">
+  <a class="navbar-brand fw-bold" href="/admin/analytics/">
+    <i class="bi bi-speedometer2 me-2" style="color:#3B82F6"></i>Vignan <span>Admin</span>
+  </a>
+  <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navMenu">
+    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/certificate-generator/"><i class="bi bi-award-fill me-1" style="color:#F0D080"></i>Cert Generator</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/payments/enrollment/" ><i class="bi bi-person-check me-1"></i>Enrollments</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/payments/assignment/"><i class="bi bi-file-earmark-check me-1"></i>Assignments</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/accounts/contactmessage/"><i class="bi bi-envelope me-1"></i>Messages</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/" target="_blank"><i class="bi bi-globe2 me-1"></i>View Site</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/"><i class="bi bi-grid-3x3-gap me-1"></i>Django Admin</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/password_change/"><i class="bi bi-key me-1"></i>Change Password</a>
+      </li>
+      <li class="nav-item ms-lg-2">
+        <form method="post" action="/admin/logout/" style="margin:0">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-sm btn-outline-danger" style="border-radius:20px;padding:5px 16px">
+            <i class="bi bi-box-arrow-right me-1"></i>Logout
+          </button>
+        </form>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Main ── -->
+<div class="container-fluid" style="max-width:1280px;padding:28px 20px">
+
+  <!-- Page Header -->
+  <div class="d-flex align-items-center justify-content-between mb-4">
+    <div>
+      <h4 class="mb-0 fw-bold" style="color:#1e293b"><i class="bi bi-bar-chart-line-fill me-2" style="color:#3B82F6"></i>Analytics Dashboard</h4>
+      <small class="text-muted">Welcome back, {{ request.user.get_full_name|default:request.user.username }}</small>
+    </div>
+    <div class="d-flex align-items-center gap-2 flex-wrap">
+      <a href="/admin/certificate-generator/" class="btn btn-sm fw-600 d-inline-flex align-items-center gap-1"
+         style="background:linear-gradient(135deg,#C9A84C,#A07830);color:#fff;border:none;border-radius:20px;padding:6px 18px">
+        <i class="bi bi-award-fill"></i> Certificate Generator
+      </a>
+      {% if unread_messages %}
+      <a href="/admin/accounts/contactmessage/?is_read__exact=0" class="msg-alert text-decoration-none d-flex align-items-center gap-2">
+        <i class="bi bi-envelope-exclamation-fill" style="color:#D97706;font-size:1.1rem"></i>
+        <span style="color:#92400E;font-size:.85rem;font-weight:600">{{ unread_messages }} unread message{{ unread_messages|pluralize }}</span>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- ── KPI Cards ── -->
+  <div class="row g-3 mb-4">
+    {% for label, value, color in kpi_cards %}
+    <div class="col-6 col-md-4 col-xl-2">
+      <div class="kpi-card" style="--c:{{ color }}">
+        <div class="kpi-val">{{ value }}</div>
+        <div class="kpi-lbl">{{ label }}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- ── 30-Day Summary ── -->
+  <div class="card-box mb-4">
+    <div class="section-title"><i class="bi bi-calendar3 me-2 text-primary"></i>Last 30 Days</div>
+    <div class="row g-3">
+      <div class="col-6 col-md-3">
+        <div class="text-center p-3 rounded-3" style="background:#EFF6FF">
+          <div style="font-size:1.8rem;font-weight:700;color:#1E3A8A">{{ new_students_30d }}</div>
+          <div style="font-size:.78rem;color:#6b7280">New Students</div>
+          <div style="font-size:.7rem;color:#3B82F6;margin-top:2px">+{{ new_students_7d }} this week</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="text-center p-3 rounded-3" style="background:#F0FDF4">
+          <div style="font-size:1.8rem;font-weight:700;color:#16A34A">{{ new_enrollments_30d }}</div>
+          <div style="font-size:.78rem;color:#6b7280">New Enrollments</div>
+          <div style="font-size:.7rem;color:#16A34A;margin-top:2px">{{ completed_enrollments }} completed</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="text-center p-3 rounded-3" style="background:#FFFBEB">
+          <div style="font-size:1.8rem;font-weight:700;color:#D97706">&#8377;{{ revenue_30d }}</div>
+          <div style="font-size:.78rem;color:#6b7280">Revenue (30d)</div>
+          <div style="font-size:.7rem;color:#D97706;margin-top:2px">&#8377;{{ revenue_7d }} this week</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="text-center p-3 rounded-3" style="background:#FAF5FF">
+          <div style="font-size:1.8rem;font-weight:700;color:#7C3AED">{{ pending_assignments }}</div>
+          <div style="font-size:.78rem;color:#6b7280">Pending Assignments</div>
+          <div style="font-size:.7rem;color:#7C3AED;margin-top:2px">{{ total_assignments }} total</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Top Programs ── -->
+  <div class="row g-4 mb-4">
+    <div class="col-md-6">
+      <div class="card-box h-100">
+        <div class="section-title"><i class="bi bi-trophy-fill me-2" style="color:#D97706"></i>Top Courses by Enrollment</div>
+        {% for c in top_courses %}
+        <div class="stat-pill">
+          <span style="color:#374151;font-weight:500">{{ c.title|truncatechars:36 }}</span>
+          <span class="badge-blue">{{ c.enroll_count }} enrolled</span>
+        </div>
+        {% empty %}
+        <div class="empty-state">No courses yet.</div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card-box h-100">
+        <div class="section-title"><i class="bi bi-briefcase-fill me-2" style="color:#0D9488"></i>Top Internships by Enrollment</div>
+        {% for i in top_internships %}
+        <div class="stat-pill">
+          <span style="color:#374151;font-weight:500">{{ i.title|truncatechars:36 }}</span>
+          <span class="badge-green">{{ i.enroll_count }} enrolled</span>
+        </div>
+        {% empty %}
+        <div class="empty-state">No internships yet.</div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Monthly Revenue ── -->
+  <div class="card-box mb-4">
+    <div class="section-title"><i class="bi bi-graph-up-arrow me-2 text-success"></i>Monthly Revenue (Last 6 Months)</div>
+    <div style="display:flex;align-items:flex-end;gap:10px;height:80px;padding:0 4px">
+      {% for m in monthly_revenue %}
+      {% with max_rev=monthly_revenue|last %}
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+        <div style="font-size:.65rem;color:#16A34A;font-weight:600">
+          {% if m.revenue %}&#8377;{{ m.revenue|floatformat:0 }}{% endif %}
+        </div>
+        <div style="width:100%;background:linear-gradient(180deg,#3B82F6,#1E3A8A);border-radius:4px 4px 0 0;
+          height:{% if m.revenue %}{{ m.revenue|floatformat:0 }}{% else %}2{% endif %}px;min-height:4px;max-height:56px"></div>
+        <div style="font-size:.65rem;color:#6b7280;white-space:nowrap">{{ m.month }}</div>
+      </div>
+      {% endwith %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- ── Status Grids ── -->
+  <div class="row g-4 mb-4">
+    <div class="col-md-6">
+      <div class="card-box h-100">
+        <div class="section-title"><i class="bi bi-person-check me-2 text-primary"></i>Enrollments by Status</div>
+        {% for item in enrollments_by_status %}
+        <div class="stat-pill">
+          <span style="text-transform:capitalize;color:#374151">{{ item.status }}</span>
+          <span class="badge-blue">{{ item.count }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card-box h-100">
+        <div class="section-title"><i class="bi bi-credit-card me-2 text-success"></i>Payments by Status</div>
+        {% for item in payments_by_status %}
+        <div class="stat-pill">
+          <span style="text-transform:capitalize;color:#374151">{{ item.status }}</span>
+          <span class="badge-green">{{ item.count }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Recent Enrollments ── -->
+  <div class="card-box mb-4">
+    <div class="section-title"><i class="bi bi-clock-history me-2 text-primary"></i>Recent Enrollments</div>
+    <div class="table-responsive">
+      <table class="table tbl mb-0">
+        <thead>
+          <tr>
+            <th>Student</th><th>Program</th><th>Type</th><th>Status</th><th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for e in recent_enrollments %}
+          <tr>
+            <td class="fw-semibold">{{ e.student.get_full_name }}</td>
+            <td>{{ e.course.title|default:e.internship.title|truncatechars:32 }}</td>
+            <td style="text-transform:capitalize">{{ e.enrollment_type }}</td>
+            <td><span class="status-badge s-{{ e.status }}">{{ e.status }}</span></td>
+            <td class="text-muted">{{ e.enrolled_at|date:"d M Y" }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── Pending Reviews (Awaiting Approval) ── -->
+  <div class="card-box mb-4">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <div class="section-title mb-0">
+        <i class="bi bi-hourglass-split me-2" style="color:#D97706"></i>Pending Reviews
+        <span class="badge rounded-pill ms-1" style="background:#FFFBEB;color:#D97706;font-size:.75rem;border:1px solid #FDE68A" id="pending-count">{{ pending_reviews|length }}</span>
+      </div>
+    </div>
+    {% if pending_reviews %}
+    <div class="table-responsive">
+      <table class="table tbl mb-0" id="pending-table">
+        <thead>
+          <tr><th>Student</th><th>Role</th><th>Rating</th><th>Review</th><th>Date</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="pending-tbody">
+          {% for r in pending_reviews %}
+          <tr id="prow-{{ r.pk }}">
+            <td class="fw-semibold">{{ r.name }}</td>
+            <td class="text-muted">{{ r.designation }}</td>
+            <td class="stars">{% for i in "12345" %}{% if forloop.counter <= r.rating %}&#9733;{% else %}&#9734;{% endif %}{% endfor %}</td>
+            <td style="max-width:260px;color:#374151">{{ r.message|truncatechars:80 }}</td>
+            <td class="text-muted text-nowrap">{{ r.created_at|date:"d M Y" }}</td>
+            <td style="white-space:nowrap">
+              <button class="action-btn btn-approve me-1" onclick="approveReview({{ r.pk }}, '{{ r.name|escapejs }}', '{{ r.designation|escapejs }}', {{ r.rating }}, '{{ r.message|truncatechars:80|escapejs }}', '{{ r.created_at|date:"d M Y" }}')">&#10003; Approve</button>
+              <button class="action-btn btn-delete" onclick="deleteReview({{ r.pk }}, 'pending')">Delete</button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="empty-state" id="pending-empty"><i class="bi bi-hourglass d-block mb-2" style="font-size:2rem;color:#d1d5db"></i>No pending reviews.</div>
+    {% endif %}
+  </div>
+
+  <!-- ── Approved Reviews ── -->
+  <div class="card-box mb-4">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <div class="section-title mb-0"><i class="bi bi-star-fill me-2" style="color:#F59E0B"></i>Approved Reviews <span class="badge rounded-pill bg-success ms-1" style="font-size:.75rem" id="approved-count">{{ approved_reviews|length }}</span></div>
+    </div>
+    {% if approved_reviews %}
+    <div class="table-responsive">
+      <table class="table tbl mb-0" id="approved-table">
+        <thead>
+          <tr><th>Student</th><th>Role</th><th>Rating</th><th>Review</th><th>Date</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          {% for r in approved_reviews %}
+          <tr id="row-{{ r.pk }}">
+            <td class="fw-semibold">{{ r.name }}</td>
+            <td class="text-muted">{{ r.designation }}</td>
+            <td class="stars">{% for i in "12345" %}{% if forloop.counter <= r.rating %}&#9733;{% else %}&#9734;{% endif %}{% endfor %}</td>
+            <td style="max-width:260px;color:#374151">{{ r.message|truncatechars:80 }}</td>
+            <td class="text-muted text-nowrap">{{ r.created_at|date:"d M Y" }}</td>
+            <td><button class="action-btn btn-delete" onclick="deleteReview({{ r.pk }}, 'approved')">Delete</button></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="empty-state"><i class="bi bi-star d-block mb-2" style="font-size:2rem;color:#d1d5db"></i>No approved reviews yet.</div>
+    {% endif %}
+  </div>
+
+</div><!-- /container -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function getCookie(name) {
+  const m = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+  return m ? m[2] : null;
+}
+
+function updateCount(id, delta) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = Math.max(0, parseInt(el.textContent) + delta);
+}
+
+function approveReview(pk, name, designation, rating, message, date) {
+  fetch(`/admin/reviews/${pk}/action/`, {
+    method: 'POST',
+    headers: {'X-CSRFToken': getCookie('csrftoken'), 'Content-Type': 'application/x-www-form-urlencoded'},
+    body: 'action=approve'
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.status === 'approved') {
+      // Remove from pending
+      const prow = document.getElementById('prow-' + pk);
+      if (prow) prow.remove();
+      updateCount('pending-count', -1);
+      updateCount('approved-count', +1);
+      // Add to approved table
+      const tbody = document.querySelector('#approved-table tbody');
+      const stars = '&#9733;'.repeat(data.rating) + '&#9734;'.repeat(5 - data.rating);
+      if (tbody) {
+        tbody.insertAdjacentHTML('afterbegin',
+          `<tr id="row-${pk}">
+            <td class="fw-semibold">${data.name}</td>
+            <td class="text-muted">${data.designation}</td>
+            <td class="stars">${stars}</td>
+            <td style="max-width:260px;color:#374151">${data.message.substring(0,80)}</td>
+            <td class="text-muted text-nowrap">${data.created_at}</td>
+            <td><button class="action-btn btn-delete" onclick="deleteReview(${pk},'approved')">Delete</button></td>
+          </tr>`);
+      }
+    }
+  })
+  .catch(() => alert('Something went wrong.'));
+}
+
+function deleteReview(pk, panel) {
+  if (!confirm('Delete this review permanently?')) return;
+  fetch(`/admin/reviews/${pk}/action/`, {
+    method: 'POST',
+    headers: {'X-CSRFToken': getCookie('csrftoken'), 'Content-Type': 'application/x-www-form-urlencoded'},
+    body: 'action=delete'
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.status === 'deleted') {
+      const rowId = panel === 'pending' ? 'prow-' + pk : 'row-' + pk;
+      const row = document.getElementById(rowId);
+      if (row) row.remove();
+      updateCount(panel === 'pending' ? 'pending-count' : 'approved-count', -1);
+    }
+  })
+  .catch(() => alert('Something went wrong.'));
+}
+</script>
+</body>
+</html>

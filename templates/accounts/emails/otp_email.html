@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="x-apple-disable-message-reformatting">
+  <title>Verification Code — Vignan TechSolutions</title>
+  <!--[if mso]>
+  <noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>
+  <![endif]-->
+</head>
+<body style="margin:0;padding:0;background-color:#EEF2F7;font-family:'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased">
+
+<!-- Preheader (hidden preview text) -->
+<div style="display:none;max-height:0;overflow:hidden;mso-hide:all">
+  Your Vignan TechSolutions verification code is {{ otp }} — valid for {{ expiry }} minutes.
+  &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+</div>
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#EEF2F7;padding:32px 0 48px">
+<tr><td align="center">
+
+  <!-- Outer wrapper -->
+  <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%">
+
+    <!-- ══ TOP LOGO BAR ══ -->
+    <tr>
+      <td align="center" style="padding:0 0 20px">
+        {% if logo_b64 %}
+        <img src="data:image/png;base64,{{ logo_b64 }}"
+             alt="Vignan TechSolutions" width="160" height="auto"
+             style="display:block;border:0;outline:none;text-decoration:none;max-width:160px">
+        {% else %}
+        <div style="color:#1E1B4B;font-size:1.2rem;font-weight:800;letter-spacing:.02em">Vignan TechSolutions</div>
+        {% endif %}
+      </td>
+    </tr>
+
+    <!-- ══ MAIN CARD ══ -->
+    <tr>
+      <td style="background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 32px rgba(15,23,42,.10)">
+
+        <!-- Header gradient band -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td style="background:linear-gradient(135deg,#1E1B4B 0%,#3730A3 50%,#1E1B4B 100%);padding:40px 48px 36px;text-align:center">
+              <!-- Shield icon circle -->
+              <div style="width:64px;height:64px;background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.25);border-radius:50%;display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:28px;line-height:64px">
+                🔐
+              </div>
+              <div style="color:#ffffff;font-size:22px;font-weight:800;letter-spacing:.01em;margin-bottom:6px">
+                Verification Code
+              </div>
+              <div style="color:rgba(255,255,255,.65);font-size:13px;letter-spacing:.02em">
+                Vignan TechSolutions &nbsp;·&nbsp; MSME Registered
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- Thin accent line -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td style="height:4px;background:linear-gradient(90deg,#7C3AED,#4F46E5,#06B6D4)"></td>
+          </tr>
+        </table>
+
+        <!-- Body content -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td style="padding:40px 48px 16px">
+
+              <p style="color:#0F172A;font-size:16px;font-weight:600;margin:0 0 6px 0">Hello,</p>
+              <p style="color:#475569;font-size:15px;line-height:1.75;margin:0 0 32px 0">
+                We received a request to <strong style="color:#1E1B4B">{{ action }}</strong> for your
+                Vignan TechSolutions account. Use the code below to proceed.
+              </p>
+
+              <!-- OTP Box -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:32px">
+                <tr>
+                  <td style="background:linear-gradient(135deg,#F5F3FF,#EDE9FE);border:1.5px solid #C4B5FD;border-radius:14px;padding:32px 24px;text-align:center">
+                    <div style="color:#6D28D9;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px">
+                      Your One-Time Password
+                    </div>
+                    <!-- OTP digits with spacing -->
+                    <div style="font-size:42px;font-weight:900;letter-spacing:14px;color:#1E1B4B;font-family:'Courier New',Courier,monospace;line-height:1">
+                      {{ otp }}
+                    </div>
+                    <!-- Divider -->
+                    <div style="width:48px;height:2px;background:linear-gradient(90deg,#7C3AED,#4F46E5);margin:18px auto 14px;border-radius:2px"></div>
+                    <!-- Timer -->
+                    <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto">
+                      <tr>
+                        <td style="background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.2);border-radius:50px;padding:5px 16px">
+                          <span style="color:#6D28D9;font-size:12px;font-weight:700">
+                            ⏱&nbsp; Expires in {{ expiry }} minutes
+                          </span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Steps guide -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px">
+                <tr>
+                  <td style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:20px 24px">
+                    <div style="color:#0F172A;font-size:13px;font-weight:700;margin-bottom:12px">How to use this code:</div>
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding:4px 0">
+                          <span style="display:inline-block;width:20px;height:20px;background:linear-gradient(135deg,#7C3AED,#4F46E5);border-radius:50%;color:#fff;font-size:11px;font-weight:800;text-align:center;line-height:20px;margin-right:10px">1</span>
+                          <span style="color:#475569;font-size:13px">Go back to the Vignan TechSolutions registration page</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0">
+                          <span style="display:inline-block;width:20px;height:20px;background:linear-gradient(135deg,#7C3AED,#4F46E5);border-radius:50%;color:#fff;font-size:11px;font-weight:800;text-align:center;line-height:20px;margin-right:10px">2</span>
+                          <span style="color:#475569;font-size:13px">Enter the 6-digit code shown above</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0">
+                          <span style="display:inline-block;width:20px;height:20px;background:linear-gradient(135deg,#7C3AED,#4F46E5);border-radius:50%;color:#fff;font-size:11px;font-weight:800;text-align:center;line-height:20px;margin-right:10px">3</span>
+                          <span style="color:#475569;font-size:13px">Click <strong>Verify OTP</strong> to complete the process</span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Security notice -->
+              <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-bottom:28px">
+                <tr>
+                  <td style="background:#FFFBEB;border-left:4px solid #F59E0B;border-radius:0 10px 10px 0;padding:14px 18px">
+                    <p style="color:#92400E;font-size:13px;margin:0;line-height:1.65">
+                      <strong>⚠ Security Notice:</strong> Never share this code with anyone.
+                      Vignan TechSolutions will <strong>never</strong> ask for your OTP via phone, WhatsApp, or chat.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="color:#94A3B8;font-size:13px;line-height:1.65;margin:0 0 8px 0">
+                If you did not request this code, you can safely ignore this email.
+                Your account remains secure and no changes have been made.
+              </p>
+
+            </td>
+          </tr>
+        </table>
+
+        <!-- Divider -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr><td style="height:1px;background:#E2E8F0;margin:0 48px"></td></tr>
+        </table>
+
+        <!-- Footer inside card -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td style="padding:24px 48px;background:#F8FAFC;border-radius:0 0 16px 16px">
+              <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td style="text-align:left;vertical-align:middle">
+                    <div style="color:#1E1B4B;font-size:13px;font-weight:800">Vignan TechSolutions</div>
+                    <div style="color:#94A3B8;font-size:11px;margin-top:2px">MSME Registered · Kalaburagi, Karnataka, India</div>
+                  </td>
+                  <td style="text-align:right;vertical-align:middle">
+                    <div style="display:inline-block;background:linear-gradient(135deg,#7C3AED,#4F46E5);border-radius:6px;padding:4px 12px">
+                      <span style="color:#fff;font-size:11px;font-weight:700;letter-spacing:.04em">MSME CERTIFIED</span>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+
+    <!-- ══ BOTTOM FOOTER ══ -->
+    <tr>
+      <td style="padding:24px 0 0;text-align:center">
+        <p style="color:#94A3B8;font-size:12px;margin:0 0 6px 0">
+          © {{ year }} Vignan TechSolutions. All rights reserved.
+        </p>
+        <p style="margin:0">
+          <a href="mailto:vignantechsolutions@gmail.com"
+             style="color:#7C3AED;font-size:12px;text-decoration:none;font-weight:600">
+            vignantechsolutions@gmail.com
+          </a>
+          &nbsp;&nbsp;·&nbsp;&nbsp;
+          <span style="color:#94A3B8;font-size:12px">+91-9110478047</span>
+        </p>
+        <p style="color:#CBD5E1;font-size:11px;margin:10px 0 0">
+          This is an automated email. Please do not reply directly to this message.
+        </p>
+      </td>
+    </tr>
+
+  </table>
+</td></tr>
+</table>
+
+</body>
+</html>

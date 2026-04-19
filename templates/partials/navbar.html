@@ -1,0 +1,243 @@
+{% load static %}
+
+<!-- ── Top Accent Bar ── -->
+<div class="navbar-accent-bar"></div>
+
+<nav class="navbar navbar-expand-lg bg-white sticky-top" id="mainNav">
+  <div class="container">
+    <div class="navbar-inner w-100">
+
+      <!-- ── Logo ── -->
+      <a class="navbar-brand vt-logo-wrap me-lg-4" href="{% url 'core:home' %}">
+        <span class="vt-particle" style="top:10px;left:10px"></span>
+        <span class="vt-particle" style="top:14px;left:32px"></span>
+        <span class="vt-particle" style="top:8px;left:20px"></span>
+        <img src="{% static 'images/vignan_logo_final.png' %}"
+             alt="Vignan TechSolutions"
+             class="vt-logo-img"
+             onerror="this.src='{% static 'images/vignan_logo.png' %}'">
+      </a>
+
+      <!-- ── Toggler ── -->
+      <button class="navbar-toggler border-0 p-1 ms-auto" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navMenu"
+              aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- ── Nav Items ── -->
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav mx-auto gap-1 align-items-lg-center">
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'core:home' %}">
+              <i class="bi bi-house-fill me-1 d-lg-none"></i>Home
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'core:about' %}">About</a>
+          </li>
+
+          <!-- Projects Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle fw-600" href="{% url 'projects:list' %}"
+               data-bs-toggle="dropdown" data-bs-auto-close="outside"
+               style="color:var(--primary) !important">
+              <i class="bi bi-kanban-fill me-1" style="color:#7C3AED"></i>Projects
+            </a>
+            <ul class="dropdown-menu border-0 shadow-lg p-2" style="min-width:260px">
+              <li class="px-3 pt-1 pb-2">
+                <small class="text-muted fw-700" style="font-size:.68rem;letter-spacing:.1em;text-transform:uppercase">
+                  Browse by Domain
+                </small>
+              </li>
+              <li><a class="dropdown-item py-2" href="{% url 'projects:list' %}?category=aiml">
+                <span class="me-2 fs-5">🤖</span>
+                <span>
+                  <span class="d-block fw-600" style="font-size:.85rem">AI &amp; Machine Learning</span>
+                  <span class="text-muted" style="font-size:.72rem">Deep Learning, NLP, CV</span>
+                </span>
+              </a></li>
+              <li><a class="dropdown-item py-2" href="{% url 'projects:list' %}?category=python">
+                <span class="me-2 fs-5">🐍</span>
+                <span>
+                  <span class="d-block fw-600" style="font-size:.85rem">Python Full Stack</span>
+                  <span class="text-muted" style="font-size:.72rem">Django, Flask, FastAPI</span>
+                </span>
+              </a></li>
+              <li><a class="dropdown-item py-2" href="{% url 'projects:list' %}?category=mern">
+                <span class="me-2 fs-5">🌐</span>
+                <span>
+                  <span class="d-block fw-600" style="font-size:.85rem">MERN Stack</span>
+                  <span class="text-muted" style="font-size:.72rem">MongoDB, Express, React, Node</span>
+                </span>
+              </a></li>
+              <li><a class="dropdown-item py-2" href="{% url 'projects:list' %}?category=java">
+                <span class="me-2 fs-5">☕</span>
+                <span>
+                  <span class="d-block fw-600" style="font-size:.85rem">Java Full Stack</span>
+                  <span class="text-muted" style="font-size:.72rem">Spring Boot, Hibernate</span>
+                </span>
+              </a></li>
+              <li><a class="dropdown-item py-2" href="{% url 'projects:list' %}?category=datascience">
+                <span class="me-2 fs-5">📊</span>
+                <span>
+                  <span class="d-block fw-600" style="font-size:.85rem">Data Science</span>
+                  <span class="text-muted" style="font-size:.72rem">Analytics, Visualization, ML</span>
+                </span>
+              </a></li>
+              <li><hr class="dropdown-divider my-1"></li>
+              <li>
+                <a class="dropdown-item py-2 fw-700 text-primary" href="{% url 'projects:list' %}">
+                  <i class="bi bi-grid-fill me-2"></i>View All Projects
+                  <i class="bi bi-arrow-right ms-1" style="font-size:.75rem"></i>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Programs Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+              Programs
+            </a>
+            <ul class="dropdown-menu border-0 shadow-lg p-2" style="min-width:240px">
+              <li>
+                <a class="dropdown-item py-2" href="{% url 'internships:list' %}">
+                  <div class="d-flex align-items-center gap-3">
+                    <div style="width:36px;height:36px;border-radius:10px;background:rgba(30,58,138,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                      <i class="bi bi-briefcase-fill text-primary"></i>
+                    </div>
+                    <div>
+                      <div class="fw-600" style="font-size:.85rem">Internships</div>
+                      <div class="text-muted" style="font-size:.72rem">Live projects & mentorship</div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item py-2" href="{% url 'courses:list' %}">
+                  <div class="d-flex align-items-center gap-3">
+                    <div style="width:36px;height:36px;border-radius:10px;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                      <i class="bi bi-book-fill text-success"></i>
+                    </div>
+                    <div>
+                      <div class="fw-600" style="font-size:.85rem">Courses</div>
+                      <div class="text-muted" style="font-size:.72rem">Industry-aligned curriculum</div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item py-2" href="{% url 'core:corporate_training' %}">
+                  <div class="d-flex align-items-center gap-3">
+                    <div style="width:36px;height:36px;border-radius:10px;background:rgba(245,158,11,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                      <i class="bi bi-building-fill text-warning"></i>
+                    </div>
+                    <div>
+                      <div class="fw-600" style="font-size:.85rem">Corporate Training</div>
+                      <div class="text-muted" style="font-size:.72rem">Custom B2B programs</div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li><hr class="dropdown-divider my-1"></li>
+              <li>
+                <a class="dropdown-item py-2" href="{% url 'certificates:verify' %}">
+                  <div class="d-flex align-items-center gap-3">
+                    <div style="width:36px;height:36px;border-radius:10px;background:rgba(124,58,237,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                      <i class="bi bi-award-fill" style="color:#7C3AED"></i>
+                    </div>
+                    <div>
+                      <div class="fw-600" style="font-size:.85rem">Verify Certificate</div>
+                      <div class="text-muted" style="font-size:.72rem">Check certificate authenticity</div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'core:contact' %}">Contact</a>
+          </li>
+
+        </ul>
+
+        <!-- ── Right Side ── -->
+        <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0 ms-lg-2">
+
+          <!-- Search -->
+          <form action="{% url 'core:search' %}" method="get" class="d-flex">
+            <div class="input-group input-group-sm" style="width:160px">
+              <input class="form-control" type="search" name="q" placeholder="Search..."
+                     style="border-radius:8px 0 0 8px;font-size:.82rem">
+              <button class="btn btn-outline-secondary" type="submit"
+                      style="border-radius:0 8px 8px 0;padding:0 10px">
+                <i class="bi bi-search" style="font-size:.8rem"></i>
+              </button>
+            </div>
+          </form>
+
+          {% if user.is_authenticated %}
+          <div class="dropdown">
+            <button class="btn btn-primary btn-sm dropdown-toggle d-flex align-items-center gap-2"
+                    data-bs-toggle="dropdown"
+                    style="border-radius:50px;padding:.4rem 1rem">
+              <i class="bi bi-person-circle fs-6"></i>
+              <span class="d-none d-md-inline fw-600" style="font-size:.82rem">
+                {{ user.first_name|default:user.username }}
+              </span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg p-2"
+                style="min-width:220px">
+              <li class="px-3 py-2 mb-1" style="border-bottom:1px solid #F1F5F9">
+                <div class="fw-700 small">{{ user.get_full_name|default:user.username }}</div>
+                <div class="text-muted" style="font-size:.72rem">{{ user.email }}</div>
+              </li>
+              {% if user.is_staff %}
+              <li><a class="dropdown-item py-2" href="/admin/analytics/">
+                <i class="bi bi-speedometer2 me-2 text-primary"></i>Admin Dashboard
+              </a></li>
+              <li><a class="dropdown-item py-2" href="/admin/">
+                <i class="bi bi-shield-lock me-2 text-warning"></i>Django Admin
+              </a></li>
+              {% else %}
+              <li><a class="dropdown-item py-2" href="{% url 'accounts:dashboard' %}">
+                <i class="bi bi-speedometer2 me-2 text-primary"></i>Dashboard
+              </a></li>
+              <li><a class="dropdown-item py-2" href="{% url 'accounts:profile' %}">
+                <i class="bi bi-person me-2 text-success"></i>My Profile
+              </a></li>
+              <li><a class="dropdown-item py-2" href="{% url 'payments:history' %}">
+                <i class="bi bi-receipt me-2 text-warning"></i>Payments
+              </a></li>
+              {% endif %}
+              <li><hr class="dropdown-divider my-1"></li>
+              <li><a class="dropdown-item py-2 text-danger" href="{% url 'accounts:logout' %}">
+                <i class="bi bi-box-arrow-right me-2"></i>Logout
+              </a></li>
+            </ul>
+          </div>
+          {% else %}
+          <a href="{% url 'accounts:login' %}"
+             class="btn btn-outline-primary btn-sm fw-600"
+             style="border-radius:50px;padding:.4rem 1.1rem;font-size:.82rem">
+            Login
+          </a>
+          <a href="{% url 'accounts:register' %}"
+             class="btn btn-primary btn-sm fw-700"
+             style="border-radius:50px;padding:.4rem 1.25rem;font-size:.82rem;
+                    background:linear-gradient(135deg,#1E3A8A,#3B82F6);border:none;
+                    box-shadow:0 4px 14px rgba(30,58,138,.35)">
+            Register Free
+          </a>
+          {% endif %}
+        </div>
+      </div><!-- /collapse -->
+
+    </div><!-- /navbar-inner -->
+  </div><!-- /container -->
+</nav>
+

@@ -1,0 +1,47 @@
+<!-- FOUNDER SECTION -->
+{% load static %}
+<section class="founder-section">
+    <div class="container">
+        <div class="founder-card" data-aos="fade-up">
+            <!-- LEFT -->
+            <div class="founder-photo-col">
+                <div class="founder-avatar">
+                    <img src="{% static 'images/founder.jpg' %}" alt="Suresh Tammali"
+                         onerror="this.style.display='none';this.parentElement.innerHTML='ST'">
+                </div>
+                <div class="founder-name">Suresh Tammali</div>
+                <div class="founder-role">Founder &amp; CEO</div>
+                <div class="founder-loc"><i class="bi bi-geo-alt-fill me-1"></i>Kalaburagi, Karnataka</div>
+                <div class="founder-divider"></div>
+                <div class="founder-kpi-row">
+                    <div class="founder-kpi"><div class="kn">500+</div><div class="kl">Students</div></div>
+                    <div class="founder-kpi"><div class="kn">20+</div><div class="kl">Projects</div></div>
+                    <div class="founder-kpi"><div class="kn">5+</div><div class="kl">Yrs Exp</div></div>
+                </div>
+                <div class="founder-divider"></div>
+                <div class="d-flex flex-wrap justify-content-center gap-2 mb-3">
+                    <span class="f-badge green"><i class="bi bi-patch-check-fill"></i> MSME</span>
+                    <span class="f-badge blue"><i class="bi bi-award-fill"></i> VTU CPGS</span>
+                    <span class="f-badge purple"><i class="bi bi-mortarboard-fill"></i> MCA</span>
+                </div>
+                <a href="https://www.linkedin.com/in/suresh-tammali-b31534215/" target="_blank" rel="noopener" class="btn-linkedin">
+                    <i class="bi bi-linkedin"></i> Connect
+                </a>
+            </div>
+            <!-- RIGHT -->
+            <div class="founder-info-col">
+                <div class="f-eyebrow">Meet the Founder</div>
+                <h3 class="f-headline">Built by someone<br>who lived the problem.</h3>
+                <p class="f-bio">I did not start Vignan TechSolutions to build a business &mdash; I started it because I sat in those same classrooms, felt that gap between education and industry, and refused to let the next generation of students feel it too.</p>
+                <p class="f-bio">My goal is simple: every student who comes to us &mdash; whether for a final-year project, an internship, a course, or corporate training &mdash; should leave with real skills, real confidence, and a real shot at the career they deserve. Not theory. Not shortcuts. Real work, real mentorship, real results.</p>
+                <div class="f-pillars">
+                    <div class="f-pillar"><i class="bi bi-kanban-fill"></i><span>Give every UG &amp; PG student a real project &mdash; not a dummy one</span></div>
+                    <div class="f-pillar"><i class="bi bi-people-fill"></i><span>Replace passive learning with hands-on mentorship</span></div>
+                    <div class="f-pillar"><i class="bi bi-rocket-takeoff-fill"></i><span>Make industry-ready skills accessible to every student in Kalaburagi</span></div>
+                    <div class="f-pillar"><i class="bi bi-shield-fill-check"></i><span>Build a company students can trust &mdash; transparent, verified, accountable</span></div>
+                </div>
+                <div class="f-quote">&ldquo;The struggle was not a setback &mdash; it was the blueprint. Every problem I faced as a student became a feature of what we built.&rdquo;</div>
+            </div>
+        </div>
+    </div>
+</section>

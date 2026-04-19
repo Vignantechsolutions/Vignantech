@@ -1,0 +1,527 @@
+{% extends 'base.html' %}
+{% block title %}{{ project.title }} — Major Project | Vignan TechSolutions{% endblock %}
+{% block meta_description %}{{ project.description|truncatewords:25 }} — End-to-end project service for UG & PG students by Vignan TechSolutions, Kalaburagi.{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ── Detail Hero ── */
+.detail-hero {
+    padding: 60px 0 50px;
+    position: relative; overflow: hidden;
+}
+.detail-hero.theme-aiml        { background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 60%, #0F172A 100%); }
+.detail-hero.theme-python      { background: linear-gradient(135deg, #0F172A 0%, #065F46 60%, #0F172A 100%); }
+.detail-hero.theme-mern        { background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 60%, #0F172A 100%); }
+.detail-hero.theme-java        { background: linear-gradient(135deg, #0F172A 0%, #78350F 60%, #0F172A 100%); }
+.detail-hero.theme-datascience { background: linear-gradient(135deg, #0F172A 0%, #831843 60%, #0F172A 100%); }
+.detail-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+.detail-hero .domain-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.2);
+    color: #fff; padding: 6px 16px; border-radius: 50px;
+    font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+    margin-bottom: 16px;
+}
+.detail-hero h1 { font-size: clamp(1.6rem, 4vw, 2.6rem); font-weight: 800; color: #fff; line-height: 1.2; }
+
+/* ── Content sections ── */
+.detail-section {
+    background: #fff;
+    border-radius: 20px;
+    border: 1px solid #E2E8F0;
+    padding: 32px;
+    margin-bottom: 24px;
+    transition: box-shadow .3s;
+}
+.detail-section:hover { box-shadow: 0 8px 32px rgba(15,23,42,.07); }
+.detail-section-title {
+    font-size: 1.05rem; font-weight: 700; color: #0F172A;
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #F1F5F9;
+}
+.detail-section-title .sec-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+}
+
+/* Objective / feature items */
+.check-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 12px; border-radius: 10px;
+    background: #F8FAFC; border: 1px solid #E2E8F0;
+    margin-bottom: 8px; transition: border-color .2s;
+}
+.check-item:hover { border-color: #BFDBFE; }
+.check-item i { flex-shrink: 0; margin-top: 2px; }
+.check-item span { font-size: .88rem; color: #334155; line-height: 1.55; }
+
+/* Feature grid */
+.feat-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 12px; border-radius: 10px;
+    background: #F8FAFC; border: 1px solid #E2E8F0;
+    transition: border-color .2s, background .2s;
+}
+.feat-item:hover { border-color: #FDE68A; background: #FFFBEB; }
+.feat-item span { font-size: .85rem; color: #334155; }
+
+/* Enhancement items */
+.enh-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; border-radius: 10px;
+    background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+    border: 1px solid #BFDBFE; margin-bottom: 8px;
+}
+.enh-item span { font-size: .88rem; color: #1E40AF; font-weight: 500; }
+
+/* ── Sticky Sidebar ── */
+.detail-sidebar {
+    position: sticky; top: 80px;
+}
+.sidebar-card {
+    background: #fff; border-radius: 20px;
+    border: 1px solid #E2E8F0; overflow: hidden;
+    margin-bottom: 20px;
+}
+.sidebar-card-header {
+    padding: 18px 24px;
+    font-weight: 700; font-size: .9rem; color: #0F172A;
+    border-bottom: 1px solid #E2E8F0;
+    display: flex; align-items: center; gap: 8px;
+}
+.sidebar-card-body { padding: 20px 24px; }
+
+/* Tech stack tags */
+.tech-pill {
+    display: inline-flex; align-items: center;
+    background: rgba(30,58,138,.08); color: #1E3A8A;
+    border: 1px solid rgba(30,58,138,.15);
+    font-size: .78rem; font-weight: 600;
+    padding: 5px 12px; border-radius: 50px;
+    margin: 3px;
+}
+
+/* Algo items */
+.algo-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 0; border-bottom: 1px solid #F1F5F9;
+    font-size: .85rem; color: #334155;
+}
+.algo-item:last-child { border-bottom: none; }
+
+/* Enquiry card */
+.enquiry-card {
+    background: linear-gradient(135deg, #1E1B4B, #4C1D95);
+    border-radius: 20px; padding: 28px 24px;
+    position: relative; overflow: hidden;
+}
+.enquiry-card::before {
+    content: '';
+    position: absolute; top: -40px; right: -40px;
+    width: 160px; height: 160px;
+    background: radial-gradient(circle, rgba(167,139,250,.25), transparent 70%);
+}
+.btn-enquire {
+    display: block; width: 100%;
+    background: linear-gradient(135deg, #7C3AED, #6D28D9);
+    color: #fff; font-weight: 700; font-size: .92rem;
+    padding: 13px; border-radius: 12px; border: none;
+    text-align: center; text-decoration: none;
+    transition: all .3s; margin-bottom: 10px;
+    box-shadow: 0 6px 20px rgba(124,58,237,.4);
+}
+.btn-enquire:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(124,58,237,.5); color: #fff; }
+.btn-whatsapp {
+    display: block; width: 100%;
+    background: #25D366; color: #fff;
+    font-weight: 700; font-size: .92rem;
+    padding: 13px; border-radius: 12px; border: none;
+    text-align: center; text-decoration: none;
+    transition: all .3s;
+}
+.btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); color: #fff; }
+
+/* ── Related projects ── */
+.related-card {
+    background: #fff; border-radius: 16px;
+    border: 1px solid #E2E8F0; padding: 20px;
+    transition: all .3s; height: 100%;
+    display: flex; flex-direction: column;
+}
+.related-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(15,23,42,.1); border-color: transparent; }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════ -->
+<section class="detail-hero" style="background:{% if project.domain %}linear-gradient(135deg,#0F172A 0%,{{ project.domain.color_from }} 60%,#0F172A 100%){% else %}linear-gradient(135deg,#0F172A,#1E3A8A){% endif %}">
+    <div class="container position-relative">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" style="color:rgba(255,255,255,.6)">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'projects:list' %}" style="color:rgba(255,255,255,.6)">Projects</a></li>
+                <li class="breadcrumb-item active" style="color:rgba(255,255,255,.85)">{{ project.title|truncatewords:5 }}</li>
+            </ol>
+        </nav>
+        <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+                <div class="domain-pill">
+                    {% if project.domain %}{{ project.domain.emoji }} {{ project.domain.name }}{% endif %}
+                    {% if project.is_featured %}
+                    <span class="ms-2" style="background:rgba(245,158,11,.3);padding:2px 8px;border-radius:50px;font-size:.7rem">
+                        <i class="bi bi-star-fill me-1" style="color:#FCD34D"></i>Featured
+                    </span>
+                    {% endif %}
+                </div>
+                <h1>{{ project.title }}</h1>
+                <p class="mt-3" style="color:rgba(255,255,255,.75);font-size:1rem;line-height:1.8;max-width:620px">
+                    {{ project.description }}
+                </p>
+                <!-- Quick meta -->
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    {% if project.dataset %}
+                    <div class="d-flex align-items-center gap-2" style="color:rgba(255,255,255,.7);font-size:.85rem">
+                        <i class="bi bi-database-fill" style="color:#FCD34D"></i> {{ project.dataset }}
+                    </div>
+                    {% endif %}
+                    <div class="d-flex align-items-center gap-2" style="color:rgba(255,255,255,.7);font-size:.85rem">
+                        <i class="bi bi-code-slash" style="color:#FCD34D"></i>
+                        {{ project.tech_stack|truncatechars:50 }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 d-none d-lg-flex justify-content-center">
+                <div style="font-size:8rem;opacity:.25;line-height:1">
+                    {% if project.domain %}{{ project.domain.emoji }}{% else %}💻{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     MAIN CONTENT + SIDEBAR
+════════════════════════════════════════════════ -->
+<section style="padding:60px 0;background:#F8FAFC">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- ── LEFT: Main content ── -->
+            <div class="col-lg-8">
+
+                {% if project.problem_statement %}
+                <div class="detail-section" data-aos="fade-up">
+                    <div class="detail-section-title">
+                        <div class="sec-icon" style="background:#FEF3C7"><i class="bi bi-exclamation-circle-fill" style="color:#D97706"></i></div>
+                        Problem Statement
+                    </div>
+                    <p style="color:#475569;line-height:1.9;font-size:.97rem;margin:0">{{ project.problem_statement }}</p>
+                </div>
+                {% endif %}
+
+                {% if objectives %}
+                <div class="detail-section" data-aos="fade-up">
+                    <div class="detail-section-title">
+                        <div class="sec-icon" style="background:#EFF6FF"><i class="bi bi-bullseye" style="color:#2563EB"></i></div>
+                        Project Objectives
+                    </div>
+                    {% for obj in objectives %}
+                    <div class="check-item">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                        <span>{{ obj }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if features %}
+                <div class="detail-section" data-aos="fade-up">
+                    <div class="detail-section-title">
+                        <div class="sec-icon" style="background:#FFFBEB"><i class="bi bi-star-fill" style="color:#D97706"></i></div>
+                        Key Features
+                    </div>
+                    <div class="row g-2">
+                        {% for feat in features %}
+                        <div class="col-md-6">
+                            <div class="feat-item">
+                                <i class="bi bi-star-fill text-warning flex-shrink-0" style="font-size:.75rem"></i>
+                                <span>{{ feat }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if project.conclusion %}
+                <div class="detail-section" data-aos="fade-up">
+                    <div class="detail-section-title">
+                        <div class="sec-icon" style="background:#F0FDF4"><i class="bi bi-flag-fill" style="color:#16A34A"></i></div>
+                        Conclusion
+                    </div>
+                    <p style="color:#475569;line-height:1.9;font-size:.97rem;margin:0">{{ project.conclusion }}</p>
+                </div>
+                {% endif %}
+
+                {% if enhancements %}
+                <div class="detail-section" data-aos="fade-up">
+                    <div class="detail-section-title">
+                        <div class="sec-icon" style="background:#EFF6FF"><i class="bi bi-rocket-takeoff-fill" style="color:#2563EB"></i></div>
+                        Future Enhancements
+                    </div>
+                    {% for enh in enhancements %}
+                    <div class="enh-item">
+                        <i class="bi bi-arrow-right-circle-fill text-primary flex-shrink-0"></i>
+                        <span>{{ enh }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if screenshots %}
+                <div class="detail-section" data-aos="fade-up">
+                    <div class="detail-section-title">
+                        <div class="sec-icon" style="background:#F5F3FF"><i class="bi bi-images" style="color:#7C3AED"></i></div>
+                        Project Screenshots
+                    </div>
+                    <div class="row g-3">
+                        {% for ss in screenshots %}
+                        <div class="col-md-6">
+                            <a href="{{ ss.image.url }}" target="_blank"
+                               class="d-block rounded-3 overflow-hidden"
+                               style="border:1px solid #E2E8F0;transition:box-shadow .2s"
+                               onmouseover="this.style.boxShadow='0 8px 24px rgba(0,0,0,.12)'"
+                               onmouseout="this.style.boxShadow='none'">
+                                <img src="{{ ss.image.url }}" class="img-fluid w-100"
+                                     style="height:200px;object-fit:cover" alt="{{ ss.caption }}">
+                            </a>
+                            {% if ss.caption %}<p class="text-muted small mt-2 text-center mb-0">{{ ss.caption }}</p>{% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+
+            <!-- ── RIGHT: Sidebar ── -->
+            <div class="col-lg-4">
+                <div class="detail-sidebar">
+
+                    <!-- Enquiry card -->
+                    <div class="enquiry-card mb-4" data-aos="fade-left">
+                        <div class="position-relative" style="z-index:1">
+                            <h5 class="text-white fw-800 mb-1" style="font-size:1.1rem">Get This Project</h5>
+                            <p style="color:rgba(255,255,255,.7);font-size:.82rem;margin-bottom:20px">
+                                Full source code · Documentation · Demo · Mentorship
+                            </p>
+                            <a href="{% url 'core:contact' %}" class="btn-enquire">
+                                <i class="bi bi-chat-dots-fill me-2"></i>Enquire Now
+                            </a>
+                            <a href="https://wa.me/919110478047?text=Hi%2C%20I%20need%20help%20with%20the%20project%3A%20{{ project.title|urlencode }}"
+                               target="_blank" rel="noopener" class="btn-whatsapp">
+                                <i class="bi bi-whatsapp me-2"></i>WhatsApp Us
+                            </a>
+                            <div class="d-flex align-items-center gap-2 mt-3">
+                                <i class="bi bi-shield-fill-check" style="color:#6EE7B7;font-size:.9rem"></i>
+                                <span style="color:rgba(255,255,255,.6);font-size:.75rem">Trusted by UG & PG students across Karnataka</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tech Stack -->
+                    <div class="sidebar-card" data-aos="fade-left" data-aos-delay="50">
+                        <div class="sidebar-card-header">
+                            <i class="bi bi-tools text-primary"></i> Tech Stack
+                        </div>
+                        <div class="sidebar-card-body">
+                            {% for tech in project.tech_stack.split %}
+                            <span class="tech-pill">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    {% if algorithms %}
+                    <div class="sidebar-card" data-aos="fade-left" data-aos-delay="100">
+                        <div class="sidebar-card-header">
+                            <i class="bi bi-cpu-fill text-primary"></i> Algorithms Used
+                        </div>
+                        <div class="sidebar-card-body">
+                            {% for algo in algorithms %}
+                            <div class="algo-item">
+                                <i class="bi bi-cpu text-primary flex-shrink-0" style="font-size:.8rem"></i>
+                                {{ algo }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if project.dataset %}
+                    <div class="sidebar-card" data-aos="fade-left" data-aos-delay="150">
+                        <div class="sidebar-card-header">
+                            <i class="bi bi-database-fill text-primary"></i> Dataset
+                        </div>
+                        <div class="sidebar-card-body">
+                            <p class="text-muted small mb-0" style="line-height:1.6">{{ project.dataset }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- What's included -->
+                    <div class="sidebar-card" data-aos="fade-left" data-aos-delay="200">
+                        <div class="sidebar-card-header" style="background:linear-gradient(135deg,#1E1B4B,#312E81);color:#fff;border-bottom:none;border-radius:20px 20px 0 0">
+                            <i class="bi bi-box-seam-fill" style="color:#FCD34D"></i>
+                            <span>Complete Package — What You Get</span>
+                        </div>
+                        <div class="sidebar-card-body" style="padding:16px 20px">
+                            <div class="d-flex flex-column gap-2">
+
+                                <div style="display:flex;align-items:flex-start;gap:10px;background:#F5F3FF;border:1px solid rgba(124,58,237,.15);border-radius:10px;padding:10px 12px">
+                                    <div style="width:28px;height:28px;background:linear-gradient(135deg,#7C3AED,#6D28D9);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                                        <i class="bi bi-box-seam-fill" style="color:#fff;font-size:.7rem"></i>
+                                    </div>
+                                    <div>
+                                        <div style="font-size:.82rem;font-weight:700;color:#1E1B4B">Complete Package</div>
+                                        <div style="font-size:.74rem;color:#6D28D9">Source code, DB scripts, deployment guide, PPT</div>
+                                    </div>
+                                </div>
+
+                                <div style="display:flex;align-items:flex-start;gap:10px;background:#EFF6FF;border:1px solid rgba(37,99,235,.15);border-radius:10px;padding:10px 12px">
+                                    <div style="width:28px;height:28px;background:linear-gradient(135deg,#1D4ED8,#2563EB);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                                        <i class="bi bi-file-earmark-text-fill" style="color:#fff;font-size:.7rem"></i>
+                                    </div>
+                                    <div>
+                                        <div style="font-size:.82rem;font-weight:700;color:#1E3A8A">Complete Documentation</div>
+                                        <div style="font-size:.74rem;color:#2563EB">IEEE / university-format report, ready to bind</div>
+                                    </div>
+                                </div>
+
+                                <div style="display:flex;align-items:flex-start;gap:10px;background:#ECFDF5;border:1px solid rgba(5,150,105,.15);border-radius:10px;padding:10px 12px">
+                                    <div style="width:28px;height:28px;background:linear-gradient(135deg,#059669,#10B981);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                                        <i class="bi bi-patch-check-fill" style="color:#fff;font-size:.7rem"></i>
+                                    </div>
+                                    <div>
+                                        <div style="font-size:.82rem;font-weight:700;color:#065F46">Plagiarism-Free Report</div>
+                                        <div style="font-size:.74rem;color:#059669">Turnitin verified &lt;10% similarity</div>
+                                    </div>
+                                </div>
+
+                                <div style="display:flex;align-items:flex-start;gap:10px;background:#FFFBEB;border:1px solid rgba(217,119,6,.15);border-radius:10px;padding:10px 12px">
+                                    <div style="width:28px;height:28px;background:linear-gradient(135deg,#D97706,#F59E0B);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                                        <i class="bi bi-sliders" style="color:#fff;font-size:.7rem"></i>
+                                    </div>
+                                    <div>
+                                        <div style="font-size:.82rem;font-weight:700;color:#78350F">Guide-Based Customization</div>
+                                        <div style="font-size:.74rem;color:#D97706">Tailored as per your guide's requirements</div>
+                                    </div>
+                                </div>
+
+                                <div style="display:flex;align-items:flex-start;gap:10px;background:#FEF2F2;border:1px solid rgba(220,38,38,.15);border-radius:10px;padding:10px 12px">
+                                    <div style="width:28px;height:28px;background:linear-gradient(135deg,#DC2626,#EF4444);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                                        <i class="bi bi-person-check-fill" style="color:#fff;font-size:.7rem"></i>
+                                    </div>
+                                    <div>
+                                        <div style="font-size:.82rem;font-weight:700;color:#7F1D1D">1-on-1 Mentorship till Viva</div>
+                                        <div style="font-size:.74rem;color:#DC2626">Dedicated mentor · unlimited doubt sessions</div>
+                                    </div>
+                                </div>
+
+                                <div style="display:flex;align-items:flex-start;gap:10px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:10px 12px">
+                                    <div style="width:28px;height:28px;background:linear-gradient(135deg,#0F172A,#1E293B);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                                        <i class="bi bi-mortarboard-fill" style="color:#FCD34D;font-size:.7rem"></i>
+                                    </div>
+                                    <div>
+                                        <div style="font-size:.82rem;font-weight:700;color:#0F172A">Viva Preparation</div>
+                                        <div style="font-size:.74rem;color:#475569">Mock viva · Q&A bank · presentation coaching</div>
+                                    </div>
+                                </div>
+
+                                <div style="display:flex;align-items:flex-start;gap:10px;background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(124,58,237,.08));border:1px solid rgba(99,102,241,.2);border-radius:10px;padding:10px 12px">
+                                    <div style="width:28px;height:28px;background:linear-gradient(135deg,#4F46E5,#7C3AED);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                                        <i class="bi bi-journal-richtext" style="color:#fff;font-size:.7rem"></i>
+                                    </div>
+                                    <div>
+                                        <div style="font-size:.82rem;font-weight:700;color:#1E1B4B">Thesis Publication Support <span style="background:#EDE9FE;color:#7C3AED;font-size:.65rem;padding:1px 7px;border-radius:50px;font-weight:700">PG</span></div>
+                                        <div style="font-size:.74rem;color:#4F46E5">Scopus / IEEE / UGC journal assistance</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    {% if project.live_url or project.github_url %}
+                    <div class="sidebar-card" data-aos="fade-left" data-aos-delay="250">
+                        <div class="sidebar-card-header">
+                            <i class="bi bi-link-45deg text-primary"></i> Project Links
+                        </div>
+                        <div class="sidebar-card-body d-flex flex-column gap-2">
+                            {% if project.live_url %}
+                            <a href="{{ project.live_url }}" class="btn btn-primary fw-600 rounded-pill" target="_blank" rel="noopener">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Live Demo
+                            </a>
+                            {% endif %}
+                            {% if project.github_url %}
+                            <a href="{{ project.github_url }}" class="btn btn-dark fw-600 rounded-pill" target="_blank" rel="noopener">
+                                <i class="bi bi-github me-2"></i>View on GitHub
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+        <!-- ── Related Projects ── -->
+        {% if related %}
+        <div class="mt-5" data-aos="fade-up">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h5 class="fw-800 mb-1">More {% if project.domain %}{{ project.domain.name }}{% endif %} Projects</h5>
+                    <p class="text-muted small mb-0">Other projects in the same domain</p>
+                </div>
+                <a href="?category={% if project.domain %}{{ project.domain.slug }}{% endif %}" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                    View All <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+            <div class="row g-4">
+                {% for rp in related %}
+                <div class="col-md-4">
+                    <div class="related-card">
+                        <div class="d-flex align-items-center gap-2 mb-3">
+                            <span style="font-size:1.5rem">{% if rp.domain %}{{ rp.domain.emoji }}{% else %}💻{% endif %}</span>
+                            <span class="badge" style="background:{% if rp.domain %}{{ rp.domain.badge_bg }}{% else %}rgba(30,58,138,.1){% endif %};color:{% if rp.domain %}{{ rp.domain.badge_color }}{% else %}#1E3A8A{% endif %};font-size:.7rem">{% if rp.domain %}{{ rp.domain.name }}{% endif %}</span>
+                        </div>
+                        <h6 class="fw-700 mb-2" style="font-size:.92rem;line-height:1.4">{{ rp.title }}</h6>
+                        <p class="text-muted small mb-3" style="line-height:1.6">{{ rp.description|truncatewords:14 }}</p>
+                        <a href="{% url 'projects:detail' rp.slug %}"
+                           class="btn btn-sm fw-600 rounded-pill mt-auto"
+                           style="background:linear-gradient(135deg,#1E3A8A,#1d4ed8);color:#fff;font-size:.78rem">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}

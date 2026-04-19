@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% block title %}{{ internship.title }}{% endblock %}
+{% block content %}
+
+<section style="background:linear-gradient(135deg,#0F172A 0%,#065F46 55%,#0F172A 100%);padding:72px 0 48px;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px"></div>
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 65% 40%,rgba(16,185,129,.18) 0%,transparent 65%)"></div>
+    <div class="container position-relative">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" style="color:rgba(255,255,255,.6)">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'internships:list' %}" style="color:rgba(255,255,255,.6)">Internships</a></li>
+                <li class="breadcrumb-item active" style="color:#6EE7B7">{{ internship.title }}</li>
+            </ol>
+        </nav>
+        <h1 class="fw-800 mb-3" style="font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;line-height:1.2">{{ internship.title }}</h1>
+        <div class="d-flex flex-wrap gap-2 align-items-center">
+            <span style="background:rgba(16,185,129,.2);border:1px solid rgba(16,185,129,.4);color:#6EE7B7;padding:4px 14px;border-radius:50px;font-size:.78rem;font-weight:700">{{ internship.get_mode_display }}</span>
+            <span style="color:rgba(255,255,255,.7);font-size:.85rem"><i class="bi bi-clock-fill me-1" style="color:#FCD34D"></i>{{ internship.duration }}</span>
+            {% if internship.start_date %}<span style="color:rgba(255,255,255,.7);font-size:.85rem"><i class="bi bi-calendar-fill me-1" style="color:#FCD34D"></i>Starts {{ internship.start_date|date:"d M Y" }}</span>{% endif %}
+            <span style="color:rgba(255,255,255,.7);font-size:.85rem"><i class="bi bi-award-fill me-1" style="color:#FCD34D"></i>Certificate Included</span>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Main Content -->
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm p-4 mb-4">
+                    <h5 class="fw-700 mb-3">About This Internship</h5>
+                    <p class="text-muted" style="line-height:1.8">{{ internship.description }}</p>
+                </div>
+
+                <div class="row g-4 mb-4">
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm p-4 h-100">
+                            <h6 class="fw-700 mb-3 d-flex align-items-center gap-2">
+                                <span class="service-icon icon-blue" style="width:36px;height:36px;font-size:1rem"><i class="bi bi-list-check"></i></span>
+                                Topics Covered
+                            </h6>
+                            <ul class="list-unstyled mb-0">
+                                {% for topic in internship.get_topics_list %}
+                                <li class="d-flex align-items-start gap-2 mb-2">
+                                    <i class="bi bi-check-circle-fill text-success mt-1 flex-shrink-0" style="font-size:.85rem"></i>
+                                    <span class="small">{{ topic }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm p-4 h-100">
+                            <h6 class="fw-700 mb-3 d-flex align-items-center gap-2">
+                                <span class="service-icon icon-green" style="width:36px;height:36px;font-size:1rem"><i class="bi bi-gift"></i></span>
+                                Benefits
+                            </h6>
+                            <ul class="list-unstyled mb-0">
+                                {% for benefit in internship.get_benefits_list %}
+                                <li class="d-flex align-items-start gap-2 mb-2">
+                                    <i class="bi bi-star-fill text-warning mt-1 flex-shrink-0" style="font-size:.85rem"></i>
+                                    <span class="small">{{ benefit }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm p-4">
+                    <h6 class="fw-700 mb-3 d-flex align-items-center gap-2">
+                        <span class="service-icon icon-teal" style="width:36px;height:36px;font-size:1rem"><i class="bi bi-award"></i></span>
+                        Certificate Information
+                    </h6>
+                    <p class="text-muted mb-0" style="line-height:1.8">{{ internship.certificate_info }}</p>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm p-4 sticky-top" style="top:80px">
+                    {% if internship.thumbnail %}
+                    <img src="{{ internship.thumbnail.url }}" class="rounded-xl mb-3 w-100" style="height:180px;object-fit:cover" alt="{{ internship.title }}">
+                    {% endif %}
+                    <div class="text-center mb-3">
+                        <div class="text-muted small">Contact us for fee details</div>
+                    </div>
+
+                    {% if is_enrolled %}
+                    <div class="alert alert-success text-center py-2 mb-3">
+                        <i class="bi bi-check-circle-fill me-2"></i>You are enrolled!
+                    </div>
+                    <a href="{% url 'accounts:dashboard' %}" class="btn btn-success w-100 mb-2">
+                        <i class="bi bi-speedometer2 me-2"></i>Go to Dashboard
+                    </a>
+                    {% else %}
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'payments:initiate' 'internship' internship.id %}" class="btn btn-primary w-100 btn-lg mb-2 fw-600">
+                        <i class="bi bi-rocket-takeoff me-2"></i>Register Now
+                    </a>
+                    {% else %}
+                    <a href="{% url 'accounts:login' %}?next={% url 'internships:detail' internship.slug %}" class="btn btn-primary w-100 btn-lg mb-2 fw-600">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Login to Register
+                    </a>
+                    {% endif %}
+                    {% endif %}
+
+                    <a href="https://wa.me/919876543210?text=I'm interested in {{ internship.title }} internship" class="btn btn-success w-100 mb-3" target="_blank">
+                        <i class="bi bi-whatsapp me-2"></i>Enquire on WhatsApp
+                    </a>
+
+                    <hr>
+                    <ul class="list-unstyled mb-0">
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                            <span class="text-muted small">Duration</span><span class="fw-600 small">{{ internship.duration }}</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                            <span class="text-muted small">Mode</span><span class="fw-600 small">{{ internship.get_mode_display }}</span>
+                        </li>
+                        {% if internship.start_date %}
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                            <span class="text-muted small">Start Date</span><span class="fw-600 small">{{ internship.start_date|date:"d M Y" }}</span>
+                        </li>
+                        {% endif %}
+                        <li class="d-flex justify-content-between py-2 border-bottom">
+                            <span class="text-muted small">Seats</span>
+                            <span class="fw-600 small {% if internship.seats_available == 0 %}text-danger{% else %}text-success{% endif %}">
+                                {{ internship.seats_available }} available
+                            </span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2">
+                            <span class="text-muted small">Certificate</span>
+                            <span class="fw-600 small text-success"><i class="bi bi-check-circle me-1"></i>Included</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

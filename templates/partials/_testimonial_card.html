@@ -1,0 +1,18 @@
+<div class="sr-card">
+    <div class="sr-stars">
+        {% for i in "12345" %}<i class="bi bi-star{% if forloop.counter <= t.rating %}-fill{% endif %}"></i>{% endfor %}
+    </div>
+    <div class="sr-quote"><i class="bi bi-quote"></i></div>
+    <p class="sr-text">&#8220;{{ t.message|truncatewords:30 }}&#8221;</p>
+    <div class="d-flex align-items-center gap-3">
+        {% if t.photo %}
+            <img src="{{ t.photo.url }}" alt="{{ t.name }}" class="sr-avatar" style="object-fit:cover">
+        {% else %}
+            <div class="sr-avatar" style="background:linear-gradient(135deg,#1E3A8A,#3B82F6)">{{ t.name|first|upper }}</div>
+        {% endif %}
+        <div>
+            <div style="font-weight:700;font-size:.88rem;color:#0F172A">{{ t.name }}</div>
+            <div style="font-size:.75rem;color:#64748B">{{ t.designation }}{% if t.company %} &middot; {{ t.company }}{% endif %}</div>
+        </div>
+    </div>
+</div>

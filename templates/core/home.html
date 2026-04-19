@@ -1,0 +1,682 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Vignan TechSolutions — From Student to Professional{% endblock %}
+{% block meta_description %}Vignan TechSolutions bridges the gap between education and employment. Internships, Courses, Real-Time Projects & Corporate Training in Kalaburagi, Karnataka.{% endblock %}
+
+{% block content %}
+
+<!-- ═══════════════════════════════════════════
+     HERO — "From Student to Professional"
+════════════════════════════════════════════ -->
+<section class="vt-hero">
+    <!-- Animated background particles -->
+    <div class="vt-hero-bg">
+        <div class="vt-particle p1"></div>
+        <div class="vt-particle p2"></div>
+        <div class="vt-particle p3"></div>
+        <div class="vt-particle p4"></div>
+        <div class="vt-grid-overlay"></div>
+    </div>
+
+    <div class="container position-relative" style="z-index:2">
+        <div class="row align-items-center" style="min-height:92vh;padding:5rem 0 3rem">
+
+            <!-- Left: Mission Statement -->
+            <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right" data-aos-duration="900">
+                <div class="vt-hero-tag">
+                    <span class="vt-dot"></span>
+                    MSME Registered · Kalaburagi, Karnataka, India
+                </div>
+
+                <h1 class="vt-hero-h1">
+                    We Turn<br>
+                    <span class="vt-typewriter" id="typewriter"></span><br>
+                    <span class="vt-hero-accent">Into Professionals</span>
+                </h1>
+
+                <p class="vt-hero-sub">
+                    Vignan TechSolutions bridges the gap between <strong>education and employment</strong> — through hands-on internships, industry courses, real-time projects, and corporate training that actually get you hired.
+                </p>
+
+                <div class="vt-hero-cta">
+                    <a href="{% url 'internships:list' %}" class="vt-btn-primary">
+                        <i class="bi bi-rocket-takeoff-fill"></i>
+                        Start Your Journey
+                    </a>
+                    <a href="{% url 'core:about' %}" class="vt-btn-ghost">
+                        <i class="bi bi-play-circle-fill"></i>
+                        Our Story
+                    </a>
+                </div>
+
+                <!-- Live Stats -->
+                <div class="vt-stats-row">
+                    <div class="vt-stat">
+                        <div class="vt-stat-num"><span data-count="75">0</span>+</div>
+                        <div class="vt-stat-lbl">MCA Major Projects across 5 Domains — End-to-End Services for VTU CPGS Kalaburagi</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: MCA Project Visual -->
+            <div class="col-lg-6 col-md-10 mx-md-auto mt-4 mt-lg-0" data-aos="fade-left" data-aos-duration="900" data-aos-delay="200">
+                <div class="vt-proj-card">
+
+                    <!-- Card header -->
+                    <div class="vt-proj-header">
+                        <div class="vt-proj-dots">
+                            <span style="background:#EF4444"></span>
+                            <span style="background:#F59E0B"></span>
+                            <span style="background:#10B981"></span>
+                        </div>
+                        <div class="vt-proj-title-bar">MCA Major Projects — End-to-End Delivery</div>
+                        <div class="vt-proj-live"><span></span>75+ Live</div>
+                    </div>
+
+                    <!-- Domain tabs -->
+                    <div class="vt-proj-tabs">
+                        {% for d in project_domains %}
+                        <button class="vt-ptab {% if forloop.first %}active{% endif %}" data-domain="{{ forloop.counter0 }}" style="--tc:{{ d.color_to }}">{{ d.emoji }} {{ d.name|truncatewords:2 }}</button>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Animated project list -->
+                    <div class="vt-proj-list" id="vtProjList">
+                        <div class="vt-proj-item" style="--d:0.1s"><i class="bi bi-check-circle-fill" style="color:#10B981"></i><span id="vtProjText"></span><span class="vt-proj-cursor">|</span></div>
+                        <div class="vt-proj-item vt-proj-ghost" style="--d:0.3s"><i class="bi bi-circle" style="color:#334155"></i><span>Smart Attendance System</span></div>
+                        <div class="vt-proj-item vt-proj-ghost" style="--d:0.5s"><i class="bi bi-circle" style="color:#334155"></i><span>Fraud Detection Engine</span></div>
+                        <div class="vt-proj-item vt-proj-ghost" style="--d:0.7s"><i class="bi bi-circle" style="color:#334155"></i><span>NLP Sentiment Analyser</span></div>
+                    </div>
+
+                    <!-- What's included -->
+                    <div class="vt-proj-includes">
+                        <div class="vt-pi-label">Every project includes</div>
+                        <div class="vt-pi-tags">
+                            <span><i class="bi bi-code-slash"></i> Source Code</span>
+                            <span><i class="bi bi-file-earmark-text-fill"></i> IEEE Docs</span>
+                            <span><i class="bi bi-camera-video-fill"></i> Demo Video</span>
+                            <span><i class="bi bi-person-fill"></i> 1-on-1 Mentorship</span>
+                            <span><i class="bi bi-mortarboard-fill"></i> Viva Prep</span>
+                            <span><i class="bi bi-journal-check"></i> Plagiarism Report</span>
+                        </div>
+                    </div>
+
+                    <!-- Stats bar -->
+                    <div class="vt-proj-stats">
+                        <div class="vt-ps-item">
+                            <div class="vt-ps-num">75+</div>
+                            <div class="vt-ps-lbl">Projects</div>
+                        </div>
+                        <div class="vt-ps-div"></div>
+                        <div class="vt-ps-item">
+                            <div class="vt-ps-num">5</div>
+                            <div class="vt-ps-lbl">Domains</div>
+                        </div>
+                        <div class="vt-ps-div"></div>
+                        <div class="vt-ps-item">
+                            <div class="vt-ps-num">100%</div>
+                            <div class="vt-ps-lbl">Delivered</div>
+                        </div>
+                        <div class="vt-ps-div"></div>
+                        <div class="vt-ps-item">
+                            <div class="vt-ps-num">0</div>
+                            <div class="vt-ps-lbl">Rejections</div>
+                        </div>
+                    </div>
+
+                    <!-- Floating notification -->
+                    <div class="vt-proj-notif" id="vtNotif">
+                        <i class="bi bi-check-circle-fill" style="color:#10B981;font-size:1.1rem"></i>
+                        <div>
+                            <div style="color:#fff;font-weight:700;font-size:.8rem" id="vtNotifText">Project Delivered!</div>
+                            <div style="color:#64748B;font-size:.7rem">Just now · MCA Student</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wave divider -->
+    <div class="vt-wave">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/></svg>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     MISSION STRIP — Core Motive
+════════════════════════════════════════════ -->
+<section class="vt-mission-strip">
+    <div class="container">
+        <div class="vt-mission-inner" data-aos="fade-up">
+            <div class="vt-mission-icon"><i class="bi bi-bullseye"></i></div>
+            <div class="vt-mission-text">
+                <strong>Our Core Mission:</strong>
+                Bridge the gap between education and employment — equip every student with real skills, real experience, and real confidence to succeed in the technology industry.
+            </div>
+            <a href="{% url 'core:about' %}" class="vt-mission-link">Read Our Story <i class="bi bi-arrow-right"></i></a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     JOURNEY STEPS — Project Delivery Process
+════════════════════════════════════════════ -->
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-badge">How It Works</span>
+            <h2 class="section-title">Your Project, Delivered in 4 Steps</h2>
+            <p class="section-subtitle">From domain selection to viva — we handle everything end-to-end</p>
+        </div>
+        <div class="vt-journey-steps">
+            <div class="vt-step" data-aos="fade-up" data-aos-delay="0">
+                <div class="vt-step-num">01</div>
+                <div class="vt-step-icon" style="background:rgba(30,58,138,.1);color:#1E3A8A"><i class="bi bi-kanban-fill"></i></div>
+                <h5 class="fw-700 mt-3 mb-2">Pick Your Domain</h5>
+                <p class="text-muted small">Choose from AI &amp; ML, Python, MERN, Java, or Data Science. We suggest the best project title based on your guide's requirements.</p>
+            </div>
+            <div class="vt-step-arrow"><i class="bi bi-arrow-right"></i></div>
+            <div class="vt-step" data-aos="fade-up" data-aos-delay="100">
+                <div class="vt-step-num">02</div>
+                <div class="vt-step-icon" style="background:rgba(16,185,129,.1);color:#059669"><i class="bi bi-code-slash"></i></div>
+                <h5 class="fw-700 mt-3 mb-2">We Build It</h5>
+                <p class="text-muted small">Our team develops the full project — source code, database, UI — customized to your university and guide specifications.</p>
+            </div>
+            <div class="vt-step-arrow"><i class="bi bi-arrow-right"></i></div>
+            <div class="vt-step" data-aos="fade-up" data-aos-delay="200">
+                <div class="vt-step-num">03</div>
+                <div class="vt-step-icon" style="background:rgba(124,58,237,.1);color:#7C3AED"><i class="bi bi-file-earmark-text-fill"></i></div>
+                <h5 class="fw-700 mt-3 mb-2">Docs &amp; Demo</h5>
+                <p class="text-muted small">IEEE-format documentation, plagiarism report, abstract, all chapters, and a demo video — ready for submission.</p>
+            </div>
+            <div class="vt-step-arrow"><i class="bi bi-arrow-right"></i></div>
+            <div class="vt-step" data-aos="fade-up" data-aos-delay="300">
+                <div class="vt-step-num">04</div>
+                <div class="vt-step-icon" style="background:rgba(245,158,11,.1);color:#D97706"><i class="bi bi-mortarboard-fill"></i></div>
+                <h5 class="fw-700 mt-3 mb-2">Viva &amp; Beyond</h5>
+                <p class="text-muted small">1-on-1 mentorship sessions, mock viva, Q&amp;A preparation — we stay with you until you clear your viva with confidence.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SERVICES — What We Offer
+════════════════════════════════════════════ -->
+<section class="py-5" style="background:var(--section-bg)">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-badge">What We Offer</span>
+            <h2 class="section-title">Everything You Need to Succeed</h2>
+            <p class="section-subtitle">Six powerful programs designed to take you from learner to professional</p>
+        </div>
+        <div class="row g-4">
+            {% for service in services_list %}
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+                <a href="{{ service.url }}" class="vt-service-card text-decoration-none">
+                    <div class="vt-svc-icon {{ service.color }}">
+                        <i class="bi {{ service.icon }}"></i>
+                    </div>
+                    <h5 class="fw-700 mb-2 text-dark">{{ service.title }}</h5>
+                    <p class="text-muted small mb-3" style="line-height:1.7">{{ service.desc }}</p>
+                    <span class="vt-svc-link">Explore <i class="bi bi-arrow-right ms-1"></i></span>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     MCA PROJECTS HIGHLIGHT — Primary Focus
+════════════════════════════════════════════ -->
+{% if featured_projects %}
+<section style="padding:70px 0;background:#F8FAFC">
+    <div class="container">
+        <div class="row align-items-end mb-5 flex-wrap gap-3" data-aos="fade-up">
+            <div class="col-lg-8">
+                <span class="section-badge" style="background:rgba(124,58,237,.1);color:#7C3AED">⭐ Our Core Offering</span>
+                <h2 class="section-title mt-2 mb-1">MCA Major Projects</h2>
+                <p class="text-muted" style="font-size:1rem;line-height:1.7;max-width:580px">
+                    75+ end-to-end project services for VTU CPGS Kalaburagi — complete source code, documentation, demo, and personal mentorship across 5 domains.
+                </p>
+                <!-- Domain pills -->
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                    {% for d in project_domains %}
+                    <a href="{% url 'projects:list' %}?category={{ d.slug }}" class="btn btn-sm rounded-pill fw-600"
+                       style="background:{{ d.badge_bg }};color:{{ d.badge_color }};border:1px solid {{ d.badge_color }}33">{{ d.emoji }} {{ d.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <a href="{% url 'projects:list' %}" class="btn btn-primary px-4 rounded-pill fw-600">
+                    Browse All 75+ Projects <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+        <div class="row g-4">
+            {% for project in featured_projects %}
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+                <div class="vt-project-card">
+                    <div class="vt-project-thumb">
+                        {% if project.thumbnail %}
+                        <img src="{{ project.thumbnail.url }}" alt="{{ project.title }}">
+                        {% else %}
+                        <div class="vt-project-placeholder" style="background:{% if project.domain %}{{ project.domain.gradient }}{% else %}linear-gradient(135deg,#1E3A8A,#3B82F6){% endif %}">
+                            <span style="font-size:4rem;opacity:.6">{% if project.domain %}{{ project.domain.emoji }}{% else %}💻{% endif %}</span>
+                        </div>
+                        {% endif %}
+                        <div class="vt-project-overlay">
+                            <a href="{% url 'projects:detail' project.slug %}" class="vt-project-view">View Project <i class="bi bi-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                    <div class="vt-project-body">
+                        <span class="vt-project-cat">{% if project.domain %}{{ project.domain.name }}{% endif %}</span>
+                        <h6 class="fw-700 mb-2">{{ project.title }}</h6>
+                        <p class="text-muted small mb-3">{{ project.description|truncatewords:15 }}</p>
+                        <div class="d-flex flex-wrap gap-1">
+                            {% for tech in project.tech_stack.split|slice:":4" %}
+                            <span class="vt-tech-tag">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Bottom CTA -->
+        <div class="text-center mt-5" data-aos="fade-up">
+            <div class="d-inline-flex align-items-center gap-4 p-4 rounded-3" style="background:#fff;border:1px solid #E2E8F0;box-shadow:0 4px 16px rgba(15,23,42,.06)">
+                <div class="text-start">
+                    <div class="fw-700" style="font-size:.95rem">Need a custom project?</div>
+                    <div class="text-muted small">We build end-to-end for VTU CPGS students</div>
+                </div>
+                <a href="{% url 'core:contact' %}" class="btn btn-primary rounded-pill px-4 fw-600">Get in Touch</a>
+                <a href="https://wa.me/919110478047?text=Hi%2C%20I%20need%20MCA%20Major%20Project%20help" target="_blank" rel="noopener"
+                   class="btn rounded-pill px-4 fw-600" style="background:#25D366;color:#fff;border:none">
+                    <i class="bi bi-whatsapp me-1"></i>WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- ═══════════════════════════════════════════
+     FEATURED INTERNSHIPS
+════════════════════════════════════════════ -->
+{% if featured_internships %}
+<section class="py-5 bg-white">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end mb-5 flex-wrap gap-3" data-aos="fade-up">
+            <div>
+                <span class="section-badge">Live Opportunities</span>
+                <h2 class="section-title mb-1">Featured Internships</h2>
+                <p class="text-muted small">Real work. Real experience. Real certificate.</p>
+            </div>
+            <a href="{% url 'internships:list' %}" class="btn btn-outline-primary btn-sm px-4">View All <i class="bi bi-arrow-right ms-1"></i></a>
+        </div>
+        <div class="row g-4">
+            {% for internship in featured_internships %}
+            <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+                <div class="vt-program-card h-100">
+                    <div class="vt-card-thumb">
+                        {% if internship.thumbnail %}
+                        <img src="{{ internship.thumbnail.url }}" alt="{{ internship.title }}">
+                        {% else %}
+                        <div class="vt-card-thumb-placeholder" style="background:linear-gradient(135deg,#1E3A8A,#3B82F6)">
+                            <i class="bi bi-briefcase-fill"></i>
+                        </div>
+                        {% endif %}
+                        <div class="vt-card-badge">{{ internship.get_mode_display }}</div>
+                    </div>
+                    <div class="vt-card-body">
+                        <h6 class="fw-700 mb-2">{{ internship.title }}</h6>
+                        <p class="text-muted small mb-3">{{ internship.description|truncatewords:15 }}</p>
+                        <div class="vt-card-meta">
+                            <span><i class="bi bi-clock me-1"></i>{{ internship.duration }}</span>
+                            <span><i class="bi bi-people me-1"></i>{{ internship.seats_available }} seats</span>
+                        </div>
+                    </div>
+                    <div class="vt-card-footer">
+                        <a href="{% url 'internships:detail' internship.slug %}" class="vt-card-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- ═══════════════════════════════════════════
+     FEATURED COURSES
+════════════════════════════════════════════ -->
+{% if featured_courses %}
+<section class="py-5" style="background:var(--section-bg)">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end mb-5 flex-wrap gap-3" data-aos="fade-up">
+            <div>
+                <span class="section-badge">Industry Courses</span>
+                <h2 class="section-title mb-1">Learn From the Best</h2>
+                <p class="text-muted small">Courses built by professionals, for professionals.</p>
+            </div>
+            <a href="{% url 'courses:list' %}" class="btn btn-outline-primary btn-sm px-4">View All <i class="bi bi-arrow-right ms-1"></i></a>
+        </div>
+        <div class="row g-4">
+            {% for course in featured_courses %}
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+                <div class="vt-program-card h-100">
+                    <div class="vt-card-thumb">
+                        {% if course.thumbnail %}
+                        <img src="{{ course.thumbnail.url }}" alt="{{ course.title }}">
+                        {% else %}
+                        <div class="vt-card-thumb-placeholder" style="background:linear-gradient(135deg,#059669,#10B981)">
+                            <i class="bi bi-book-fill"></i>
+                        </div>
+                        {% endif %}
+                        <div class="vt-card-badge" style="background:rgba(16,185,129,.9)">{{ course.get_level_display }}</div>
+                    </div>
+                    <div class="vt-card-body">
+                        <h6 class="fw-700 mb-2">{{ course.title }}</h6>
+                        <p class="text-muted small mb-3">{{ course.description|truncatewords:15 }}</p>
+                        <div class="vt-card-meta">
+                            <span><i class="bi bi-clock me-1"></i>{{ course.duration }}</span>
+                            <span><i class="bi bi-person me-1"></i>{{ course.instructor }}</span>
+                        </div>
+                    </div>
+                    <div class="vt-card-footer">
+                        <a href="{% url 'courses:detail' course.slug %}" class="vt-card-btn">Enroll Now</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- ═══════════════════════════════════════════
+     WHY VIGNAN — Impact Numbers
+════════════════════════════════════════════ -->
+<section class="vt-impact-section">
+    <div class="vt-impact-bg"></div>
+    <div class="container position-relative" style="z-index:2">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-5" data-aos="fade-right">
+                <span class="section-badge" style="background:rgba(255,255,255,.15);color:#fff">Why Choose Us</span>
+                <h2 class="fw-800 text-white mb-3" style="font-size:2.2rem">We Don't Just Teach.<br>We <span style="color:#FCD34D">Transform.</span></h2>
+                <p style="color:rgba(255,255,255,.75);line-height:1.8;font-size:1rem">
+                    Every program at Vignan TechSolutions is designed with one goal — to make you job-ready. Not just theoretically, but practically. Our students don't just learn, they build, they ship, and they get hired.
+                </p>
+                <a href="{% url 'accounts:register' %}" class="vt-btn-white mt-3">
+                    <i class="bi bi-person-plus-fill me-2"></i>Join Free Today
+                </a>
+            </div>
+            <div class="col-lg-7" data-aos="fade-left">
+                <div class="row g-3">
+                    {% for item in why_us_home %}
+                    <div class="col-md-6">
+                        <div class="vt-why-card">
+                            <div class="vt-why-icon"><i class="bi {{ item.icon }}"></i></div>
+                            <div>
+                                <div class="fw-700 text-white" style="font-size:.95rem">{{ item.title }}</div>
+                                <div style="color:rgba(255,255,255,.65);font-size:.82rem;margin-top:3px">{{ item.desc }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     STUDENT REVIEWS — Dynamic from DB
+════════════════════════════════════════════ -->
+{% if testimonials %}
+<section style="background:#fff;padding:80px 0;overflow:hidden">
+<style>
+.sr-track-wrap{overflow:hidden;position:relative}
+.sr-track-wrap::before,.sr-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
+.sr-track-wrap::before{left:0;background:linear-gradient(to right,#fff,transparent)}
+.sr-track-wrap::after{right:0;background:linear-gradient(to left,#fff,transparent)}
+.sr-track{display:flex;gap:24px;width:max-content;animation:sr-slide 40s linear infinite}
+.sr-track:hover{animation-play-state:paused}
+@keyframes sr-slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.sr-card{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:20px;padding:28px 26px;width:320px;flex-shrink:0;transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;position:relative;overflow:hidden}
+.sr-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#1E3A8A,#3B82F6);transform:scaleX(0);transition:transform .35s ease;transform-origin:left}
+.sr-card:hover{transform:translateY(-8px);box-shadow:0 24px 48px rgba(30,58,138,.1);border-color:rgba(30,58,138,.2)}
+.sr-card:hover::before{transform:scaleX(1)}
+.sr-quote{font-size:2.2rem;color:rgba(30,58,138,.1);line-height:1;margin-bottom:6px}
+.sr-text{font-size:.88rem;color:#475569;line-height:1.8;margin-bottom:18px}
+.sr-stars{display:flex;gap:2px;margin-bottom:12px}
+.sr-stars i{font-size:.75rem;color:#F59E0B}
+.sr-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;color:#fff;flex-shrink:0}
+</style>
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-badge">Student Reviews</span>
+            <h2 class="section-title">What Our Students Say</h2>
+            <p class="section-subtitle">Verified reviews from our enrolled students</p>
+        </div>
+    </div>
+    <div class="sr-track-wrap">
+        <div class="sr-track">
+            {% for t in testimonials %}{% include "partials/_testimonial_card.html" %}{% endfor %}
+            {% for t in testimonials %}{% include "partials/_testimonial_card.html" %}{% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- ═══════════════════════════════════════════
+     GIVE YOUR REVIEW — Compact Banner
+════════════════════════════════════════════ -->
+<style>
+.rv-banner{background:linear-gradient(135deg,#1E1B4B,#312E81);padding:28px 0;position:relative;overflow:hidden}
+.rv-banner::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.rv-mini-input{background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:10px;color:#fff;padding:9px 14px;font-size:.85rem;outline:none;transition:border-color .2s;width:100%}
+.rv-mini-input::placeholder{color:rgba(255,255,255,.35)}
+.rv-mini-input:focus{border-color:rgba(167,139,250,.7)}
+.rv-mini-star{background:none;border:none;font-size:1.4rem;cursor:pointer;opacity:.35;padding:0 2px;transition:opacity .15s,transform .15s}
+.rv-mini-star.on,.rv-mini-star:hover{opacity:1;transform:scale(1.2)}
+.rv-mini-submit{background:linear-gradient(135deg,#7C3AED,#4F46E5);color:#fff;border:none;border-radius:10px;padding:9px 22px;font-size:.85rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:transform .2s,box-shadow .2s}
+.rv-mini-submit:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(124,58,237,.4)}
+</style>
+<section class="rv-banner" data-aos="fade-up">
+    <div class="container position-relative" style="z-index:2">
+        {% if user.is_authenticated %}
+        <form method="post" action="{% url 'accounts:submit_review' %}" class="d-flex align-items-center gap-3 flex-wrap">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="/">
+            <input type="hidden" name="rating" id="rvRating" value="5">
+            <div style="display:flex;align-items:center;gap:10px;flex-shrink:0">
+                <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#7C3AED,#4F46E5);display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:.95rem">{{ user.first_name|first|upper }}</div>
+                <div>
+                    <div style="color:#fff;font-weight:700;font-size:.85rem;line-height:1">{{ user.get_full_name }}</div>
+                    <div style="display:flex;gap:1px;margin-top:3px" id="rvStars">
+                        {% for i in "12345" %}<button type="button" class="rv-mini-star on" data-v="{{ forloop.counter }}" onclick="rvRate({{ forloop.counter }})">⭐</button>{% endfor %}
+                    </div>
+                </div>
+            </div>
+            <input type="text" name="designation" class="rv-mini-input" placeholder="Your role (e.g. MCA Student)" required style="max-width:180px">
+            <input type="text" name="message" class="rv-mini-input flex-grow-1" placeholder="Share your experience in one line…" required style="min-width:200px">
+            <button type="submit" class="rv-mini-submit"><i class="bi bi-send-fill me-1"></i>Post Review</button>
+            <div style="color:rgba(255,255,255,.35);font-size:.72rem;white-space:nowrap"><i class="bi bi-eye me-1"></i>After approval</div>
+        </form>
+        {% else %}
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+            <div style="display:flex;align-items:center;gap:14px">
+                <div style="font-size:1.8rem;line-height:1">✍️</div>
+                <div>
+                    <div style="color:#fff;font-weight:700;font-size:.95rem">Loved your experience? <span style="background:linear-gradient(135deg,#A78BFA,#60A5FA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Tell the world.</span></div>
+                    <div style="color:rgba(255,255,255,.45);font-size:.78rem;margin-top:2px"><i class="bi bi-shield-check me-1"></i>Genuine &nbsp;·&nbsp; <i class="bi bi-clock me-1"></i>30 sec &nbsp;·&nbsp; <i class="bi bi-eye me-1"></i>Admin verified</div>
+                </div>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <a href="{% url 'accounts:login' %}?next=/" style="background:linear-gradient(135deg,#7C3AED,#4F46E5);color:#fff;text-decoration:none;padding:9px 22px;border-radius:10px;font-weight:700;font-size:.85rem;display:inline-flex;align-items:center;gap:7px">
+                    <i class="bi bi-box-arrow-in-right"></i>Login to Review
+                </a>
+                <a href="{% url 'accounts:register' %}" style="background:rgba(255,255,255,.08);color:#fff;text-decoration:none;padding:9px 22px;border-radius:10px;font-weight:700;font-size:.85rem;border:1px solid rgba(255,255,255,.15);display:inline-flex;align-items:center;gap:7px">
+                    <i class="bi bi-person-plus"></i>Register Free
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+<script>
+function rvRate(v){
+    document.getElementById('rvRating').value=v;
+    document.querySelectorAll('#rvStars .rv-mini-star').forEach((b,i)=>b.classList.toggle('on',i<v));
+}
+</script>
+
+<!-- ═══════════════════════════════════════════
+     CTA — Final Push (Project Oriented)
+════════════════════════════════════════════ -->
+<section class="vt-cta-section">
+    <div class="container">
+        <div class="vt-cta-box" data-aos="zoom-in">
+            <div class="vt-cta-glow"></div>
+            <div class="row align-items-center position-relative g-4" style="z-index:2">
+                <div class="col-lg-7">
+                    <span class="section-badge" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.2)">⭐ All Domain Industry-Level UG &amp; PG Projects</span>
+                    <h2 class="fw-800 text-white mb-2 mt-2" style="font-size:clamp(1.5rem,3vw,2rem)">
+                        Need Your Major Project Done Right?
+                    </h2>
+                    <p style="color:rgba(255,255,255,.7);font-size:.93rem;margin-bottom:16px;line-height:1.7">
+                        Complete source code &middot; IEEE documentation &middot; Plagiarism report &middot; Demo video &middot; 1-on-1 mentorship till viva. Across AI&nbsp;&amp;&nbsp;ML, Python, MERN, Java &amp; Data Science.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);padding:4px 12px;border-radius:50px;font-size:.75rem;font-weight:600"><i class="bi bi-check-circle-fill me-1" style="color:#10B981"></i>Zero Rejections</span>
+                        <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);padding:4px 12px;border-radius:50px;font-size:.75rem;font-weight:600"><i class="bi bi-check-circle-fill me-1" style="color:#10B981"></i>Guide Customization</span>
+                        <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);padding:4px 12px;border-radius:50px;font-size:.75rem;font-weight:600"><i class="bi bi-check-circle-fill me-1" style="color:#10B981"></i>Viva Prep Included</span>
+                        <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.8);padding:4px 12px;border-radius:50px;font-size:.75rem;font-weight:600"><i class="bi bi-check-circle-fill me-1" style="color:#10B981"></i>75+ Projects Delivered</span>
+                    </div>
+                </div>
+                <div class="col-lg-5 d-flex flex-column gap-2 align-items-lg-end">
+                    <a href="{% url 'projects:list' %}" class="vt-btn-white d-inline-flex">
+                        <i class="bi bi-kanban-fill me-2"></i>Browse All Projects
+                    </a>
+                    <a href="https://wa.me/919110478047?text=Hi%2C%20I%20need%20help%20with%20my%20MCA%20Major%20Project" target="_blank" rel="noopener"
+                       class="d-inline-flex align-items-center gap-2 fw-700 text-decoration-none px-4 py-2 rounded-pill"
+                       style="background:#25D366;color:#fff;font-size:.9rem">
+                        <i class="bi bi-whatsapp"></i>WhatsApp Us Now
+                    </a>
+                    <a href="{% url 'core:contact' %}" class="vt-btn-ghost-white d-inline-flex">
+                        <i class="bi bi-chat-dots me-2"></i>Talk to a Counsellor
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Typewriter — hero heading
+const words = ['Students', 'Freshers', 'Learners', 'Beginners', 'Dreamers'];
+let wi = 0, ci = 0, deleting = false;
+const el = document.getElementById('typewriter');
+function type() {
+    if (!el) return;
+    const word = words[wi];
+    el.textContent = deleting ? word.substring(0, ci--) : word.substring(0, ci++);
+    if (!deleting && ci === word.length + 1) { deleting = true; setTimeout(type, 1800); return; }
+    if (deleting && ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
+    setTimeout(type, deleting ? 60 : 100);
+}
+type();
+
+// Count-up
+document.querySelectorAll('[data-count]').forEach(el => {
+    const target = +el.getAttribute('data-count');
+    let current = 0, step = Math.ceil(target / 60);
+    const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = current;
+        if (current >= target) clearInterval(timer);
+    }, 25);
+});
+
+// MCA Project card — domain data (dynamic from DB)
+const domains = [
+    {% for d in project_domains %}{ color: '{{ d.color_to }}', projects: ['{{ d.name }} Project 1', '{{ d.name }} Project 2', '{{ d.name }} Project 3', '{{ d.name }} Project 4'] }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+];
+const notifications = [
+    {% for d in project_domains %}'{{ d.name }} Project Delivered!'{% if not forloop.last %},{% endif %}{% endfor %}
+];
+
+let activeDomain = 0;
+const projText  = document.getElementById('vtProjText');
+const notifEl   = document.getElementById('vtNotif');
+const notifText = document.getElementById('vtNotifText');
+const ghostItems = document.querySelectorAll('.vt-proj-ghost');
+
+function typeProject(text, cb) {
+    if (!projText) return;
+    let i = 0;
+    projText.textContent = '';
+    const t = setInterval(() => {
+        projText.textContent = text.substring(0, ++i);
+        if (i === text.length) { clearInterval(t); if (cb) setTimeout(cb, 1200); }
+    }, 45);
+}
+
+function updateGhosts(domainIdx) {
+    const projs = domains[domainIdx].projects;
+    ghostItems.forEach((el, i) => { el.querySelector('span').textContent = projs[i + 1] || ''; });
+}
+
+function cycleProject() {
+    const projs = domains[activeDomain].projects;
+    let pi = 0;
+    function next() {
+        typeProject(projs[pi], () => {
+            pi = (pi + 1) % projs.length;
+            next();
+        });
+    }
+    next();
+}
+
+// Tab click
+document.querySelectorAll('.vt-ptab').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.vt-ptab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeDomain = +btn.dataset.domain;
+        updateGhosts(activeDomain);
+        if (projText) projText.textContent = '';
+        cycleProject();
+    });
+});
+
+// Rotating notification
+let ni = 0;
+function showNotif() {
+    if (!notifEl) return;
+    notifText.textContent = notifications[ni % notifications.length];
+    notifEl.style.animation = 'none';
+    notifEl.offsetHeight; // reflow
+    notifEl.style.animation = 'vt-notif-in .5s ease forwards, vt-notif-float 3s ease-in-out 1s infinite';
+    ni++;
+    setTimeout(showNotif, 4000);
+}
+
+// Init
+updateGhosts(0);
+cycleProject();
+setTimeout(showNotif, 1500);
+
+</script>
+{% endblock %}

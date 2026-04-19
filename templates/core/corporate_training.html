@@ -1,0 +1,535 @@
+{% extends 'base.html' %}
+{% block title %}Corporate Training — Vignan TechSolutions{% endblock %}
+{% block meta_description %}Custom corporate training programs for colleges, universities, and companies. MSME-registered vendor. Vignan TechSolutions, Kalaburagi.{% endblock %}
+
+{% block extra_css %}
+<style>
+.corp-hero {
+    background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 55%, #0F172A 100%);
+    padding: 80px 0 60px; position: relative; overflow: hidden;
+}
+.corp-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 65% 40%, rgba(124,58,237,.18) 0%, transparent 65%);
+}
+.corp-hero .grid-bg {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="corp-hero">
+    <div class="grid-bg"></div>
+    <div class="container position-relative">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" style="color:rgba(255,255,255,.6)">Home</a></li>
+                <li class="breadcrumb-item active" style="color:#C4B5FD">Corporate Training</li>
+            </ol>
+        </nav>
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7" data-aos="fade-right">
+                <div class="d-inline-flex align-items-center gap-2 mb-3"
+                     style="background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.4);color:#C4B5FD;padding:6px 16px;border-radius:50px;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase">
+                    <i class="bi bi-building-fill"></i> MSME Registered Training Partner
+                </div>
+                <h1 style="font-size:clamp(2rem,5vw,3rem);font-weight:800;color:#fff;line-height:1.15">
+                    Corporate &amp; Institutional<br>
+                    <span style="background:linear-gradient(90deg,#A78BFA,#818CF8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Training Programs</span>
+                </h1>
+                <p style="color:rgba(255,255,255,.75);font-size:1rem;line-height:1.8;max-width:520px;margin-top:1rem">
+                    Customized technology training for colleges, universities, and corporates. MSME-registered, GST-compliant, and vendor-document ready.
+                </p>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    <a href="{% url 'core:contact' %}" class="btn btn-lg fw-700 rounded-pill px-4"
+                       style="background:linear-gradient(135deg,#7C3AED,#6D28D9);color:#fff;border:none;box-shadow:0 8px 24px rgba(124,58,237,.4)">
+                        <i class="bi bi-envelope-fill me-2"></i>Get a Free Proposal
+                    </a>
+                    <a href="https://wa.me/919110478047?text=Hi%2C%20I%20want%20to%20register%20Vignan%20TechSolutions%20as%20a%20vendor"
+                       target="_blank" rel="noopener"
+                       class="btn btn-outline-light btn-lg rounded-pill px-4 fw-600">
+                        <i class="bi bi-whatsapp me-2"></i>WhatsApp Us
+                    </a>
+                </div>
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                    <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);padding:4px 12px;border-radius:50px;font-size:.75rem;font-weight:600"><i class="bi bi-check-circle-fill me-1" style="color:#34D399"></i>MSME Registered</span>
+                    <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);padding:4px 12px;border-radius:50px;font-size:.75rem;font-weight:600"><i class="bi bi-check-circle-fill me-1" style="color:#34D399"></i>GST Compliant</span>
+                    <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);padding:4px 12px;border-radius:50px;font-size:.75rem;font-weight:600"><i class="bi bi-check-circle-fill me-1" style="color:#34D399"></i>Vendor Docs Ready</span>
+                    <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);padding:4px 12px;border-radius:50px;font-size:.75rem;font-weight:600"><i class="bi bi-check-circle-fill me-1" style="color:#34D399"></i>10+ Domains</span>
+                </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-flex justify-content-center" data-aos="fade-left">
+                <div class="row g-3" style="max-width:340px;width:100%">
+                    <div class="col-6">
+                        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px;text-align:center">
+                            <div style="font-size:2rem;font-weight:800;background:linear-gradient(135deg,#A78BFA,#818CF8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">10+</div>
+                            <div style="color:rgba(255,255,255,.6);font-size:.78rem;font-weight:600;margin-top:4px">Tech Domains</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px;text-align:center">
+                            <div style="font-size:2rem;font-weight:800;background:linear-gradient(135deg,#34D399,#10B981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">24h</div>
+                            <div style="color:rgba(255,255,255,.6);font-size:.78rem;font-weight:600;margin-top:4px">Emergency Deploy</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px;text-align:center">
+                            <div style="font-size:2rem;font-weight:800;background:linear-gradient(135deg,#FCD34D,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">100%</div>
+                            <div style="color:rgba(255,255,255,.6);font-size:.78rem;font-weight:600;margin-top:4px">Vetted Trainers</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px;text-align:center">
+                            <div style="font-size:2rem;font-weight:800;background:linear-gradient(135deg,#F87171,#EF4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">500+</div>
+                            <div style="color:rgba(255,255,255,.6);font-size:.78rem;font-weight:600;margin-top:4px">Students Trained</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5" data-aos="fade-up">
+            <span class="section-badge">Enterprise Solutions</span>
+            <h2 class="section-title">Training Programs for Organizations</h2>
+            <p class="section-subtitle">Customized technology training solutions for colleges, companies, and institutions</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4" data-aos="fade-up">
+                <div class="card h-100 border-0 shadow-sm p-4 text-center hover-card">
+                    <div class="service-icon icon-blue mx-auto mb-3"><i class="bi bi-mortarboard-fill"></i></div>
+                    <h5 class="fw-bold">College Training Programs</h5>
+                    <p class="text-muted">Comprehensive training programs for engineering and degree colleges. We cover the latest technologies including Web Development, Python, Java, Data Science, and more.</p>
+                    <ul class="list-unstyled text-start mt-3">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Campus placement preparation</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Technical skill development</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Soft skills training</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Mock interviews & aptitude</li>
+                    </ul>
+                    <a href="{% url 'core:contact' %}" class="btn btn-primary mt-auto">Enquire Now</a>
+                </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card h-100 border-0 shadow-sm p-4 text-center hover-card">
+                    <div class="service-icon icon-green mx-auto mb-3"><i class="bi bi-people-fill"></i></div>
+                    <h5 class="fw-bold">Workshops & Bootcamps</h5>
+                    <p class="text-muted">Intensive short-term workshops and bootcamps on emerging technologies. Perfect for students and professionals looking to upskill quickly.</p>
+                    <ul class="list-unstyled text-start mt-3">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>1-day to 2-week programs</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Hands-on project work</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Industry expert trainers</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Participation certificates</li>
+                    </ul>
+                    <a href="{% url 'core:contact' %}" class="btn btn-success mt-auto">Enquire Now</a>
+                </div>
+            </div>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="card h-100 border-0 shadow-sm p-4 text-center hover-card">
+                    <div class="service-icon icon-purple mx-auto mb-3"><i class="bi bi-building-fill"></i></div>
+                    <h5 class="fw-bold">Custom Corporate Programs</h5>
+                    <p class="text-muted">Tailored training solutions for corporate organizations. We design and deliver programs based on your specific technology stack and business requirements.</p>
+                    <ul class="list-unstyled text-start mt-3">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Needs assessment & planning</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Custom curriculum design</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>On-site or remote delivery</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Progress tracking & reports</li>
+                    </ul>
+                    <a href="{% url 'core:contact' %}" class="btn btn-purple mt-auto" style="background:#7C3AED;color:white">Enquire Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Vendorship / Partnership Section -->
+<section style="background:linear-gradient(135deg,#0F172A 0%,#1E1B4B 50%,#0F172A 100%);padding:72px 0;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px"></div>
+    <div style="position:absolute;top:-80px;right:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(124,58,237,.18),transparent 70%)"></div>
+    <div style="position:absolute;bottom:-60px;left:-60px;width:240px;height:240px;background:radial-gradient(circle,rgba(59,130,246,.12),transparent 70%)"></div>
+
+    <div class="container position-relative">
+
+        <!-- Header -->
+        <div class="text-center mb-5" data-aos="fade-up">
+            <div class="d-inline-flex align-items-center gap-2 mb-3"
+                 style="background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.4);color:#C4B5FD;padding:6px 18px;border-radius:50px;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase">
+                <i class="bi bi-handshake-fill"></i> Official Vendor Partnerships
+            </div>
+            <h2 class="fw-800 text-white mb-3" style="font-size:clamp(1.7rem,3.5vw,2.5rem)">
+                We Are Now Accepting <span style="background:linear-gradient(90deg,#A78BFA,#818CF8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Vendor Registrations</span>
+            </h2>
+            <p style="color:rgba(255,255,255,.65);font-size:1rem;line-height:1.8;max-width:620px;margin:0 auto">
+                Vignan TechSolutions is an MSME-registered technology company actively onboarding as an approved training vendor with colleges, universities, and corporates. Partner with us to deliver world-class tech training to your students and employees.
+            </p>
+        </div>
+
+        <!-- 3 Partner Type Cards -->
+        <div class="row g-4 mb-5">
+
+            <!-- Colleges -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="0">
+                <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:32px 28px;height:100%;transition:all .3s"
+                     onmouseover="this.style.background='rgba(124,58,237,.15)';this.style.borderColor='rgba(124,58,237,.4)';this.style.transform='translateY(-6px)'"
+                     onmouseout="this.style.background='rgba(255,255,255,.05)';this.style.borderColor='rgba(255,255,255,.1)';this.style.transform=''">
+                    <div style="width:56px;height:56px;background:linear-gradient(135deg,#7C3AED,#6D28D9);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+                        <i class="bi bi-mortarboard-fill" style="color:#fff;font-size:1.4rem"></i>
+                    </div>
+                    <h5 style="color:#fff;font-weight:800;margin-bottom:10px">Engineering & Degree Colleges</h5>
+                    <p style="color:rgba(255,255,255,.6);font-size:.88rem;line-height:1.8;margin-bottom:20px">
+                        Register Vignan TechSolutions as your approved training vendor for skill development programs, placement training, workshops, and value-added courses.
+                    </p>
+                    <ul style="list-style:none;padding:0;margin:0 0 24px">
+                        <li style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.75);font-size:.85rem;margin-bottom:10px">
+                            <i class="bi bi-check-circle-fill" style="color:#A78BFA;flex-shrink:0"></i> MOU / Vendor Agreement support
+                        </li>
+                        <li style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.75);font-size:.85rem;margin-bottom:10px">
+                            <i class="bi bi-check-circle-fill" style="color:#A78BFA;flex-shrink:0"></i> AICTE / VTU aligned programs
+                        </li>
+                        <li style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.75);font-size:.85rem;margin-bottom:10px">
+                            <i class="bi bi-check-circle-fill" style="color:#A78BFA;flex-shrink:0"></i> On-campus & online delivery
+                        </li>
+                        <li style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.75);font-size:.85rem">
+                            <i class="bi bi-check-circle-fill" style="color:#A78BFA;flex-shrink:0"></i> MSME-registered company credentials
+                        </li>
+                    </ul>
+                    <a href="{% url 'core:contact' %}"
+                       style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#7C3AED,#6D28D9);color:#fff;font-weight:700;font-size:.88rem;padding:11px 22px;border-radius:50px;text-decoration:none;transition:all .3s"
+                       onmouseover="this.style.boxShadow='0 8px 24px rgba(124,58,237,.5)'"
+                       onmouseout="this.style.boxShadow=''">
+                        <i class="bi bi-envelope-fill"></i> Register as Vendor
+                    </a>
+                </div>
+            </div>
+
+            <!-- Universities -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="80">
+                <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:32px 28px;height:100%;transition:all .3s;position:relative"
+                     onmouseover="this.style.background='rgba(37,99,235,.15)';this.style.borderColor='rgba(37,99,235,.4)';this.style.transform='translateY(-6px)'"
+                     onmouseout="this.style.background='rgba(255,255,255,.05)';this.style.borderColor='rgba(255,255,255,.1)';this.style.transform=''">
+                    <div style="position:absolute;top:16px;right:16px;background:rgba(252,211,77,.15);border:1px solid rgba(252,211,77,.3);color:#FCD34D;font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:50px">FEATURED</div>
+                    <div style="width:56px;height:56px;background:linear-gradient(135deg,#1D4ED8,#2563EB);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+                        <i class="bi bi-bank2" style="color:#fff;font-size:1.4rem"></i>
+                    </div>
+                    <h5 style="color:#fff;font-weight:800;margin-bottom:10px">Universities & Autonomous Institutions</h5>
+                    <p style="color:rgba(255,255,255,.6);font-size:.88rem;line-height:1.8;margin-bottom:20px">
+                        Empanel us as a certified training partner for your affiliated colleges and departments. We provide structured programs with proper documentation and compliance.
+                    </p>
+                    <ul style="list-style:none;padding:0;margin:0 0 24px">
+                        <li style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.75);font-size:.85rem;margin-bottom:10px">
+                            <i class="bi bi-check-circle-fill" style="color:#93C5FD;flex-shrink:0"></i> Empanelment documentation ready
+                        </li>
+                        <li style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.75);font-size:.85rem;margin-bottom:10px">
+                            <i class="bi bi-check-circle-fill" style="color:#93C5FD;flex-shrink:0"></i> GST-registered invoicing
+                        </li>
+                        <li style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.75);font-size:.85rem;margin-bottom:10px">
+                            <i class="bi bi-check-circle-fill" style="color:#93C5FD;flex-shrink:0"></i> Customized curriculum per syllabus
+                        </li>
+                        <li style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.75);font-size:.85rem">
+                            <i class="bi bi-check-circle-fill" style="color:#93C5FD;flex-shrink:0"></i> Attendance & completion reports
+                        </li>
+                    </ul>
+                    <a href="{% url 'core:contact' %}"
+                       style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#1D4ED8,#2563EB);color:#fff;font-weight:700;font-size:.88rem;padding:11px 22px;border-radius:50px;text-decoration:none;transition:all .3s"
+                       onmouseover="this.style.boxShadow='0 8px 24px rgba(37,99,235,.5)'"
+                       onmouseout="this.style.boxShadow=''">
+                        <i class="bi bi-envelope-fill"></i> Register as Vendor
+                    </a>
+                </div>
+            </div>
+
+            <!-- Companies -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="160">
+                <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:32px 28px;height:100%;transition:all .3s"
+                     onmouseover="this.style.background='rgba(5,150,105,.15)';this.style.borderColor='rgba(5,150,105,.4)';this.style.transform='translateY(-6px)'"
+                     onmouseout="this.style.background='rgba(255,255,255,.05)';this.style.borderColor='rgba(255,255,255,.1)';this.style.transform=''">
+                    <div style="width:56px;height:56px;background:linear-gradient(135deg,#059669,#10B981);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+                        <i class="bi bi-building-fill" style="color:#fff;font-size:1.4rem"></i>
+                    </div>
+                    <h5 style="color:#fff;font-weight:800;margin-bottom:10px">Corporate Companies & IT Firms</h5>
+                    <p style="color:rgba(255,255,255,.6);font-size:.88rem;line-height:1.8;margin-bottom:20px">
+                        Onboard us as your L&D (Learning & Development) vendor for employee upskilling, technology transitions, and team training programs.
+                    </p>
+                    <ul style="list-style:none;padding:0;margin:0 0 24px">
+                        <li style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.75);font-size:.85rem;margin-bottom:10px">
+                            <i class="bi bi-check-circle-fill" style="color:#6EE7B7;flex-shrink:0"></i> Vendor onboarding documents provided
+                        </li>
+                        <li style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.75);font-size:.85rem;margin-bottom:10px">
+                            <i class="bi bi-check-circle-fill" style="color:#6EE7B7;flex-shrink:0"></i> NDA & SLA support available
+                        </li>
+                        <li style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.75);font-size:.85rem;margin-bottom:10px">
+                            <i class="bi bi-check-circle-fill" style="color:#6EE7B7;flex-shrink:0"></i> Custom tech stack training
+                        </li>
+                        <li style="display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.75);font-size:.85rem">
+                            <i class="bi bi-check-circle-fill" style="color:#6EE7B7;flex-shrink:0"></i> Flexible on-site / remote batches
+                        </li>
+                    </ul>
+                    <a href="{% url 'core:contact' %}"
+                       style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#059669,#10B981);color:#fff;font-weight:700;font-size:.88rem;padding:11px 22px;border-radius:50px;text-decoration:none;transition:all .3s"
+                       onmouseover="this.style.boxShadow='0 8px 24px rgba(5,150,105,.5)'"
+                       onmouseout="this.style.boxShadow=''">
+                        <i class="bi bi-envelope-fill"></i> Register as Vendor
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom CTA bar -->
+        <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:24px 32px" data-aos="fade-up">
+            <div class="row align-items-center g-3">
+                <div class="col-lg-8">
+                    <div class="d-flex align-items-center gap-3">
+                        <div style="width:44px;height:44px;background:rgba(252,211,77,.15);border:1px solid rgba(252,211,77,.3);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                            <i class="bi bi-patch-check-fill" style="color:#FCD34D;font-size:1.1rem"></i>
+                        </div>
+                        <div>
+                            <div style="color:#fff;font-weight:700;font-size:.97rem">MSME Registered · GST Compliant · Vendor Documents Ready</div>
+                            <div style="color:rgba(255,255,255,.55);font-size:.82rem">All necessary documents for vendor empanelment are available on request — MSME certificate, GST, PAN, company profile, and past work portfolio.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 d-flex gap-2 justify-content-lg-end flex-wrap">
+                    <a href="{% url 'core:contact' %}" class="btn fw-700 rounded-pill px-4"
+                       style="background:#fff;color:#1E1B4B;font-size:.88rem">
+                        <i class="bi bi-file-earmark-text-fill me-2"></i>Request Documents
+                    </a>
+                    <a href="https://wa.me/919110478047?text=Hi%2C%20I%20want%20to%20register%20Vignan%20TechSolutions%20as%20a%20vendor"
+                       target="_blank" rel="noopener"
+                       class="btn fw-700 rounded-pill px-4"
+                       style="background:#25D366;color:#fff;border:none;font-size:.88rem">
+                        <i class="bi bi-whatsapp me-2"></i>WhatsApp Us
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Trainer Community Section -->
+<section style="background:#F8FAFC;padding:72px 0;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(124,58,237,.05),transparent 70%)"></div>
+    <div style="position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(37,99,235,.05),transparent 70%)"></div>
+
+    <div class="container position-relative">
+
+        <!-- Header -->
+        <div class="row align-items-center g-4 mb-5" data-aos="fade-up">
+            <div class="col-lg-7">
+                <div class="d-inline-flex align-items-center gap-2 mb-3"
+                     style="background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2);color:#7C3AED;padding:6px 18px;border-radius:50px;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase">
+                    <i class="bi bi-people-fill"></i> Our Trainer Community
+                </div>
+                <h2 class="fw-800 mb-3" style="font-size:clamp(1.7rem,3.5vw,2.5rem);color:#0F172A;line-height:1.2">
+                    A Community of <span style="background:linear-gradient(135deg,#7C3AED,#4F46E5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Elite Domain Experts</span><br>Ready to Deliver
+                </h2>
+                <p style="color:#64748B;font-size:.97rem;line-height:1.85;margin:0">
+                    Vignan TechSolutions is backed by a strong, vetted community of skilled trainers across all major technology domains. Every trainer in our network is industry-experienced, rigorously screened, and committed to delivering high-impact training.
+                </p>
+            </div>
+            <div class="col-lg-5" data-aos="fade-left">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:20px;text-align:center;box-shadow:0 4px 16px rgba(15,23,42,.05)">
+                            <div style="font-size:2rem;font-weight:800;background:linear-gradient(135deg,#7C3AED,#4F46E5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">10+</div>
+                            <div style="font-size:.78rem;font-weight:600;color:#64748B;margin-top:4px">Technology Domains</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:20px;text-align:center;box-shadow:0 4px 16px rgba(15,23,42,.05)">
+                            <div style="font-size:2rem;font-weight:800;background:linear-gradient(135deg,#059669,#10B981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">3+</div>
+                            <div style="font-size:.78rem;font-weight:600;color:#64748B;margin-top:4px">Yrs Avg. Experience</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:20px;text-align:center;box-shadow:0 4px 16px rgba(15,23,42,.05)">
+                            <div style="font-size:2rem;font-weight:800;background:linear-gradient(135deg,#D97706,#F59E0B);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">24h</div>
+                            <div style="font-size:.78rem;font-weight:600;color:#64748B;margin-top:4px">Emergency Deployment</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div style="background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:20px;text-align:center;box-shadow:0 4px 16px rgba(15,23,42,.05)">
+                            <div style="font-size:2rem;font-weight:800;background:linear-gradient(135deg,#DC2626,#EF4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">100%</div>
+                            <div style="font-size:.78rem;font-weight:600;color:#64748B;margin-top:4px">Vetted & Screened</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 Pillars -->
+        <div class="row g-4 mb-5">
+
+            <!-- Pillar 1: Community -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="0">
+                <div style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:32px 28px;height:100%;transition:all .3s;position:relative;overflow:hidden"
+                     onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px rgba(124,58,237,.1)';this.style.borderColor='rgba(124,58,237,.25)'"
+                     onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='#E2E8F0'">
+                    <div style="position:absolute;top:0;right:0;width:80px;height:80px;background:radial-gradient(circle at top right,rgba(124,58,237,.07),transparent 70%)"></div>
+                    <div style="width:54px;height:54px;background:linear-gradient(135deg,#7C3AED,#6D28D9);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+                        <i class="bi bi-people-fill" style="color:#fff;font-size:1.3rem"></i>
+                    </div>
+                    <h5 style="font-weight:800;color:#0F172A;margin-bottom:10px">Multi-Domain Trainer Community</h5>
+                    <p style="color:#64748B;font-size:.88rem;line-height:1.8;margin-bottom:20px">
+                        Our trainer pool spans all major technology and professional domains — ensuring the right expert is always available for your specific training requirement.
+                    </p>
+                    <div style="display:flex;flex-wrap:wrap;gap:6px">
+                        <span style="background:#F5F3FF;color:#7C3AED;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:50px">AI / ML</span>
+                        <span style="background:#F5F3FF;color:#7C3AED;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:50px">Python</span>
+                        <span style="background:#F5F3FF;color:#7C3AED;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:50px">Java</span>
+                        <span style="background:#F5F3FF;color:#7C3AED;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:50px">MERN Stack</span>
+                        <span style="background:#F5F3FF;color:#7C3AED;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:50px">Data Science</span>
+                        <span style="background:#F5F3FF;color:#7C3AED;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:50px">Cloud & DevOps</span>
+                        <span style="background:#F5F3FF;color:#7C3AED;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:50px">Cybersecurity</span>
+                        <span style="background:#F5F3FF;color:#7C3AED;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:50px">Soft Skills</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pillar 2: Emergency Support -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="80">
+                <div style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:32px 28px;height:100%;transition:all .3s;position:relative;overflow:hidden"
+                     onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px rgba(217,119,6,.1)';this.style.borderColor='rgba(217,119,6,.25)'"
+                     onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='#E2E8F0'">
+                    <div style="position:absolute;top:0;right:0;width:80px;height:80px;background:radial-gradient(circle at top right,rgba(217,119,6,.07),transparent 70%)"></div>
+                    <div style="position:absolute;top:16px;right:16px;background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.2);color:#DC2626;font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:50px">
+                        <i class="bi bi-lightning-charge-fill me-1"></i>EMERGENCY
+                    </div>
+                    <div style="width:54px;height:54px;background:linear-gradient(135deg,#D97706,#F59E0B);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+                        <i class="bi bi-lightning-charge-fill" style="color:#fff;font-size:1.3rem"></i>
+                    </div>
+                    <h5 style="font-weight:800;color:#0F172A;margin-bottom:10px">Emergency Trainer Support</h5>
+                    <p style="color:#64748B;font-size:.88rem;line-height:1.8;margin-bottom:20px">
+                        Trainer unavailable at the last minute? We provide rapid emergency trainer deployment — a standby expert ready to step in within 24 hours, ensuring your program never gets disrupted.
+                    </p>
+                    <div style="display:flex;flex-direction:column;gap:10px">
+                        <div style="display:flex;align-items:center;gap:10px;background:#FFFBEB;border:1px solid rgba(217,119,6,.15);border-radius:10px;padding:10px 14px">
+                            <i class="bi bi-clock-fill" style="color:#D97706;flex-shrink:0"></i>
+                            <span style="font-size:.84rem;color:#78350F;font-weight:600">Deployment within 24 hours</span>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:10px;background:#FFFBEB;border:1px solid rgba(217,119,6,.15);border-radius:10px;padding:10px 14px">
+                            <i class="bi bi-telephone-fill" style="color:#D97706;flex-shrink:0"></i>
+                            <span style="font-size:.84rem;color:#78350F;font-weight:600">Dedicated emergency helpline</span>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:10px;background:#FFFBEB;border:1px solid rgba(217,119,6,.15);border-radius:10px;padding:10px 14px">
+                            <i class="bi bi-shield-check" style="color:#D97706;flex-shrink:0"></i>
+                            <span style="font-size:.84rem;color:#78350F;font-weight:600">Zero program disruption guarantee</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pillar 3: We Hire -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="160">
+                <div style="background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:32px 28px;height:100%;transition:all .3s;position:relative;overflow:hidden"
+                     onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 48px rgba(5,150,105,.1)';this.style.borderColor='rgba(5,150,105,.25)'"
+                     onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='#E2E8F0'">
+                    <div style="position:absolute;top:0;right:0;width:80px;height:80px;background:radial-gradient(circle at top right,rgba(5,150,105,.07),transparent 70%)"></div>
+                    <div style="position:absolute;top:16px;right:16px;background:rgba(5,150,105,.1);border:1px solid rgba(5,150,105,.2);color:#059669;font-size:.68rem;font-weight:700;padding:3px 10px;border-radius:50px">
+                        <i class="bi bi-briefcase-fill me-1"></i>NOW HIRING
+                    </div>
+                    <div style="width:54px;height:54px;background:linear-gradient(135deg,#059669,#10B981);border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px">
+                        <i class="bi bi-person-badge-fill" style="color:#fff;font-size:1.3rem"></i>
+                    </div>
+                    <h5 style="font-weight:800;color:#0F172A;margin-bottom:10px">We Hire Skilled Trainers</h5>
+                    <p style="color:#64748B;font-size:.88rem;line-height:1.8;margin-bottom:20px">
+                        Are you an experienced trainer or industry professional? Join our growing trainer community and get opportunities to train at colleges, universities, and corporates across the region.
+                    </p>
+                    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+                        <div style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:#334155">
+                            <i class="bi bi-check-circle-fill" style="color:#10B981;flex-shrink:0"></i> Minimum 2 years industry / teaching experience
+                        </div>
+                        <div style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:#334155">
+                            <i class="bi bi-check-circle-fill" style="color:#10B981;flex-shrink:0"></i> Strong domain knowledge & communication skills
+                        </div>
+                        <div style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:#334155">
+                            <i class="bi bi-check-circle-fill" style="color:#10B981;flex-shrink:0"></i> Flexible engagement — part-time or full-time
+                        </div>
+                        <div style="display:flex;align-items:center;gap:8px;font-size:.85rem;color:#334155">
+                            <i class="bi bi-check-circle-fill" style="color:#10B981;flex-shrink:0"></i> Competitive remuneration per session
+                        </div>
+                    </div>
+                    <a href="{% url 'core:contact' %}"
+                       style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#059669,#10B981);color:#fff;font-weight:700;font-size:.88rem;padding:11px 22px;border-radius:50px;text-decoration:none"
+                       onmouseover="this.style.boxShadow='0 8px 24px rgba(5,150,105,.4)'"
+                       onmouseout="this.style.boxShadow=''">
+                        <i class="bi bi-send-fill"></i> Apply as Trainer
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Domain Expert Strip -->
+        <div style="background:linear-gradient(135deg,#0F172A,#1E1B4B);border-radius:20px;padding:32px 36px" data-aos="fade-up">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-5 mb-3 mb-lg-0">
+                    <div style="color:#A78BFA;font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">
+                        <i class="bi bi-star-fill me-2"></i>Domain Expertise Across
+                    </div>
+                    <h5 style="color:#fff;font-weight:800;margin:0;font-size:1.15rem">Every Major Technology & Professional Domain</h5>
+                    <p style="color:rgba(255,255,255,.55);font-size:.85rem;margin-top:8px;margin-bottom:0;line-height:1.7">
+                        From core programming to emerging tech — our trainers cover it all, ensuring no requirement goes unmet.
+                    </p>
+                </div>
+                <div class="col-lg-7">
+                    <div style="display:flex;flex-wrap:wrap;gap:8px">
+                        <span style="background:rgba(167,139,250,.15);border:1px solid rgba(167,139,250,.3);color:#C4B5FD;font-size:.75rem;font-weight:700;padding:5px 14px;border-radius:50px">AI & ML</span>
+                        <span style="background:rgba(167,139,250,.15);border:1px solid rgba(167,139,250,.3);color:#C4B5FD;font-size:.75rem;font-weight:700;padding:5px 14px;border-radius:50px">Python Full Stack</span>
+                        <span style="background:rgba(167,139,250,.15);border:1px solid rgba(167,139,250,.3);color:#C4B5FD;font-size:.75rem;font-weight:700;padding:5px 14px;border-radius:50px">Java Full Stack</span>
+                        <span style="background:rgba(167,139,250,.15);border:1px solid rgba(167,139,250,.3);color:#C4B5FD;font-size:.75rem;font-weight:700;padding:5px 14px;border-radius:50px">MERN Stack</span>
+                        <span style="background:rgba(167,139,250,.15);border:1px solid rgba(167,139,250,.3);color:#C4B5FD;font-size:.75rem;font-weight:700;padding:5px 14px;border-radius:50px">Data Science</span>
+                        <span style="background:rgba(167,139,250,.15);border:1px solid rgba(167,139,250,.3);color:#C4B5FD;font-size:.75rem;font-weight:700;padding:5px 14px;border-radius:50px">Cloud & DevOps</span>
+                        <span style="background:rgba(167,139,250,.15);border:1px solid rgba(167,139,250,.3);color:#C4B5FD;font-size:.75rem;font-weight:700;padding:5px 14px;border-radius:50px">Cybersecurity</span>
+                        <span style="background:rgba(167,139,250,.15);border:1px solid rgba(167,139,250,.3);color:#C4B5FD;font-size:.75rem;font-weight:700;padding:5px 14px;border-radius:50px">Android Dev</span>
+                        <span style="background:rgba(167,139,250,.15);border:1px solid rgba(167,139,250,.3);color:#C4B5FD;font-size:.75rem;font-weight:700;padding:5px 14px;border-radius:50px">UI/UX Design</span>
+                        <span style="background:rgba(167,139,250,.15);border:1px solid rgba(167,139,250,.3);color:#C4B5FD;font-size:.75rem;font-weight:700;padding:5px 14px;border-radius:50px">Aptitude & Reasoning</span>
+                        <span style="background:rgba(167,139,250,.15);border:1px solid rgba(167,139,250,.3);color:#C4B5FD;font-size:.75rem;font-weight:700;padding:5px 14px;border-radius:50px">Communication Skills</span>
+                        <span style="background:rgba(167,139,250,.15);border:1px solid rgba(167,139,250,.3);color:#C4B5FD;font-size:.75rem;font-weight:700;padding:5px 14px;border-radius:50px">IoT & Embedded</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Technologies -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="section-header text-center mb-5" data-aos="fade-up">
+            <h2 class="section-title">Technologies We Train On</h2>
+        </div>
+        <div class="row g-3 justify-content-center">
+            {% for tech in tech_list %}
+            <div class="col-auto" data-aos="zoom-in">
+                <div class="tech-badge px-4 py-2 bg-white shadow-sm rounded-pill border">
+                    <i class="bi {{ tech.icon }} me-2 text-primary"></i>{{ tech.name }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="py-5">
+    <div class="container">
+        <div class="cta-box text-center p-5 rounded-4" data-aos="zoom-in">
+            <h3 class="fw-bold mb-3">Ready to Train Your Team?</h3>
+            <p class="text-muted mb-4">Contact us today to discuss your training requirements and get a customized proposal.</p>
+            <a href="{% url 'core:contact' %}" class="btn btn-primary btn-lg px-5">
+                <i class="bi bi-envelope me-2"></i>Get a Free Proposal
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,866 @@
+{% extends 'base.html' %}
+{% block title %}About Us — Vignan TechSolutions{% endblock %}
+{% block meta_description %}Learn about Vignan TechSolutions — MSME registered technology company in Kalaburagi, Karnataka offering internships, courses, and corporate training.{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ── Hero ── */
+.about-hero {
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A5F 50%, #0F172A 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 100px 0 80px;
+}
+.about-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(59,130,246,.18) 0%, transparent 70%);
+}
+.about-hero .grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(59,130,246,.06) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(59,130,246,.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(59,130,246,.15);
+    border: 1px solid rgba(59,130,246,.35);
+    color: #93C5FD;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+}
+.about-hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.15;
+}
+.about-hero h1 span {
+    background: linear-gradient(90deg, #3B82F6, #60A5FA);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.about-hero p {
+    color: #94A3B8;
+    font-size: 1.1rem;
+    max-width: 560px;
+    line-height: 1.75;
+}
+
+/* ── Floating stat pills ── */
+.stat-pill {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 20px 28px;
+    text-align: center;
+    transition: transform .3s, border-color .3s;
+}
+.stat-pill:hover { transform: translateY(-4px); border-color: rgba(59,130,246,.5); }
+.stat-pill .num {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #3B82F6, #60A5FA);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+.stat-pill .lbl { color: #94A3B8; font-size: .8rem; margin-top: 4px; }
+
+/* ── Story section ── */
+.story-section { background: #fff; }
+
+/* ── Animated Journey Timeline ── */
+.journey-timeline {
+    position: relative;
+    padding: 10px 0;
+}
+.journey-timeline::before {
+    content: '';
+    position: absolute;
+    left: 28px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #E2E8F0 0%, #3B82F6 30%, #8B5CF6 60%, #10B981 100%);
+}
+.jt-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 0;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity .6s ease, transform .6s ease;
+}
+.jt-item.visible { opacity: 1; transform: translateX(0); }
+.jt-item:last-child .jt-connector { display: none; }
+.jt-node {
+    position: relative;
+    flex-shrink: 0;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    z-index: 1;
+    box-shadow: 0 0 0 4px #fff, 0 0 0 6px currentColor;
+    transition: transform .3s, box-shadow .3s;
+}
+.jt-item:hover .jt-node { transform: scale(1.12); }
+.jt-node.n1 { background:#FEF3C7; color:#D97706; box-shadow: 0 0 0 4px #fff, 0 0 0 6px #D97706; }
+.jt-node.n2 { background:#EFF6FF; color:#3B82F6; box-shadow: 0 0 0 4px #fff, 0 0 0 6px #3B82F6; }
+.jt-node.n3 { background:#F3E8FF; color:#8B5CF6; box-shadow: 0 0 0 4px #fff, 0 0 0 6px #8B5CF6; }
+.jt-node.n4 { background:#F0FDF4; color:#10B981; box-shadow: 0 0 0 4px #fff, 0 0 0 6px #10B981; }
+.jt-body {
+    flex: 1;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+    transition: border-color .3s, box-shadow .3s, transform .3s;
+    cursor: default;
+}
+.jt-item:hover .jt-body {
+    border-color: #BFDBFE;
+    box-shadow: 0 8px 28px rgba(59,130,246,.1);
+    transform: translateX(4px);
+}
+.jt-tag {
+    display: inline-block;
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border-radius: 50px;
+    margin-bottom: 6px;
+}
+.jt-title { font-weight: 700; font-size: .97rem; color: #0F172A; margin-bottom: 4px; }
+.jt-desc  { font-size: .82rem; color: #64748B; line-height: 1.6; margin: 0; }
+/* Particle dots floating in bg */
+.story-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+.sp { position: absolute; border-radius: 50%; opacity: .18; animation: floatUp linear infinite; }
+@keyframes floatUp {
+    0%   { transform: translateY(0) scale(1); opacity: .18; }
+    100% { transform: translateY(-120px) scale(.4); opacity: 0; }
+}
+
+/* ── MSME trust bar ── */
+.trust-bar {
+    background: linear-gradient(135deg, #F0FDF4, #DCFCE7);
+    border: 1px solid #BBF7D0;
+    border-radius: 20px;
+    padding: 28px 36px;
+}
+
+/* ── Mission / Vision ── */
+.mv-card {
+    border-radius: 20px;
+    border: 1px solid #E2E8F0;
+    padding: 36px 32px;
+    transition: transform .3s, box-shadow .3s, border-color .3s;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+.mv-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    border-radius: 20px 20px 0 0;
+}
+.mv-card.mission::before { background: linear-gradient(90deg, #3B82F6, #60A5FA); }
+.mv-card.vision::before  { background: linear-gradient(90deg, #10B981, #34D399); }
+.mv-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(15,23,42,.1); border-color: transparent; }
+.mv-icon {
+    width: 60px; height: 60px;
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+}
+
+/* ── Founder Section ── */
+.founder-section { background: #F8FAFC; padding: 80px 0; }
+.f-photo {
+    width: 120px; height: 120px; border-radius: 50%;
+    background: linear-gradient(135deg, #1E3A5F, #1D4ED8);
+    border: 4px solid #fff;
+    box-shadow: 0 4px 20px rgba(59,130,246,.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.2rem; font-weight: 800; color: #fff;
+    overflow: hidden; flex-shrink: 0;
+}
+.f-photo img { width:100%; height:100%; object-fit:cover; }
+.f-card {
+    background: #fff;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 20px 22px;
+    display: flex; align-items: flex-start; gap: 14px;
+    transition: box-shadow .25s, border-color .25s, transform .25s;
+}
+.f-card:hover { box-shadow: 0 8px 24px rgba(15,23,42,.08); border-color: #BFDBFE; transform: translateY(-3px); }
+.f-card-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+}
+.f-card-icon.blue   { background: #EFF6FF; color: #3B82F6; }
+.f-card-icon.purple { background: #F5F3FF; color: #7C3AED; }
+.f-card-icon.green  { background: #F0FDF4; color: #059669; }
+.f-card-title { font-size: .82rem; font-weight: 700; color: #0F172A; margin-bottom: 3px; }
+.f-card-text  { font-size: .8rem; color: #64748B; line-height: 1.55; margin: 0; }
+.f-linkedin {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #0A66C2; color: #fff; border-radius: 50px;
+    padding: 7px 18px; font-weight: 600; font-size: .8rem;
+    text-decoration: none; transition: background .2s, transform .2s;
+}
+.f-linkedin:hover { background: #0958a8; color: #fff; transform: translateY(-2px); }
+
+/* ── Why Us ── */
+.why-card {
+    background: #fff;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: transform .3s, box-shadow .3s, border-color .3s;
+    height: 100%;
+}
+.why-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(15,23,42,.08);
+    border-color: #BFDBFE;
+}
+.why-icon {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, #EFF6FF, #DBEAFE);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    color: #3B82F6;
+    margin-bottom: 16px;
+    transition: transform .3s;
+}
+.why-card:hover .why-icon { transform: scale(1.1) rotate(-5deg); }
+
+/* ── MSME Certificate ── */
+.msme-section {
+    background: linear-gradient(135deg, #0F172A 0%, #0D2137 60%, #0F172A 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0;
+}
+.msme-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 20% 50%, rgba(16,185,129,.1) 0%, transparent 65%),
+                radial-gradient(ellipse 50% 70% at 80% 50%, rgba(59,130,246,.08) 0%, transparent 65%);
+}
+.msme-cert-frame {
+    position: relative;
+    border-radius: 20px;
+    padding: 6px;
+    background: linear-gradient(135deg, #10B981, #3B82F6, #10B981);
+    background-size: 200% 200%;
+    animation: gradientShift 4s ease infinite;
+    box-shadow: 0 0 60px rgba(16,185,129,.25), 0 0 120px rgba(59,130,246,.1);
+}
+@keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.msme-cert-inner {
+    border-radius: 16px;
+    overflow: hidden;
+    background: #0F172A;
+    position: relative;
+}
+.msme-cert-inner img {
+    width: 100%;
+    display: block;
+    transition: transform .5s ease;
+    cursor: zoom-in;
+}
+.msme-cert-inner:hover img { transform: scale(1.03); }
+.cert-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15,23,42,.7) 0%, transparent 50%);
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity .3s;
+}
+.msme-cert-inner:hover .cert-overlay { opacity: 1; }
+.cert-corner {
+    position: absolute;
+    width: 28px; height: 28px;
+    border-color: #10B981;
+    border-style: solid;
+    opacity: .7;
+}
+.cert-corner.tl { top: -6px; left: -6px; border-width: 3px 0 0 3px; border-radius: 4px 0 0 0; }
+.cert-corner.tr { top: -6px; right: -6px; border-width: 3px 3px 0 0; border-radius: 0 4px 0 0; }
+.cert-corner.bl { bottom: -6px; left: -6px; border-width: 0 0 3px 3px; border-radius: 0 0 0 4px; }
+.cert-corner.br { bottom: -6px; right: -6px; border-width: 0 3px 3px 0; border-radius: 0 0 4px 0; }
+.msme-info-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 16px;
+    padding: 20px 24px;
+    transition: border-color .3s, background .3s;
+}
+.msme-info-card:hover {
+    border-color: rgba(16,185,129,.4);
+    background: rgba(16,185,129,.05);
+}
+.msme-info-card .ic {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+.pulse-dot {
+    width: 10px; height: 10px;
+    background: #10B981;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2s ease infinite;
+}
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,.5); }
+    50%       { box-shadow: 0 0 0 8px rgba(16,185,129,0); }
+}
+/* Modal zoom */
+.cert-modal-img { width: 100%; border-radius: 12px; }
+
+/* ── CTA ── */
+.about-cta {
+    background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+    border-radius: 24px;
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+}
+.about-cta::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    background: rgba(255,255,255,.08);
+    border-radius: 50%;
+}
+.about-cta::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 300px; height: 300px;
+    background: rgba(255,255,255,.05);
+    border-radius: 50%;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════ -->
+<section class="about-hero">
+    <div class="grid-overlay"></div>
+    <div class="container position-relative">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7" data-aos="fade-right">
+                <div class="hero-badge">
+                    <i class="bi bi-patch-check-fill"></i> MSME Registered · Est. Kalaburagi, Karnataka
+                </div>
+                <h1>We Don't Just Train.<br><span>We Build Careers.</span></h1>
+                <p class="mt-3 mb-4">
+                    MSME-registered. Government-verified. Built by a student who felt the gap — and closed it. We turn classroom learners into industry-ready professionals.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{% url 'internships:list' %}" class="btn btn-primary btn-lg px-4 rounded-pill">
+                        <i class="bi bi-rocket-takeoff me-2"></i>Start Your Journey
+                    </a>
+                    <a href="{% url 'core:contact' %}" class="btn btn-outline-light btn-lg px-4 rounded-pill">
+                        Talk to Us
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-5" data-aos="fade-left">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="stat-pill">
+                            <div class="num">500+</div>
+                            <div class="lbl">Students Trained</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-pill">
+                            <div class="num">20+</div>
+                            <div class="lbl">MCA Major Projects</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-pill">
+                            <div class="num">15+</div>
+                            <div class="lbl">Tech Courses</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stat-pill">
+                            <div class="num">98%</div>
+                            <div class="lbl">Satisfaction Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     OUR STORY
+════════════════════════════════════════════════ -->
+<section class="story-section" style="padding:80px 0">
+    <div class="container">
+        <div class="row align-items-center g-5">
+
+            <!-- Animated Journey Timeline -->
+            <div class="col-lg-5" data-aos="fade-right">
+                <div class="position-relative">
+                    <!-- Floating particles -->
+                    <div class="story-particles">
+                        <div class="sp" style="width:8px;height:8px;background:#3B82F6;left:10%;top:80%;animation-duration:6s;animation-delay:0s"></div>
+                        <div class="sp" style="width:5px;height:5px;background:#8B5CF6;left:70%;top:90%;animation-duration:8s;animation-delay:1s"></div>
+                        <div class="sp" style="width:6px;height:6px;background:#10B981;left:40%;top:85%;animation-duration:7s;animation-delay:2s"></div>
+                        <div class="sp" style="width:4px;height:4px;background:#F59E0B;left:85%;top:75%;animation-duration:9s;animation-delay:.5s"></div>
+                    </div>
+
+                    <!-- Header -->
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div style="width:44px;height:44px;background:linear-gradient(135deg,#3B82F6,#8B5CF6);border-radius:12px;display:flex;align-items:center;justify-content:center">
+                            <i class="bi bi-map-fill text-white"></i>
+                        </div>
+                        <div>
+                            <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#94A3B8">Our Journey</div>
+                            <div style="font-size:1.05rem;font-weight:800;color:#0F172A">From Dream to Reality</div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline -->
+                    <div class="journey-timeline">
+
+                        <div class="jt-item" data-delay="0">
+                            <div class="jt-node n1"><i class="bi bi-mortarboard-fill"></i></div>
+                            <div class="jt-body">
+                                <span class="jt-tag" style="background:#FEF3C7;color:#D97706">The Struggle</span>
+                                <div class="jt-title">Brilliant students. Zero real exposure.</div>
+                                <p class="jt-desc">Classrooms full of talent — but no real projects, no mentors, no path to industry.</p>
+                            </div>
+                        </div>
+
+                        <div class="jt-item" data-delay="150">
+                            <div class="jt-node n2"><i class="bi bi-lightbulb-fill"></i></div>
+                            <div class="jt-body">
+                                <span class="jt-tag" style="background:#DBEAFE;color:#1D4ED8">The Insight</span>
+                                <div class="jt-title">The gap wasn't talent — it was access.</div>
+                                <p class="jt-desc">Real projects. Real mentors. Real deadlines. That's what was missing.</p>
+                            </div>
+                        </div>
+
+                        <div class="jt-item" data-delay="300">
+                            <div class="jt-node n3"><i class="bi bi-rocket-takeoff-fill"></i></div>
+                            <div class="jt-body">
+                                <span class="jt-tag" style="background:#F3E8FF;color:#7C3AED">The Decision</span>
+                                <div class="jt-title">Stop waiting. Start building.</div>
+                                <p class="jt-desc">If the platform didn't exist, we'd build it ourselves — for every student after us.</p>
+                            </div>
+                        </div>
+
+                        <div class="jt-item" data-delay="450">
+                            <div class="jt-node n4"><i class="bi bi-building-fill-check"></i></div>
+                            <div class="jt-body">
+                                <span class="jt-tag" style="background:#DCFCE7;color:#15803D">2025 · Live</span>
+                                <div class="jt-title">Vignan TechSolutions — officially open.</div>
+                                <p class="jt-desc">MSME-registered. VTU CPGS partner. 500+ students and counting.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Story text -->
+            <div class="col-lg-7" data-aos="fade-left">
+                <span class="section-badge">Our Story</span>
+                <h2 class="section-title mt-2">
+                    Born from Struggle.<br>
+                    <span style="color:#3B82F6">Built with Purpose.</span>
+                </h2>
+
+                <p class="text-muted mt-3" style="line-height:1.85;font-size:1.02rem">
+                    Our founder sat in those same classrooms — watching talented peers graduate without a single line of production code, no real internship, no industry mentor. The degree existed. The drive existed. The <strong>bridge to the real world</strong> didn't.
+                </p>
+                <p class="text-muted" style="line-height:1.85;font-size:1.02rem">
+                    In <strong>2025</strong>, we built that bridge. Vignan TechSolutions launched as an MSME-registered, government-recognized company with one mission: <strong>no student faces what we faced.</strong> Live internships, real-time projects, industry-aligned courses — right here in Kalaburagi, partnering with VTU CPGS.
+                </p>
+
+                <!-- Pull quote -->
+                <div class="mt-4 p-4" style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border-radius:16px;border-left:4px solid #3B82F6">
+                    <p class="mb-0 fw-semibold" style="color:#1E40AF;font-size:1rem;line-height:1.7;font-style:italic">
+                        "The struggle wasn't a setback — it was the blueprint. Every problem I faced as a student became a feature of what we built."
+                    </p>
+                    <div class="mt-2" style="color:#3B82F6;font-size:.82rem;font-weight:700">— Suresh Tammali, Founder & CEO</div>
+                </div>
+
+                <!-- MSME trust bar -->
+                <div class="trust-bar mt-4 d-flex align-items-center gap-4 flex-wrap">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="bg-success rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:52px;height:52px">
+                            <i class="bi bi-patch-check-fill text-white fs-5"></i>
+                        </div>
+                        <div>
+                            <div class="fw-bold text-dark" style="font-size:.95rem">MSME Registered · 2025</div>
+                            <div class="text-muted" style="font-size:.8rem">Ministry of MSME, Govt. of India</div>
+                        </div>
+                    </div>
+                    <div class="vr d-none d-md-block" style="height:40px"></div>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width:52px;height:52px">
+                            <i class="bi bi-shield-fill-check text-white fs-5"></i>
+                        </div>
+                        <div>
+                            <div class="fw-bold text-dark" style="font-size:.95rem">Government Verified</div>
+                            <div class="text-muted" style="font-size:.8rem">Officially recognized enterprise</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     MSME CERTIFICATE
+════════════════════════════════════════════════ -->
+{% load static %}
+<section class="msme-section">
+    <div class="container position-relative">
+        <div class="row align-items-center g-5">
+
+            <!-- Certificate image -->
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="msme-cert-frame" style="position:relative">
+                    <div class="cert-corner tl"></div>
+                    <div class="cert-corner tr"></div>
+                    <div class="cert-corner bl"></div>
+                    <div class="cert-corner br"></div>
+                    <div class="msme-cert-inner">
+                        <img src="{% static 'images/msme-certificate.png' %}"
+                             alt="MSME Registration Certificate — Vignan TechSolutions"
+                             data-bs-toggle="modal" data-bs-target="#msmeModal">
+                        <div class="cert-overlay">
+                            <span class="text-white small fw-semibold">
+                                <i class="bi bi-zoom-in me-1"></i>Click to view full certificate
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <span class="pulse-dot"></span>
+                    <span style="color:#6EE7B7;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase">Officially Verified</span>
+                </div>
+                <h2 class="fw-bold text-white mb-3" style="font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.2">
+                    Government Registered.<br>
+                    <span style="background:linear-gradient(90deg,#10B981,#34D399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Officially Trusted.</span>
+                </h2>
+                <p style="color:#94A3B8;line-height:1.8;font-size:1rem" class="mb-4">
+                    Not a coaching centre. Not a startup promise. An officially registered enterprise under the Ministry of MSME, Government of India — accountable, verified, and built to last.
+                </p>
+
+                <div class="d-flex flex-column gap-3 mb-4">
+                    <div class="msme-info-card d-flex align-items-center gap-3">
+                        <div class="ic" style="background:rgba(16,185,129,.15)">
+                            <i class="bi bi-building-fill-check" style="color:#10B981"></i>
+                        </div>
+                        <div>
+                            <div class="text-white fw-semibold" style="font-size:.9rem">Udyam Registration</div>
+                            <div style="color:#64748B;font-size:.8rem">Ministry of MSME, Govt. of India</div>
+                        </div>
+                        <i class="bi bi-check-circle-fill ms-auto" style="color:#10B981"></i>
+                    </div>
+                    <div class="msme-info-card d-flex align-items-center gap-3">
+                        <div class="ic" style="background:rgba(59,130,246,.15)">
+                            <i class="bi bi-geo-alt-fill" style="color:#3B82F6"></i>
+                        </div>
+                        <div>
+                            <div class="text-white fw-semibold" style="font-size:.9rem">Kalaburagi, Karnataka</div>
+                            <div style="color:#64748B;font-size:.8rem">Registered business address</div>
+                        </div>
+                        <i class="bi bi-check-circle-fill ms-auto" style="color:#3B82F6"></i>
+                    </div>
+                    <div class="msme-info-card d-flex align-items-center gap-3">
+                        <div class="ic" style="background:rgba(245,158,11,.15)">
+                            <i class="bi bi-shield-fill-check" style="color:#F59E0B"></i>
+                        </div>
+                        <div>
+                            <div class="text-white fw-semibold" style="font-size:.9rem">Technology Education Services</div>
+                            <div style="color:#64748B;font-size:.8rem">Registered enterprise category</div>
+                        </div>
+                        <i class="bi bi-check-circle-fill ms-auto" style="color:#F59E0B"></i>
+                    </div>
+                </div>
+
+                <button class="btn btn-lg rounded-pill px-4 fw-semibold"
+                        style="background:linear-gradient(135deg,#10B981,#059669);color:#fff;border:none"
+                        data-bs-toggle="modal" data-bs-target="#msmeModal">
+                    <i class="bi bi-eye me-2"></i>View Full Certificate
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MSME Certificate Modal -->
+<div class="modal fade" id="msmeModal" tabindex="-1" aria-label="MSME Certificate">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0" style="background:#0F172A;border-radius:20px;overflow:hidden">
+            <div class="modal-header border-0 px-4 pt-4 pb-2">
+                <div class="d-flex align-items-center gap-3">
+                    <div style="width:40px;height:40px;background:linear-gradient(135deg,#10B981,#059669);border-radius:10px;display:flex;align-items:center;justify-content:center">
+                        <i class="bi bi-patch-check-fill text-white"></i>
+                    </div>
+                    <div>
+                        <h5 class="modal-title text-white fw-bold mb-0">MSME Registration Certificate</h5>
+                        <small style="color:#64748B">Vignan TechSolutions · Govt. of India</small>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div style="border-radius:12px;overflow:hidden;border:1px solid rgba(16,185,129,.2)">
+                    <img src="{% static 'images/msme-certificate.png' %}" class="cert-modal-img"
+                         alt="MSME Registration Certificate — Vignan TechSolutions">
+                </div>
+                <div class="d-flex align-items-center gap-2 mt-3">
+                    <span class="pulse-dot"></span>
+                    <span style="color:#6EE7B7;font-size:.82rem">This certificate is officially issued by the Ministry of Micro, Small & Medium Enterprises, Government of India.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     MISSION & VISION
+════════════════════════════════════════════════ -->
+<section style="background:#F8FAFC;padding:80px 0">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-badge">Purpose</span>
+            <h2 class="section-title mt-2">What Drives Us Every Day</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6" data-aos="fade-up">
+                <div class="mv-card mission h-100">
+                    <div class="mv-icon" style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE)">
+                        <i class="bi bi-bullseye text-primary"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Our Mission</h4>
+                    <p class="text-muted mb-0" style="line-height:1.8">
+                        Practical, mentor-led training that turns education into employment — not just a certificate on the wall.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="mv-card vision h-100">
+                    <div class="mv-icon" style="background:linear-gradient(135deg,#F0FDF4,#DCFCE7)">
+                        <i class="bi bi-eye text-success"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Our Vision</h4>
+                    <p class="text-muted mb-0" style="line-height:1.8">
+                        India's most trusted tech training partner — where every learner, regardless of background, walks out ready to build, innovate, and lead.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOUNDER SECTION -->
+{% load static %}
+<section class="founder-section">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-badge">Meet the Founder</span>
+            <h2 class="section-title mt-2">The Person Behind the Mission</h2>
+        </div>
+
+        <div class="row align-items-start g-5">
+
+            <!-- LEFT: Photo + name -->
+            <div class="col-lg-3 text-center" data-aos="fade-right">
+                <div class="f-photo mx-auto mb-3">
+                    <img src="{% static 'images/founder.jpg' %}" alt="Suresh Tammali"
+                         onerror="this.style.display='none';this.parentElement.innerHTML='ST'">
+                </div>
+                <div class="fw-bold" style="font-size:1.05rem;color:#0F172A">Suresh Tammali</div>
+                <div class="text-primary fw-semibold" style="font-size:.85rem">Founder &amp; CEO</div>
+                <div class="text-muted" style="font-size:.78rem"><i class="bi bi-geo-alt-fill me-1"></i>Kalaburagi, Karnataka</div>
+                <a href="https://www.linkedin.com/in/suresh-tammali-b31534215/" target="_blank" rel="noopener" class="f-linkedin mt-3">
+                    <i class="bi bi-linkedin"></i> LinkedIn
+                </a>
+            </div>
+
+            <!-- RIGHT: Bio + cards -->
+            <div class="col-lg-9" data-aos="fade-left">
+                <p class="text-muted mb-4" style="font-size:.95rem;line-height:1.8">
+                    Suresh Tammali is an MCA graduate who experienced firsthand the gap between academic learning and industry expectations. That frustration became the foundation of Vignan TechSolutions — built to ensure no student faces the same wall he did.
+                </p>
+
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="f-card h-100">
+                            <div class="f-card-icon blue"><i class="bi bi-bullseye"></i></div>
+                            <div>
+                                <div class="f-card-title">Mission</div>
+                                <p class="f-card-text">Turn education into employment through hands-on, mentor-led training.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="f-card h-100">
+                            <div class="f-card-icon purple"><i class="bi bi-eye"></i></div>
+                            <div>
+                                <div class="f-card-title">Goal</div>
+                                <p class="f-card-text">Make quality tech education accessible to every student in Tier-2 India.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="f-card h-100">
+                            <div class="f-card-icon green"><i class="bi bi-heart-fill"></i></div>
+                            <div>
+                                <div class="f-card-title">Commitment</div>
+                                <p class="f-card-text">Personally mentor every batch until they're truly industry-ready.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <blockquote class="mt-4 mb-0 ps-3" style="border-left:3px solid #3B82F6;color:#475569;font-style:italic;font-size:.9rem;line-height:1.7">
+                    "Every student who walks through our doors carries a dream. Our job is to give them the skills and real-world exposure to make it real."
+                </blockquote>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     WHY CHOOSE US
+════════════════════════════════════════════════ -->
+<section style="padding:80px 0;background:#fff">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="section-badge">What We Do</span>
+            <h2 class="section-title mt-2">Everything You Need.<br><span style="color:#3B82F6">Under One Roof.</span></h2>
+            <p class="text-muted mt-2" style="max-width:540px;margin:auto">
+                From your final-year project to your first job — we cover every step.
+            </p>
+        </div>
+        <div class="row g-4">
+            {% for item in why_us %}
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+                <div class="why-card">
+                    <div class="why-icon">
+                        <i class="bi {{ item.icon }}"></i>
+                    </div>
+                    <h6 class="fw-bold mb-2">{{ item.title }}</h6>
+                    <p class="text-muted small mb-0" style="line-height:1.7">{{ item.desc }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     CTA
+════════════════════════════════════════════════ -->
+<section style="padding:60px 0 80px;background:#F8FAFC">
+    <div class="container">
+        <div class="about-cta text-center position-relative" data-aos="fade-up">
+            <div class="position-relative" style="z-index:1">
+                <h2 class="text-white fw-bold mb-3" style="font-size:clamp(1.6rem,3vw,2.4rem)">
+                    One Place. Every Tech Need.
+                </h2>
+                <p class="mb-4" style="color:rgba(255,255,255,.8);max-width:520px;margin:auto;line-height:1.7">
+                    Projects. Internships. Courses. Corporate Training. Websites.<br>
+                    500+ students. MSME-registered. Government-verified.
+                </p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="{% url 'internships:list' %}" class="btn btn-light btn-lg px-5 rounded-pill fw-semibold text-primary">
+                        <i class="bi bi-rocket-takeoff me-2"></i>Explore Programs
+                    </a>
+                    <a href="{% url 'core:contact' %}" class="btn btn-outline-light btn-lg px-5 rounded-pill fw-semibold">
+                        <i class="bi bi-chat-dots me-2"></i>Get in Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function(){
+    var items = document.querySelectorAll('.jt-item');
+    if (!items.length) return;
+    var obs = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+            if (entry.isIntersecting) {
+                var delay = parseInt(entry.target.getAttribute('data-delay')) || 0;
+                setTimeout(function(el){ el.classList.add('visible'); }, delay, entry.target);
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    items.forEach(function(el){ obs.observe(el); });
+})();
+</script>
+{% endblock %}

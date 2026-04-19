@@ -1,0 +1,365 @@
+{% extends 'base.html' %}
+{% block title %}Contact Us — Vignan TechSolutions{% endblock %}
+{% block meta_description %}Get in touch with Vignan TechSolutions. Reach us for internships, courses, corporate training, or MCA project help. Kalaburagi, Karnataka.{% endblock %}
+
+{% block extra_css %}
+<style>
+.contact-hero {
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 55%, #1d4ed8 100%);
+    padding: 80px 0 60px; position: relative; overflow: hidden;
+}
+.contact-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 70% 40%, rgba(59,130,246,.18) 0%, transparent 65%);
+}
+.contact-hero .grid-bg {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+.contact-info-box {
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 100%);
+    border-radius: 16px;
+    padding: 24px 22px;
+    position: relative;
+    overflow: hidden;
+}
+.contact-info-box::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(59,130,246,.2), transparent 70%);
+}
+.contact-info-box::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 150px; height: 150px;
+    background: radial-gradient(circle, rgba(6,182,212,.15), transparent 70%);
+}
+.ci-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    position: relative; z-index: 1;
+}
+.ci-item:last-child { border-bottom: none; }
+.ci-icon {
+    width: 34px; height: 34px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .9rem; flex-shrink: 0;
+}
+.ci-label { color: rgba(255,255,255,.5); font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 2px; }
+.ci-value { color: #fff; font-size: .82rem; font-weight: 500; line-height: 1.5; }
+.ci-value a { color: rgba(255,255,255,.85); text-decoration: none; transition: color .2s; }
+.ci-value a:hover { color: #60A5FA; }
+.social-row { display: flex; gap: 8px; margin-top: 16px; position: relative; z-index: 1; }
+.social-btn {
+    width: 34px; height: 34px; border-radius: 8px;
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+    color: rgba(255,255,255,.7); font-size: .9rem;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; transition: all .2s;
+}
+.social-btn:hover { background: rgba(59,130,246,.3); border-color: rgba(59,130,246,.5); color: #fff; transform: translateY(-3px); }
+.form-card {
+    background: #fff; border-radius: 20px;
+    border: 1px solid #E2E8F0;
+    padding: 40px 36px;
+    box-shadow: 0 8px 32px rgba(15,23,42,.06);
+}
+.form-control, .form-select {
+    border: 1.5px solid #E2E8F0;
+    border-radius: 10px;
+    padding: .7rem 1rem;
+    font-size: .9rem;
+    transition: all .2s;
+}
+.form-control:focus, .form-select:focus {
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,.12);
+}
+.submit-btn {
+    background: linear-gradient(135deg, #1E3A8A, #1d4ed8);
+    color: #fff; border: none;
+    border-radius: 50px; padding: .85rem 2.5rem;
+    font-family: 'Poppins', sans-serif; font-weight: 700;
+    font-size: .95rem; transition: all .3s;
+    box-shadow: 0 8px 24px rgba(30,58,138,.3);
+}
+.submit-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(30,58,138,.4); color: #fff; }
+.wa-cta {
+    background: linear-gradient(135deg, #128C7E, #25D366);
+    border-radius: 12px; padding: 12px 16px;
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; transition: all .3s;
+    position: relative; z-index: 1;
+    margin-top: 16px;
+}
+.wa-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,.3); }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ── Hero ── -->
+<section class="contact-hero">
+    <div class="grid-bg"></div>
+    <div class="container position-relative">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}" style="color:rgba(255,255,255,.6)">Home</a></li>
+                <li class="breadcrumb-item active" style="color:#93C5FD">Contact</li>
+            </ol>
+        </nav>
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7" data-aos="fade-right">
+                <div class="d-inline-flex align-items-center gap-2 mb-3"
+                     style="background:rgba(59,130,246,.2);border:1px solid rgba(59,130,246,.4);color:#93C5FD;padding:6px 16px;border-radius:50px;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase">
+                    <i class="bi bi-chat-dots-fill"></i> We Respond Within 2 Hours
+                </div>
+                <h1 style="font-size:clamp(2rem,5vw,3rem);font-weight:800;color:#fff;line-height:1.15">
+                    Let's Build Something<br>
+                    <span style="background:linear-gradient(90deg,#60A5FA,#34D399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Great Together</span>
+                </h1>
+                <p style="color:rgba(255,255,255,.75);font-size:1rem;line-height:1.8;max-width:520px;margin-top:1rem">
+                    Whether you need an MCA project, internship, course, or corporate training — we're here to help. Reach out and our team will get back to you within 2 hours.
+                </p>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    <div class="d-flex align-items-center gap-2" style="color:rgba(255,255,255,.8);font-size:.85rem">
+                        <i class="bi bi-check-circle-fill" style="color:#34D399"></i> Free Consultation
+                    </div>
+                    <div class="d-flex align-items-center gap-2" style="color:rgba(255,255,255,.8);font-size:.85rem">
+                        <i class="bi bi-check-circle-fill" style="color:#34D399"></i> No Commitment Required
+                    </div>
+                    <div class="d-flex align-items-center gap-2" style="color:rgba(255,255,255,.8);font-size:.85rem">
+                        <i class="bi bi-check-circle-fill" style="color:#34D399"></i> MSME Registered
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-flex justify-content-center" data-aos="fade-left">
+                <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:28px;width:100%;max-width:340px">
+                    <div style="color:rgba(255,255,255,.5);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px">Quick Contact</div>
+                    {% for item in "1234"|make_list %}
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <div style="width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+                            {% if forloop.counter == 1 %}background:rgba(59,130,246,.2){% elif forloop.counter == 2 %}background:rgba(37,211,102,.2){% elif forloop.counter == 3 %}background:rgba(245,158,11,.2){% else %}background:rgba(124,58,237,.2){% endif %}">
+                            <i class="bi {% if forloop.counter == 1 %}bi-telephone-fill text-primary{% elif forloop.counter == 2 %}bi-whatsapp text-success{% elif forloop.counter == 3 %}bi-envelope-fill text-warning{% else %}bi-geo-alt-fill{% endif %}" {% if forloop.counter == 4 %}style="color:#A78BFA"{% endif %}></i>
+                        </div>
+                        <div style="color:rgba(255,255,255,.85);font-size:.85rem;font-weight:500">
+                            {% if forloop.counter == 1 %}+91-9110478047 / 9148215446
+                            {% elif forloop.counter == 2 %}WhatsApp: +91-9110478047
+                            {% elif forloop.counter == 3 %}{{ COMPANY_EMAIL }}
+                            {% else %}Kalaburagi, Karnataka, India
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:16px;margin-top:4px">
+                        <div style="color:rgba(255,255,255,.5);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Business Hours</div>
+                        <div style="color:rgba(255,255,255,.8);font-size:.85rem"><i class="bi bi-clock-fill me-2" style="color:#FCD34D"></i>Mon–Sat: 9AM – 6PM IST</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── Main Content ── -->
+<section style="padding:56px 0;background:#F8FAFC">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- Left: Info + Map -->
+            <div class="col-lg-4" data-aos="fade-right">
+                <div class="contact-info-box">
+                    <div style="position:relative;z-index:1;margin-bottom:16px">
+                        <div style="color:rgba(255,255,255,.5);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px">Get In Touch</div>
+                        <h5 style="color:#fff;font-weight:800;margin:0;font-size:1rem">Contact Information</h5>
+                    </div>
+
+                    <div class="ci-item">
+                        <div class="ci-icon" style="background:rgba(59,130,246,.2)"><i class="bi bi-geo-alt-fill" style="color:#60A5FA"></i></div>
+                        <div>
+                            <div class="ci-label">Address</div>
+                            <div class="ci-value">{{ COMPANY_ADDRESS }}</div>
+                        </div>
+                    </div>
+                    <div class="ci-item">
+                        <div class="ci-icon" style="background:rgba(16,185,129,.2)"><i class="bi bi-telephone-fill" style="color:#34D399"></i></div>
+                        <div>
+                            <div class="ci-label">Phone</div>
+                            <div class="ci-value">
+                                <a href="tel:+919110478047">+91-9110478047</a><br>
+                                <a href="tel:+919148215446">+91-9148215446</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ci-item">
+                        <div class="ci-icon" style="background:rgba(245,158,11,.2)"><i class="bi bi-envelope-fill" style="color:#FCD34D"></i></div>
+                        <div>
+                            <div class="ci-label">Email</div>
+                            <div class="ci-value"><a href="mailto:{{ COMPANY_EMAIL }}">{{ COMPANY_EMAIL }}</a></div>
+                        </div>
+                    </div>
+                    <div class="ci-item">
+                        <div class="ci-icon" style="background:rgba(37,211,102,.2)"><i class="bi bi-whatsapp" style="color:#25D366"></i></div>
+                        <div>
+                            <div class="ci-label">WhatsApp</div>
+                            <div class="ci-value"><a href="https://wa.me/919110478047" target="_blank">Chat on WhatsApp</a></div>
+                        </div>
+                    </div>
+                    <div class="ci-item">
+                        <div class="ci-icon" style="background:rgba(124,58,237,.2)"><i class="bi bi-clock-fill" style="color:#A78BFA"></i></div>
+                        <div>
+                            <div class="ci-label">Business Hours</div>
+                            <div class="ci-value">Mon–Sat: 9AM – 6PM IST</div>
+                        </div>
+                    </div>
+
+                    <div class="social-row">
+                        <a href="https://www.linkedin.com/company/vignantechsolutions/?viewAsMember=true" target="_blank" rel="noopener" class="social-btn"><i class="bi bi-linkedin"></i></a>
+                        <a href="https://www.instagram.com/vignan_techsolutions/" target="_blank" rel="noopener" class="social-btn"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.youtube.com/@VignanTechSolutions" target="_blank" rel="noopener" class="social-btn"><i class="bi bi-youtube"></i></a>
+                    </div>
+
+                    <a href="https://wa.me/919110478047?text=Hi%2C%20I%20need%20more%20information%20about%20Vignan%20TechSolutions"
+                       target="_blank" rel="noopener" class="wa-cta">
+                        <i class="bi bi-whatsapp" style="font-size:1.3rem;color:#fff"></i>
+                        <div>
+                            <div style="color:#fff;font-weight:700;font-size:.82rem">Chat on WhatsApp</div>
+                            <div style="color:rgba(255,255,255,.75);font-size:.72rem">Fastest response — usually within minutes</div>
+                        </div>
+                        <i class="bi bi-arrow-right ms-auto" style="color:rgba(255,255,255,.6);font-size:.85rem"></i>
+                    </a>
+                </div>
+
+                <!-- Map -->
+                <div class="mt-4 rounded-3 overflow-hidden" style="border:1px solid #E2E8F0;box-shadow:0 4px 16px rgba(15,23,42,.06)">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121543.89!2d76.7797!3d17.3297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc8c7a1b3b3b3b3%3A0x1234567890abcdef!2sKalaburagi%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1699000000000!5m2!1sen!2sin"
+                        width="100%" height="220" style="border:0;display:block" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <!-- Right: Form -->
+            <div class="col-lg-8" data-aos="fade-left">
+                <div class="form-card">
+                    <div class="mb-4">
+                        <span class="section-badge">Send a Message</span>
+                        <h3 class="fw-800 mt-2 mb-1" style="font-size:1.75rem">How Can We Help You?</h3>
+                        <p class="text-muted small">Fill in the form below and we'll get back to you within 2 hours during business hours.</p>
+                    </div>
+
+                    {% if messages %}
+                    {% for msg in messages %}
+                    <div class="alert alert-{{ msg.tags|default:'info' }} alert-dismissible fade show" role="alert">
+                        {{ msg }}<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <form method="post" novalidate id="contactForm">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-600 small">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" name="name" id="cf_name" class="form-control" placeholder="Your full name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-600 small">Email Address <span class="text-danger">*</span></label>
+                                <input type="email" name="email" id="cf_email" class="form-control" placeholder="your@email.com" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-600 small">Phone Number</label>
+                                <input type="tel" name="phone" id="cf_phone" class="form-control" placeholder="+91 XXXXX XXXXX">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-600 small">Subject <span class="text-danger">*</span></label>
+                                <select name="subject" id="cf_subject" class="form-select" required>
+                                    <option value="">Select subject</option>
+                                    <option>UG & PG End-to-End ProjectServices</option>
+                                    <option>Internship Inquiry</option>
+                                    <option>Course Enrollment</option>
+                                    <option>Corporate Training</option>
+                                    <option>Vendor Registration</option>
+                                    <option>Software Development</option>
+                                    <option>General Inquiry</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-600 small">Message <span class="text-danger">*</span></label>
+                                <textarea name="message" id="cf_message" class="form-control" rows="5" placeholder="Tell us what you need — we'll respond with the best solution..." required></textarea>
+                            </div>
+                            <div class="col-12 d-flex align-items-center gap-3 flex-wrap">
+                                <button type="submit" class="submit-btn" id="submitBtn">
+                                    <i class="bi bi-send-fill me-2"></i>Send Message
+                                </button>
+                                <div class="text-muted small">
+                                    <i class="bi bi-shield-check text-success me-1"></i>Your data is safe with us
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Quick contact cards -->
+                <div class="row g-3 mt-2">
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+                        <a href="https://wa.me/919110478047?text=Hi%2C%20I%20need%20UG%20%26%20PG%20End-to-End%20Project%20help"
+                           target="_blank" rel="noopener"
+                           style="display:block;background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:20px;text-decoration:none;transition:all .3s;text-align:center"
+                           onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(37,211,102,.15)';this.style.borderColor='rgba(37,211,102,.3)'"
+                           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='#E2E8F0'">
+                            <div style="font-size:1.8rem;margin-bottom:8px">💻</div>
+                            <div style="font-weight:700;color:#0F172A;font-size:.88rem">UG & PG End-to-End Services</div>
+                            <div style="color:#64748B;font-size:.75rem;margin-top:3px">WhatsApp for quick help</div>
+                        </a>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="60">
+                        <a href="https://wa.me/919110478047?text=Hi%2C%20I%20want%20to%20apply%20for%20an%20internship"
+                           target="_blank" rel="noopener"
+                           style="display:block;background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:20px;text-decoration:none;transition:all .3s;text-align:center"
+                           onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(30,58,138,.1)';this.style.borderColor='rgba(30,58,138,.2)'"
+                           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='#E2E8F0'">
+                            <div style="font-size:1.8rem;margin-bottom:8px">🎓</div>
+                            <div style="font-weight:700;color:#0F172A;font-size:.88rem">Internships</div>
+                            <div style="color:#64748B;font-size:.75rem;margin-top:3px">Apply for next batch</div>
+                        </a>
+                    </div>
+                    <div class="col-md-4" data-aos="fade-up" data-aos-delay="120">
+                        <a href="https://wa.me/919110478047?text=Hi%2C%20I%20want%20to%20register%20as%20a%20vendor"
+                           target="_blank" rel="noopener"
+                           style="display:block;background:#fff;border:1px solid #E2E8F0;border-radius:16px;padding:20px;text-decoration:none;transition:all .3s;text-align:center"
+                           onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 32px rgba(124,58,237,.1)';this.style.borderColor='rgba(124,58,237,.2)'"
+                           onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor='#E2E8F0'">
+                            <div style="font-size:1.8rem;margin-bottom:8px">🏢</div>
+                            <div style="font-weight:700;color:#0F172A;font-size:.88rem">Corporate Training</div>
+                            <div style="color:#64748B;font-size:.75rem;margin-top:3px">Vendor registration</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+const GF_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSe3vkM1KPsPpDe0Q-yHuVOISflZ8UrhW9YnP0d89Q1QTsKMlA/formResponse';
+const GF_ENTRIES = {
+    name: 'entry.1026932302', phone: 'entry.500804875',
+    email: 'entry.40725443', subject: 'entry.1392742319', message: 'entry.1591917695',
+};
+document.getElementById('contactForm').addEventListener('submit', function() {
+    const params = new URLSearchParams();
+    params.append(GF_ENTRIES.name,    document.getElementById('cf_name').value);
+    params.append(GF_ENTRIES.phone,   document.getElementById('cf_phone').value);
+    params.append(GF_ENTRIES.email,   document.getElementById('cf_email').value);
+    params.append(GF_ENTRIES.subject, document.getElementById('cf_subject').value);
+    params.append(GF_ENTRIES.message, document.getElementById('cf_message').value);
+    fetch(GF_ACTION, { method:'POST', body:params.toString(), headers:{'Content-Type':'application/x-www-form-urlencoded'}, mode:'no-cors' }).catch(()=>{});
+});
+</script>
+{% endblock %}

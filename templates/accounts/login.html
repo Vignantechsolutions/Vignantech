@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login — Student Portal | Vignan TechSolutions{% endblock %}
+
+{% block extra_css %}
+<style>
+.auth-split { min-height: 100vh; display: flex; }
+.auth-left {
+    flex: 0 0 42%;
+    background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 55%, #1d4ed8 100%);
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 60px 56px;
+}
+.auth-left::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(59,130,246,.2) 0%, transparent 70%);
+}
+.auth-left .grid-bg {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+}
+.auth-right {
+    flex: 1;
+    background: #F8FAFC;
+    display: flex; align-items: center; justify-content: center;
+    padding: 40px 24px;
+}
+.auth-form-card {
+    background: #fff;
+    border-radius: 24px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 8px 40px rgba(15,23,42,.08);
+    padding: 44px 40px;
+    width: 100%; max-width: 440px;
+}
+.auth-feature {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px; position: relative; z-index: 1;
+}
+.auth-feature-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
+    display: flex; align-items: center; justify-content: center;
+    color: #FCD34D; font-size: 1rem; flex-shrink: 0;
+}
+.auth-feature-text { color: rgba(255,255,255,.85); font-size: .88rem; font-weight: 500; }
+.form-control-lg { border-radius: 12px !important; border: 1.5px solid #E2E8F0 !important; }
+.form-control-lg:focus { border-color: #3B82F6 !important; box-shadow: 0 0 0 3px rgba(59,130,246,.12) !important; }
+.btn-login {
+    background: linear-gradient(135deg, #1E3A8A, #1d4ed8);
+    border: none; border-radius: 12px;
+    font-family: 'Poppins', sans-serif; font-weight: 700;
+    font-size: 1rem; padding: .85rem;
+    box-shadow: 0 8px 24px rgba(30,58,138,.3);
+    transition: all .3s;
+}
+.btn-login:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(30,58,138,.4); }
+@media (max-width: 991px) {
+    .auth-split { flex-direction: column; }
+    .auth-left { flex: none; padding: 40px 24px; min-height: auto; }
+    .auth-right { padding: 32px 16px; }
+    .auth-form-card { padding: 32px 24px; }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="auth-split">
+
+    <!-- Left Panel -->
+    <div class="auth-left">
+        <div class="grid-bg"></div>
+        <div style="position:relative;z-index:1">
+            <a href="{% url 'core:home' %}">
+                <img src="{% static 'images/vignan_logo_final.png' %}" alt="Vignan TechSolutions"
+                     style="height:52px;width:auto;object-fit:contain;filter:brightness(0) invert(1);margin-bottom:40px">
+            </a>
+            <div style="color:rgba(255,255,255,.5);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px">Student Portal</div>
+            <h2 style="color:#fff;font-weight:800;font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.2;margin-bottom:12px">
+                Welcome Back to<br><span style="color:#FCD34D">Your Learning Hub</span>
+            </h2>
+            <p style="color:rgba(255,255,255,.65);font-size:.9rem;line-height:1.8;margin-bottom:36px">
+                Access your enrollments, certificates, and track your progress — all in one place.
+            </p>
+            <div class="auth-feature">
+                <div class="auth-feature-icon"><i class="bi bi-journal-check"></i></div>
+                <div class="auth-feature-text">Track all your enrollments & progress</div>
+            </div>
+            <div class="auth-feature">
+                <div class="auth-feature-icon"><i class="bi bi-award-fill"></i></div>
+                <div class="auth-feature-text">Download your certificates instantly</div>
+            </div>
+            <div class="auth-feature">
+                <div class="auth-feature-icon"><i class="bi bi-upload"></i></div>
+                <div class="auth-feature-text">Submit assignments & get feedback</div>
+            </div>
+            <div class="auth-feature">
+                <div class="auth-feature-icon"><i class="bi bi-receipt"></i></div>
+                <div class="auth-feature-text">View complete payment history</div>
+            </div>
+            <div style="margin-top:40px;padding-top:28px;border-top:1px solid rgba(255,255,255,.1)">
+                <div style="color:rgba(255,255,255,.4);font-size:.75rem;margin-bottom:8px">Trusted by</div>
+                <div style="display:flex;align-items:center;gap:12px">
+                    <span style="background:rgba(16,185,129,.2);border:1px solid rgba(16,185,129,.3);color:#34D399;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:50px"><i class="bi bi-patch-check-fill me-1"></i>MSME Registered</span>
+                    <span style="color:rgba(255,255,255,.5);font-size:.82rem;font-weight:600">500+ Students</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="auth-right">
+        <div class="auth-form-card">
+            <div class="text-center mb-4">
+                <div style="width:56px;height:56px;background:linear-gradient(135deg,#1E3A8A,#1d4ed8);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+                    <i class="bi bi-person-fill" style="color:#fff;font-size:1.4rem"></i>
+                </div>
+                <h3 class="fw-800 mb-1">Sign In</h3>
+                <p class="text-muted small">Enter your credentials to access your portal</p>
+            </div>
+
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags|default:'info' }}{% endif %} alert-dismissible fade show d-flex align-items-center gap-2" role="alert">
+                <i class="bi bi-{% if message.tags == 'success' %}check-circle-fill{% elif message.tags == 'error' %}exclamation-circle-fill{% else %}info-circle-fill{% endif %}"></i>
+                <span>{{ message }}</span>
+                <button type="button" class="btn-close ms-auto" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <form method="post" novalidate>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label fw-600 small">Email Address</label>
+                    <input type="email" name="email" class="form-control form-control-lg"
+                           placeholder="your@email.com" required autofocus>
+                </div>
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label class="form-label fw-600 small mb-0">Password</label>
+                        <a href="{% url 'accounts:forgot_password' %}" class="text-primary small fw-600">Forgot password?</a>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" name="password" id="loginPass"
+                               class="form-control form-control-lg" placeholder="Your password" required>
+                        <button class="btn btn-outline-secondary" type="button" data-toggle-pass="loginPass"
+                                style="border-radius:0 12px 12px 0;border-left:none">
+                            <i class="bi bi-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-login w-100 text-white mb-3">
+                    <i class="bi bi-box-arrow-in-right me-2"></i>Sign In to Portal
+                </button>
+            </form>
+
+            <div class="text-center pt-3" style="border-top:1px solid #F1F5F9">
+                <p class="text-muted mb-0 small">
+                    Don't have an account?
+                    <a href="{% url 'accounts:register' %}" class="text-primary fw-700">Register Free</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

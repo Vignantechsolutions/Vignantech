@@ -82,10 +82,11 @@ def register(request):
             try:
                 _send_otp_email(email, otp_obj.otp, OTPVerification.PURPOSE_REGISTER)
                 messages.success(request, f'OTP sent to {email}. Please verify to complete registration.')
-                return redirect('accounts:verify_otp')
-            except Exception as e:
+            except Exception:
+                messages.warning(request, f'OTP email could not be sent. Please contact support or try again.')
                 otp_obj.delete()
-                messages.error(request, f'Email error: {e}' if settings.DEBUG else 'Failed to send OTP. Please try again.')
+                return render(request, 'accounts/register.html')
+            return redirect('accounts:verify_otp')
 
     return render(request, 'accounts/register.html')
 
@@ -183,9 +184,9 @@ def forgot_password(request):
             request.session['reset_email'] = email
             messages.success(request, f'OTP sent to {email}.')
             return redirect('accounts:verify_reset_otp')
-        except Exception as e:
+        except Exception:
             otp_obj.delete()
-            messages.error(request, f'Email error: {e}' if settings.DEBUG else 'Failed to send OTP. Please try again.')
+            messages.error(request, 'Failed to send OTP. Please try again.')
     return render(request, 'accounts/forgot_password.html')
 
 

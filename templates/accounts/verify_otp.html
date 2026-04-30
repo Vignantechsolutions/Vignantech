@@ -48,6 +48,15 @@
               <input type="hidden" name="otp" id="otpHidden">
               <div class="form-text text-center"><i class="bi bi-clock me-1"></i>Valid for 10 minutes</div>
             </div>
+            {% if purpose == 'register' %}
+            <div class="d-flex align-items-start gap-2 p-3 mb-3" style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px">
+              <i class="bi bi-exclamation-triangle-fill text-warning mt-1 flex-shrink-0"></i>
+              <div style="font-size:.82rem;color:#92400E">
+                <strong>Can't find the OTP?</strong> Check your <strong>Spam</strong> or <strong>Junk</strong> folder — it may have been filtered automatically.
+              </div>
+            </div>
+            {% endif %}
+            </div>
             <button type="submit" class="btn btn-primary w-100 btn-lg fw-600 mb-3" id="verifyBtn" disabled>
               <i class="bi bi-check-circle me-2"></i>Verify OTP
             </button>

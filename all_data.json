@@ -101,7 +101,7 @@
   "fields": {
     "title": "AI-Based Multi-Disease Prediction System",
     "slug": "ai-based-multi-disease-prediction-system",
-    "domain": null,
+    "domain": 1,
     "description": "Predicts multiple diseases using patient health data with ML classification algorithms. Provides early-stage diagnosis to improve healthcare accessibility.",
     "problem_statement": "Healthcare systems often face delays in diagnosing diseases due to manual medical analysis. Patients in remote areas lack access to specialists, resulting in delayed treatment.",
     "objectives": "Predict multiple diseases using patient input\nProvide early-stage diagnosis\nReduce dependency on manual diagnosis\nImprove healthcare accessibility",
@@ -125,7 +125,7 @@
   "fields": {
     "title": "Intelligent Plant Disease Detection Using Deep Learning",
     "slug": "intelligent-plant-disease-detection-using-deep-lea",
-    "domain": null,
+    "domain": 1,
     "description": "Detects plant diseases from leaf images using CNN-based deep learning models to improve agricultural productivity.",
     "problem_statement": "Farmers often fail to detect crop diseases early, leading to significant crop loss.",
     "objectives": "Detect plant diseases from leaf images\nProvide disease classification\nImprove agricultural productivity",
@@ -149,7 +149,7 @@
   "fields": {
     "title": "AI Resume Screening and Candidate Ranking System",
     "slug": "ai-resume-screening-and-candidate-ranking-system",
-    "domain": null,
+    "domain": 1,
     "description": "Automates resume parsing and ranks candidates using NLP and ML techniques to streamline the recruitment process.",
     "problem_statement": "Recruiters spend large amounts of time manually screening resumes, leading to inefficiency and potential bias in the hiring process.",
     "objectives": "Automate resume filtering\nRank candidates based on job requirements\nMatch skills with job roles",
@@ -173,7 +173,7 @@
   "fields": {
     "title": "Fake News Detection Using Natural Language Processing",
     "slug": "fake-news-detection-using-natural-language-process",
-    "domain": null,
+    "domain": 1,
     "description": "Classifies news articles as real or fake using NLP and text classification models to combat misinformation.",
     "problem_statement": "Fake news spreads rapidly through online platforms, causing widespread misinformation and public harm.",
     "objectives": "Detect fake news articles automatically\nImprove information reliability\nReduce spread of misinformation",
@@ -197,7 +197,7 @@
   "fields": {
     "title": "Real-Time Emotion Detection from Facial Expressions",
     "slug": "real-time-emotion-detection-from-facial-expression",
-    "domain": null,
+    "domain": 1,
     "description": "Detects human emotions in real-time from webcam feed using deep learning and OpenCV.",
     "problem_statement": "Understanding human emotions automatically is challenging but essential for improving human-computer interaction and security systems.",
     "objectives": "Detect facial emotions in real time\nImprove human-computer interaction\nSupport security and surveillance applications",
@@ -221,7 +221,7 @@
   "fields": {
     "title": "Traffic Sign Recognition Using Convolutional Neural Networks",
     "slug": "traffic-sign-recognition-using-convolutional-neura",
-    "domain": null,
+    "domain": 1,
     "description": "Recognizes and classifies traffic signs from images using CNN architecture to improve road safety and support autonomous driving.",
     "problem_statement": "Road accidents frequently occur due to drivers missing or misinterpreting traffic signs. Manual monitoring systems are inefficient in recognizing signs in real time.",
     "objectives": "Detect traffic signs automatically\nClassify sign types accurately\nImprove road safety systems\nSupport autonomous driving technologies",
@@ -245,7 +245,7 @@
   "fields": {
     "title": "AI-Based Voice Assistant with NLP",
     "slug": "ai-based-voice-assistant-with-nlp",
-    "domain": null,
+    "domain": 1,
     "description": "A voice-controlled assistant that understands and responds to natural language commands using NLP and speech recognition.",
     "problem_statement": "Many applications require hands-free control, but traditional input systems depend on manual interaction, limiting accessibility and efficiency.",
     "objectives": "Develop a voice-controlled system\nConvert speech into actionable commands\nAutomate task execution through voice",
@@ -269,7 +269,7 @@
   "fields": {
     "title": "Handwritten Digit Recognition Using Deep Learning",
     "slug": "handwritten-digit-recognition-using-deep-learning",
-    "domain": null,
+    "domain": 1,
     "description": "Recognizes handwritten digits using a trained deep neural network on the MNIST dataset with high classification accuracy.",
     "problem_statement": "Manual reading of handwritten digits is prone to errors, especially in postal, banking, and document processing systems.",
     "objectives": "Recognize handwritten digits accurately\nImprove digit classification accuracy\nAutomate data entry processes",
@@ -293,7 +293,7 @@
   "fields": {
     "title": "Real-Time Object Detection Using YOLO Algorithm",
     "slug": "real-time-object-detection-using-yolo-algorithm",
-    "domain": null,
+    "domain": 1,
     "description": "Detects and labels multiple objects in real-time video streams using the YOLO algorithm for surveillance and automation.",
     "problem_statement": "Manual object detection is slow and inefficient in surveillance and automation systems, leading to delayed responses.",
     "objectives": "Detect objects in real time\nTrack multiple objects simultaneously\nImprove surveillance accuracy",
@@ -317,7 +317,7 @@
   "fields": {
     "title": "AI-Based Customer Support Chatbot System",
     "slug": "ai-based-customer-support-chatbot-system",
-    "domain": null,
+    "domain": 1,
     "description": "An intelligent chatbot that handles customer queries using NLP and intent classification for automated support.",
     "problem_statement": "Customer support centers face high workloads due to repeated user queries, leading to slow response times and increased operational costs.",
     "objectives": "Provide automated customer responses\nReduce human workload\nImprove response time and availability",
@@ -341,7 +341,7 @@
   "fields": {
     "title": "Stock Price Prediction Using LSTM Networks",
     "slug": "stock-price-prediction-using-lstm-networks",
-    "domain": null,
+    "domain": 1,
     "description": "Predicts future stock prices using Long Short-Term Memory recurrent neural networks trained on historical market data.",
     "problem_statement": "Stock markets are highly volatile, making it difficult for investors to predict future trends accurately using manual methods.",
     "objectives": "Predict stock prices using historical data\nAnalyze historical market trends\nAssist investors in decision-making",
@@ -365,7 +365,7 @@
   "fields": {
     "title": "Personalized Recommendation System Using Machine Learning",
     "slug": "personalized-recommendation-system-using-machine-l",
-    "domain": null,
+    "domain": 1,
     "description": "Recommends products or content to users based on collaborative and content-based filtering techniques.",
     "problem_statement": "Users face difficulty finding relevant products or content among large datasets, leading to poor user experience and reduced engagement.",
     "objectives": "Recommend personalized items to users\nImprove overall user experience\nIncrease platform engagement",
@@ -389,7 +389,7 @@
   "fields": {
     "title": "Fake Social Media Profile Detection Using Machine Learning",
     "slug": "fake-social-media-profile-detection-using-machine-",
-    "domain": null,
+    "domain": 1,
     "description": "Identifies fake or bot social media profiles using ML classification on profile features and behavioral patterns.",
     "problem_statement": "Social media platforms face serious issues due to fake accounts used for fraud, spam, and misinformation campaigns.",
     "objectives": "Detect fake social media profiles automatically\nImprove platform security\nReduce fraud and spam activity",
@@ -413,7 +413,7 @@
   "fields": {
     "title": "Automatic Text Summarization Using Transformers",
     "slug": "automatic-text-summarization-using-transformers",
-    "domain": null,
+    "domain": 1,
     "description": "Generates concise summaries of long documents using transformer-based NLP models including BERT.",
     "problem_statement": "Reading long documents takes significant time, making it difficult to extract key information quickly and efficiently.",
     "objectives": "Generate concise summaries from long documents\nExtract the most important sentences\nImprove information accessibility",
@@ -437,7 +437,7 @@
   "fields": {
     "title": "AI-Based Image Caption Generator Using CNN-LSTM",
     "slug": "ai-based-image-caption-generator-using-cnn-lstm",
-    "domain": null,
+    "domain": 1,
     "description": "Generates descriptive captions for images by combining CNN feature extraction with LSTM sequence generation.",
     "problem_statement": "Manual captioning of images is time-consuming and inefficient, especially for large image datasets used in media and accessibility tools.",
     "objectives": "Generate descriptive captions automatically\nImprove accessibility for visually impaired users\nAutomate image labeling workflows",
@@ -461,7 +461,7 @@
   "fields": {
     "title": "Enterprise Learning Management System Using Spring Boot",
     "slug": "enterprise-learning-management-system-using-spring",
-    "domain": null,
+    "domain": 4,
     "description": "A full-featured LMS with course management, student enrollment, and progress tracking built on Spring Boot and React.js.",
     "problem_statement": "Educational institutions face challenges managing courses, student data, and assessments manually, leading to inefficiencies and errors.",
     "objectives": "Provide a centralized education platform\nManage student and faculty records\nConduct online learning and assessments\nImprove academic performance tracking",
@@ -485,7 +485,7 @@
   "fields": {
     "title": "Smart Hospital Management System",
     "slug": "smart-hospital-management-system",
-    "domain": null,
+    "domain": 4,
     "description": "Manages patient records, doctor schedules, appointments, and billing in a hospital environment using Spring Boot.",
     "problem_statement": "Hospitals struggle to manage patient data, appointments, and billing manually, causing delays and errors in healthcare delivery.",
     "objectives": "Digitize hospital operations\nManage patient records efficiently\nImprove doctor scheduling and appointment management",
@@ -509,7 +509,7 @@
   "fields": {
     "title": "Secure Online Banking System",
     "slug": "secure-online-banking-system",
-    "domain": null,
+    "domain": 4,
     "description": "Provides secure account management, fund transfers, and transaction history with role-based access using Spring Security.",
     "problem_statement": "Manual banking processes increase transaction delays and risk of errors, while lacking the security required for modern financial operations.",
     "objectives": "Provide secure online transactions\nManage user accounts digitally\nImprove overall banking efficiency",
@@ -533,7 +533,7 @@
   "fields": {
     "title": "Inventory Management System Using Spring Boot",
     "slug": "inventory-management-system-using-spring-boot",
-    "domain": null,
+    "domain": 4,
     "description": "Tracks stock levels, purchase orders, and supplier details with real-time inventory alerts using Spring Boot.",
     "problem_statement": "Businesses struggle to track product stock manually, leading to stock shortages, overstocking, and supply chain inefficiencies.",
     "objectives": "Monitor inventory levels in real time\nTrack product stock movements\nReduce stock shortages and overstocking",
@@ -557,7 +557,7 @@
   "fields": {
     "title": "Online Job Portal with Resume Upload",
     "slug": "online-job-portal-with-resume-upload",
-    "domain": null,
+    "domain": 2,
     "description": "Connects job seekers and employers with resume upload, job posting, and application tracking using Spring Boot.",
     "problem_statement": "Job seekers face difficulties finding suitable jobs efficiently, while recruiters struggle to manage large volumes of applications.",
     "objectives": "Connect job seekers and recruiters on one platform\nManage job postings and applications\nImprove the overall recruitment process",
@@ -581,7 +581,7 @@
   "fields": {
     "title": "E-Commerce Product Management System",
     "slug": "e-commerce-product-management-system",
-    "domain": null,
+    "domain": 2,
     "description": "Full-stack e-commerce platform with product catalog, cart, orders, and payment integration built on Spring Boot.",
     "problem_statement": "Businesses lack an efficient platform to manage product listings, customer orders, and payments, resulting in poor customer experience and revenue loss.",
     "objectives": "Build a full-stack e-commerce platform\nManage product catalog and inventory\nHandle orders and payment processing",
@@ -605,7 +605,7 @@
   "fields": {
     "title": "Face Recognition Attendance Management System",
     "slug": "face-recognition-attendance-management-system",
-    "domain": null,
+    "domain": 2,
     "description": "Automates attendance marking using facial recognition integrated with a Spring Boot backend.",
     "problem_statement": "Manual attendance systems are time-consuming and prone to proxy attendance, leading to inaccurate records.",
     "objectives": "Automate attendance using facial recognition\nEliminate proxy attendance\nGenerate accurate attendance reports",
@@ -629,7 +629,7 @@
   "fields": {
     "title": "Online Food Ordering System",
     "slug": "online-food-ordering-system",
-    "domain": null,
+    "domain": 2,
     "description": "Allows customers to browse menus, place orders, and track delivery status in real time using Spring Boot.",
     "problem_statement": "Restaurants lack an efficient digital platform for customers to browse menus, place orders, and track deliveries in real time.",
     "objectives": "Enable online food ordering\nManage restaurant menus and orders\nProvide real-time delivery tracking",
@@ -653,7 +653,7 @@
   "fields": {
     "title": "Real-Time Chat Application Using WebSockets",
     "slug": "real-time-chat-application-using-websockets",
-    "domain": null,
+    "domain": 4,
     "description": "Enables real-time messaging between users using WebSocket protocol and Spring Boot with STOMP messaging.",
     "problem_statement": "Traditional HTTP-based communication cannot support real-time messaging, causing delays and poor user experience in chat applications.",
     "objectives": "Enable real-time bidirectional messaging\nSupport group and private chats\nEnsure message delivery reliability",
@@ -677,7 +677,7 @@
   "fields": {
     "title": "Online Examination Management System",
     "slug": "online-examination-management-system",
-    "domain": null,
+    "domain": 2,
     "description": "Manages exam creation, scheduling, student attempts, and automated result generation using Spring Boot.",
     "problem_statement": "Conducting exams manually is resource-intensive and prone to errors in question distribution, timing, and result calculation.",
     "objectives": "Automate exam creation and scheduling\nConduct timed online examinations\nGenerate results automatically",
@@ -701,7 +701,7 @@
   "fields": {
     "title": "Employee Payroll Management System",
     "slug": "employee-payroll-management-system",
-    "domain": null,
+    "domain": 2,
     "description": "Automates salary calculation, payslip generation, and tax deductions for employees using Spring Boot.",
     "problem_statement": "Organizations face difficulties calculating salaries, managing employee records, and generating payroll reports manually, which leads to calculation errors and delays.",
     "objectives": "Automate salary calculation\nManage employee records\nGenerate payslips automatically\nImprove payroll accuracy",
@@ -725,7 +725,7 @@
   "fields": {
     "title": "Smart Library Management System",
     "slug": "smart-library-management-system",
-    "domain": null,
+    "domain": 2,
     "description": "Handles book cataloging, member management, issue/return tracking, and fine calculation using Spring Boot.",
     "problem_statement": "Libraries face challenges managing book records and user transactions manually, leading to misplaced books and untracked fines.",
     "objectives": "Manage book inventory digitally\nTrack book issue and return\nCalculate fines automatically",
@@ -749,7 +749,7 @@
   "fields": {
     "title": "Travel and Tourism Booking System",
     "slug": "travel-and-tourism-booking-system",
-    "domain": null,
+    "domain": 2,
     "description": "Allows users to search, book, and manage travel packages, hotels, and transport using Spring Boot.",
     "problem_statement": "Travel agencies face difficulties managing bookings, tour packages, and customer records manually, causing errors and poor customer experience.",
     "objectives": "Manage travel packages digitally\nTrack reservations and bookings\nProvide seamless online booking",
@@ -773,7 +773,7 @@
   "fields": {
     "title": "Customer Complaint Management System",
     "slug": "customer-complaint-management-system",
-    "domain": null,
+    "domain": 2,
     "description": "Tracks customer complaints, assigns them to agents, and monitors resolution status using Spring Boot.",
     "problem_statement": "Organizations struggle to track and resolve customer complaints manually, leading to poor customer satisfaction and unresolved issues.",
     "objectives": "Register and track customer complaints\nMonitor complaint resolution status\nImprove overall customer satisfaction",
@@ -797,7 +797,7 @@
   "fields": {
     "title": "Vehicle Rental Management System",
     "slug": "vehicle-rental-management-system",
-    "domain": null,
+    "domain": 2,
     "description": "Manages vehicle listings, bookings, availability, and rental billing for a rental business using Spring Boot.",
     "problem_statement": "Vehicle rental services face difficulties managing bookings and vehicle availability manually, causing double bookings and billing errors.",
     "objectives": "Track vehicle availability in real time\nManage rental bookings efficiently\nAutomate billing and invoicing",
@@ -821,7 +821,7 @@
   "fields": {
     "title": "AI-Based Food Delivery Time Prediction System",
     "slug": "ai-based-food-delivery-time-prediction-system",
-    "domain": null,
+    "domain": 2,
     "description": "Predicts food delivery time using ML models based on distance, traffic, and order details to improve customer satisfaction.",
     "problem_statement": "Food delivery companies struggle to estimate delivery time accurately due to varying factors such as distance, traffic, weather, and order volume.",
     "objectives": "Predict food delivery time accurately\nImprove customer satisfaction\nOptimize delivery operations\nReduce delivery delays",
@@ -845,7 +845,7 @@
   "fields": {
     "title": "Plant Disease Detection Web Application",
     "slug": "plant-disease-detection-web-application",
-    "domain": null,
+    "domain": 2,
     "description": "Web app that detects plant diseases from uploaded leaf images using a CNN model and provides treatment recommendations.",
     "problem_statement": "Farmers often fail to detect plant diseases early, resulting in significant crop loss and reduced agricultural productivity.",
     "objectives": "Detect plant diseases from leaf images\nProvide treatment recommendations\nImprove agricultural productivity",
@@ -869,7 +869,7 @@
   "fields": {
     "title": "Secure Online Voting System Using Flask",
     "slug": "secure-online-voting-system-using-flask",
-    "domain": null,
+    "domain": 2,
     "description": "A secure digital voting platform with voter authentication, OTP verification, and real-time result display using Flask.",
     "problem_statement": "Traditional voting systems face issues such as fraud, vote duplication, and accessibility limitations for remote voters.",
     "objectives": "Enable secure online voting\nPrevent vote duplication\nImprove voting transparency",
@@ -893,7 +893,7 @@
   "fields": {
     "title": "Smart Expense Tracker and Budget Prediction System",
     "slug": "smart-expense-tracker-and-budget-prediction-system",
-    "domain": null,
+    "domain": 2,
     "description": "Tracks personal expenses and predicts future spending using ML regression models with a visualization dashboard.",
     "problem_statement": "Individuals struggle to manage personal finances efficiently, often overspending due to lack of visibility into their spending patterns.",
     "objectives": "Track daily expenses accurately\nPredict future spending patterns\nProvide actionable budgeting insights",
@@ -917,7 +917,7 @@
   "fields": {
     "title": "Online Book Recommendation Web System",
     "slug": "online-book-recommendation-web-system",
-    "domain": null,
+    "domain": 2,
     "description": "Recommends books to users based on reading history and preferences using collaborative filtering.",
     "problem_statement": "Users struggle to find books relevant to their interests among large collections, leading to poor reading experience.",
     "objectives": "Provide personalized book recommendations\nImprove user reading experience\nIncrease platform engagement",
@@ -941,7 +941,7 @@
   "fields": {
     "title": "AI Resume Screening Web Application",
     "slug": "ai-resume-screening-web-application",
-    "domain": null,
+    "domain": 2,
     "description": "Web portal that parses and ranks resumes automatically using NLP techniques including TF-IDF and cosine similarity.",
     "problem_statement": "Recruiters spend large amounts of time manually reviewing resumes, making the hiring process slow and inefficient.",
     "objectives": "Automate resume screening process\nExtract candidate skills automatically\nRank candidates based on relevance\nImprove overall hiring efficiency",
@@ -965,7 +965,7 @@
   "fields": {
     "title": "Multi-Disease Prediction Web Portal",
     "slug": "multi-disease-prediction-web-portal",
-    "domain": null,
+    "domain": 2,
     "description": "Predicts multiple diseases from user-entered health parameters using trained ML models on a Flask web portal.",
     "problem_statement": "Early disease detection is difficult due to lack of accessible diagnostic tools, especially in remote areas.",
     "objectives": "Predict multiple diseases from patient data\nProvide risk analysis scores\nAssist in early medical diagnosis",
@@ -989,7 +989,7 @@
   "fields": {
     "title": "Smart Agriculture Advisory Web System",
     "slug": "smart-agriculture-advisory-web-system",
-    "domain": null,
+    "domain": 2,
     "description": "Provides crop recommendations and fertilizer suggestions to farmers based on soil and weather data using ML.",
     "problem_statement": "Farmers lack guidance on selecting suitable crops and fertilizers based on soil and environmental conditions.",
     "objectives": "Recommend suitable crops based on soil data\nSuggest appropriate fertilizers\nImprove agricultural productivity",
@@ -1013,7 +1013,7 @@
   "fields": {
     "title": "Student Performance Prediction Portal",
     "slug": "student-performance-prediction-portal",
-    "domain": null,
+    "domain": 2,
     "description": "Predicts student academic outcomes using ML models trained on historical performance and demographic data.",
     "problem_statement": "Educational institutions struggle to identify students at risk of poor academic performance before it is too late to intervene.",
     "objectives": "Predict student academic performance\nIdentify at-risk students early\nImprove academic outcomes through intervention",
@@ -1037,7 +1037,7 @@
   "fields": {
     "title": "Online Shopping Fraud Detection Web App",
     "slug": "online-shopping-fraud-detection-web-app",
-    "domain": null,
+    "domain": 2,
     "description": "Detects fraudulent transactions in real time using anomaly detection and XGBoost classification models.",
     "problem_statement": "Online transactions are increasingly vulnerable to fraudulent activities, causing significant financial losses to businesses and customers.",
     "objectives": "Detect fraudulent transactions in real time\nImprove platform security\nReduce financial losses from fraud",
@@ -1061,7 +1061,7 @@
   "fields": {
     "title": "AI Chatbot Web Application Using NLP",
     "slug": "ai-chatbot-web-application-using-nlp",
-    "domain": null,
+    "domain": 1,
     "description": "A web-based chatbot that answers user queries using NLP intent classification and transformer models.",
     "problem_statement": "Businesses receive repetitive customer queries, leading to high workload for support teams and delayed responses.",
     "objectives": "Automate customer support responses\nUnderstand and classify user queries\nProvide instant automated responses\nReduce human support workload",
@@ -1085,7 +1085,7 @@
   "fields": {
     "title": "Real Estate Price Prediction Web System",
     "slug": "real-estate-price-prediction-web-system",
-    "domain": null,
+    "domain": 2,
     "description": "Predicts property prices based on location, size, and amenities using regression models on a Flask web system.",
     "problem_statement": "Buyers and sellers face difficulty estimating property prices accurately due to complex and dynamic market factors.",
     "objectives": "Predict property prices based on features\nAnalyze real estate market trends\nAssist buyers and sellers in decision-making",
@@ -1109,7 +1109,7 @@
   "fields": {
     "title": "Secure File Sharing and Document Management System",
     "slug": "secure-file-sharing-and-document-management-system",
-    "domain": null,
+    "domain": 2,
     "description": "Allows users to securely upload, share, and manage documents with encryption and role-based access control.",
     "problem_statement": "Organizations require secure file sharing systems to protect confidential information from unauthorized access.",
     "objectives": "Enable secure file upload and download\nManage document access with role-based control\nProtect sensitive files using encryption",
@@ -1133,7 +1133,7 @@
   "fields": {
     "title": "AI Image Caption Generator Web Application",
     "slug": "ai-image-caption-generator-web-application",
-    "domain": null,
+    "domain": 1,
     "description": "Generates natural language captions for uploaded images using CNN feature extraction and LSTM sequence generation.",
     "problem_statement": "Manual image captioning is time-consuming and impractical for large image datasets used in media and accessibility tools.",
     "objectives": "Generate descriptive captions automatically\nImprove accessibility for visually impaired users\nAutomate image labeling workflows",
@@ -1157,7 +1157,7 @@
   "fields": {
     "title": "Automatic Document Classification Web System",
     "slug": "automatic-document-classification-web-system",
-    "domain": null,
+    "domain": 2,
     "description": "Classifies uploaded documents into categories automatically using NLP and ML text classification models.",
     "problem_statement": "Organizations manage large volumes of documents that require manual classification, leading to inefficiency and misorganization.",
     "objectives": "Classify documents automatically into categories\nImprove document organization and retrieval\nReduce manual classification effort",
@@ -1181,7 +1181,7 @@
   "fields": {
     "title": "Smart E-Commerce Platform with Recommendation Engine",
     "slug": "smart-e-commerce-platform-with-recommendation-engi",
-    "domain": null,
+    "domain": 3,
     "description": "Full-stack e-commerce site with AI-powered product recommendations, cart management, and Razorpay payment integration.",
     "problem_statement": "Online stores struggle to recommend relevant products to users, leading to reduced engagement and lower sales conversion rates.",
     "objectives": "Build a scalable e-commerce platform\nRecommend personalized products to users\nImprove customer shopping experience\nIncrease sales conversion",
@@ -1205,7 +1205,7 @@
   "fields": {
     "title": "AI-Powered Job Portal with Resume Matching",
     "slug": "ai-powered-job-portal-with-resume-matching",
-    "domain": null,
+    "domain": 3,
     "description": "Job portal that matches candidates to job listings using NLP-based resume analysis and cosine similarity scoring.",
     "problem_statement": "Job seekers struggle to find relevant jobs efficiently while recruiters face difficulty shortlisting suitable candidates from large applicant pools.",
     "objectives": "Match resumes with job postings using AI\nAutomate the recruitment screening process\nImprove overall hiring efficiency",
@@ -1229,7 +1229,7 @@
   "fields": {
     "title": "Real-Time Chat Application with Video Calling",
     "slug": "real-time-chat-application-with-video-calling",
-    "domain": null,
+    "domain": 3,
     "description": "Supports real-time text chat and video calling using WebRTC and Socket.io on a MERN stack platform.",
     "problem_statement": "Modern communication requires real-time messaging and video interaction that traditional HTTP-based systems cannot support efficiently.",
     "objectives": "Enable real-time bidirectional chat messaging\nProvide integrated video calling\nSupport group communication channels",
@@ -1253,7 +1253,7 @@
   "fields": {
     "title": "Online Learning Management Platform",
     "slug": "online-learning-management-platform",
-    "domain": null,
+    "domain": 3,
     "description": "Platform for course creation, video lectures, assignments, and student progress tracking built on MERN stack.",
     "problem_statement": "Educational platforms require scalable systems to manage courses, students, and content delivery efficiently.",
     "objectives": "Provide a digital learning platform\nTrack student performance and progress\nManage courses and content",
@@ -1277,7 +1277,7 @@
   "fields": {
     "title": "Expense Tracker with Data Visualization Dashboard",
     "slug": "expense-tracker-with-data-visualization-dashboard",
-    "domain": null,
+    "domain": 3,
     "description": "Tracks income and expenses with interactive Chart.js visualizations and budget analytics on a MERN stack.",
     "problem_statement": "People struggle to manage expenses and understand their spending habits, leading to poor financial planning.",
     "objectives": "Track daily income and expenses\nVisualize spending patterns with charts\nImprove personal financial planning",
@@ -1301,7 +1301,7 @@
   "fields": {
     "title": "Multi-Vendor Marketplace System",
     "slug": "multi-vendor-marketplace-system",
-    "domain": null,
+    "domain": 3,
     "description": "Marketplace where multiple vendors can list products, manage their storefronts, and process orders with Razorpay integration.",
     "problem_statement": "Small businesses and individual vendors lack access to scalable platforms that allow them to sell products online efficiently. Managing multiple sellers manually is difficult and error-prone.",
     "objectives": "Create a multi-vendor marketplace platform\nAllow vendors to list and manage products\nManage orders from multiple sellers\nProvide secure payment handling",
@@ -1325,7 +1325,7 @@
   "fields": {
     "title": "Hospital Management Portal Using MERN",
     "slug": "hospital-management-portal-using-mern",
-    "domain": null,
+    "domain": 3,
     "description": "Manages patient records, doctor appointments, prescriptions, and billing in a hospital environment using MERN stack.",
     "problem_statement": "Hospitals struggle with managing patient records, doctor appointments, and medical reports manually, causing delays and errors in patient care.",
     "objectives": "Digitize hospital operations end-to-end\nStore patient records securely\nAutomate appointment booking and scheduling",
@@ -1349,7 +1349,7 @@
   "fields": {
     "title": "Online Event Booking and Management System",
     "slug": "online-event-booking-and-management-system",
-    "domain": null,
+    "domain": 3,
     "description": "Allows users to discover, book, and manage event tickets with organizer dashboards and Razorpay payment integration.",
     "problem_statement": "Event organizers face difficulty managing registrations, ticket bookings, and participant tracking manually, leading to errors and poor attendee experience.",
     "objectives": "Manage event registrations digitally\nEnable seamless online ticket booking\nTrack participants and event analytics",
@@ -1373,7 +1373,7 @@
   "fields": {
     "title": "Smart Real Estate Listing Platform",
     "slug": "smart-real-estate-listing-platform",
-    "domain": null,
+    "domain": 3,
     "description": "Property listing platform with advanced search filters, map integration, and agent contact using MERN stack.",
     "problem_statement": "Property buyers face difficulty finding reliable property listings efficiently due to fragmented and unverified information across platforms.",
     "objectives": "Provide searchable and filterable property listings\nEnable location-based property search\nImprove property discovery and transparency",
@@ -1397,7 +1397,7 @@
   "fields": {
     "title": "Task Management and Collaboration System",
     "slug": "task-management-and-collaboration-system",
-    "domain": null,
+    "domain": 3,
     "description": "Team task board with drag-and-drop task management, assignments, deadlines, and real-time updates using MERN stack.",
     "problem_statement": "Teams struggle to manage projects and tasks manually, leading to missed deadlines, poor coordination, and reduced productivity.",
     "objectives": "Assign and track tasks across team members\nMonitor project progress in real time\nImprove team collaboration and communication",
@@ -1421,7 +1421,7 @@
   "fields": {
     "title": "Online Movie Streaming Platform",
     "slug": "online-movie-streaming-platform",
-    "domain": null,
+    "domain": 3,
     "description": "Streams movies with user authentication, subscription plans, watch history, and AI-based recommendations on MERN stack.",
     "problem_statement": "Users require secure and scalable platforms to stream movies online, but traditional systems lack efficient content management and recommendation features.",
     "objectives": "Provide seamless online movie streaming\nManage user subscriptions and plans\nRecommend movies based on user preferences",
@@ -1445,7 +1445,7 @@
   "fields": {
     "title": "Fitness Tracking Web Application",
     "slug": "fitness-tracking-web-application",
-    "domain": null,
+    "domain": 2,
     "description": "Tracks workouts, calories, and fitness goals with interactive Chart.js progress charts and goal reminders.",
     "problem_statement": "People struggle to monitor fitness activities and track health progress effectively without a centralized digital tool.",
     "objectives": "Track daily fitness activities\nMonitor health metrics and progress\nProvide actionable performance insights",
@@ -1469,7 +1469,7 @@
   "fields": {
     "title": "Donation Management and Fundraising Platform",
     "slug": "donation-management-and-fundraising-platform",
-    "domain": null,
+    "domain": 2,
     "description": "Enables NGOs and individuals to create fundraising campaigns and accept online donations with Razorpay integration.",
     "problem_statement": "Charitable organizations struggle to track donations efficiently and maintain transparency with donors and stakeholders.",
     "objectives": "Manage and track donations digitally\nMaintain donor records and history\nEnsure full transparency in fund usage",
@@ -1493,7 +1493,7 @@
   "fields": {
     "title": "Smart Blogging and Content Management System",
     "slug": "smart-blogging-and-content-management-system",
-    "domain": null,
+    "domain": 2,
     "description": "Full-featured CMS with rich text editor, categories, tags, comment system, and SEO management on MERN stack.",
     "problem_statement": "Content creators need flexible and feature-rich platforms to publish, manage, and grow their blog content efficiently.",
     "objectives": "Enable seamless blog content publishing\nManage user posts and categories\nEnable reader interaction through comments",
@@ -1517,7 +1517,7 @@
   "fields": {
     "title": "Online Quiz and Assessment Platform",
     "slug": "online-quiz-and-assessment-platform",
-    "domain": null,
+    "domain": 2,
     "description": "Creates and conducts timed quizzes with auto-grading, randomized questions, and performance analytics on MERN stack.",
     "problem_statement": "Educational institutions need digital tools to conduct assessments efficiently, replacing manual paper-based exams.",
     "objectives": "Conduct timed online quizzes and assessments\nEvaluate results automatically\nProvide detailed performance insights",
@@ -1541,7 +1541,7 @@
   "fields": {
     "title": "Customer Churn Prediction Using Machine Learning",
     "slug": "customer-churn-prediction-using-machine-learning",
-    "domain": null,
+    "domain": 1,
     "description": "Predicts which customers are likely to churn using classification models on CRM data to improve retention strategies.",
     "problem_statement": "Businesses lose customers without knowing the reasons beforehand. Identifying customers likely to leave helps organizations take preventive actions.",
     "objectives": "Predict customer churn probability\nIdentify key churn factors\nImprove customer retention strategies\nReduce revenue loss",
@@ -1565,7 +1565,7 @@
   "fields": {
     "title": "Retail Sales Forecasting Using Time Series Analysis",
     "slug": "retail-sales-forecasting-using-time-series-analysi",
-    "domain": null,
+    "domain": 5,
     "description": "Forecasts future retail sales using ARIMA and Prophet time series models to optimize inventory planning.",
     "problem_statement": "Businesses face difficulty predicting future sales accurately, leading to overstocking or stock shortages and poor inventory planning.",
     "objectives": "Predict future retail sales accurately\nIdentify seasonal demand trends\nImprove inventory and supply chain planning",
@@ -1589,7 +1589,7 @@
   "fields": {
     "title": "Student Academic Performance Prediction",
     "slug": "student-academic-performance-prediction",
-    "domain": null,
+    "domain": 5,
     "description": "Predicts student grades and dropout risk using Random Forest and KNN classifiers on historical academic data.",
     "problem_statement": "Educational institutions struggle to identify students at risk of poor academic performance before it is too late to provide support.",
     "objectives": "Predict student academic results\nIdentify at-risk students early\nImprove academic outcomes through timely intervention",
@@ -1613,7 +1613,7 @@
   "fields": {
     "title": "Credit Card Fraud Detection System",
     "slug": "credit-card-fraud-detection-system",
-    "domain": null,
+    "domain": 5,
     "description": "Detects fraudulent credit card transactions using Isolation Forest anomaly detection and Random Forest classification.",
     "problem_statement": "Online transactions are increasingly vulnerable to fraudulent activities, causing significant financial losses to banks and customers.",
     "objectives": "Detect fraudulent transactions accurately\nReduce financial losses from fraud\nImprove overall transaction security",
@@ -1637,7 +1637,7 @@
   "fields": {
     "title": "Movie Recommendation System Using Collaborative Filtering",
     "slug": "movie-recommendation-system-using-collaborative-fi",
-    "domain": null,
+    "domain": 5,
     "description": "Recommends movies to users based on viewing history using collaborative and content-based filtering techniques.",
     "problem_statement": "Users struggle to find relevant movies among large collections, leading to poor content discovery and reduced platform engagement.",
     "objectives": "Recommend personalized movies to users\nImprove content discovery experience\nIncrease platform engagement",
@@ -1661,7 +1661,7 @@
   "fields": {
     "title": "House Price Prediction Using Regression Models",
     "slug": "house-price-prediction-using-regression-models",
-    "domain": null,
+    "domain": 5,
     "description": "Predicts residential property prices using Linear Regression and Random Forest models based on location, size, and amenities.",
     "problem_statement": "Property buyers and sellers often struggle to estimate accurate house prices due to multiple influencing factors like location, size, and amenities.",
     "objectives": "Predict house prices based on property features\nAnalyze important price-influencing factors\nAssist buyers and sellers in decision-making\nImprove property pricing transparency",
@@ -1685,7 +1685,7 @@
   "fields": {
     "title": "Social Media Sentiment Analysis System",
     "slug": "social-media-sentiment-analysis-system",
-    "domain": null,
+    "domain": 5,
     "description": "Analyzes sentiment of social media posts using NLP and text classification models to classify opinions and identify trends.",
     "problem_statement": "Organizations struggle to analyze customer opinions from large volumes of social media content, making it difficult to understand public sentiment.",
     "objectives": "Analyze public sentiment from social media text\nClassify opinions as positive, negative, or neutral\nIdentify trending topics and keywords",
@@ -1709,7 +1709,7 @@
   "fields": {
     "title": "Loan Approval Prediction System",
     "slug": "loan-approval-prediction-system",
-    "domain": null,
+    "domain": 5,
     "description": "Predicts loan approval decisions based on applicant financial and demographic data using Decision Tree and Logistic Regression.",
     "problem_statement": "Banks struggle to evaluate loan applications quickly and accurately, leading to delays and potential financial risk from bad loans.",
     "objectives": "Predict loan approval status automatically\nReduce financial risk from bad loans\nImprove the speed and accuracy of loan decisions",
@@ -1733,7 +1733,7 @@
   "fields": {
     "title": "Energy Consumption Forecasting System",
     "slug": "energy-consumption-forecasting-system",
-    "domain": null,
+    "domain": 5,
     "description": "Forecasts building or city energy consumption using time series and ML models to optimize power distribution.",
     "problem_statement": "Energy providers face difficulty predicting power demand accurately, leading to resource wastage and supply-demand imbalances.",
     "objectives": "Predict future energy consumption patterns\nOptimize resource allocation for power grids\nReduce energy waste through accurate forecasting",
@@ -1757,7 +1757,7 @@
   "fields": {
     "title": "Weather Prediction Using Machine Learning",
     "slug": "weather-prediction-using-machine-learning",
-    "domain": null,
+    "domain": 1,
     "description": "Predicts weather conditions using historical meteorological data and ML algorithms including Random Forest and ARIMA.",
     "problem_statement": "Accurate weather prediction is critical for agriculture, disaster management, and daily planning, but traditional models are complex and resource-intensive.",
     "objectives": "Predict weather conditions using historical data\nAnalyze long-term climate trends\nImprove planning decisions for agriculture and disaster management",
@@ -1781,7 +1781,7 @@
   "fields": {
     "title": "Employee Attrition Prediction System",
     "slug": "employee-attrition-prediction-system",
-    "domain": null,
+    "domain": 5,
     "description": "Identifies employees at risk of leaving using HR data and Random Forest and Logistic Regression classification models.",
     "problem_statement": "Organizations face challenges retaining employees, and unexpected resignations increase recruitment costs and reduce overall productivity.",
     "objectives": "Predict employee attrition risk\nIdentify key attrition risk factors\nImprove employee retention strategies\nSupport HR decision-making with data",
@@ -1805,7 +1805,7 @@
   "fields": {
     "title": "Traffic Accident Analysis and Prediction System",
     "slug": "traffic-accident-analysis-and-prediction-system",
-    "domain": null,
+    "domain": 5,
     "description": "Analyzes traffic accident patterns and predicts high-risk zones using K-Means clustering and regression on accident data.",
     "problem_statement": "Traffic accidents cause major safety risks, and identifying accident-prone zones is difficult without proper data analysis tools.",
     "objectives": "Analyze historical traffic accident data\nPredict accident-prone areas and zones\nImprove road safety planning",
@@ -1829,7 +1829,7 @@
   "fields": {
     "title": "Disease Prediction Using Patient Health Records",
     "slug": "disease-prediction-using-patient-health-records",
-    "domain": null,
+    "domain": 5,
     "description": "Predicts disease likelihood from patient records using KNN and Decision Tree ensemble ML classifiers.",
     "problem_statement": "Doctors require predictive tools to assist diagnosis using patient health data, especially in resource-limited healthcare settings.",
     "objectives": "Predict disease risk from patient health records\nSupport and assist medical diagnosis\nImprove healthcare decision-making speed",
@@ -1853,7 +1853,7 @@
   "fields": {
     "title": "Customer Segmentation Using Clustering Algorithms",
     "slug": "customer-segmentation-using-clustering-algorithms",
-    "domain": null,
+    "domain": 5,
     "description": "Segments customers into groups using K-Means and hierarchical clustering algorithms based on purchasing behavior.",
     "problem_statement": "Businesses struggle to identify distinct customer groups based on purchasing behavior, making targeted marketing campaigns ineffective.",
     "objectives": "Segment customers into meaningful groups\nImprove targeted marketing campaigns\nIncrease sales through personalized offers",
@@ -1877,7 +1877,7 @@
   "fields": {
     "title": "Stock Market Trend Prediction Using Deep Learning",
     "slug": "stock-market-trend-prediction-using-deep-learning",
-    "domain": null,
+    "domain": 1,
     "description": "Predicts stock market trends using LSTM deep learning on historical price data for investment decision support.",
     "problem_statement": "Stock market trends are difficult to predict manually due to high volatility and complex sequential dependencies in historical price data.",
     "objectives": "Predict future stock price trends\nAnalyze historical market patterns\nAssist investors in data-driven decisions",

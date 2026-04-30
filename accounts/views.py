@@ -18,7 +18,7 @@ def _send_otp_email(email, otp, purpose):
     subject = f'[Vignan TechSolutions] Your verification code: {otp}'
     action = 'verify your email address' if purpose == OTPVerification.PURPOSE_REGISTER else 'reset your password'
 
-    import base64, os
+    import base64, os, threading
     logo_b64 = ''
     logo_path = os.path.join(settings.BASE_DIR, 'static', 'images', 'logo.png')
     try:
@@ -34,15 +34,28 @@ def _send_otp_email(email, otp, purpose):
         'logo_b64': logo_b64,
         'year': __import__('datetime').date.today().year,
     })
-    from django.core.mail import EmailMultiAlternatives
-    msg = EmailMultiAlternatives(
-        subject=subject,
-        body=strip_tags(html),
-        from_email=settings.DEFAULT_FROM_EMAIL,
-        to=[email],
-    )
-    msg.attach_alternative(html, 'text/html')
-    msg.send(fail_silently=False)
+
+    errors = []
+
+    def _send():
+        try:
+            from django.core.mail import EmailMultiAlternatives
+            msg = EmailMultiAlternatives(
+                subject=subject,
+                body=strip_tags(html),
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                to=[email],
+            )
+            msg.attach_alternative(html, 'text/html')
+            msg.send(fail_silently=False)
+        except Exception as e:
+            errors.append(e)
+
+    t = threading.Thread(target=_send, daemon=True)
+    t.start()
+    t.join(timeout=25)
+    if errors:
+        raise errors[0]
 
 
 # ─── registration ────────────────────────────────────────────────────────────

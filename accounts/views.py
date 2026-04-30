@@ -18,7 +18,7 @@ def _send_otp_email(email, otp, purpose):
     subject = f'[Vignan TechSolutions] Your verification code: {otp}'
     action = 'verify your email address' if purpose == OTPVerification.PURPOSE_REGISTER else 'reset your password'
 
-    import base64, os
+    import base64, os, threading
     logo_b64 = ''
     logo_path = os.path.join(settings.BASE_DIR, 'static', 'images', 'logo.png')
     try:
@@ -34,20 +34,21 @@ def _send_otp_email(email, otp, purpose):
         'logo_b64': logo_b64,
         'year': __import__('datetime').date.today().year,
     })
-    from django.core.mail import EmailMultiAlternatives
-    msg = EmailMultiAlternatives(
-        subject=subject,
-        body=strip_tags(html),
-        from_email=settings.DEFAULT_FROM_EMAIL,
-        to=[email],
-        headers={
-            'X-Priority': '1',
-            'X-Mailer': 'Vignan TechSolutions Mailer',
-            'List-Unsubscribe': f'<mailto:{settings.COMPANY_EMAIL}>',
-        }
-    )
-    msg.attach_alternative(html, 'text/html')
-    msg.send(fail_silently=False)
+
+    def _send():
+        from django.core.mail import EmailMultiAlternatives
+        msg = EmailMultiAlternatives(
+            subject=subject,
+            body=strip_tags(html),
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=[email],
+        )
+        msg.attach_alternative(html, 'text/html')
+        msg.send(fail_silently=True)
+
+    t = threading.Thread(target=_send, daemon=True)
+    t.start()
+    t.join(timeout=10)  # wait max 10s, then continue
 
 
 # ─── registration ────────────────────────────────────────────────────────────

@@ -1202,3 +1202,177 @@ img { max-width: 100%; }
     section { padding-top: 3rem !important; padding-bottom: 3rem !important; }
     .py-5 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
 }
+
+/* ============================================================
+   MOBILE CREATIVE DESIGN — Vignan TechSolutions
+   ============================================================ */
+
+/* ── Bottom Nav (hidden on desktop) ── */
+.mob-bottom-nav { display: none; }
+
+@media (max-width: 767px) {
+
+    /* ── Body padding for bottom nav ── */
+    body { padding-bottom: 70px !important; }
+
+    /* ── Hide desktop navbar collapse & toggler ── */
+    .navbar-collapse, .navbar-toggler { display: none !important; }
+    .navbar-inner { padding: .35rem 0 !important; }
+    .vt-logo-img { height: 38px !important; }
+    .navbar-accent-bar { height: 3px; }
+    #mainNav { box-shadow: 0 2px 16px rgba(30,58,138,.10) !important; }
+
+    /* ── Floating WhatsApp & back-to-top ── */
+    .whatsapp-float { bottom: 80px !important; right: 14px !important; width: 48px !important; height: 48px !important; font-size: 1.35rem !important; }
+    #back-to-top { bottom: 136px !important; right: 14px !important; }
+
+    /* ── Bottom Navigation Bar ── */
+    .mob-bottom-nav {
+        display: flex !important;
+        position: fixed; bottom: 0; left: 0; right: 0;
+        background: #fff;
+        border-top: 1px solid #E2E8F0;
+        box-shadow: 0 -4px 24px rgba(30,58,138,.12);
+        z-index: 1050;
+        padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+        border-radius: 20px 20px 0 0;
+    }
+    .mob-bottom-nav a {
+        flex: 1; display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        gap: 3px; text-decoration: none;
+        color: #94A3B8; font-size: .58rem; font-weight: 700;
+        font-family: 'Poppins', sans-serif;
+        padding: 4px 2px; transition: all .2s;
+        letter-spacing: .02em; border-radius: 12px;
+    }
+    .mob-bottom-nav a i { font-size: 1.2rem; transition: all .25s; }
+    .mob-bottom-nav a.active { color: #1E3A8A; }
+    .mob-bottom-nav a.active i { transform: translateY(-2px); color: #1E3A8A; }
+    .mob-bottom-nav a:hover { color: #1E3A8A; }
+    .mob-bottom-nav a.mob-cta {
+        color: #fff !important;
+        background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+        border-radius: 14px;
+        margin: 0 4px;
+        padding: 5px 6px;
+        box-shadow: 0 4px 16px rgba(30,58,138,.4);
+        min-width: 56px;
+    }
+    .mob-bottom-nav a.mob-cta i { font-size: 1.3rem; color: #fff !important; }
+    .mob-bottom-nav .mob-active-dot {
+        width: 4px; height: 4px; border-radius: 50%;
+        background: #1E3A8A; margin-top: 1px;
+        opacity: 0; transition: opacity .2s;
+    }
+    .mob-bottom-nav a.active .mob-active-dot { opacity: 1; }
+
+    /* ── Hero Mobile ── */
+    .vt-hero .row { padding: 2rem 0 1.5rem !important; min-height: auto !important; }
+    .vt-hero-h1 { font-size: 1.7rem !important; line-height: 1.2 !important; }
+    .vt-hero-sub { font-size: .88rem !important; margin-bottom: 1.25rem !important; }
+    .vt-hero-tag { font-size: .7rem !important; padding: .3rem .85rem !important; margin-bottom: 1rem !important; }
+    .vt-hero-cta { flex-direction: column !important; gap: .65rem !important; margin-bottom: 1.5rem !important; }
+    .vt-btn-primary, .vt-btn-ghost { width: 100% !important; justify-content: center !important; padding: .75rem 1.25rem !important; font-size: .88rem !important; }
+    .vt-stats-row { gap: .5rem !important; justify-content: space-around; }
+    .vt-stat-sep { display: none !important; }
+    .vt-stat-num { font-size: 1.3rem !important; }
+    .vt-stat-lbl { font-size: .62rem !important; }
+    .vt-wave svg { height: 36px !important; }
+
+    /* ── Section headings ── */
+    .section-title { font-size: 1.45rem !important; }
+    section { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+
+    /* ── Horizontal scroll rows for cards ── */
+    .mob-hscroll {
+        display: flex !important; flex-wrap: nowrap !important;
+        overflow-x: auto !important; gap: 14px !important;
+        padding-bottom: 10px !important; padding-left: 4px !important;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .mob-hscroll::-webkit-scrollbar { display: none; }
+    .mob-hscroll > * { flex: 0 0 80vw !important; max-width: 80vw !important; scroll-snap-align: start; }
+
+    /* ── Cards ── */
+    .vt-program-card, .intern-card, .proj-card, .vt-project-card, .vt-service-card, .vt-testimonial {
+        border-radius: 16px !important;
+    }
+    .vt-card-thumb, .intern-thumb, .proj-card-thumb { height: 150px !important; }
+    .vt-card-body, .intern-body, .proj-card-body { padding: 14px !important; }
+    .vt-card-footer, .intern-footer, .proj-card-footer { padding: 10px 14px !important; }
+    .vt-service-card { padding: 1.25rem !important; }
+    .vt-svc-icon, .service-icon { width: 48px !important; height: 48px !important; font-size: 1.25rem !important; margin-bottom: .85rem !important; }
+
+    /* ── Journey steps horizontal scroll ── */
+    .vt-journey-steps {
+        flex-wrap: nowrap !important; overflow-x: auto !important;
+        gap: 12px !important; padding-bottom: 8px !important;
+        justify-content: flex-start !important;
+        scrollbar-width: none;
+    }
+    .vt-journey-steps::-webkit-scrollbar { display: none; }
+    .vt-step { min-width: 148px !important; max-width: 148px !important; flex-shrink: 0 !important; padding: 1.1rem .9rem !important; }
+    .vt-step-num { font-size: 2rem !important; }
+    .vt-step-icon { width: 48px !important; height: 48px !important; font-size: 1.2rem !important; }
+    .vt-step-arrow { display: none !important; }
+
+    /* ── Why cards ── */
+    .vt-why-card { padding: 1rem !important; border-radius: 12px !important; }
+    .vt-why-icon { width: 38px !important; height: 38px !important; font-size: 1rem !important; flex-shrink: 0; }
+
+    /* ── Impact section ── */
+    .vt-impact-section { padding: 2.5rem 0 !important; }
+
+    /* ── CTA box ── */
+    .vt-cta-box { padding: 1.75rem 1.1rem !important; border-radius: 1.1rem !important; }
+    .vt-cta-box h2, .vt-cta-box h3 { font-size: 1.35rem !important; }
+    .vt-btn-white, .vt-btn-ghost-white { width: 100% !important; justify-content: center !important; padding: .75rem 1.25rem !important; }
+
+    /* ── Mission strip ── */
+    .vt-mission-strip { padding: .85rem 0 !important; }
+    .vt-mission-inner { flex-direction: column !important; gap: .75rem !important; }
+    .vt-mission-icon { width: 40px !important; height: 40px !important; font-size: 1.1rem !important; }
+    .vt-mission-text { font-size: .82rem !important; }
+
+    /* ── Testimonials ── */
+    .vt-testimonial { padding: 1.1rem !important; }
+
+    /* ── Auth ── */
+    .auth-wrapper { padding: 1rem !important; align-items: flex-start !important; padding-top: 1.5rem !important; }
+    .auth-card { padding: 1.4rem 1.1rem !important; border-radius: 16px !important; }
+
+    /* ── Dashboard ── */
+    .dash-stat-card { padding: 1rem !important; border-radius: 14px !important; }
+    .dash-stat-number { font-size: 1.8rem !important; }
+
+    /* ── Filter bars ── */
+    .filter-bar { padding: 10px 12px !important; border-radius: 12px !important; overflow-x: auto; white-space: nowrap; }
+    .filter-pill { font-size: .72rem !important; padding: 5px 11px !important; white-space: nowrap; }
+    .mode-chip { font-size: .72rem !important; padding: 5px 12px !important; white-space: nowrap; }
+
+    /* ── Page hero sections ── */
+    .proj-hero, .intern-hero { padding: 44px 0 0 !important; }
+    .proj-hero h1 { font-size: 1.55rem !important; }
+
+    /* ── Footer ── */
+    .footer { padding-top: 2rem !important; }
+    .footer .row.g-4 > div { text-align: center !important; }
+    .footer .d-flex.gap-2 { justify-content: center !important; }
+    .footer-social { width: 36px !important; height: 36px !important; }
+
+    /* ── Smooth tap ── */
+    a, button { -webkit-tap-highlight-color: rgba(30,58,138,.08); }
+    body { font-size: 14px !important; }
+
+    /* ── Scroll hint label ── */
+    .mob-scroll-hint {
+        display: flex !important; align-items: center; gap: 5px;
+        color: #94A3B8; font-size: .7rem; font-weight: 600;
+        margin-bottom: 8px;
+    }
+    .mob-scroll-hint i { animation: hint-slide .8s ease-in-out infinite alternate; }
+    @keyframes hint-slide { from { transform: translateX(0); } to { transform: translateX(5px); } }
+}

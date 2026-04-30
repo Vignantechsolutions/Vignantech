@@ -31,13 +31,21 @@ def initiate_payment(request, item_type, item_id):
         messages.info(request, 'You are already enrolled.')
         return redirect('accounts:dashboard')
 
+    if not settings.RAZORPAY_KEY_ID or settings.RAZORPAY_KEY_ID.startswith('your_'):
+        messages.error(request, 'Payment gateway is not configured. Please contact support.')
+        return redirect('accounts:dashboard')
+
     amount_paise = int(item.fees * 100)
-    client = get_razorpay_client()
-    order = client.order.create({
-        'amount': amount_paise,
-        'currency': 'INR',
-        'payment_capture': 1,
-    })
+    try:
+        client = get_razorpay_client()
+        order = client.order.create({
+            'amount': amount_paise,
+            'currency': 'INR',
+            'payment_capture': 1,
+        })
+    except Exception:
+        messages.error(request, 'Payment gateway error. Please try again later.')
+        return redirect('accounts:dashboard')
 
     enrollment = Enrollment.objects.create(
         student=request.user,

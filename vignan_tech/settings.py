@@ -7,6 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost').split(',')
+ALLOWED_HOSTS += ['.railway.app', '.up.railway.app']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -128,7 +129,11 @@ COMPANY_PHONE = config('COMPANY_PHONE', default='+91-9110478047 / +91-9148215446
 COMPANY_ADDRESS = config('COMPANY_ADDRESS', default='Kalaburagi, Karnataka, India')
 
 # Production security settings (enable when DEBUG=False)
-CSRF_TRUSTED_ORIGINS = ['https://vignantech.onrender.com']
+CSRF_TRUSTED_ORIGINS = [
+    'https://vignantech.onrender.com',
+    'https://*.railway.app',
+    'https://*.up.railway.app',
+]
 
 if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True

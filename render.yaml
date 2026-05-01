@@ -11,7 +11,7 @@ services:
     plan: free
     runtime: python
     buildCommand: "./build.sh"
-    startCommand: "gunicorn vignan_tech.wsgi:application --bind 0.0.0.0:$PORT --workers 2"
+    startCommand: "gunicorn vignan_tech.wsgi:application --bind 0.0.0.0:$PORT --workers 1 --timeout 120 --preload"
     envVars:
       - key: DATABASE_URL
         fromDatabase:

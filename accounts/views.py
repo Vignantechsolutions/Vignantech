@@ -49,6 +49,9 @@ def _send_otp_email(email, otp, purpose):
             msg.attach_alternative(html, 'text/html')
             msg.send(fail_silently=False)
         except Exception as e:
+            import traceback
+            print(f'[EMAIL ERROR] {e}')
+            traceback.print_exc()
             errors.append(e)
 
     t = threading.Thread(target=_send, daemon=True)

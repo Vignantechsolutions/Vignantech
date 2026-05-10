@@ -4,9 +4,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from django.views.generic import TemplateView, RedirectView
-from core.sitemaps import StaticViewSitemap
+from core.sitemaps import StaticViewSitemap, CourseSitemap, InternshipSitemap, ProjectSitemap
 
-sitemaps = {'static': StaticViewSitemap}
+sitemaps = {
+    'static': StaticViewSitemap,
+    'courses': CourseSitemap,
+    'internships': InternshipSitemap,
+    'projects': ProjectSitemap,
+}
 
 handler404 = 'core.views.handler404'
 handler500 = 'core.views.handler500'

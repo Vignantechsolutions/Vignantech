@@ -6,4 +6,4 @@ Disallow: /accounts/profile/
 Disallow: /payments/
 Disallow: /media/certificates/
 
-Sitemap: https://vignantechsolutions.com/sitemap.xml
+Sitemap: https://vignantech.onrender.com/sitemap.xml

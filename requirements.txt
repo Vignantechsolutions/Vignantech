@@ -1,7 +1,7 @@
 Django==5.2.13
 psycopg2-binary==2.9.9
 dj-database-url==2.1.0
-Pillow==9.3.0
+Pillow==10.4.0
 razorpay==2.0.1
 reportlab==4.0.4
 django-crispy-forms==2.6

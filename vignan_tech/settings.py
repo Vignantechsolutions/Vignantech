@@ -5,9 +5,9 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config('SECRET_KEY', default='django-insecure-change-this')
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-vignan-railway-fallback-key-2024')
 DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,.railway.app,.up.railway.app').split(',')
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1,.railway.app,.up.railway.app').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',

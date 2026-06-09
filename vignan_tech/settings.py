@@ -1,12 +1,13 @@
 from pathlib import Path
 from decouple import config
 import dj_database_url
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-change-this')
 DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost').split(',')
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,.railway.app,.up.railway.app').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -61,11 +62,11 @@ WSGI_APPLICATION = 'vignan_tech.wsgi.application'
 
 # Render provides DATABASE_URL env var for PostgreSQL
 # Falls back to local MySQL for development
-DATABASE_URL = config('DATABASE_URL', default=None)
+DATABASE_URL = config('DATABASE_URL', default=None) or os.environ.get('DATABASE_URL')
 
 if DATABASE_URL:
     DATABASES = {
-        'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+        'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=False)
     }
 else:
     DATABASES = {
@@ -128,7 +129,11 @@ COMPANY_PHONE = config('COMPANY_PHONE', default='+91-9110478047 / +91-9148215446
 COMPANY_ADDRESS = config('COMPANY_ADDRESS', default='Kalaburagi, Karnataka, India')
 
 # Production security settings (enable when DEBUG=False)
-CSRF_TRUSTED_ORIGINS = ['https://vignantech.onrender.com']
+CSRF_TRUSTED_ORIGINS = [
+    'https://vignantech.onrender.com',
+    'https://*.railway.app',
+    'https://*.up.railway.app',
+]
 
 if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True

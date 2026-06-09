@@ -146,3 +146,98 @@ document.addEventListener('DOMContentLoaded', function () {
         el.style.touchAction = 'manipulation';
     });
 });
+
+// ── Creative UI v5.0 ──
+
+// ── Magnetic CTA buttons ──
+document.querySelectorAll('.vt-btn-primary, .vt-btn-white, .vt-btn-ghost').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+        const rect = btn.getBoundingClientRect();
+        const x = (e.clientX - rect.left - rect.width / 2) * 0.25;
+        const y = (e.clientY - rect.top - rect.height / 2) * 0.25;
+        btn.style.transform = `translate(${x}px, ${y}px) translateY(-3px)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+});
+
+// ── Spotlight cursor on dark hero sections ──
+(function() {
+    const heroes = document.querySelectorAll('.vt-hero, .proj-hero, .intern-hero, .contact-hero, .about-hero, .vt-impact-section');
+    heroes.forEach(hero => {
+        const spotlight = document.createElement('div');
+        spotlight.style.cssText = 'position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.08) 0%,transparent 70%);pointer-events:none;transform:translate(-50%,-50%);transition:left .12s ease,top .12s ease;z-index:1;opacity:0;';
+        hero.style.position = 'relative';
+        hero.appendChild(spotlight);
+        hero.addEventListener('mousemove', e => {
+            const rect = hero.getBoundingClientRect();
+            spotlight.style.left = (e.clientX - rect.left) + 'px';
+            spotlight.style.top  = (e.clientY - rect.top)  + 'px';
+            spotlight.style.opacity = '1';
+        });
+        hero.addEventListener('mouseleave', () => { spotlight.style.opacity = '0'; });
+    });
+})();
+
+// ── Social proof toast ──
+setTimeout(() => {
+    const msgs = [
+        '🔥 3 students enrolled today',
+        '✅ New MCA project delivered!',
+        '🎓 Certificate issued to a student',
+        '⭐ New 5-star review received',
+    ];
+    const msg = msgs[Math.floor(Math.random() * msgs.length)];
+    const toast = document.createElement('div');
+    toast.style.cssText = 'position:fixed;bottom:100px;left:20px;background:#0F172A;border:1px solid rgba(124,58,237,.4);color:#fff;padding:12px 18px;border-radius:14px;font-size:.82rem;font-weight:600;z-index:9997;box-shadow:0 8px 32px rgba(0,0,0,.4);display:flex;align-items:center;gap:10px;animation:toastIn .4s ease forwards;max-width:260px;';
+    const emoji = msg.split(' ')[0];
+    const text  = msg.slice(msg.indexOf(' ') + 1);
+    toast.innerHTML = `<span style="font-size:1rem">${emoji}</span><span>${text}</span>`;
+    const style = document.createElement('style');
+    style.textContent = '@keyframes toastIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}@keyframes toastOut{from{opacity:1}to{opacity:0;transform:translateX(-20px)}}';
+    document.head.appendChild(style);
+    document.body.appendChild(toast);
+    setTimeout(() => {
+        toast.style.animation = 'toastOut .4s ease forwards';
+        setTimeout(() => toast.remove(), 400);
+    }, 4000);
+}, 8000);
+
+// ── Ripple on buttons ──
+document.querySelectorAll('.vt-btn-primary, .vt-btn-white, .btn-primary').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        const r = document.createElement('span');
+        r.className = 'ripple';
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        r.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px;position:absolute;`;
+        this.style.position = 'relative';
+        this.style.overflow = 'hidden';
+        this.appendChild(r);
+        setTimeout(() => r.remove(), 700);
+    });
+});
+
+// 3D tilt on project/program cards
+document.querySelectorAll('.vt-project-card, .vt-program-card, .vt-step').forEach(card => {
+    card.classList.add('tilt-card');
+    card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width  - .5;
+        const y = (e.clientY - rect.top)  / rect.height - .5;
+        card.style.transform = `perspective(600px) rotateY(${x*10}deg) rotateX(${-y*10}deg) translateY(-6px)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('[data-aos]');
+if (revealEls.length === 0) {
+    document.querySelectorAll('.vt-service-card,.vt-step,.vt-why-card,.vt-testimonial').forEach((el,i) => {
+        el.classList.add('reveal');
+        el.style.transitionDelay = (i % 4) * 0.1 + 's';
+    });
+    const ro = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); ro.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+}

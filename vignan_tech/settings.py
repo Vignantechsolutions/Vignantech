@@ -138,10 +138,12 @@ CSRF_TRUSTED_ORIGINS = [
     'https://vignantech.onrender.com',
     'https://*.railway.app',
     'https://*.up.railway.app',
+    'https://*.vercel.app',
 ]
 
 # CORS — allow React frontend
 CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', default='http://localhost:3000,http://localhost:5173').split(',')
+CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
 
 # DRF
@@ -168,7 +170,7 @@ if not DEBUG:
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_SSL_REDIRECT = True
+    SECURE_SSL_REDIRECT = False  # Render/Railway handle SSL at proxy level
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     X_FRAME_OPTIONS = 'DENY'

@@ -18,7 +18,7 @@ services:
           name: vignan-db
           property: connectionString
       - key: DEBUG
-        value: "False"
+        value: "True"
       - key: ALLOWED_HOSTS
         value: "vignantech.onrender.com,.onrender.com,localhost"
       - key: SECRET_KEY

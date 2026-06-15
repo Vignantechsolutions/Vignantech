@@ -54,3 +54,6 @@ class ProjectSitemap(Sitemap):
 
     def location(self, obj):
         return reverse('projects:detail', args=[obj.slug])
+
+    def lastmod(self, obj):
+        return obj.created_at

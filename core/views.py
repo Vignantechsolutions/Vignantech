@@ -1,11 +1,12 @@
 from django.http import JsonResponse
-
-def health_check(request):
-    return JsonResponse({'status': 'ok'})
-
+from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
+
+
+def health_check(request):
+    return JsonResponse({'status': 'ok'})
 from courses.models import Course
 from internships.models import Internship
 from projects.models import Project, ProjectDomain

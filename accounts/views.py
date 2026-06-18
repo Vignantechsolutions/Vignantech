@@ -18,7 +18,7 @@ def _send_otp_email(email, otp, purpose):
     subject = f'[Vignan TechSolutions] Your verification code: {otp}'
     action = 'verify your email address' if purpose == OTPVerification.PURPOSE_REGISTER else 'reset your password'
 
-    import base64, os, threading
+    import base64, os
     logo_b64 = ''
     logo_path = os.path.join(settings.BASE_DIR, 'static', 'images', 'logo.png')
     try:
@@ -35,9 +35,38 @@ def _send_otp_email(email, otp, purpose):
         'year': __import__('datetime').date.today().year,
     })
 
-    errors = []
+    sendgrid_key = getattr(settings, 'SENDGRID_API_KEY', '') or ''
 
-    def _send():
+    if sendgrid_key:
+        # Use SendGrid HTTP API — works on Render free tier (no SMTP block)
+        import urllib.request, urllib.error, json as _json
+        payload = _json.dumps({
+            'personalizations': [{'to': [{'email': email}]}],
+            'from': {'email': 'vignantechsolutions@gmail.com', 'name': 'Vignan TechSolutions'},
+            'subject': subject,
+            'content': [
+                {'type': 'text/plain', 'value': strip_tags(html)},
+                {'type': 'text/html',  'value': html},
+            ]
+        }).encode('utf-8')
+        req = urllib.request.Request(
+            'https://api.sendgrid.com/v3/mail/send',
+            data=payload,
+            headers={
+                'Authorization': f'Bearer {sendgrid_key}',
+                'Content-Type': 'application/json',
+            },
+            method='POST'
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                print(f'[EMAIL OK] SendGrid HTTP sent to {email}, status={resp.status}')
+        except urllib.error.HTTPError as e:
+            body = e.read().decode()
+            print(f'[EMAIL ERROR] SendGrid HTTP {e.code}: {body}')
+            raise Exception(f'SendGrid error {e.code}: {body}')
+    else:
+        # Fallback: Django SMTP (only works if SMTP port is open)
         try:
             from django.core.mail import EmailMultiAlternatives
             msg = EmailMultiAlternatives(
@@ -48,18 +77,12 @@ def _send_otp_email(email, otp, purpose):
             )
             msg.attach_alternative(html, 'text/html')
             msg.send(fail_silently=False)
-            print(f'[EMAIL OK] OTP sent to {email}')
+            print(f'[EMAIL OK] SMTP sent to {email}')
         except Exception as e:
             import traceback
             print(f'[EMAIL ERROR] {type(e).__name__}: {e}')
             traceback.print_exc()
-            errors.append(e)
-
-    t = threading.Thread(target=_send, daemon=True)
-    t.start()
-    t.join(timeout=25)
-    if errors:
-        raise errors[0]
+            raise
 
 
 # ─── registration ────────────────────────────────────────────────────────────

@@ -48,9 +48,10 @@ def _send_otp_email(email, otp, purpose):
             )
             msg.attach_alternative(html, 'text/html')
             msg.send(fail_silently=False)
+            print(f'[EMAIL OK] OTP sent to {email}')
         except Exception as e:
             import traceback
-            print(f'[EMAIL ERROR] {e}')
+            print(f'[EMAIL ERROR] {type(e).__name__}: {e}')
             traceback.print_exc()
             errors.append(e)
 

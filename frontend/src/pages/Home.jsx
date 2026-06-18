@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../api/client';
+import HeroSection from '../components/ui/glassmorphism-trust-hero';
 
 export default function Home() {
   const [data, setData] = useState(null);
@@ -12,17 +13,7 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section style={s.hero}>
-        <div style={s.heroInner}>
-          <div style={s.heroTag}>🏢 MSME Registered · Kalaburagi, Karnataka, India</div>
-          <h1 style={s.heroH1}>We Turn Students<br /><span style={s.accent}>Into Professionals</span></h1>
-          <p style={s.heroSub}>Vignan TechSolutions bridges the gap between <strong>education and employment</strong> — through hands-on internships, industry courses, real-time projects, and corporate training.</p>
-          <div style={s.heroCta}>
-            <Link to="/internships" style={s.btnPrimary}>🚀 Start Your Journey</Link>
-            <Link to="/about" style={s.btnGhost}>▶ Our Story</Link>
-          </div>
-        </div>
-      </section>
+      <HeroSection stats={data} />
 
       {/* Featured Projects */}
       {data.featured_projects?.length > 0 && (
@@ -155,15 +146,6 @@ export default function Home() {
 
 const s = {
   loading: { textAlign:'center', padding:'4rem', fontSize:'1.2rem', color:'#6B7280' },
-  hero: { background:'linear-gradient(135deg,#0F172A 0%,#1E3A8A 50%,#0F172A 100%)', minHeight:'80vh', display:'flex', alignItems:'center', padding:'4rem 0' },
-  heroInner: { maxWidth:700, margin:'0 auto', textAlign:'center', padding:'0 1.5rem' },
-  heroTag: { color:'rgba(255,255,255,.6)', fontSize:'.85rem', marginBottom:'1rem' },
-  heroH1: { fontSize:'clamp(2rem,5vw,3.5rem)', fontWeight:800, color:'#fff', lineHeight:1.2, marginBottom:'1rem' },
-  accent: { color:'#60A5FA' },
-  heroSub: { color:'rgba(255,255,255,.75)', fontSize:'1.05rem', lineHeight:1.8, marginBottom:'2rem' },
-  heroCta: { display:'flex', gap:'1rem', justifyContent:'center', flexWrap:'wrap' },
-  btnPrimary: { background:'linear-gradient(135deg,#1E3A8A,#3B82F6)', color:'#fff', padding:'.75rem 2rem', borderRadius:50, fontWeight:700, textDecoration:'none', fontSize:'.95rem' },
-  btnGhost: { background:'rgba(255,255,255,.1)', color:'#fff', padding:'.75rem 2rem', borderRadius:50, fontWeight:700, textDecoration:'none', fontSize:'.95rem', border:'1px solid rgba(255,255,255,.2)' },
   section: { padding:'4rem 0', background:'#F8FAFC' },
   container: { maxWidth:1200, margin:'0 auto', padding:'0 1.5rem' },
   sectionHead: { textAlign:'center', marginBottom:'2.5rem' },

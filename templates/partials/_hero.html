@@ -1,44 +1,96 @@
 <style>
-.gh-hero{position:relative;width:100%;background:#0d1f1f;color:#fff;overflow:hidden;font-family:'Poppins',sans-serif;padding:110px 0 70px}
-.gh-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80') center/cover no-repeat;opacity:.45;-webkit-mask-image:linear-gradient(180deg,transparent,black 5%,black 75%,transparent);mask-image:linear-gradient(180deg,transparent,black 5%,black 75%,transparent)}
+.gh-hero{position:relative;width:100%;background:#0a1a1a;color:#fff;overflow:hidden;font-family:'Poppins',sans-serif;padding:110px 0 70px}
+
+/* Coding photo bg */
+.gh-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1600&q=80') center/cover no-repeat;opacity:.3;-webkit-mask-image:linear-gradient(180deg,transparent,black 5%,black 75%,transparent);mask-image:linear-gradient(180deg,transparent,black 5%,black 75%,transparent)}
+
+/* Dark teal overlay for color tinting */
+.gh-tint{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,26,26,.92) 0%,rgba(13,35,30,.85) 50%,rgba(10,26,26,.9) 100%);pointer-events:none}
+
+/* Grid overlay */
+.gh-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+
+/* Floating glow orbs */
+.gh-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:ghOrb 8s ease-in-out infinite}
+.gh-orb1{width:400px;height:400px;top:-100px;left:-100px;background:radial-gradient(circle,rgba(20,80,60,.5),transparent);animation-delay:0s}
+.gh-orb2{width:300px;height:300px;bottom:-50px;right:10%;background:radial-gradient(circle,rgba(255,165,0,.12),transparent);animation-delay:-4s}
+@keyframes ghOrb{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-20px) scale(1.1)}}
+
+/* Floating code snippets */
+.gh-code-float{position:absolute;font-family:'Courier New',monospace;font-size:.7rem;color:rgba(74,222,128,.35);pointer-events:none;white-space:nowrap;animation:ghFloat 6s ease-in-out infinite}
+.gh-cf1{top:15%;left:5%;animation-delay:0s}
+.gh-cf2{top:25%;right:8%;animation-delay:-2s}
+.gh-cf3{bottom:30%;left:3%;animation-delay:-4s}
+@keyframes ghFloat{0%,100%{transform:translateY(0);opacity:.35}50%{transform:translateY(-12px);opacity:.6}}
+
 @keyframes ghFade{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 .gh-anim{animation:ghFade .8s ease-out forwards;opacity:0}
 .gh-d1{animation-delay:.1s}.gh-d2{animation-delay:.2s}.gh-d3{animation-delay:.3s}.gh-d4{animation-delay:.4s}.gh-d5{animation-delay:.5s}
-.gh-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.15);background:rgba(20,45,45,.7);padding:6px 14px;border-radius:50px;backdrop-filter:blur(10px);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#d4d4d8}
-.gh-h1{font-size:clamp(2.8rem,6vw,5.5rem);font-weight:500;letter-spacing:-2px;line-height:.92;margin:1.5rem 0;-webkit-mask-image:linear-gradient(180deg,black 0%,black 80%,transparent 100%);mask-image:linear-gradient(180deg,black 0%,black 80%,transparent 100%)}
-.gh-grad{background:linear-gradient(135deg,#fff 0%,#fff 50%,#ffcd75 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.gh-sub{max-width:520px;color:#a1a1aa;font-size:1.05rem;line-height:1.8;margin-bottom:2rem}
-.gh-btn-p{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#09090b;padding:14px 28px;border-radius:50px;font-weight:700;font-size:.88rem;text-decoration:none;transition:all .2s}
-.gh-btn-p:hover{background:#e4e4e7;transform:scale(1.02);color:#09090b}
+
+.gh-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(74,222,128,.3);background:rgba(20,45,35,.8);padding:6px 14px;border-radius:50px;backdrop-filter:blur(10px);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#86efac}
+
+.gh-h1{font-size:clamp(2.8rem,6vw,5.5rem);font-weight:700;letter-spacing:-2px;line-height:.95;margin:1.5rem 0;-webkit-mask-image:linear-gradient(180deg,black 0%,black 80%,transparent 100%);mask-image:linear-gradient(180deg,black 0%,black 80%,transparent 100%)}
+.gh-grad{background:linear-gradient(135deg,#fff 0%,#fff 40%,#ffcd75 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+.gh-sub{max-width:520px;color:#94a3b8;font-size:1rem;line-height:1.8;margin-bottom:2rem}
+
+.gh-btn-p{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#0a1a1a;padding:14px 28px;border-radius:50px;font-weight:700;font-size:.88rem;text-decoration:none;transition:all .2s;box-shadow:0 4px 20px rgba(255,255,255,.15)}
+.gh-btn-p:hover{background:#f0fdf4;transform:scale(1.02);color:#0a1a1a}
 .gh-btn-p i{transition:transform .2s}
 .gh-btn-p:hover i{transform:translateX(4px)}
-.gh-btn-g{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.15);background:rgba(20,45,45,.7);color:#fff;padding:14px 28px;border-radius:50px;font-weight:700;font-size:.88rem;text-decoration:none;backdrop-filter:blur(8px);transition:all .2s}
-.gh-btn-g:hover{background:rgba(255,255,255,.1);color:#fff}
-.gh-card{position:relative;overflow:hidden;border-radius:24px;border:1px solid rgba(255,255,255,.08);background:rgba(20,45,45,.85);padding:2rem;backdrop-filter:blur(20px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
-.gh-glow{position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.04);filter:blur(40px);pointer-events:none}
-.gh-prog{height:8px;background:rgba(255,255,255,.1);border-radius:50px;overflow:hidden}
-.gh-prog-fill{height:100%;width:98%;background:linear-gradient(90deg,#fff,#a1a1aa);border-radius:50px}
+
+.gh-btn-g{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.15);background:rgba(20,45,35,.7);color:#fff;padding:14px 28px;border-radius:50px;font-weight:700;font-size:.88rem;text-decoration:none;backdrop-filter:blur(8px);transition:all .2s}
+.gh-btn-g:hover{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.3)}
+
+/* Card */
+.gh-card{position:relative;overflow:hidden;border-radius:24px;border:1px solid rgba(255,255,255,.08);background:rgba(12,30,25,.9);padding:2rem;backdrop-filter:blur(24px);box-shadow:0 20px 60px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.06)}
+.gh-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(74,222,128,.3),transparent)}
+.gh-glow{position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:rgba(74,222,128,.06);filter:blur(40px);pointer-events:none}
+
+.gh-prog{height:6px;background:rgba(255,255,255,.08);border-radius:50px;overflow:hidden}
+.gh-prog-fill{height:100%;width:98%;background:linear-gradient(90deg,#4ade80,#86efac);border-radius:50px;animation:ghProg 1.5s ease-out forwards;width:0}
+@keyframes ghProg{to{width:98%}}
+
 .gh-stats{display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;text-align:center}
-.gh-sdiv{background:rgba(255,255,255,.1)}
+.gh-sdiv{background:rgba(255,255,255,.08)}
 .gh-sval{font-size:1.25rem;font-weight:800;color:#fff}
-.gh-slbl{font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:#52525b;font-weight:600;margin-top:2px}
-.gh-pill{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.12);background:rgba(20,45,45,.6);padding:4px 12px;border-radius:50px;font-size:.65rem;font-weight:700;letter-spacing:.06em;color:#d4d4d8}
-.gh-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;display:inline-block;position:relative}
+.gh-slbl{font-size:.6rem;text-transform:uppercase;letter-spacing:.08em;color:#4b5563;font-weight:600;margin-top:2px}
+
+.gh-pill{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.1);background:rgba(12,30,25,.8);padding:4px 12px;border-radius:50px;font-size:.65rem;font-weight:700;letter-spacing:.06em;color:#d4d4d8}
+.gh-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;display:inline-block;position:relative;flex-shrink:0}
 .gh-dot::after{content:'';position:absolute;inset:0;border-radius:50%;background:#4ade80;animation:ghPing 1.3s ease-in-out infinite}
 @keyframes ghPing{0%,100%{box-shadow:0 0 0 4px rgba(74,222,128,.25)}50%{box-shadow:none}}
-.gh-mcard{border-radius:24px;border:1px solid rgba(255,255,255,.08);background:rgba(20,45,45,.85);padding:1.75rem 0;backdrop-filter:blur(20px);overflow:hidden}
+
+/* Marquee card */
+.gh-mcard{border-radius:24px;border:1px solid rgba(255,255,255,.08);background:rgba(12,30,25,.9);padding:1.75rem 0;backdrop-filter:blur(24px);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.gh-mcard::before{content:'';display:block;height:1px;background:linear-gradient(90deg,transparent,rgba(74,222,128,.3),transparent);margin-bottom:0}
 .gh-mwrap{overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,black 18%,black 82%,transparent);mask-image:linear-gradient(to right,transparent,black 18%,black 82%,transparent)}
 .gh-mtrack{display:flex;gap:2.5rem;white-space:nowrap;animation:ghMarq 35s linear infinite}
 @keyframes ghMarq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.gh-mitem{display:inline-flex;align-items:center;gap:8px;opacity:.45;transition:opacity .2s}
+.gh-mitem{display:inline-flex;align-items:center;gap:8px;opacity:.4;transition:opacity .2s}
 .gh-mitem:hover{opacity:1}
-.gh-mitem i{font-size:1.1rem;color:#fff}
-.gh-mitem span{font-size:.95rem;font-weight:800;color:#fff}
-.gh-div{height:1px;background:rgba(255,255,255,.1);margin:1.5rem 0}
+.gh-mitem i{font-size:1rem;color:#4ade80}
+.gh-mitem span{font-size:.9rem;font-weight:700;color:#fff}
+
+.gh-div{height:1px;background:rgba(255,255,255,.08);margin:1.5rem 0}
+
+/* Floating tech tags */
+.gh-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.gh-tag{font-size:.65rem;font-weight:700;padding:4px 10px;border-radius:6px;border:1px solid rgba(74,222,128,.2);background:rgba(74,222,128,.05);color:#86efac;letter-spacing:.04em}
 </style>
 
 <section class="gh-hero">
   <div class="gh-bg"></div>
+  <div class="gh-tint"></div>
+  <div class="gh-grid"></div>
+  <div class="gh-orb gh-orb1"></div>
+  <div class="gh-orb gh-orb2"></div>
+
+  <!-- Floating code snippets -->
+  <div class="gh-code-float gh-cf1">const skills = ['Python', 'MERN', 'AI/ML'];</div>
+  <div class="gh-code-float gh-cf2">if (student.hasDream) { vignan.train(); }</div>
+  <div class="gh-code-float gh-cf3">git commit -m "career started 🚀"</div>
+
   <div class="container position-relative" style="z-index:2">
     <div class="row g-5 align-items-start">
 
@@ -46,19 +98,23 @@
       <div class="col-lg-7">
         <div class="gh-anim gh-d1">
           <span class="gh-badge">
+            <i class="bi bi-building-check"></i>
             MSME Registered &middot; Kalaburagi, Karnataka
             <i class="bi bi-star-fill" style="color:#facc15"></i>
           </span>
         </div>
+
         <h1 class="gh-h1 gh-anim gh-d2">
           We Turn<br>
           <span class="gh-grad" id="typewriter"></span><br>
           <span style="color:#fff">Into Professionals</span>
         </h1>
+
         <p class="gh-sub gh-anim gh-d3">
           Vignan TechSolutions bridges the gap between <strong style="color:#fff">education and employment</strong> &mdash;
           through hands-on internships, industry courses, real-time projects, and corporate training.
         </p>
+
         <div class="d-flex flex-wrap gap-3 gh-anim gh-d4">
           <a href="{% url 'internships:list' %}" class="gh-btn-p">
             Start Your Journey <i class="bi bi-arrow-right"></i>
@@ -66,6 +122,15 @@
           <a href="{% url 'courses:list' %}" class="gh-btn-g">
             <i class="bi bi-play-circle-fill"></i> Explore Courses
           </a>
+        </div>
+
+        <!-- Tech stack tags -->
+        <div class="gh-tags gh-anim gh-d4">
+          <span class="gh-tag">🤖 AI &amp; ML</span>
+          <span class="gh-tag">🐍 Python</span>
+          <span class="gh-tag">🌐 MERN Stack</span>
+          <span class="gh-tag">☕ Java</span>
+          <span class="gh-tag">📊 Data Science</span>
         </div>
       </div>
 
@@ -77,22 +142,25 @@
           <div class="gh-glow"></div>
           <div class="position-relative">
             <div class="d-flex align-items-center gap-3 mb-4">
-              <div style="width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                <i class="bi bi-bullseye" style="font-size:1.3rem;color:#fff"></i>
+              <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,rgba(74,222,128,.2),rgba(74,222,128,.05));border:1px solid rgba(74,222,128,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <i class="bi bi-bullseye" style="font-size:1.4rem;color:#4ade80"></i>
               </div>
               <div>
-                <div style="font-size:1.9rem;font-weight:900;color:#fff;line-height:1">75+</div>
-                <div style="font-size:.8rem;color:#71717a">Projects Delivered</div>
+                <div style="font-size:2rem;font-weight:900;color:#fff;line-height:1">75+</div>
+                <div style="font-size:.8rem;color:#6b7280">Projects Delivered</div>
               </div>
             </div>
+
             <div class="mb-4">
               <div class="d-flex justify-content-between mb-2">
-                <span style="font-size:.82rem;color:#71717a">Student Satisfaction</span>
-                <span style="font-size:.82rem;color:#fff;font-weight:600">98%</span>
+                <span style="font-size:.82rem;color:#6b7280">Student Satisfaction</span>
+                <span style="font-size:.82rem;color:#4ade80;font-weight:700">98%</span>
               </div>
               <div class="gh-prog"><div class="gh-prog-fill"></div></div>
             </div>
+
             <div class="gh-div"></div>
+
             <div class="gh-stats">
               <div><div class="gh-sval">5+</div><div class="gh-slbl">Years</div></div>
               <div class="gh-sdiv"></div>
@@ -100,30 +168,36 @@
               <div class="gh-sdiv"></div>
               <div><div class="gh-sval">100%</div><div class="gh-slbl">Quality</div></div>
             </div>
+
             <div class="d-flex gap-2 mt-4 flex-wrap">
               <span class="gh-pill"><span class="gh-dot"></span>&nbsp;ENROLLING NOW</span>
-              <span class="gh-pill"><i class="bi bi-award-fill" style="color:#eab308"></i> MSME CERTIFIED</span>
+              <span class="gh-pill"><i class="bi bi-award-fill" style="color:#eab308"></i>&nbsp;MSME CERTIFIED</span>
+              <span class="gh-pill"><i class="bi bi-shield-check-fill" style="color:#4ade80"></i>&nbsp;VTU APPROVED</span>
             </div>
           </div>
         </div>
 
         <!-- Marquee Card -->
         <div class="gh-mcard">
-          <p style="font-size:.8rem;color:#71717a;padding:0 1.5rem;margin-bottom:1.25rem">Trusted by Students &amp; Institutions</p>
+          <p style="font-size:.75rem;color:#6b7280;padding:0 1.5rem;margin-bottom:1rem;letter-spacing:.05em;text-transform:uppercase;font-weight:600">Trusted by Students &amp; Institutions</p>
           <div class="gh-mwrap">
             <div class="gh-mtrack">
               <div class="gh-mitem"><i class="bi bi-hexagon-fill"></i><span>VTU CPGS</span></div>
               <div class="gh-mitem"><i class="bi bi-geo-alt-fill"></i><span>Kalaburagi</span></div>
               <div class="gh-mitem"><i class="bi bi-patch-check-fill"></i><span>MSME Certified</span></div>
-              <div class="gh-mitem"><i class="bi bi-mortarboard-fill"></i><span>100% Placement</span></div>
+              <div class="gh-mitem"><i class="bi bi-mortarboard-fill"></i><span>Placements</span></div>
               <div class="gh-mitem"><i class="bi bi-file-earmark-text-fill"></i><span>IEEE Projects</span></div>
               <div class="gh-mitem"><i class="bi bi-cpu-fill"></i><span>Live Training</span></div>
+              <div class="gh-mitem"><i class="bi bi-code-slash"></i><span>Source Code</span></div>
+              <div class="gh-mitem"><i class="bi bi-people-fill"></i><span>1:1 Mentorship</span></div>
               <div class="gh-mitem"><i class="bi bi-hexagon-fill"></i><span>VTU CPGS</span></div>
               <div class="gh-mitem"><i class="bi bi-geo-alt-fill"></i><span>Kalaburagi</span></div>
               <div class="gh-mitem"><i class="bi bi-patch-check-fill"></i><span>MSME Certified</span></div>
-              <div class="gh-mitem"><i class="bi bi-mortarboard-fill"></i><span>100% Placement</span></div>
+              <div class="gh-mitem"><i class="bi bi-mortarboard-fill"></i><span>Placements</span></div>
               <div class="gh-mitem"><i class="bi bi-file-earmark-text-fill"></i><span>IEEE Projects</span></div>
               <div class="gh-mitem"><i class="bi bi-cpu-fill"></i><span>Live Training</span></div>
+              <div class="gh-mitem"><i class="bi bi-code-slash"></i><span>Source Code</span></div>
+              <div class="gh-mitem"><i class="bi bi-people-fill"></i><span>1:1 Mentorship</span></div>
             </div>
           </div>
         </div>

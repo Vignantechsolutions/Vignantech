@@ -126,9 +126,6 @@ DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='Vignan TechSolutions 
 
 OTP_EXPIRY_MINUTES = 10
 
-# Debug email config on startup
-print(f'[EMAIL CONFIG] HOST={config("EMAIL_HOST", default="smtp.gmail.com")} USER={config("EMAIL_HOST_USER", default="NOT SET")} PASS={"SET" if config("EMAIL_HOST_PASSWORD", default="") else "NOT SET"}')
-
 RAZORPAY_KEY_ID = config('RAZORPAY_KEY_ID', default='')
 RAZORPAY_KEY_SECRET = config('RAZORPAY_KEY_SECRET', default='')
 

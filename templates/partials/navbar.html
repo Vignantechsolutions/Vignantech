@@ -1,243 +1,393 @@
 {% load static %}
+<style>
+/* ── NAVBAR ── */
+#mainNav{
+  background:rgba(8,18,18,.92);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(74,222,128,.12);
+  padding:0;
+  transition:all .3s ease;
+  position:sticky;top:0;z-index:1000;
+}
+#mainNav.scrolled{
+  background:rgba(6,14,14,.97);
+  box-shadow:0 4px 30px rgba(0,0,0,.4);
+}
 
-<!-- ── Top Accent Bar ── -->
-<div class="navbar-accent-bar"></div>
+.nav-container{
+  display:flex;align-items:center;height:68px;gap:1rem;
+}
 
-<nav class="navbar navbar-expand-lg bg-white sticky-top" id="mainNav">
+/* ── LOGO ── */
+.vt-logo-link{text-decoration:none;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.vt-logo-svg{width:36px;height:36px;flex-shrink:0}
+.vt-logo-text{display:flex;flex-direction:column;line-height:1}
+.vt-logo-top{
+  font-size:1.05rem;font-weight:800;letter-spacing:-.5px;
+  background:linear-gradient(135deg,#fff 0%,#a5f3c4 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.vt-logo-sub{
+  font-size:.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#4ade80;margin-top:1px;
+}
+
+/* ── NAV LINKS ── */
+.nav-links{
+  display:flex;align-items:center;gap:.25rem;margin:0 auto;list-style:none;padding:0;
+}
+.nav-links .nav-link{
+  font-size:.82rem;font-weight:600;color:rgba(255,255,255,.7)!important;
+  padding:.5rem .85rem;border-radius:8px;transition:all .2s;
+  position:relative;letter-spacing:.02em;
+}
+.nav-links .nav-link:hover,
+.nav-links .nav-link.active-link{color:#fff!important;background:rgba(74,222,128,.1);}
+.nav-links .nav-link.active-link::after{
+  content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);
+  width:20px;height:2px;background:#4ade80;border-radius:2px;
+}
+
+/* Dropdown */
+.nav-links .dropdown-menu{
+  background:rgba(10,22,22,.97);
+  border:1px solid rgba(74,222,128,.15)!important;
+  border-radius:16px!important;
+  box-shadow:0 20px 60px rgba(0,0,0,.5)!important;
+  backdrop-filter:blur(20px);
+  padding:.75rem!important;
+  margin-top:.5rem!important;
+}
+.nav-links .dropdown-item{
+  color:rgba(255,255,255,.7);border-radius:10px;padding:.6rem .75rem;
+  font-size:.82rem;transition:all .15s;
+}
+.nav-links .dropdown-item:hover{
+  background:rgba(74,222,128,.1);color:#fff;
+}
+.nav-links .dropdown-item .fw-600{color:#fff}
+.nav-links .dropdown-item .text-muted{color:rgba(255,255,255,.35)!important}
+.nav-links .dropdown-divider{border-color:rgba(255,255,255,.08)!important}
+.nav-links .dropdown-toggle::after{
+  border-top-color:rgba(255,255,255,.5);margin-left:.4em;vertical-align:.2em;
+}
+
+/* Domain icon box */
+.dd-icon{
+  width:34px;height:34px;border-radius:10px;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;font-size:1rem;
+}
+
+/* ── SEARCH ── */
+.nav-search{
+  display:flex;align-items:center;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);border-radius:10px;
+  padding:0 12px;height:36px;gap:8px;transition:all .2s;min-width:160px;
+}
+.nav-search:focus-within{
+  background:rgba(74,222,128,.08);border-color:rgba(74,222,128,.35);
+}
+.nav-search input{
+  background:none;border:none;outline:none;color:#fff;font-size:.8rem;width:100%;
+}
+.nav-search input::placeholder{color:rgba(255,255,255,.35)}
+.nav-search button{
+  background:none;border:none;color:rgba(255,255,255,.4);padding:0;cursor:pointer;
+  transition:color .2s;
+}
+.nav-search button:hover{color:#4ade80}
+
+/* ── TOGGLER ── */
+.vt-toggler{
+  background:none;border:1px solid rgba(255,255,255,.15);border-radius:8px;
+  padding:6px 10px;color:#fff;display:none;
+}
+.vt-toggler:focus{box-shadow:none}
+.vt-toggler i{font-size:1.1rem}
+
+/* ── AUTH BUTTONS ── */
+.btn-login{
+  font-size:.8rem;font-weight:600;color:rgba(255,255,255,.75)!important;
+  border:1px solid rgba(255,255,255,.15);border-radius:8px;
+  padding:.4rem 1rem;transition:all .2s;text-decoration:none;
+}
+.btn-login:hover{border-color:rgba(74,222,128,.4);color:#fff!important;background:rgba(74,222,128,.08)}
+.btn-register{
+  font-size:.8rem;font-weight:700;
+  background:linear-gradient(135deg,#14532d,#16a34a);
+  color:#fff!important;border:none;border-radius:8px;
+  padding:.4rem 1.1rem;text-decoration:none;
+  box-shadow:0 4px 14px rgba(22,163,74,.3);transition:all .2s;
+}
+.btn-register:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(22,163,74,.45);color:#fff!important}
+
+/* User dropdown */
+.user-btn{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2);
+  border-radius:10px;padding:.35rem .9rem;color:#fff;font-size:.8rem;font-weight:600;
+  cursor:pointer;transition:all .2s;
+}
+.user-btn:hover{background:rgba(74,222,128,.15)}
+.user-avatar{
+  width:28px;height:28px;border-radius:8px;
+  background:linear-gradient(135deg,#166534,#4ade80);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;font-weight:800;color:#fff;flex-shrink:0;
+}
+
+@media(max-width:991px){
+  .vt-toggler{display:flex;align-items:center;margin-left:auto}
+  .nav-collapse{
+    display:none;flex-direction:column;width:100%;
+    background:rgba(8,18,18,.98);border-top:1px solid rgba(74,222,128,.1);
+    padding:1rem;gap:.5rem;
+  }
+  .nav-collapse.open{display:flex}
+  .nav-links{flex-direction:column;align-items:flex-start;gap:.25rem;width:100%}
+  .nav-links .dropdown-menu{position:static!important;transform:none!important;
+    box-shadow:none!important;background:rgba(255,255,255,.04)!important;
+    border:1px solid rgba(255,255,255,.06)!important;margin-top:.25rem!important}
+  .nav-search{min-width:unset;width:100%}
+  .nav-container{flex-wrap:wrap;height:auto;padding:.75rem 0}
+}
+</style>
+
+<nav id="mainNav">
   <div class="container">
-    <div class="navbar-inner w-100">
+    <div class="nav-container">
 
-      <!-- ── Logo ── -->
-      <a class="navbar-brand vt-logo-wrap me-lg-4" href="{% url 'core:home' %}">
-        <span class="vt-particle" style="top:10px;left:10px"></span>
-        <span class="vt-particle" style="top:14px;left:32px"></span>
-        <span class="vt-particle" style="top:8px;left:20px"></span>
-        <img src="{% static 'images/vignan_logo_final.png' %}"
-             alt="Vignan TechSolutions"
-             class="vt-logo-img"
-             onerror="this.src='{% static 'images/vignan_logo.png' %}'">
+      <!-- LOGO -->
+      <a class="vt-logo-link" href="{% url 'core:home' %}">
+        <!-- Inline SVG logo matching reference — V shape with nodes -->
+        <svg class="vt-logo-svg" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="vg1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#22d3ee"/>
+              <stop offset="50%" stop-color="#3b82f6"/>
+              <stop offset="100%" stop-color="#4ade80"/>
+            </linearGradient>
+          </defs>
+          <!-- V shape -->
+          <path d="M4 6 L18 32 L32 6" stroke="url(#vg1)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <!-- Nodes -->
+          <circle cx="4"  cy="6"  r="3.5" fill="#22d3ee"/>
+          <circle cx="32" cy="6"  r="3.5" fill="#3b82f6"/>
+          <circle cx="18" cy="32" r="3.5" fill="#4ade80"/>
+          <circle cx="11" cy="19" r="2.5" fill="#60a5fa"/>
+          <circle cx="25" cy="19" r="2.5" fill="#34d399"/>
+          <!-- Top extra node -->
+          <circle cx="24" cy="4"  r="2"   fill="#93c5fd"/>
+          <!-- Connection lines -->
+          <line x1="4" y1="6" x2="11" y2="19" stroke="url(#vg1)" stroke-width="1.5" stroke-dasharray="3 2" opacity=".5"/>
+          <line x1="32" y1="6" x2="25" y2="19" stroke="url(#vg1)" stroke-width="1.5" stroke-dasharray="3 2" opacity=".5"/>
+          <line x1="32" y1="6" x2="24" y2="4" stroke="#93c5fd" stroke-width="1.2" opacity=".6"/>
+        </svg>
+        <div class="vt-logo-text">
+          <span class="vt-logo-top">ViGNAN</span>
+          <span class="vt-logo-sub">TechSolutions</span>
+        </div>
       </a>
 
-      <!-- ── Toggler ── -->
-      <button class="navbar-toggler border-0 p-1 ms-auto" type="button"
-              data-bs-toggle="collapse" data-bs-target="#navMenu"
-              aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <!-- TOGGLER (mobile) -->
+      <button class="vt-toggler" id="navToggler" aria-label="Toggle navigation">
+        <i class="bi bi-list" id="togglerIcon"></i>
       </button>
 
-      <!-- ── Nav Items ── -->
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav mx-auto gap-1 align-items-lg-center">
+      <!-- NAV COLLAPSE -->
+      <div class="nav-collapse" id="navCollapse">
 
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'core:home' %}">
-              <i class="bi bi-house-fill me-1 d-lg-none"></i>Home
+        <!-- Links -->
+        <ul class="nav-links">
+
+          <li>
+            <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active-link{% endif %}"
+               href="{% url 'core:home' %}">
+              Home
             </a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'core:about' %}">About</a>
+          <li>
+            <a class="nav-link {% if 'about' in request.resolver_match.url_name %}active-link{% endif %}"
+               href="{% url 'core:about' %}">
+              About
+            </a>
           </li>
 
           <!-- Projects Dropdown -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle fw-600" href="{% url 'projects:list' %}"
-               data-bs-toggle="dropdown" data-bs-auto-close="outside"
-               style="color:var(--primary) !important">
-              <i class="bi bi-kanban-fill me-1" style="color:#7C3AED"></i>Projects
+          <li class="dropdown">
+            <a class="nav-link dropdown-toggle {% if 'project' in request.resolver_match.url_name %}active-link{% endif %}"
+               href="{% url 'projects:list' %}" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+              Projects
             </a>
-            <ul class="dropdown-menu border-0 shadow-lg p-2" style="min-width:260px">
-              <li class="px-3 pt-1 pb-2">
-                <small class="text-muted fw-700" style="font-size:.68rem;letter-spacing:.1em;text-transform:uppercase">
-                  Browse by Domain
-                </small>
+            <ul class="dropdown-menu" style="min-width:270px">
+              <li class="px-2 pb-2 pt-1">
+                <small style="font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.3)">Browse by Domain</small>
               </li>
-              <li><a class="dropdown-item py-2" href="{% url 'projects:list' %}?category=aiml">
-                <span class="me-2 fs-5">🤖</span>
-                <span>
-                  <span class="d-block fw-600" style="font-size:.85rem">AI &amp; Machine Learning</span>
-                  <span class="text-muted" style="font-size:.72rem">Deep Learning, NLP, CV</span>
-                </span>
+              <li><a class="dropdown-item" href="{% url 'projects:list' %}?category=aiml">
+                <div class="d-flex align-items-center gap-2">
+                  <div class="dd-icon" style="background:rgba(167,139,250,.15)">🤖</div>
+                  <div><div class="fw-600" style="font-size:.82rem">AI &amp; Machine Learning</div><div class="text-muted" style="font-size:.7rem">Deep Learning, NLP, CV</div></div>
+                </div>
               </a></li>
-              <li><a class="dropdown-item py-2" href="{% url 'projects:list' %}?category=python">
-                <span class="me-2 fs-5">🐍</span>
-                <span>
-                  <span class="d-block fw-600" style="font-size:.85rem">Python Full Stack</span>
-                  <span class="text-muted" style="font-size:.72rem">Django, Flask, FastAPI</span>
-                </span>
+              <li><a class="dropdown-item" href="{% url 'projects:list' %}?category=python">
+                <div class="d-flex align-items-center gap-2">
+                  <div class="dd-icon" style="background:rgba(103,232,249,.15)">🐍</div>
+                  <div><div class="fw-600" style="font-size:.82rem">Python Full Stack</div><div class="text-muted" style="font-size:.7rem">Django, Flask, FastAPI</div></div>
+                </div>
               </a></li>
-              <li><a class="dropdown-item py-2" href="{% url 'projects:list' %}?category=mern">
-                <span class="me-2 fs-5">🌐</span>
-                <span>
-                  <span class="d-block fw-600" style="font-size:.85rem">MERN Stack</span>
-                  <span class="text-muted" style="font-size:.72rem">MongoDB, Express, React, Node</span>
-                </span>
+              <li><a class="dropdown-item" href="{% url 'projects:list' %}?category=mern">
+                <div class="d-flex align-items-center gap-2">
+                  <div class="dd-icon" style="background:rgba(110,231,183,.15)">🌐</div>
+                  <div><div class="fw-600" style="font-size:.82rem">MERN Stack</div><div class="text-muted" style="font-size:.7rem">MongoDB, Express, React, Node</div></div>
+                </div>
               </a></li>
-              <li><a class="dropdown-item py-2" href="{% url 'projects:list' %}?category=java">
-                <span class="me-2 fs-5">☕</span>
-                <span>
-                  <span class="d-block fw-600" style="font-size:.85rem">Java Full Stack</span>
-                  <span class="text-muted" style="font-size:.72rem">Spring Boot, Hibernate</span>
-                </span>
+              <li><a class="dropdown-item" href="{% url 'projects:list' %}?category=java">
+                <div class="d-flex align-items-center gap-2">
+                  <div class="dd-icon" style="background:rgba(252,211,77,.15)">☕</div>
+                  <div><div class="fw-600" style="font-size:.82rem">Java Full Stack</div><div class="text-muted" style="font-size:.7rem">Spring Boot, Hibernate</div></div>
+                </div>
               </a></li>
-              <li><a class="dropdown-item py-2" href="{% url 'projects:list' %}?category=datascience">
-                <span class="me-2 fs-5">📊</span>
-                <span>
-                  <span class="d-block fw-600" style="font-size:.85rem">Data Science</span>
-                  <span class="text-muted" style="font-size:.72rem">Analytics, Visualization, ML</span>
-                </span>
+              <li><a class="dropdown-item" href="{% url 'projects:list' %}?category=datascience">
+                <div class="d-flex align-items-center gap-2">
+                  <div class="dd-icon" style="background:rgba(248,113,113,.15)">📊</div>
+                  <div><div class="fw-600" style="font-size:.82rem">Data Science</div><div class="text-muted" style="font-size:.7rem">Analytics, Visualization, ML</div></div>
+                </div>
               </a></li>
               <li><hr class="dropdown-divider my-1"></li>
-              <li>
-                <a class="dropdown-item py-2 fw-700 text-primary" href="{% url 'projects:list' %}">
-                  <i class="bi bi-grid-fill me-2"></i>View All Projects
-                  <i class="bi bi-arrow-right ms-1" style="font-size:.75rem"></i>
-                </a>
-              </li>
+              <li><a class="dropdown-item fw-700" href="{% url 'projects:list' %}" style="color:#4ade80!important">
+                <i class="bi bi-grid-fill me-2"></i>View All 75+ Projects <i class="bi bi-arrow-right ms-1" style="font-size:.72rem"></i>
+              </a></li>
             </ul>
           </li>
 
           <!-- Programs Dropdown -->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+          <li class="dropdown">
+            <a class="nav-link dropdown-toggle {% if 'internship' in request.resolver_match.url_name or 'course' in request.resolver_match.url_name %}active-link{% endif %}"
+               href="#" data-bs-toggle="dropdown">
               Programs
             </a>
-            <ul class="dropdown-menu border-0 shadow-lg p-2" style="min-width:240px">
-              <li>
-                <a class="dropdown-item py-2" href="{% url 'internships:list' %}">
-                  <div class="d-flex align-items-center gap-3">
-                    <div style="width:36px;height:36px;border-radius:10px;background:rgba(30,58,138,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                      <i class="bi bi-briefcase-fill text-primary"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600" style="font-size:.85rem">Internships</div>
-                      <div class="text-muted" style="font-size:.72rem">Live projects & mentorship</div>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item py-2" href="{% url 'courses:list' %}">
-                  <div class="d-flex align-items-center gap-3">
-                    <div style="width:36px;height:36px;border-radius:10px;background:rgba(16,185,129,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                      <i class="bi bi-book-fill text-success"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600" style="font-size:.85rem">Courses</div>
-                      <div class="text-muted" style="font-size:.72rem">Industry-aligned curriculum</div>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item py-2" href="{% url 'core:corporate_training' %}">
-                  <div class="d-flex align-items-center gap-3">
-                    <div style="width:36px;height:36px;border-radius:10px;background:rgba(245,158,11,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                      <i class="bi bi-building-fill text-warning"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600" style="font-size:.85rem">Corporate Training</div>
-                      <div class="text-muted" style="font-size:.72rem">Custom B2B programs</div>
-                    </div>
-                  </div>
-                </a>
-              </li>
+            <ul class="dropdown-menu" style="min-width:250px">
+              <li><a class="dropdown-item" href="{% url 'internships:list' %}">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="dd-icon" style="background:rgba(59,130,246,.15)"><i class="bi bi-briefcase-fill" style="color:#60a5fa"></i></div>
+                  <div><div class="fw-600" style="font-size:.82rem">Internships</div><div class="text-muted" style="font-size:.7rem">Live projects &amp; mentorship</div></div>
+                </div>
+              </a></li>
+              <li><a class="dropdown-item" href="{% url 'courses:list' %}">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="dd-icon" style="background:rgba(74,222,128,.15)"><i class="bi bi-book-fill" style="color:#4ade80"></i></div>
+                  <div><div class="fw-600" style="font-size:.82rem">Courses</div><div class="text-muted" style="font-size:.7rem">Industry-aligned curriculum</div></div>
+                </div>
+              </a></li>
+              <li><a class="dropdown-item" href="{% url 'core:corporate_training' %}">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="dd-icon" style="background:rgba(245,158,11,.15)"><i class="bi bi-building-fill" style="color:#fbbf24"></i></div>
+                  <div><div class="fw-600" style="font-size:.82rem">Corporate Training</div><div class="text-muted" style="font-size:.7rem">Custom B2B programs</div></div>
+                </div>
+              </a></li>
               <li><hr class="dropdown-divider my-1"></li>
-              <li>
-                <a class="dropdown-item py-2" href="{% url 'certificates:verify' %}">
-                  <div class="d-flex align-items-center gap-3">
-                    <div style="width:36px;height:36px;border-radius:10px;background:rgba(124,58,237,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                      <i class="bi bi-award-fill" style="color:#7C3AED"></i>
-                    </div>
-                    <div>
-                      <div class="fw-600" style="font-size:.85rem">Verify Certificate</div>
-                      <div class="text-muted" style="font-size:.72rem">Check certificate authenticity</div>
-                    </div>
-                  </div>
-                </a>
-              </li>
+              <li><a class="dropdown-item" href="{% url 'certificates:verify' %}">
+                <div class="d-flex align-items-center gap-3">
+                  <div class="dd-icon" style="background:rgba(167,139,250,.15)"><i class="bi bi-award-fill" style="color:#a78bfa"></i></div>
+                  <div><div class="fw-600" style="font-size:.82rem">Verify Certificate</div><div class="text-muted" style="font-size:.7rem">Check certificate authenticity</div></div>
+                </div>
+              </a></li>
             </ul>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'core:contact' %}">Contact</a>
+          <li>
+            <a class="nav-link {% if 'contact' in request.resolver_match.url_name %}active-link{% endif %}"
+               href="{% url 'core:contact' %}">
+              Contact
+            </a>
           </li>
 
         </ul>
 
-        <!-- ── Right Side ── -->
-        <div class="d-flex align-items-center gap-2 mt-3 mt-lg-0 ms-lg-2">
+        <!-- Right Side -->
+        <div class="d-flex align-items-center gap-2 ms-lg-2 mt-3 mt-lg-0 flex-wrap">
 
           <!-- Search -->
-          <form action="{% url 'core:search' %}" method="get" class="d-flex">
-            <div class="input-group input-group-sm" style="width:160px">
-              <input class="form-control" type="search" name="q" placeholder="Search..."
-                     style="border-radius:8px 0 0 8px;font-size:.82rem">
-              <button class="btn btn-outline-secondary" type="submit"
-                      style="border-radius:0 8px 8px 0;padding:0 10px">
-                <i class="bi bi-search" style="font-size:.8rem"></i>
-              </button>
+          <form action="{% url 'core:search' %}" method="get">
+            <div class="nav-search">
+              <button type="submit"><i class="bi bi-search" style="font-size:.8rem"></i></button>
+              <input type="search" name="q" placeholder="Search...">
             </div>
           </form>
 
           {% if user.is_authenticated %}
           <div class="dropdown">
-            <button class="btn btn-primary btn-sm dropdown-toggle d-flex align-items-center gap-2"
-                    data-bs-toggle="dropdown"
-                    style="border-radius:50px;padding:.4rem 1rem">
-              <i class="bi bi-person-circle fs-6"></i>
-              <span class="d-none d-md-inline fw-600" style="font-size:.82rem">
-                {{ user.first_name|default:user.username }}
-              </span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg p-2"
-                style="min-width:220px">
-              <li class="px-3 py-2 mb-1" style="border-bottom:1px solid #F1F5F9">
-                <div class="fw-700 small">{{ user.get_full_name|default:user.username }}</div>
-                <div class="text-muted" style="font-size:.72rem">{{ user.email }}</div>
+            <div class="user-btn" data-bs-toggle="dropdown" style="cursor:pointer">
+              <div class="user-avatar">{{ user.first_name|first|upper|default:"U" }}</div>
+              <span class="d-none d-md-inline">{{ user.first_name|default:user.username }}</span>
+              <i class="bi bi-chevron-down" style="font-size:.65rem;opacity:.6"></i>
+            </div>
+            <ul class="dropdown-menu dropdown-menu-end" style="min-width:220px">
+              <li class="px-3 py-2 mb-1" style="border-bottom:1px solid rgba(255,255,255,.08)">
+                <div class="fw-700" style="font-size:.85rem;color:#fff">{{ user.get_full_name|default:user.username }}</div>
+                <div style="font-size:.72rem;color:rgba(255,255,255,.4)">{{ user.email }}</div>
               </li>
               {% if user.is_staff %}
-              <li><a class="dropdown-item py-2" href="/admin/analytics/">
-                <i class="bi bi-speedometer2 me-2 text-primary"></i>Admin Dashboard
-              </a></li>
-              <li><a class="dropdown-item py-2" href="/admin/">
-                <i class="bi bi-shield-lock me-2 text-warning"></i>Django Admin
-              </a></li>
+              <li><a class="dropdown-item" href="/admin/analytics/"><i class="bi bi-speedometer2 me-2" style="color:#60a5fa"></i>Admin Dashboard</a></li>
+              <li><a class="dropdown-item" href="/admin/"><i class="bi bi-shield-lock me-2" style="color:#fbbf24"></i>Django Admin</a></li>
               {% else %}
-              <li><a class="dropdown-item py-2" href="{% url 'accounts:dashboard' %}">
-                <i class="bi bi-speedometer2 me-2 text-primary"></i>Dashboard
-              </a></li>
-              <li><a class="dropdown-item py-2" href="{% url 'accounts:profile' %}">
-                <i class="bi bi-person me-2 text-success"></i>My Profile
-              </a></li>
-              <li><a class="dropdown-item py-2" href="{% url 'payments:history' %}">
-                <i class="bi bi-receipt me-2 text-warning"></i>Payments
-              </a></li>
+              <li><a class="dropdown-item" href="{% url 'accounts:dashboard' %}"><i class="bi bi-speedometer2 me-2" style="color:#60a5fa"></i>Dashboard</a></li>
+              <li><a class="dropdown-item" href="{% url 'accounts:profile' %}"><i class="bi bi-person me-2" style="color:#4ade80"></i>My Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'payments:history' %}"><i class="bi bi-receipt me-2" style="color:#fbbf24"></i>Payments</a></li>
               {% endif %}
               <li><hr class="dropdown-divider my-1"></li>
-              <li><a class="dropdown-item py-2 text-danger" href="{% url 'accounts:logout' %}">
-                <i class="bi bi-box-arrow-right me-2"></i>Logout
-              </a></li>
+              <li><a class="dropdown-item" href="{% url 'accounts:logout' %}" style="color:#f87171!important"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
             </ul>
           </div>
           {% else %}
-          <a href="{% url 'accounts:login' %}"
-             class="btn btn-outline-primary btn-sm fw-600"
-             style="border-radius:50px;padding:.4rem 1.1rem;font-size:.82rem">
-            Login
-          </a>
-          <a href="{% url 'accounts:register' %}"
-             class="btn btn-primary btn-sm fw-700"
-             style="border-radius:50px;padding:.4rem 1.25rem;font-size:.82rem;
-                    background:linear-gradient(135deg,#1B3A6B,#2563EB);border:none;
-                    box-shadow:0 4px 14px rgba(27,58,107,.35)">
-            Register Free
-          </a>
+          <a href="{% url 'accounts:login' %}" class="btn-login">Login</a>
+          <a href="{% url 'accounts:register' %}" class="btn-register">Register Free</a>
           {% endif %}
-        </div>
-      </div><!-- /collapse -->
 
-    </div><!-- /navbar-inner -->
+        </div>
+      </div><!-- /nav-collapse -->
+
+    </div><!-- /nav-container -->
   </div><!-- /container -->
 </nav>
 
+<script>
+// Mobile toggler
+const toggler = document.getElementById('navToggler');
+const collapse = document.getElementById('navCollapse');
+const icon = document.getElementById('togglerIcon');
+if(toggler){
+  toggler.addEventListener('click',()=>{
+    collapse.classList.toggle('open');
+    icon.className = collapse.classList.contains('open') ? 'bi bi-x-lg' : 'bi bi-list';
+  });
+}
+// Scroll effect
+window.addEventListener('scroll',()=>{
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 20);
+});
+// Show collapse on desktop always
+function handleResize(){
+  if(window.innerWidth >= 992){
+    collapse.style.display='flex';
+    collapse.style.flexDirection='row';
+    collapse.style.alignItems='center';
+    collapse.style.width='100%';
+    collapse.style.background='none';
+    collapse.style.borderTop='none';
+    collapse.style.padding='0';
+  } else {
+    collapse.style.display='';
+    collapse.style.flexDirection='';
+    collapse.style.alignItems='';
+    collapse.style.width='';
+    collapse.style.background='';
+    collapse.style.borderTop='';
+    collapse.style.padding='';
+    if(!collapse.classList.contains('open')) collapse.style.display='none';
+  }
+}
+handleResize();
+window.addEventListener('resize', handleResize);
+</script>

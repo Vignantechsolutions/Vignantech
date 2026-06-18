@@ -30,6 +30,8 @@
   font-size:1.05rem;font-weight:800;letter-spacing:-.5px;
   background:linear-gradient(135deg,#fff 0%,#a5f3c4 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  text-shadow:none;
+  filter:drop-shadow(0 1px 4px rgba(0,0,0,.5));
 }
 .vt-logo-sub{
   font-size:.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#4ade80;margin-top:1px;
@@ -40,9 +42,10 @@
   display:flex;align-items:center;gap:.25rem;margin:0 auto;list-style:none;padding:0;
 }
 .nav-links .nav-link{
-  font-size:.82rem;font-weight:600;color:rgba(255,255,255,.7)!important;
+  font-size:.82rem;font-weight:600;color:rgba(255,255,255,.95)!important;
   padding:.5rem .85rem;border-radius:8px;transition:all .2s;
   position:relative;letter-spacing:.02em;
+  text-shadow:0 1px 4px rgba(0,0,0,.6);
 }
 .nav-links .nav-link:hover,
 .nav-links .nav-link.active-link{color:#fff!important;background:rgba(74,222,128,.1);}
@@ -153,6 +156,10 @@
     border:1px solid rgba(255,255,255,.06)!important;margin-top:.25rem!important}
   .nav-search{min-width:unset;width:100%}
   .nav-container{flex-wrap:wrap;height:auto;padding:.75rem 0}
+}
+@media(min-width:992px){
+  .nav-collapse{display:flex!important;flex-direction:row;align-items:center;flex:1;background:none!important;border:none!important;padding:0!important;}
+  .vt-toggler{display:none!important}
 }
 </style>
 
@@ -370,27 +377,4 @@ if(toggler){
 window.addEventListener('scroll',()=>{
   document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 20);
 });
-// Show collapse on desktop always
-function handleResize(){
-  if(window.innerWidth >= 992){
-    collapse.style.display='flex';
-    collapse.style.flexDirection='row';
-    collapse.style.alignItems='center';
-    collapse.style.width='100%';
-    collapse.style.background='none';
-    collapse.style.borderTop='none';
-    collapse.style.padding='0';
-  } else {
-    collapse.style.display='';
-    collapse.style.flexDirection='';
-    collapse.style.alignItems='';
-    collapse.style.width='';
-    collapse.style.background='';
-    collapse.style.borderTop='';
-    collapse.style.padding='';
-    if(!collapse.classList.contains('open')) collapse.style.display='none';
-  }
-}
-handleResize();
-window.addEventListener('resize', handleResize);
 </script>

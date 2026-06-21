@@ -23,21 +23,17 @@
 }
 
 /* ── LOGO ── */
-.vt-logo-link{text-decoration:none;display:flex;align-items:center;gap:12px;flex-shrink:0}
-.vt-logo-svg{width:44px;height:48px;flex-shrink:0;transition:transform .3s ease;}
-.vt-logo-link:hover .vt-logo-svg{transform:translateY(-2px) rotate(-3deg) scale(1.05)}
-.vt-logo-text{display:flex;flex-direction:column;line-height:1}
-.vt-logo-top{
-  font-size:1.15rem;font-weight:900;letter-spacing:-.5px;
-  background:linear-gradient(135deg,#fff 0%,#bfdbfe 60%,#7dd3fc 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  text-shadow:none;
-  filter:drop-shadow(0 2px 4px rgba(0,0,0,.3));
+.vt-logo-link{text-decoration:none;display:flex;align-items:center;flex-shrink:0}
+.vt-logo-img{
+  height:52px;width:auto;object-fit:contain;
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1),filter .35s;
+  filter:drop-shadow(0 2px 8px rgba(37,99,235,.3));
 }
-.vt-logo-sub{
-  font-size:.5rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
-  color:rgba(255,255,255,.6);margin-top:2px;
+.vt-logo-link:hover .vt-logo-img{
+  transform:scale(1.05);
+  filter:drop-shadow(0 4px 16px rgba(37,99,235,.5));
 }
+#mainNav.scrolled .vt-logo-img{height:44px;}
 
 /* ── NAV LINKS ── */
 .nav-links{
@@ -170,84 +166,9 @@
     <div class="nav-container">
 
       <!-- LOGO -->
+      {% load static %}
       <a class="vt-logo-link" href="{% url 'core:home' %}">
-        <!-- 3D-style SVG logo matching reference -->
-        <svg class="vt-logo-svg" viewBox="0 0 44 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:44px;height:48px;filter:drop-shadow(0 4px 12px rgba(37,99,235,.5)) drop-shadow(0 2px 4px rgba(0,0,0,.3))">
-          <defs>
-            <!-- V-shape gradient: blue top to teal/green bottom -->
-            <linearGradient id="vGrad" x1="22" y1="0" x2="22" y2="48" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#1d4ed8"/>
-              <stop offset="50%" stop-color="#0ea5e9"/>
-              <stop offset="100%" stop-color="#22d3ee"/>
-            </linearGradient>
-            <!-- Node gradients for 3D sphere effect -->
-            <radialGradient id="ball1" cx="35%" cy="30%" r="65%">
-              <stop offset="0%" stop-color="#60a5fa"/>
-              <stop offset="100%" stop-color="#1d4ed8"/>
-            </radialGradient>
-            <radialGradient id="ball2" cx="35%" cy="30%" r="65%">
-              <stop offset="0%" stop-color="#38bdf8"/>
-              <stop offset="100%" stop-color="#0369a1"/>
-            </radialGradient>
-            <radialGradient id="ball3" cx="35%" cy="30%" r="65%">
-              <stop offset="0%" stop-color="#34d399"/>
-              <stop offset="100%" stop-color="#0d9488"/>
-            </radialGradient>
-            <radialGradient id="ball4" cx="35%" cy="30%" r="65%">
-              <stop offset="0%" stop-color="#93c5fd"/>
-              <stop offset="100%" stop-color="#2563eb"/>
-            </radialGradient>
-            <radialGradient id="ball5" cx="35%" cy="30%" r="65%">
-              <stop offset="0%" stop-color="#7dd3fc"/>
-              <stop offset="100%" stop-color="#0284c7"/>
-            </radialGradient>
-            <!-- 3D depth shadow filter -->
-            <filter id="depth" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="1" dy="2" stdDeviation="1.5" flood-color="rgba(0,0,0,.4)"/>
-            </filter>
-          </defs>
-
-          <!-- V-shape body with 3D depth -->
-          <!-- Shadow/depth layer (offset slightly) -->
-          <path d="M5 4 L22 44 L39 4" stroke="rgba(0,0,50,.3)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" transform="translate(1,2)"/>
-          <!-- Main V stroke -->
-          <path d="M5 4 L22 44 L39 4" stroke="url(#vGrad)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" filter="url(#depth)"/>
-
-          <!-- Connector rods -->
-          <line x1="5" y1="4" x2="14" y2="20" stroke="#3b82f6" stroke-width="2" opacity=".6"/>
-          <line x1="39" y1="4" x2="30" y2="20" stroke="#0ea5e9" stroke-width="2" opacity=".6"/>
-          <line x1="39" y1="4" x2="31" y2="2" stroke="#60a5fa" stroke-width="1.5" opacity=".5"/>
-
-          <!-- 3D Spheres (large nodes at top of V arms) -->
-          <!-- Top-left large sphere -->
-          <circle cx="5" cy="4" r="5.5" fill="url(#ball1)" filter="url(#depth)"/>
-          <circle cx="3.5" cy="2.5" r="1.8" fill="rgba(255,255,255,.4)"/>
-
-          <!-- Top-right large sphere -->
-          <circle cx="39" cy="4" r="5.5" fill="url(#ball2)" filter="url(#depth)"/>
-          <circle cx="37.5" cy="2.5" r="1.8" fill="rgba(255,255,255,.4)"/>
-
-          <!-- Mid-left sphere -->
-          <circle cx="14" cy="20" r="4" fill="url(#ball4)" filter="url(#depth)"/>
-          <circle cx="12.8" cy="18.8" r="1.3" fill="rgba(255,255,255,.4)"/>
-
-          <!-- Mid-right sphere -->
-          <circle cx="30" cy="20" r="4" fill="url(#ball5)" filter="url(#depth)"/>
-          <circle cx="28.8" cy="18.8" r="1.3" fill="rgba(255,255,255,.4)"/>
-
-          <!-- Center bottom sphere (teal/green) -->
-          <circle cx="22" cy="44" r="4.5" fill="url(#ball3)" filter="url(#depth)"/>
-          <circle cx="20.5" cy="42.5" r="1.5" fill="rgba(255,255,255,.4)"/>
-
-          <!-- Extra top-right accent node -->
-          <circle cx="31" cy="2" r="3" fill="url(#ball4)" filter="url(#depth)"/>
-          <circle cx="30" cy="1" r="1" fill="rgba(255,255,255,.4)"/>
-        </svg>
-
-        <div class="vt-logo-text">
-          <span class="vt-logo-top">ViGNAN</span>
-          <span class="vt-logo-sub">TechSolutions</span>
-        </div>
+        <img src="{% static 'images/logo_main.png' %}" alt="Vignan TechSolutions" class="vt-logo-img">
       </a>
 
       <!-- TOGGLER (mobile) -->

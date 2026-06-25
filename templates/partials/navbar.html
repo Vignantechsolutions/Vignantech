@@ -141,19 +141,93 @@
 }
 
 @media(max-width:991px){
-  .vt-toggler{display:flex;align-items:center;margin-left:auto}
-  .nav-collapse{
-    display:none;flex-direction:column;width:100%;
-    background:rgba(8,18,18,.98);border-top:1px solid rgba(74,222,128,.1);
-    padding:1rem;gap:.5rem;
+  .vt-toggler{
+    display:flex;
+    align-items:center;
+    margin-left:auto;
+    border-color:rgba(255,255,255,.15);
+    background:rgba(255,255,255,.05);
+    z-index: 1050;
   }
-  .nav-collapse.open{display:flex}
-  .nav-links{flex-direction:column;align-items:flex-start;gap:.25rem;width:100%}
-  .nav-links .dropdown-menu{position:static!important;transform:none!important;
-    box-shadow:none!important;background:rgba(255,255,255,.04)!important;
-    border:1px solid rgba(255,255,255,.06)!important;margin-top:.25rem!important}
-  .nav-search{min-width:unset;width:100%}
-  .nav-container{flex-wrap:wrap;height:auto;padding:.75rem 0}
+  .nav-collapse{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    height: 100dvh;
+    background: rgba(10, 20, 20, 0.96) !important;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-left: 1px solid rgba(74, 222, 128, 0.15);
+    box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+    display: flex !important;
+    flex-direction: column;
+    padding: 2rem 1.5rem !important;
+    gap: 1.25rem;
+    z-index: 1090;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-y: auto;
+  }
+  .nav-collapse.open{
+    transform: translateX(0);
+  }
+  
+  /* Mobile drawer backdrop */
+  .mob-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 1080;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .mob-drawer-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .nav-links{
+    flex-direction:column;
+    align-items:stretch;
+    gap:.5rem;
+    width:100%;
+    margin-top: 0.5rem !important;
+  }
+  .nav-links .nav-link {
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem !important;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .nav-links .dropdown-menu{
+    position:static!important;
+    transform:none!important;
+    box-shadow:none!important;
+    background:rgba(255,255,255,.03)!important;
+    border:1px solid rgba(255,255,255,.05)!important;
+    margin-top:.25rem!important;
+    padding: 0.5rem !important;
+    width: 100%;
+  }
+  .nav-search{
+    min-width:unset;
+    width:100%;
+    margin-top: 1rem;
+  }
+  .nav-container{
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 @media(min-width:992px){
   .nav-collapse{display:flex!important;flex-direction:row;align-items:center;flex:1;background:none!important;border:none!important;padding:0!important;}
@@ -178,6 +252,23 @@
 
       <!-- NAV COLLAPSE -->
       <div class="nav-collapse" id="navCollapse">
+
+        <!-- Mobile Drawer Header -->
+        <div class="d-lg-none d-flex align-items-center justify-content-between pb-3" style="border-bottom:1px solid rgba(255,255,255,.08)">
+          <div style="font-family:'Poppins',sans-serif;font-weight:800;color:#fff;font-size:1.1rem;background:linear-gradient(135deg,#5eead4,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Navigation</div>
+          <button id="drawerClose" style="background:none;border:none;color:#fff;font-size:1.4rem;padding:0;cursor:pointer"><i class="bi bi-x-lg"></i></button>
+        </div>
+
+        {% if user.is_authenticated %}
+        <!-- Mobile Drawer User Profile Card -->
+        <div class="d-lg-none d-flex align-items-center gap-3 p-3 rounded-4 mb-2" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)">
+          <div class="user-avatar" style="width:40px;height:40px;font-size:1rem">{{ user.first_name|first|upper|default:"U" }}</div>
+          <div>
+            <div class="fw-700 text-white" style="font-size:.85rem;line-height:1.2">{{ user.get_full_name|default:user.username }}</div>
+            <div style="font-size:.7rem;color:rgba(255,255,255,.4);margin-top:2px">{{ user.email }}</div>
+          </div>
+        </div>
+        {% endif %}
 
         <!-- Links -->
         <ul class="nav-links">
@@ -335,16 +426,73 @@
 </nav>
 
 <script>
-// Mobile toggler
+// Mobile Drawer Overlay Script
 const toggler = document.getElementById('navToggler');
 const collapse = document.getElementById('navCollapse');
 const icon = document.getElementById('togglerIcon');
-if(toggler){
-  toggler.addEventListener('click',()=>{
-    collapse.classList.toggle('open');
-    icon.className = collapse.classList.contains('open') ? 'bi bi-x-lg' : 'bi bi-list';
+
+// Safely generate backdrop
+let backdrop = document.querySelector('.mob-drawer-backdrop');
+if (!backdrop) {
+  backdrop = document.createElement('div');
+  backdrop.className = 'mob-drawer-backdrop';
+  document.body.appendChild(backdrop);
+}
+
+function openDrawer() {
+  collapse.classList.add('open');
+  backdrop.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDrawer() {
+  collapse.classList.remove('open');
+  backdrop.classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+if (toggler) {
+  toggler.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (collapse.classList.contains('open')) {
+      closeDrawer();
+    } else {
+      openDrawer();
+    }
   });
 }
+
+backdrop.addEventListener('click', closeDrawer);
+
+// Listen for custom drawerClose button
+document.addEventListener('click', (e) => {
+  if (e.target.closest('#drawerClose')) {
+    closeDrawer();
+  }
+});
+
+// Gesture Swipe to Close
+let touchStartX = 0;
+let touchEndX = 0;
+
+collapse.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+collapse.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  if (touchEndX - touchStartX > 55) {
+    closeDrawer();
+  }
+}, { passive: true });
+
+// Close on link click inside drawer
+collapse.addEventListener('click', (e) => {
+  if (e.target.closest('.nav-link:not(.dropdown-toggle)') || e.target.closest('.dropdown-item')) {
+    closeDrawer();
+  }
+});
+
 // Scroll effect
 window.addEventListener('scroll',()=>{
   document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 20);

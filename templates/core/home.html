@@ -68,7 +68,7 @@
 <!-- ═══════════════════════════════════════════
      SERVICES — What We Offer
 ════════════════════════════════════════════ -->
-<section class="py-5" style="background:var(--section-bg)">
+<section id="services" class="py-5" style="background:var(--section-bg)">
     <div class="container">
         <div class="text-center mb-5" data-aos="fade-up">
             <span class="section-badge">What We Offer</span>
@@ -444,6 +444,7 @@ function rvRate(v){
 {% endblock %}
 
 {% block extra_js %}
+<script src="{% static 'js/tech-visualizer.js' %}"></script>
 <script>
 // Typewriter — hero heading
 const words = ['Students', 'Freshers', 'Learners', 'Beginners', 'Dreamers'];

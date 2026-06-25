@@ -11,8 +11,8 @@
             <div class="sr-avatar" style="background:linear-gradient(135deg,#1E3A8A,#3B82F6)">{{ t.name|first|upper }}</div>
         {% endif %}
         <div>
-            <div style="font-weight:700;font-size:.88rem;color:#0F172A">{{ t.name }}</div>
-            <div style="font-size:.75rem;color:#64748B">{{ t.designation }}{% if t.company %} &middot; {{ t.company }}{% endif %}</div>
+            <div class="sr-name" style="font-weight:700;font-size:.88rem;">{{ t.name }}</div>
+            <div class="sr-designation" style="font-size:.75rem;">{{ t.designation }}{% if t.company %} &middot; {{ t.company }}{% endif %}</div>
         </div>
     </div>
 </div>

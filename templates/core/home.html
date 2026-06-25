@@ -302,30 +302,59 @@
      STUDENT REVIEWS — Dynamic from DB
 ════════════════════════════════════════════ -->
 {% if testimonials %}
-<section style="background:#fff;padding:80px 0;overflow:hidden">
-<style>
-.sr-track-wrap{overflow:hidden;position:relative}
-.sr-track-wrap::before,.sr-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
-.sr-track-wrap::before{left:0;background:linear-gradient(to right,#fff,transparent)}
-.sr-track-wrap::after{right:0;background:linear-gradient(to left,#fff,transparent)}
-.sr-track{display:flex;gap:24px;width:max-content;animation:sr-slide 40s linear infinite}
-.sr-track:hover{animation-play-state:paused}
-@keyframes sr-slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.sr-card{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:20px;padding:28px 26px;width:320px;flex-shrink:0;transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;position:relative;overflow:hidden}
-.sr-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#1E3A8A,#3B82F6);transform:scaleX(0);transition:transform .35s ease;transform-origin:left}
-.sr-card:hover{transform:translateY(-8px);box-shadow:0 24px 48px rgba(30,58,138,.1);border-color:rgba(30,58,138,.2)}
-.sr-card:hover::before{transform:scaleX(1)}
-.sr-quote{font-size:2.2rem;color:rgba(30,58,138,.1);line-height:1;margin-bottom:6px}
-.sr-text{font-size:.88rem;color:#475569;line-height:1.8;margin-bottom:18px}
-.sr-stars{display:flex;gap:2px;margin-bottom:12px}
-.sr-stars i{font-size:.75rem;color:#F59E0B}
-.sr-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;color:#fff;flex-shrink:0}
-</style>
-    <div class="container">
+<section style="background:#0F172A;padding:100px 0;overflow:hidden;position:relative">
+    <!-- Glow effects in background -->
+    <div style="position:absolute;top:10%;left:5%;width:400px;height:400px;background:radial-gradient(circle,rgba(59,130,246,0.1) 0%,transparent 70%);pointer-events:none"></div>
+    <div style="position:absolute;bottom:10%;right:5%;width:400px;height:400px;background:radial-gradient(circle,rgba(236,72,153,0.08) 0%,transparent 70%);pointer-events:none"></div>
+    <div class="vt-grid-overlay" style="opacity:0.25"></div>
+
+    <style>
+    .sr-track-wrap{overflow:hidden;position:relative}
+    .sr-track-wrap::before,.sr-track-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
+    .sr-track-wrap::before{left:0;background:linear-gradient(to right,#0F172A,transparent)}
+    .sr-track-wrap::after{right:0;background:linear-gradient(to left,#0F172A,transparent)}
+    .sr-track{display:flex;gap:24px;width:max-content;animation:sr-slide 40s linear infinite}
+    .sr-track:hover{animation-play-state:paused}
+    @keyframes sr-slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    
+    .sr-card{
+        background:rgba(255,255,255,.03);
+        border:1px solid rgba(255,255,255,.08);
+        border-radius:24px;
+        padding:32px 28px;
+        width:320px;
+        flex-shrink:0;
+        backdrop-filter:blur(12px);
+        -webkit-backdrop-filter:blur(12px);
+        transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .4s;
+        position:relative;
+        overflow:hidden;
+    }
+    .sr-card::before{
+        content:'';position:absolute;top:0;left:0;right:0;height:3px;
+        background:linear-gradient(90deg,#5eead4,#a78bfa,#f472b6);
+        transform:scaleX(0);transition:transform .4s ease;transform-origin:left;
+    }
+    .sr-card:hover{
+        transform:translateY(-10px) scale(1.02);
+        box-shadow:0 24px 60px rgba(139,92,246,.15);
+        border-color:rgba(255,255,255,.2);
+        background:rgba(255,255,255,.06);
+    }
+    .sr-card:hover::before{transform:scaleX(1)}
+    .sr-quote{font-size:2.2rem;color:rgba(255,255,255,.05);line-height:1;margin-bottom:6px}
+    .sr-text{font-size:.9rem;color:rgba(255,255,255,.8);line-height:1.8;margin-bottom:18px}
+    .sr-stars{display:flex;gap:2px;margin-bottom:12px}
+    .sr-stars i{font-size:.75rem;color:#F59E0B}
+    .sr-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;color:#fff;flex-shrink:0}
+    .sr-card .sr-name { color:#fff; }
+    .sr-card .sr-designation { color:rgba(255,255,255,.6); }
+    </style>
+    <div class="container position-relative" style="z-index:2">
         <div class="text-center mb-5" data-aos="fade-up">
-            <span class="section-badge">Student Reviews</span>
-            <h2 class="section-title">What Our Students Say</h2>
-            <p class="section-subtitle">Verified reviews from our enrolled students</p>
+            <span class="section-badge" style="background:rgba(255,255,255,.1);color:#60A5FA;border-color:rgba(255,255,255,.15)">Student Reviews</span>
+            <h2 class="section-title text-white">What Our Students Say</h2>
+            <p class="section-subtitle" style="color:rgba(255,255,255,.6)">Verified reviews from our enrolled students</p>
         </div>
     </div>
     <div class="sr-track-wrap">

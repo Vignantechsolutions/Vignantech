@@ -3,15 +3,15 @@
 .gh-hero{
   position:relative;width:100%;overflow:hidden;
   font-family:'Poppins',sans-serif;padding:178px 0 80px;
-  background:linear-gradient(135deg,#1a0533 0%,#2d1b69 25%,#4a1942 50%,#6b2d6b 65%,#c0627a 80%,#e8956a 100%);
+  background:linear-gradient(135deg,#050811 0%,#090d1a 45%,#0d1326 100%);
 }
 
 /* Animated cosmic background layers */
 .gh-cosmic-1{
   position:absolute;inset:0;
-  background:radial-gradient(ellipse at 20% 50%,rgba(139,92,246,.35) 0%,transparent 60%),
-             radial-gradient(ellipse at 80% 20%,rgba(236,72,153,.25) 0%,transparent 50%),
-             radial-gradient(ellipse at 60% 80%,rgba(249,115,22,.2) 0%,transparent 50%);
+  background:radial-gradient(ellipse at 20% 50%,rgba(59,130,246,.25) 0%,transparent 60%),
+             radial-gradient(ellipse at 80% 20%,rgba(139,92,246,.2) 0%,transparent 50%),
+             radial-gradient(ellipse at 60% 80%,rgba(6,182,212,.15) 0%,transparent 50%);
   animation:cosmicShift 12s ease-in-out infinite alternate;
 }
 @keyframes cosmicShift{
@@ -27,9 +27,9 @@
 
 /* Floating orbs */
 .gh-orb{position:absolute;border-radius:50%;filter:blur(60px);pointer-events:none;animation:orbFloat 10s ease-in-out infinite}
-.gh-orb1{width:500px;height:500px;top:-150px;left:-100px;background:rgba(139,92,246,.3);animation-delay:0s}
-.gh-orb2{width:400px;height:400px;bottom:-100px;right:-80px;background:rgba(236,72,153,.25);animation-delay:-5s}
-.gh-orb3{width:300px;height:300px;top:30%;right:20%;background:rgba(249,115,22,.15);animation-delay:-3s}
+.gh-orb1{width:500px;height:500px;top:-150px;left:-100px;background:rgba(59,130,246,.2);animation-delay:0s}
+.gh-orb2{width:400px;height:400px;bottom:-100px;right:-80px;background:rgba(139,92,246,.15);animation-delay:-5s}
+.gh-orb3{width:300px;height:300px;top:30%;right:20%;background:rgba(6,182,212,.15);animation-delay:-3s}
 @keyframes orbFloat{
   0%,100%{transform:translate(0,0) scale(1)}
   33%{transform:translate(20px,-30px) scale(1.05)}
@@ -45,8 +45,8 @@
 /* Badge */
 .gh-badge{
   display:inline-flex;align-items:center;gap:8px;
-  border:1px solid rgba(255,255,255,.25);
-  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.05);
   padding:7px 16px;border-radius:50px;
   backdrop-filter:blur(12px);
   font-size:.72rem;font-weight:700;text-transform:uppercase;
@@ -60,7 +60,7 @@
 }
 /* Multi-color gradient text */
 .gh-grad{
-  background:linear-gradient(135deg,#5eead4 0%,#a78bfa 35%,#f472b6 70%,#fb923c 100%);
+  background:linear-gradient(135deg,#00f2fe 0%,#60a5fa 35%,#3b82f6 70%,#8b5cf6 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   background-size:200% 200%;
   animation:gradShift 5s ease infinite;
@@ -72,30 +72,31 @@
 }
 
 /* Sub text */
-.gh-sub{max-width:520px;color:rgba(255,255,255,.7);font-size:1rem;line-height:1.8;margin-bottom:2rem}
+.gh-sub{max-width:520px;color:rgba(255,255,255,.65);font-size:1rem;line-height:1.8;margin-bottom:2rem}
 
 /* Buttons */
 .gh-btn-p{
   display:inline-flex;align-items:center;gap:8px;
-  background:rgba(255,255,255,.95);color:#2d1b69;
+  background:linear-gradient(135deg,#3b82f6,#2563eb);
+  color:#fff;
   padding:14px 28px;border-radius:50px;font-weight:700;
   font-size:.88rem;text-decoration:none;
-  box-shadow:0 8px 32px rgba(139,92,246,.4);
+  box-shadow:0 8px 32px rgba(37,99,235,.35);
   transition:all .25s;
 }
-.gh-btn-p:hover{background:#fff;transform:translateY(-2px);box-shadow:0 12px 40px rgba(139,92,246,.5);color:#2d1b69}
+.gh-btn-p:hover{background:linear-gradient(135deg,#2563eb,#1d4ed8);transform:translateY(-2px);box-shadow:0 12px 40px rgba(37,99,235,.5);color:#fff}
 .gh-btn-p i{transition:transform .2s}
 .gh-btn-p:hover i{transform:translateX(4px)}
 
 .gh-btn-g{
   display:inline-flex;align-items:center;gap:8px;
-  border:1px solid rgba(255,255,255,.3);
-  background:rgba(255,255,255,.1);color:#fff;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.05);color:#fff;
   padding:14px 28px;border-radius:50px;font-weight:700;
   font-size:.88rem;text-decoration:none;
   backdrop-filter:blur(12px);transition:all .25s;
 }
-.gh-btn-g:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.5);color:#fff;transform:translateY(-2px)}
+.gh-btn-g:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.35);color:#fff;transform:translateY(-2px)}
 
 /* Tech tags */
 .gh-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
@@ -139,7 +140,7 @@
 .gh-prog{height:6px;background:rgba(255,255,255,.15);border-radius:50px;overflow:hidden}
 .gh-prog-fill{
   height:100%;width:0;border-radius:50px;
-  background:linear-gradient(90deg,#5eead4,#a78bfa,#f472b6);
+  background:linear-gradient(90deg,#00f2fe,#3b82f6,#8b5cf6);
   animation:progFill 1.8s cubic-bezier(.16,1,.3,1) .8s forwards;
 }
 @keyframes progFill{to{width:98%}}
@@ -237,6 +238,35 @@
           </button>
         </div>
 
+        <!-- Spaceship Style AI Prompt Search Bar -->
+        <div class="gh-anim gh-d4 mt-4 mb-3">
+          <div class="hero-prompt-container" style="position:relative;background:rgba(15,22,42,0.6);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:6px 8px;display:flex;align-items:center;gap:10px;box-shadow:0 15px 35px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.03);backdrop-filter:blur(20px);max-width:580px">
+            <div class="hero-prompt-icon" style="color:#60a5fa;font-size:1.15rem;padding-left:10px;display:flex;align-items:center"><i class="bi bi-magic"></i></div>
+            <input type="text" id="heroPromptInput" placeholder="What domain or project are you looking for? (e.g. Django, ML)..." style="background:none;border:none;outline:none;color:#fff;font-size:0.85rem;flex-grow:1;padding:8px 0" onkeypress="handleHeroPromptKey(event)">
+            <button onclick="triggerHeroPrompt()" class="btn btn-primary d-flex align-items-center gap-1 rounded-pill px-4 py-2" style="font-weight:700;font-size:0.8rem;background:linear-gradient(135deg,#3b82f6,#2563eb);border:none;box-shadow:0 4px 12px rgba(37,99,235,0.3)">
+              Find AI <i class="bi bi-arrow-right-short" style="font-size:1.1rem"></i>
+            </button>
+          </div>
+          <script>
+            function handleHeroPromptKey(e) {
+              if (e.key === 'Enter') {
+                triggerHeroPrompt();
+              }
+            }
+            function triggerHeroPrompt() {
+              const input = document.getElementById('heroPromptInput');
+              const val = input ? input.value.trim() : '';
+              if (val) {
+                window.location.href = "{% url 'core:search' %}?q=" + encodeURIComponent(val);
+              } else {
+                if (window.projectRecommender) {
+                  window.projectRecommender.openModal();
+                }
+              }
+            }
+          </script>
+        </div>
+
         <div class="gh-tags gh-anim gh-d4">
           <span class="gh-tag">🤖 AI &amp; ML</span>
           <span class="gh-tag">🐍 Python</span>
@@ -286,7 +316,7 @@
             <div class="d-flex gap-2 mt-4 flex-wrap">
               <span class="gh-pill"><span class="gh-dot"></span>&nbsp;ENROLLING NOW</span>
               <span class="gh-pill"><i class="bi bi-award-fill" style="color:#fbbf24"></i>&nbsp;MSME CERTIFIED</span>
-              <span class="gh-pill"><i class="bi bi-patch-check-fill" style="color:#5eead4"></i>&nbsp;VTU APPROVED</span>
+              <span class="gh-pill"><i class="bi bi-patch-check-fill" style="color:#00f2fe"></i>&nbsp;VTU APPROVED</span>
             </div>
 
           </div>

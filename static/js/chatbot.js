@@ -17,13 +17,13 @@ class VignAI {
             <div id="vignai-chat" class="chat-widget">
                 <div class="chat-toggle" id="chat-toggle">
                     <i class="fas fa-robot"></i>
-                    <span class="chat-badge">VignAI</span>
+                    <span class="chat-badge" style="background:#2563eb">Alf</span>
                 </div>
                 <div class="chat-container" id="chat-container">
                     <div class="chat-header">
                         <div class="chat-title">
-                            <i class="fas fa-robot"></i>
-                            <span>VignAI Assistant</span>
+                            <i class="fas fa-robot" style="color:#3b82f6"></i>
+                            <span>Alf &middot; Vignan AI</span>
                         </div>
                         <button class="chat-close" id="chat-close">
                             <i class="fas fa-times"></i>
@@ -31,7 +31,7 @@ class VignAI {
                     </div>
                     <div class="chat-messages" id="chat-messages"></div>
                     <div class="chat-input-container">
-                        <input type="text" id="chat-input" placeholder="Ask about projects, pricing, timeline..." />
+                        <input type="text" id="chat-input" placeholder="Ask Alf about projects, domain titles..." />
                         <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
                     </div>
                 </div>
@@ -46,62 +46,72 @@ class VignAI {
             <style>
                 .chat-widget {
                     position: fixed;
-                    bottom: 20px;
-                    right: 20px;
+                    bottom: 24px;
+                    right: 24px;
                     z-index: 10000;
                     font-family: 'Poppins', sans-serif;
                 }
                 .chat-toggle {
                     width: 60px;
                     height: 60px;
-                    background: linear-gradient(135deg, #1B3A6B 0%, #2563EB 100%);
+                    background: linear-gradient(135deg, #0e1626, #090d16);
+                    border: 1px solid rgba(59, 130, 246, 0.35);
                     border-radius: 50%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     color: white;
                     cursor: pointer;
-                    box-shadow: 0 4px 20px rgba(27,58,107,0.3);
-                    transition: all 0.3s ease;
+                    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.3), 0 0 15px rgba(59, 130, 246, 0.15);
+                    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                     position: relative;
                 }
                 .chat-toggle:hover {
-                    transform: scale(1.1);
-                    box-shadow: 0 8px 30px rgba(27,58,107,0.5);
+                    transform: scale(1.1) translateY(-4px);
+                    border-color: rgba(59, 130, 246, 0.6);
+                    box-shadow: 0 12px 35px rgba(59, 130, 246, 0.45), 0 0 25px rgba(59, 130, 246, 0.25);
                 }
                 .chat-badge {
                     position: absolute;
-                    top: -8px;
-                    right: -8px;
-                    background: #DC2626;
+                    top: -6px;
+                    right: -6px;
                     color: white;
-                    font-size: 10px;
-                    padding: 2px 6px;
-                    border-radius: 10px;
-                    font-weight: bold;
+                    font-size: 9px;
+                    padding: 3px 7px;
+                    border-radius: 12px;
+                    font-weight: 800;
+                    letter-spacing: 0.05em;
+                    text-transform: uppercase;
                 }
                 .chat-container {
                     position: absolute;
-                    bottom: 70px;
+                    bottom: 74px;
                     right: 0;
-                    width: 350px;
-                    height: 500px;
-                    background: white;
-                    border-radius: 15px;
-                    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+                    width: 360px;
+                    height: 520px;
+                    background: rgba(15, 22, 42, 0.8);
+                    border-radius: 20px;
+                    box-shadow: 0 15px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+                    backdrop-filter: blur(24px);
+                    -webkit-backdrop-filter: blur(24px);
                     display: none;
                     flex-direction: column;
                     overflow: hidden;
-                    border: 1px solid rgba(0,0,0,0.05);
+                    border: 1px solid rgba(255,255,255,0.08);
                 }
                 .chat-container.open {
                     display: flex;
-                    animation: slideUp 0.3s ease;
+                    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                }
+                @keyframes slideUp {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
                 }
                 .chat-header {
-                    background: linear-gradient(135deg, #1B3A6B 0%, #2563EB 100%);
+                    background: rgba(9, 13, 22, 0.9);
+                    border-bottom: 1px solid rgba(255,255,255,0.08);
                     color: white;
-                    padding: 15px;
+                    padding: 18px 20px;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
@@ -109,85 +119,101 @@ class VignAI {
                 .chat-title {
                     display: flex;
                     align-items: center;
-                    gap: 8px;
-                    font-weight: 600;
+                    gap: 10px;
+                    font-weight: 700;
+                    font-size: 0.95rem;
                 }
                 .chat-close {
                     background: none;
                     border: none;
-                    color: white;
+                    color: rgba(255,255,255,0.6);
                     cursor: pointer;
                     font-size: 16px;
+                    transition: color 0.2s;
+                }
+                .chat-close:hover {
+                    color: #fff;
                 }
                 .chat-messages {
                     flex: 1;
-                    padding: 15px;
+                    padding: 20px;
                     overflow-y: auto;
-                    background: #f8f9fa;
+                    background: rgba(11, 15, 25, 0.5);
                 }
                 .message {
-                    margin-bottom: 15px;
+                    margin-bottom: 18px;
                     display: flex;
                     align-items: flex-start;
-                    gap: 8px;
+                    gap: 10px;
                 }
                 .message.user {
                     flex-direction: row-reverse;
                 }
                 .message-content {
-                    max-width: 80%;
-                    padding: 10px 15px;
-                    border-radius: 15px;
+                    max-width: 78%;
+                    padding: 12px 16px;
+                    border-radius: 18px;
                     font-size: 13.5px;
-                    line-height: 1.45;
+                    line-height: 1.5;
                 }
                 .message.bot .message-content {
-                    background: white;
-                    color: #333;
-                    border: 1px solid #e9ecef;
+                    background: rgba(255,255,255,0.04);
+                    color: #e5e7eb;
+                    border: 1px solid rgba(255,255,255,0.06);
                 }
                 .message.user .message-content {
-                    background: #2563EB;
+                    background: linear-gradient(135deg, #3b82f6, #2563eb);
                     color: white;
+                    box-shadow: 0 4px 15px rgba(37,99,235,0.25);
                 }
                 .message-avatar {
-                    width: 30px;
-                    height: 30px;
+                    width: 32px;
+                    height: 32px;
                     border-radius: 50%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     font-size: 12px;
                     flex-shrink: 0;
+                    font-weight: 800;
                 }
                 .message.bot .message-avatar {
-                    background: #1B3A6B;
-                    color: white;
+                    background: rgba(59, 130, 246, 0.15);
+                    color: #3b82f6;
+                    border: 1px solid rgba(59, 130, 246, 0.25);
                 }
                 .message.user .message-avatar {
-                    background: #2563EB;
-                    color: white;
+                    background: rgba(59, 130, 246, 0.15);
+                    color: #3b82f6;
+                    border: 1px solid rgba(59, 130, 246, 0.25);
                 }
                 .chat-input-container {
-                    padding: 15px;
-                    background: white;
-                    border-top: 1px solid #e9ecef;
+                    padding: 15px 20px;
+                    background: rgba(9, 13, 22, 0.9);
+                    border-top: 1px solid rgba(255,255,255,0.08);
                     display: flex;
                     gap: 10px;
+                    align-items: center;
                 }
                 #chat-input {
                     flex: 1;
-                    padding: 10px 15px;
-                    border: 1px solid #e9ecef;
+                    padding: 10px 18px;
+                    background: rgba(255,255,255,0.03);
+                    border: 1px solid rgba(255,255,255,0.08);
                     border-radius: 25px;
                     outline: none;
-                    font-size: 14px;
+                    color: #fff;
+                    font-size: 13.5px;
                     font-family: 'Poppins', sans-serif;
+                    transition: border-color 0.2s;
+                }
+                #chat-input:focus {
+                    border-color: rgba(59, 130, 246, 0.4);
                 }
                 #chat-send {
-                    width: 40px;
-                    height: 40px;
-                    background: #2563EB;
+                    width: 38px;
+                    height: 38px;
+                    background: linear-gradient(135deg, #3b82f6, #2563eb);
                     color: white;
                     border: none;
                     border-radius: 50%;
@@ -195,7 +221,12 @@ class VignAI {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    transition: background 0.2s;
+                    transition: all 0.2s;
+                    box-shadow: 0 4px 12px rgba(37,99,235,0.2);
+                }
+                #chat-send:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0 6px 15px rgba(37,99,235,0.35);
                 }
                 #chat-send:hover {
                     background: #1D4ED8;

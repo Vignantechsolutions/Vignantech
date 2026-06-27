@@ -6,9 +6,15 @@
             <div class="col-lg-4">
                 {% load static %}
                 <div class="mb-3">
-                    <img src="{% static 'images/logo_main.png' %}" alt="Vignan TechSolutions"
-                         style="height:90px;width:auto;object-fit:contain;
-                                filter:drop-shadow(0 0 20px rgba(59,130,246,.5)) brightness(1.05)">
+                    <style>
+                        .footer-logo-img { transition: all 0.3s ease; }
+                        .footer-logo-img:hover { transform: scale(1.06) rotate(3deg); border-color: rgba(0, 242, 254, 0.6) !important; box-shadow: 0 0 25px rgba(0, 242, 254, 0.5) !important; }
+                    </style>
+                    <img src="{% static 'images/logo_new.jpg' %}" alt="Vignan TechSolutions"
+                         style="height:80px;width:80px;object-fit:cover;border-radius:50%;
+                                border:2px solid rgba(59, 130, 246, 0.4);
+                                box-shadow: 0 0 20px rgba(59, 130, 246, 0.35);"
+                         class="footer-logo-img">
                 </div>
                 <p class="small mb-3" style="color:#94A3B8;line-height:1.8;max-width:300px">
                     Empowering students and professionals with industry-ready skills through internships, courses, and corporate training.

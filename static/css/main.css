@@ -1279,39 +1279,43 @@ img { max-width: 100%; }
     .mob-bottom-nav {
         display: flex !important;
         position: fixed; bottom: 0; left: 0; right: 0;
-        background: #fff;
-        border-top: 1px solid #E2E8F0;
-        box-shadow: 0 -4px 24px rgba(30,58,138,.12);
+        background: rgba(6, 11, 30, 0.85) !important;
+        backdrop-filter: blur(28px) !important;
+        -webkit-backdrop-filter: blur(28px) !important;
+        border-top: 1px solid rgba(59, 130, 246, 0.15) !important;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.65), 0 0 20px rgba(59, 130, 246, 0.08) !important;
         z-index: 1050;
-        padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
-        border-radius: 20px 20px 0 0;
+        padding: 8px 4px calc(8px + env(safe-area-inset-bottom)) !important;
+        border-radius: 24px 24px 0 0 !important;
     }
     .mob-bottom-nav a {
         flex: 1; display: flex; flex-direction: column;
         align-items: center; justify-content: center;
         gap: 3px; text-decoration: none;
-        color: #94A3B8; font-size: .58rem; font-weight: 700;
+        color: rgba(255, 255, 255, 0.5) !important; font-size: .62rem; font-weight: 700;
         font-family: 'Poppins', sans-serif;
         padding: 4px 2px; transition: all .2s;
         letter-spacing: .02em; border-radius: 12px;
     }
     .mob-bottom-nav a i { font-size: 1.2rem; transition: all .25s; }
-    .mob-bottom-nav a.active { color: #1E3A8A; }
-    .mob-bottom-nav a.active i { transform: translateY(-2px); color: #1E3A8A; }
-    .mob-bottom-nav a:hover { color: #1E3A8A; }
+    .mob-bottom-nav a.active { color: #00f2fe !important; }
+    .mob-bottom-nav a.active i { transform: translateY(-2px); color: #00f2fe !important; }
+    .mob-bottom-nav a:hover { color: #00f2fe !important; }
     .mob-bottom-nav a.mob-cta {
         color: #fff !important;
-        background: linear-gradient(135deg, #1B3A6B, #2563EB);
+        background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+        border: 1px solid rgba(0, 242, 254, 0.3) !important;
         border-radius: 14px;
         margin: 0 4px;
-        padding: 5px 6px;
-        box-shadow: 0 4px 16px rgba(27,58,107,.4);
-        min-width: 56px;
+        padding: 6px 8px !important;
+        box-shadow: 0 4px 15px rgba(37,99,235,0.4), 0 0 10px rgba(0, 242, 254, 0.2) !important;
+        min-width: 58px;
     }
     .mob-bottom-nav a.mob-cta i { font-size: 1.3rem; color: #fff !important; }
     .mob-bottom-nav .mob-active-dot {
         width: 4px; height: 4px; border-radius: 50%;
-        background: #1E3A8A; margin-top: 1px;
+        background: #00f2fe !important; margin-top: 1px;
+        box-shadow: 0 0 8px #00f2fe !important;
         opacity: 0; transition: opacity .2s;
     }
     .mob-bottom-nav a.active .mob-active-dot { opacity: 1; }
@@ -2037,4 +2041,109 @@ body.dark-cosmic::-webkit-scrollbar-thumb:hover { background: #334155; }
 }
 .vt-svc-icon {
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ── Global Dark Cosmic Theme Compatibility Overrides ── */
+body.dark-cosmic .bg-white,
+body.dark-cosmic .bg-light,
+body.dark-cosmic [style*="background:#fff"],
+body.dark-cosmic [style*="background-color:#fff"],
+body.dark-cosmic [style*="background: #fff"],
+body.dark-cosmic [style*="background-color: #fff"],
+body.dark-cosmic [style*="background:#FFF"],
+body.dark-cosmic [style*="background-color:#FFF"],
+body.dark-cosmic [style*="background: #FFF"],
+body.dark-cosmic [style*="background-color: #FFF"] {
+    background-color: var(--space-bg) !important;
+    background: var(--space-bg) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--space-border) !important;
+}
+
+body.dark-cosmic .card,
+body.dark-cosmic .form-card,
+body.dark-cosmic [style*="background:#fff;border:1px solid #E2E8F0"],
+body.dark-cosmic [style*="background:#fff;border:1px solid #e2e8f0"],
+body.dark-cosmic [style*="background: #fff; border: 1px solid #E2E8F0"] {
+    background: var(--space-card) !important;
+    border: 1px solid var(--space-border) !important;
+    color: var(--text-primary) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+}
+
+body.dark-cosmic .form-control,
+body.dark-cosmic .form-select,
+body.dark-cosmic input[type="text"],
+body.dark-cosmic input[type="email"],
+body.dark-cosmic input[type="password"],
+body.dark-cosmic textarea,
+body.dark-cosmic select {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
+}
+
+body.dark-cosmic .form-control:focus,
+body.dark-cosmic .form-select:focus,
+body.dark-cosmic input:focus,
+body.dark-cosmic textarea:focus,
+body.dark-cosmic select:focus {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border-color: var(--neon-blue) !important;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.25) !important;
+}
+
+body.dark-cosmic .text-dark,
+body.dark-cosmic p.text-dark,
+body.dark-cosmic span.text-dark,
+body.dark-cosmic div.text-dark {
+    color: var(--text-secondary) !important;
+}
+
+/* ── Mobile Viewport Responsiveness Overrides ── */
+@media (max-width: 767px) {
+    /* Container breathing room */
+    .container {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+    
+    /* Center align hero content elements */
+    .gh-hero {
+        padding: 124px 0 60px !important;
+        text-align: center !important;
+    }
+    .gh-sub {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    .gh-tags {
+        justify-content: center !important;
+    }
+    .hero-prompt-container {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 100% !important;
+    }
+    
+    /* Horizontal card rows overflow indicators */
+    .mob-hscroll {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        gap: 16px !important;
+        padding: 10px 4px 20px !important;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .mob-hscroll::-webkit-scrollbar {
+        display: none !important;
+    }
+    .mob-hscroll > * {
+        flex: 0 0 84vw !important;
+        max-width: 84vw !important;
+        scroll-snap-align: start;
+    }
 }

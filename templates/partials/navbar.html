@@ -179,17 +179,33 @@
   display:flex;align-items:center;justify-content:center;
   font-size:.75rem;font-weight:800;color:#fff;flex-shrink:0;
   box-shadow: 0 2px 8px rgba(37,99,235,0.4);
-}rem;font-weight:800;color:#fff;flex-shrink:0;
 }
 
 @media(max-width:991px){
+  .vt-logo-img {
+    height: 44px !important;
+    width: 44px !important;
+  }
   .vt-toggler{
     display:flex;
     align-items:center;
+    justify-content:center;
+    width:40px;
+    height:40px;
     margin-left:auto;
-    border-color:rgba(255,255,255,.15);
-    background:rgba(255,255,255,.05);
+    border-radius:50% !important;
+    border: 1.5px solid rgba(59, 130, 246, 0.25) !important;
+    background: rgba(59, 130, 246, 0.08) !important;
+    color: #fff !important;
+    font-size: 1.25rem !important;
     z-index: 1050;
+    transition: all 0.25s ease;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.1);
+  }
+  .vt-toggler:hover {
+    background: rgba(59, 130, 246, 0.15) !important;
+    border-color: rgba(0, 242, 254, 0.4) !important;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
   }
   .nav-collapse{
     position: fixed;
@@ -259,10 +275,39 @@
     padding: 0.5rem !important;
     width: 100%;
   }
+  .nav-collapse .d-flex.align-items-center.gap-2.ms-lg-2.mt-3.mt-lg-0.flex-wrap {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    gap: 1rem !important;
+    margin-top: 1.5rem !important;
+  }
+  .nav-collapse form {
+    width: 100%;
+  }
+  .nav-collapse .nav-search {
+    width: 100% !important;
+    min-width: unset !important;
+  }
+  .nav-collapse .btn-login,
+  .nav-collapse .btn-register {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 0.75rem 1.5rem !important;
+    font-size: 0.9rem !important;
+  }
+  .nav-collapse .dropdown {
+    width: 100%;
+  }
+  .nav-collapse .user-btn {
+    width: 100% !important;
+    justify-content: space-between !important;
+    padding: 0.75rem 1.25rem !important;
+  }
   .nav-search{
     min-width:unset;
     width:100%;
-    margin-top: 1rem;
+    margin-top: 0;
   }
   .nav-container{
     height: 60px;

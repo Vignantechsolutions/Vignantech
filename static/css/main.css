@@ -1267,7 +1267,7 @@ img { max-width: 100%; }
     /* ── Hide desktop navbar collapse & toggler ── */
     .navbar-collapse, .navbar-toggler { display: none !important; }
     .navbar-inner { padding: .35rem 0 !important; }
-    .vt-logo-img { height: 38px !important; }
+    .vt-logo-img { height: 44px !important; width: 44px !important; }
     .navbar-accent-bar { height: 3px; }
     #mainNav { box-shadow: 0 2px 16px rgba(30,58,138,.10) !important; }
 

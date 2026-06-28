@@ -1262,7 +1262,7 @@ img { max-width: 100%; }
 @media (max-width: 767px) {
 
     /* ── Body padding for bottom nav ── */
-    body { padding-bottom: 70px !important; }
+    body { padding-bottom: 92px !important; }
 
     /* ── Hide desktop navbar collapse & toggler ── */
     .navbar-collapse, .navbar-toggler { display: none !important; }
@@ -1272,21 +1272,24 @@ img { max-width: 100%; }
     #mainNav { box-shadow: 0 2px 16px rgba(30,58,138,.10) !important; }
 
     /* ── Floating WhatsApp & back-to-top ── */
-    .whatsapp-float { bottom: 80px !important; right: 14px !important; width: 48px !important; height: 48px !important; font-size: 1.35rem !important; }
-    #back-to-top { bottom: 136px !important; right: 14px !important; }
+    .whatsapp-float { bottom: 92px !important; right: 14px !important; width: 48px !important; height: 48px !important; font-size: 1.35rem !important; }
+    #back-to-top { bottom: 148px !important; right: 14px !important; }
 
     /* ── Bottom Navigation Bar ── */
     .mob-bottom-nav {
         display: flex !important;
-        position: fixed; bottom: 0; left: 0; right: 0;
+        position: fixed;
+        bottom: 16px !important;
+        left: 16px !important;
+        right: 16px !important;
         background: rgba(6, 11, 30, 0.85) !important;
         backdrop-filter: blur(28px) !important;
         -webkit-backdrop-filter: blur(28px) !important;
-        border-top: 1px solid rgba(59, 130, 246, 0.15) !important;
-        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.65), 0 0 20px rgba(59, 130, 246, 0.08) !important;
+        border: 1px solid rgba(59, 130, 246, 0.15) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.08) !important;
         z-index: 1050;
-        padding: 8px 4px calc(8px + env(safe-area-inset-bottom)) !important;
-        border-radius: 24px 24px 0 0 !important;
+        padding: 10px 8px !important;
+        border-radius: 50px !important;
     }
     .mob-bottom-nav a {
         flex: 1; display: flex; flex-direction: column;
@@ -1301,17 +1304,6 @@ img { max-width: 100%; }
     .mob-bottom-nav a.active { color: #00f2fe !important; }
     .mob-bottom-nav a.active i { transform: translateY(-2px); color: #00f2fe !important; }
     .mob-bottom-nav a:hover { color: #00f2fe !important; }
-    .mob-bottom-nav a.mob-cta {
-        color: #fff !important;
-        background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
-        border: 1px solid rgba(0, 242, 254, 0.3) !important;
-        border-radius: 14px;
-        margin: 0 4px;
-        padding: 6px 8px !important;
-        box-shadow: 0 4px 15px rgba(37,99,235,0.4), 0 0 10px rgba(0, 242, 254, 0.2) !important;
-        min-width: 58px;
-    }
-    .mob-bottom-nav a.mob-cta i { font-size: 1.3rem; color: #fff !important; }
     .mob-bottom-nav .mob-active-dot {
         width: 4px; height: 4px; border-radius: 50%;
         background: #00f2fe !important; margin-top: 1px;

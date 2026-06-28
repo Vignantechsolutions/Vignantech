@@ -117,9 +117,10 @@
         <span>Internships</span>
         <span class="mob-active-dot"></span>
     </a>
-    <a href="{% url 'projects:list' %}" class="mob-cta">
+    <a href="{% url 'projects:list' %}" class="{% if 'project' in request.resolver_match.url_name %}active{% endif %}">
         <i class="bi bi-kanban-fill"></i>
         <span>Projects</span>
+        <span class="mob-active-dot"></span>
     </a>
     <a href="{% url 'courses:list' %}" class="{% if 'course' in request.resolver_match.url_name %}active{% endif %}">
         <i class="bi bi-book-fill"></i>

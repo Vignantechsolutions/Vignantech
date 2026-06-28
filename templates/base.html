@@ -195,37 +195,72 @@
             50% { left: 150%; }
             100% { left: 150%; }
         }
+        .preloader-title-wrapper {
+            perspective: 800px;
+            transform-style: preserve-3d;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: wrapperReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.8s;
+        }
         .preloader-title {
             font-family: 'Outfit', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #fff;
+            font-size: clamp(2.2rem, 6vw, 3.2rem);
+            font-weight: 900;
+            color: #ffffff;
             letter-spacing: 0.18em;
             margin: 0;
-            opacity: 0;
-            transform: translateY(15px);
-            animation: textFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.8s;
+            transform-style: preserve-3d;
+            animation: textFloat3D 3s ease-in-out infinite;
         }
         .preloader-subtitle {
             font-family: 'Poppins', sans-serif;
-            font-size: 0.82rem;
-            font-weight: 700;
+            font-size: clamp(0.72rem, 2.5vw, 0.88rem);
+            font-weight: 800;
             color: #00f2fe;
-            letter-spacing: 0.35em;
-            margin-top: 5px;
-            opacity: 0;
-            transform: translateY(10px);
-            animation: textFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 1.1s;
-            text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+            letter-spacing: 0.4em;
+            margin-top: 8px;
+            transform-style: preserve-3d;
+            animation: textFloat3DSub 3s ease-in-out infinite;
         }
-        @keyframes textFadeInUp {
+        @keyframes wrapperReveal {
             from {
                 opacity: 0;
-                transform: translateY(15px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+        @keyframes textFloat3D {
+            0%, 100% {
+                transform: translateY(0) rotateX(12deg) rotateY(-10deg) scale(0.96);
+                text-shadow: 
+                    0 1px 0 #1e40af, 
+                    0 2px 0 #1d4ed8, 
+                    0 3px 0 #172554, 
+                    0 4px 15px rgba(0, 242, 254, 0.5), 
+                    0 0 25px rgba(37, 99, 235, 0.4);
+            }
+            50% {
+                transform: translateY(-6px) rotateX(8deg) rotateY(8deg) scale(1.02);
+                text-shadow: 
+                    0 1px 0 #1e40af, 
+                    0 2px 0 #1d4ed8, 
+                    0 3px 0 #1e3a8a, 
+                    0 4px 0 #172554, 
+                    0 8px 25px rgba(0, 242, 254, 0.7), 
+                    0 0 35px rgba(37, 99, 235, 0.6);
+            }
+        }
+        @keyframes textFloat3DSub {
+            0%, 100% {
+                transform: translateY(0) rotateX(12deg) rotateY(-10deg) scale(0.96);
+                text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+            }
+            50% {
+                transform: translateY(-6px) rotateX(8deg) rotateY(8deg) scale(1.02);
+                text-shadow: 0 0 20px rgba(0, 242, 254, 0.8), 0 0 30px rgba(37, 99, 235, 0.6);
             }
         }
         .preloader-loader-box {
@@ -279,8 +314,10 @@
             <img src="{% static 'images/logo_new.jpg' %}" alt="Vignan Logo" class="preloader-logo">
             <div class="preloader-scanner"></div>
         </div>
-        <h2 class="preloader-title">VIGNAN</h2>
-        <div class="preloader-subtitle">TECHSOLUTIONS</div>
+        <div class="preloader-title-wrapper">
+            <h2 class="preloader-title">VIGNAN</h2>
+            <div class="preloader-subtitle">TECHSOLUTIONS</div>
+        </div>
         <div class="preloader-loader-box">
             <div class="preloader-progress-track">
                 <div class="preloader-progress-bar"></div>

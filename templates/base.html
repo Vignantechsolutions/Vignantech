@@ -166,6 +166,10 @@
             animation: logoReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.3s;
         }
         @keyframes logoReveal {
+            from {
+                opacity: 0;
+                transform: scale(0.85);
+            }
             to {
                 opacity: 1;
                 transform: scale(1);
@@ -215,6 +219,10 @@
             text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
         }
         @keyframes textFadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -227,6 +235,7 @@
             animation: elementFadeIn 0.8s ease forwards 1.4s;
         }
         @keyframes elementFadeIn {
+            from { opacity: 0; }
             to { opacity: 1; }
         }
         .preloader-progress-track {
@@ -244,6 +253,7 @@
             animation: progressFill 2.6s cubic-bezier(0.1, 0.85, 0.25, 1) forwards 1.5s;
         }
         @keyframes progressFill {
+            from { width: 0%; }
             to { width: 100%; }
         }
         .preloader-console-text {
@@ -342,47 +352,70 @@
 <script src="{% static 'js/whatsapp-analytics.js' %}"></script>
 <script>
 // Cinematic Preloader Script
-document.addEventListener('DOMContentLoaded', () => {
+(function() {
     const preloader = document.getElementById('cinematic-preloader');
     
-    // Check session flag to avoid repeating on every reload
-    const forceIntro = new URLSearchParams(window.location.search).get('intro') === 'true';
-    if (sessionStorage.getItem('intro_played') === 'true' && !forceIntro) {
+    // Safety escape hatch: always remove preloader after 4.2 seconds max
+    const safetyTimeout = setTimeout(() => {
+        const p = document.getElementById('cinematic-preloader');
+        if (p && !p.classList.contains('fade-out')) {
+            p.classList.add('fade-out');
+            setTimeout(() => p.remove(), 800);
+        }
+    }, 4200);
+
+    // Check session storage with try/catch fallback
+    let introPlayed = false;
+    try {
+        const forceIntro = new URLSearchParams(window.location.search).get('intro') === 'true';
+        introPlayed = sessionStorage.getItem('intro_played') === 'true' && !forceIntro;
+    } catch (e) {
+        console.warn("Storage access restricted:", e);
+    }
+
+    if (introPlayed) {
         if (preloader) {
             preloader.style.display = 'none';
+            preloader.remove();
         }
+        clearTimeout(safetyTimeout);
         return;
     }
-    
-    const consoleText = document.querySelector('.preloader-console-text');
-    const loadingPhrases = [
-        "> INITIALIZING VIGNAN CORES...",
-        "> STRUCTURING NEURAL MATRIX...",
-        "> LOADED ASSETS & INTERFACE...",
-        "> ENCRYPTION SECURED. WELCOME."
-    ];
-    
-    let phraseIndex = 0;
-    const phraseInterval = setInterval(() => {
-        if (phraseIndex < loadingPhrases.length) {
-            if (consoleText) consoleText.textContent = loadingPhrases[phraseIndex];
-            phraseIndex++;
-        } else {
-            clearInterval(phraseInterval);
-        }
-    }, 600);
-    
-    // End preloader and release scrolling after 3.8s
-    setTimeout(() => {
-        if (preloader) {
-            preloader.classList.add('fade-out');
-            sessionStorage.setItem('intro_played', 'true');
-            setTimeout(() => {
-                preloader.remove();
-            }, 800);
-        }
-    }, 3800);
-});
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const consoleText = document.querySelector('.preloader-console-text');
+        const loadingPhrases = [
+            "> INITIALIZING VIGNAN CORES...",
+            "> STRUCTURING NEURAL MATRIX...",
+            "> LOADED ASSETS & INTERFACE...",
+            "> ENCRYPTION SECURED. WELCOME."
+        ];
+        
+        let phraseIndex = 0;
+        const phraseInterval = setInterval(() => {
+            if (phraseIndex < loadingPhrases.length) {
+                if (consoleText) consoleText.textContent = loadingPhrases[phraseIndex];
+                phraseIndex++;
+            } else {
+                clearInterval(phraseInterval);
+            }
+        }, 600);
+        
+        // Hide preloader after 3.8s
+        setTimeout(() => {
+            if (preloader && !preloader.classList.contains('fade-out')) {
+                preloader.classList.add('fade-out');
+                try {
+                    sessionStorage.setItem('intro_played', 'true');
+                } catch (e) {}
+                setTimeout(() => {
+                    preloader.remove();
+                }, 800);
+            }
+            clearTimeout(safetyTimeout);
+        }, 3800);
+    });
+})();
 </script>
 {% block extra_js %}{% endblock %}
 </body>

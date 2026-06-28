@@ -1262,7 +1262,7 @@ img { max-width: 100%; }
 @media (max-width: 767px) {
 
     /* ── Body padding for bottom nav ── */
-    body { padding-bottom: 92px !important; }
+    body { padding-bottom: 0px !important; }
 
     /* ── Hide desktop navbar collapse & toggler ── */
     .navbar-collapse, .navbar-toggler { display: none !important; }
@@ -1272,45 +1272,13 @@ img { max-width: 100%; }
     #mainNav { box-shadow: 0 2px 16px rgba(30,58,138,.10) !important; }
 
     /* ── Floating WhatsApp & back-to-top ── */
-    .whatsapp-float { bottom: 92px !important; right: 14px !important; width: 48px !important; height: 48px !important; font-size: 1.35rem !important; }
-    #back-to-top { bottom: 148px !important; right: 14px !important; }
+    .whatsapp-float { bottom: 24px !important; right: 14px !important; width: 48px !important; height: 48px !important; font-size: 1.35rem !important; }
+    #back-to-top { bottom: 84px !important; right: 14px !important; }
 
     /* ── Bottom Navigation Bar ── */
     .mob-bottom-nav {
-        display: flex !important;
-        position: fixed;
-        bottom: 16px !important;
-        left: 16px !important;
-        right: 16px !important;
-        background: rgba(6, 11, 30, 0.85) !important;
-        backdrop-filter: blur(28px) !important;
-        -webkit-backdrop-filter: blur(28px) !important;
-        border: 1px solid rgba(59, 130, 246, 0.15) !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.08) !important;
-        z-index: 1050;
-        padding: 10px 8px !important;
-        border-radius: 50px !important;
+        display: none !important;
     }
-    .mob-bottom-nav a {
-        flex: 1; display: flex; flex-direction: column;
-        align-items: center; justify-content: center;
-        gap: 3px; text-decoration: none;
-        color: rgba(255, 255, 255, 0.5) !important; font-size: .62rem; font-weight: 700;
-        font-family: 'Poppins', sans-serif;
-        padding: 4px 2px; transition: all .2s;
-        letter-spacing: .02em; border-radius: 12px;
-    }
-    .mob-bottom-nav a i { font-size: 1.2rem; transition: all .25s; }
-    .mob-bottom-nav a.active { color: #00f2fe !important; }
-    .mob-bottom-nav a.active i { transform: translateY(-2px); color: #00f2fe !important; }
-    .mob-bottom-nav a:hover { color: #00f2fe !important; }
-    .mob-bottom-nav .mob-active-dot {
-        width: 4px; height: 4px; border-radius: 50%;
-        background: #00f2fe !important; margin-top: 1px;
-        box-shadow: 0 0 8px #00f2fe !important;
-        opacity: 0; transition: opacity .2s;
-    }
-    .mob-bottom-nav a.active .mob-active-dot { opacity: 1; }
 
     /* ── Hero Mobile ── */
     .vt-hero .row { padding: 2rem 0 1.5rem !important; min-height: calc(100dvh - 60px) !important; }

@@ -520,80 +520,92 @@
 
 <script>
 // Mobile Drawer Overlay Script
-const toggler = document.getElementById('navToggler');
-const collapse = document.getElementById('navCollapse');
-const icon = document.getElementById('togglerIcon');
+(function() {
+  function initMobileMenu() {
+    const toggler = document.getElementById('navToggler');
+    const collapse = document.getElementById('navCollapse');
+    const icon = document.getElementById('togglerIcon');
+    
+    if (!toggler || !collapse) return;
 
-// Safely generate backdrop
-let backdrop = document.querySelector('.mob-drawer-backdrop');
-if (!backdrop) {
-  backdrop = document.createElement('div');
-  backdrop.className = 'mob-drawer-backdrop';
-  document.body.appendChild(backdrop);
-}
+    let backdrop = document.querySelector('.mob-drawer-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'mob-drawer-backdrop';
+      document.body.appendChild(backdrop);
+    }
 
-function openDrawer() {
-  collapse.classList.add('open');
-  backdrop.classList.add('show');
-  document.body.style.overflow = 'hidden';
-}
+    function openDrawer() {
+      collapse.classList.add('open');
+      backdrop.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
 
-function closeDrawer() {
-  collapse.classList.remove('open');
-  backdrop.classList.remove('show');
-  document.body.style.overflow = '';
-}
+    // Export closeDrawer globally so it can be called elsewhere
+    window.closeMobileDrawer = function() {
+      collapse.classList.remove('open');
+      backdrop.classList.remove('show');
+      document.body.style.overflow = '';
+    };
 
-if (toggler) {
-  toggler.addEventListener('click', (e) => {
-    e.stopPropagation();
-    if (collapse.classList.contains('open')) {
-      closeDrawer();
-    } else {
-      openDrawer();
+    toggler.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (collapse.classList.contains('open')) {
+        window.closeMobileDrawer();
+      } else {
+        openDrawer();
+      }
+    });
+
+    backdrop.addEventListener('click', window.closeMobileDrawer);
+
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('#drawerClose')) {
+        window.closeMobileDrawer();
+      }
+    });
+
+    // Gesture Swipe to Close
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    collapse.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    collapse.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX - touchStartX > 55) {
+        window.closeMobileDrawer();
+      }
+    }, { passive: true });
+
+    // Close on link click inside drawer (delayed to prevent mobile click cancellation)
+    collapse.addEventListener('click', (e) => {
+      const link = e.target.closest('.nav-link:not(.dropdown-toggle)') || e.target.closest('.dropdown-item');
+      if (link) {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          window.closeMobileDrawer();
+        } else {
+          setTimeout(window.closeMobileDrawer, 80);
+        }
+      }
+    });
+  }
+
+  if (document.readyState !== 'loading') {
+    initMobileMenu();
+  } else {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  }
+
+  // Scroll effect (independent of DOM content)
+  window.addEventListener('scroll',()=>{
+    const nav = document.getElementById('mainNav');
+    if (nav) {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
     }
   });
-}
-
-backdrop.addEventListener('click', closeDrawer);
-
-// Listen for custom drawerClose button
-document.addEventListener('click', (e) => {
-  if (e.target.closest('#drawerClose')) {
-    closeDrawer();
-  }
-});
-
-// Gesture Swipe to Close
-let touchStartX = 0;
-let touchEndX = 0;
-
-collapse.addEventListener('touchstart', (e) => {
-  touchStartX = e.changedTouches[0].screenX;
-}, { passive: true });
-
-collapse.addEventListener('touchend', (e) => {
-  touchEndX = e.changedTouches[0].screenX;
-  if (touchEndX - touchStartX > 55) {
-    closeDrawer();
-  }
-}, { passive: true });
-
-// Close on link click inside drawer (delayed to prevent mobile click cancellation)
-collapse.addEventListener('click', (e) => {
-  const link = e.target.closest('.nav-link:not(.dropdown-toggle)') || e.target.closest('.dropdown-item');
-  if (link) {
-    const href = link.getAttribute('href');
-    if (href && href.startsWith('#')) {
-      closeDrawer();
-    } else {
-      setTimeout(closeDrawer, 80);
-    }
-  }
-});
-
-// Scroll effect
-window.addEventListener('scroll',()=>{
-  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 20);
-});
+})();
 </script>

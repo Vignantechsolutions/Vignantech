@@ -265,16 +265,17 @@
   }
   
   .nav-links{
-    flex-direction:column;
-    align-items:stretch;
-    gap:.5rem;
-    width:100%;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch;
+    gap: .5rem;
+    width: 100%;
     margin-top: 0.5rem !important;
   }
   .nav-links .nav-link {
     font-size: 0.92rem;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.8) !important;
+    color: #ffffff !important;
     padding: 0.75rem 1.25rem !important;
     width: 100%;
     display: flex;
@@ -362,26 +363,6 @@
     border-radius: 16px !important;
   }
   
-  /* Staggered slide-up entry animations for items in the drawer */
-  .nav-collapse.open > * {
-    animation: drawerItemSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-  .nav-collapse.open > *:nth-child(1) { animation-delay: 0.05s; }
-  .nav-collapse.open > *:nth-child(2) { animation-delay: 0.1s; }
-  .nav-collapse.open > *:nth-child(3) { animation-delay: 0.15s; }
-  .nav-collapse.open > *:nth-child(4) { animation-delay: 0.2s; }
-  .nav-collapse.open > *:nth-child(5) { animation-delay: 0.25s; }
-  
-  @keyframes drawerItemSlide {
-    from {
-      opacity: 0;
-      transform: translateY(16px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
   .nav-search{
     min-width:unset;
     width:100%;

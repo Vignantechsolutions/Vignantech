@@ -209,35 +209,40 @@
   }
   .nav-collapse{
     position: fixed;
-    top: 50% !important;
+    bottom: 16px !important;
+    top: auto !important;
     left: 50% !important;
-    transform: translate(-50%, -42%) scale(0.96) !important;
-    width: calc(100% - 32px) !important;
-    max-width: 380px !important;
+    transform: translate3d(-50%, 105%, 0) !important;
+    width: calc(100% - 24px) !important;
+    max-width: 400px !important;
     height: auto !important;
-    max-height: 85vh !important;
-    background: rgba(6, 11, 30, 0.92) !important;
+    max-height: 82vh !important;
+    background: rgba(6, 11, 30, 0.94) !important;
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
-    border: 1px solid rgba(59, 130, 246, 0.25) !important;
-    border-radius: 24px !important;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 30px rgba(59, 130, 246, 0.12) !important;
+    border: 1.5px solid rgba(59, 130, 246, 0.25) !important;
+    border-radius: 28px 28px 20px 20px !important;
+    box-shadow: 0 -15px 45px rgba(0,0,0,0.85), 0 0 30px rgba(59, 130, 246, 0.15) !important;
     display: flex !important;
     flex-direction: column;
-    padding: 1.75rem 1.5rem !important;
-    gap: 1.25rem;
+    padding: 1.25rem 1.25rem 1.75rem !important;
+    gap: 1rem;
     z-index: 1090;
     opacity: 0;
     visibility: hidden;
     pointer-events: none !important;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.3s !important;
     overflow-y: auto;
+    scrollbar-width: none;
+  }
+  .nav-collapse::-webkit-scrollbar {
+    display: none;
   }
   .nav-collapse.open{
     opacity: 1 !important;
     visibility: visible !important;
     pointer-events: auto !important;
-    transform: translate(-50%, -50%) scale(1) !important;
+    transform: translate3d(-50%, 0, 0) !important;
   }
   
   /* Mobile drawer backdrop */
@@ -353,6 +358,9 @@
 
       <!-- NAV COLLAPSE -->
       <div class="nav-collapse" id="navCollapse">
+
+        <!-- Futuristic Grabber Handle -->
+        <div class="d-lg-none" style="width:48px;height:5px;background:rgba(255,255,255,0.18);border-radius:10px;margin:-6px auto 12px;box-shadow:0 0 8px rgba(0, 242, 254, 0.2)"></div>
 
         <!-- Mobile Drawer Header -->
         <div class="d-lg-none d-flex align-items-center justify-content-between pb-3" style="border-bottom:1px solid rgba(255,255,255,.08)">

@@ -229,12 +229,14 @@
     z-index: 1090;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none !important;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
     overflow-y: auto;
   }
   .nav-collapse.open{
-    opacity: 1;
-    visibility: visible;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
     transform: translate(-50%, -50%) scale(1) !important;
   }
   
@@ -272,6 +274,7 @@
     border-bottom: 1px solid rgba(255,255,255,0.03);
   }
   .nav-links .dropdown-menu{
+    display:none!important;
     position:static!important;
     transform:none!important;
     box-shadow:none!important;
@@ -280,6 +283,11 @@
     margin-top:.25rem!important;
     padding: 0.5rem !important;
     width: 100%;
+    opacity:1!important;
+    visibility:visible!important;
+  }
+  .nav-links .dropdown.show .dropdown-menu{
+    display:block!important;
   }
   .nav-collapse .d-flex.align-items-center.gap-2.ms-lg-2.mt-3.mt-lg-0.flex-wrap {
     flex-direction: column !important;
@@ -339,7 +347,7 @@
       </a>
 
       <!-- TOGGLER (mobile) -->
-      <button class="vt-toggler" id="navToggler" aria-label="Toggle navigation">
+      <button class="vt-toggler" id="navToggler" onclick="window.toggleMobileDrawer(event)" aria-label="Toggle navigation">
         <i class="bi bi-list" id="togglerIcon"></i>
       </button>
 
@@ -521,12 +529,31 @@
 <script>
 // Mobile Drawer Overlay Script
 (function() {
-  function initMobileMenu() {
-    const toggler = document.getElementById('navToggler');
+  // Global hook for inline onclick toggling (immune to readyState lag)
+  window.toggleMobileDrawer = function(e) {
+    if (e) e.stopPropagation();
     const collapse = document.getElementById('navCollapse');
-    const icon = document.getElementById('togglerIcon');
+    let backdrop = document.querySelector('.mob-drawer-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'mob-drawer-backdrop';
+      document.body.appendChild(backdrop);
+    }
     
-    if (!toggler || !collapse) return;
+    if (collapse) {
+      if (collapse.classList.contains('open')) {
+        window.closeMobileDrawer();
+      } else {
+        collapse.classList.add('open');
+        backdrop.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+  };
+
+  function initMobileMenu() {
+    const collapse = document.getElementById('navCollapse');
+    if (!collapse) return;
 
     let backdrop = document.querySelector('.mob-drawer-backdrop');
     if (!backdrop) {
@@ -535,35 +562,14 @@
       document.body.appendChild(backdrop);
     }
 
-    function openDrawer() {
-      collapse.classList.add('open');
-      backdrop.classList.add('show');
-      document.body.style.overflow = 'hidden';
-    }
-
-    // Export closeDrawer globally so it can be called elsewhere
+    // Export closeDrawer globally
     window.closeMobileDrawer = function() {
-      collapse.classList.remove('open');
-      backdrop.classList.remove('show');
+      if (collapse) collapse.classList.remove('open');
+      if (backdrop) backdrop.classList.remove('show');
       document.body.style.overflow = '';
     };
 
-    toggler.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (collapse.classList.contains('open')) {
-        window.closeMobileDrawer();
-      } else {
-        openDrawer();
-      }
-    });
-
     backdrop.addEventListener('click', window.closeMobileDrawer);
-
-    document.addEventListener('click', (e) => {
-      if (e.target.closest('#drawerClose')) {
-        window.closeMobileDrawer();
-      }
-    });
 
     // Gesture Swipe to Close
     let touchStartX = 0;
@@ -580,7 +586,7 @@
       }
     }, { passive: true });
 
-    // Close on link click inside drawer (delayed to prevent mobile click cancellation)
+    // Close on link click
     collapse.addEventListener('click', (e) => {
       const link = e.target.closest('.nav-link:not(.dropdown-toggle)') || e.target.closest('.dropdown-item');
       if (link) {
@@ -600,7 +606,7 @@
     document.addEventListener('DOMContentLoaded', initMobileMenu);
   }
 
-  // Scroll effect (independent of DOM content)
+  // Scroll effect
   window.addEventListener('scroll',()=>{
     const nav = document.getElementById('mainNav');
     if (nav) {

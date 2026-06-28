@@ -81,7 +81,7 @@
         /* ── Cinematic Preloader ── */
         #cinematic-preloader {
             position: fixed;
-            inset: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background: #030611;
             z-index: 99999;
             display: flex;
@@ -96,7 +96,7 @@
         }
         .preloader-stars {
             position: absolute;
-            inset: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background-image: 
                 radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
                 radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
@@ -126,7 +126,7 @@
         }
         .preloader-grid {
             position: absolute;
-            inset: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background-image: 
                 linear-gradient(rgba(255, 255, 255, 0.008) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255, 255, 255, 0.008) 1px, transparent 1px);
@@ -346,7 +346,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const preloader = document.getElementById('cinematic-preloader');
     
     // Check session flag to avoid repeating on every reload
-    if (sessionStorage.getItem('intro_played') === 'true') {
+    const forceIntro = new URLSearchParams(window.location.search).get('intro') === 'true';
+    if (sessionStorage.getItem('intro_played') === 'true' && !forceIntro) {
         if (preloader) {
             preloader.style.display = 'none';
         }

@@ -622,6 +622,7 @@ background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);
     position: relative;
     width: 100%;
     height: 100%;
+    filter: url('#vt-gooey');
   }
   
   /* Trigger Button */
@@ -703,9 +704,10 @@ background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);
     opacity: 0;
     pointer-events: none;
     transform: scale(0.6) translateY(0);
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
                 opacity 0.25s ease,
-                background-color 0.2s ease;
+                background-color 0.2s ease,
+                border-color 0.2s ease !important;
   }
   .vt-fluid-menu-item i {
     font-size: 1.15rem;
@@ -977,6 +979,17 @@ background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);
     {% endif %}
   </div>
 </div>
+
+<!-- Gooey SVG Filter for Fluid Menu -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="position: absolute; width: 0; height: 0; pointer-events: none;">
+  <defs>
+    <filter id="vt-gooey">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+      <feBlend in="SourceGraphic" in2="goo" />
+    </filter>
+  </defs>
+</svg>
 
 <script>
 // Mobile Drawer Overlay Script

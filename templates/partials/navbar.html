@@ -363,6 +363,201 @@
     border-radius: 16px !important;
   }
   
+background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.3);
+  border-radius:50px;padding:.4rem 1.1rem;color:#fff;font-size:.8rem;font-weight:600;
+  cursor:pointer;transition:all .25s ease;
+}
+.user-btn:hover{background:rgba(59,130,246,.2);border-color:rgba(59,130,246,.45);}
+.user-avatar{
+  width:26px;height:26px;border-radius:50%;
+  background:linear-gradient(135deg,#2563eb,#8b5cf6);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;font-weight:800;color:#fff;flex-shrink:0;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.4);
+}
+
+@media(max-width:991px){
+  .vt-logo-img {
+    height: 44px !important;
+    width: 44px !important;
+  }
+  .vt-toggler{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:40px;
+    height:40px;
+    margin-left:auto;
+    border-radius:50% !important;
+    border: 1.5px solid rgba(59, 130, 246, 0.25) !important;
+    background: rgba(59, 130, 246, 0.08) !important;
+    color: #fff !important;
+    font-size: 1.25rem !important;
+    z-index: 1050;
+    transition: all 0.25s ease;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.1);
+  }
+  .vt-toggler:hover {
+    background: rgba(59, 130, 246, 0.15) !important;
+    border-color: rgba(0, 242, 254, 0.4) !important;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+  }
+  .nav-collapse{
+    position: fixed;
+    bottom: 0 !important;
+    top: auto !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: translate3d(0, 105%, 0) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 58vh !important;
+    background: rgba(6, 11, 30, 0.95) !important;
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: none !important;
+    border-top: 1.5px solid rgba(59, 130, 246, 0.25) !important;
+    border-radius: 28px 28px 0 0 !important;
+    box-shadow: 0 -15px 40px rgba(0,0,0,0.85), 0 0 25px rgba(59, 130, 246, 0.12) !important;
+    display: flex !important;
+    flex-direction: column;
+    padding: 1rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom)) !important;
+    gap: 0.75rem !important;
+    z-index: 1090;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none !important;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, visibility 0.25s !important;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  .nav-collapse::-webkit-scrollbar {
+    display: none;
+  }
+  .nav-collapse.open{
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+  
+  /* Mobile drawer backdrop */
+  .mob-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 6, 17, 0.65) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    z-index: 990;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, backdrop-filter 0.3s ease;
+  }
+  .mob-drawer-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .nav-links{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch;
+    gap: .5rem;
+    width: 100%;
+    margin-top: 0.5rem !important;
+  }
+  .nav-links .nav-link {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #ffffff !important;
+    padding: 0.75rem 1.25rem !important;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.035) !important;
+    border: 1px solid rgba(59, 130, 246, 0.15) !important;
+    border-radius: 16px !important;
+    margin-bottom: 0.25rem !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  }
+  .nav-links .nav-link:hover,
+  .nav-links .nav-link.active-link {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(6, 182, 212, 0.2)) !important;
+    border-color: rgba(0, 242, 254, 0.45) !important;
+    box-shadow: 0 4px 15px rgba(0, 242, 254, 0.12), 0 0 10px rgba(59, 130, 246, 0.1) !important;
+    transform: translateY(-1px);
+  }
+  .nav-links .nav-link.active-link::after {
+    display: none !important;
+  }
+  .nav-links .dropdown-menu{
+    display:none!important;
+    position:static!important;
+    transform:none!important;
+    box-shadow:none!important;
+    background:rgba(0, 0, 0, 0.2)!important;
+    border:1px solid rgba(59, 130, 246, 0.12)!important;
+    border-radius: 16px !important;
+    margin-top:-0.15rem!important;
+    margin-bottom: 0.5rem !important;
+    padding: 0.5rem !important;
+    width: 100%;
+    opacity:1!important;
+    visibility:visible!important;
+  }
+  .nav-links .dropdown.show .dropdown-menu{
+    display:block!important;
+  }
+  .nav-links .dropdown-item {
+    font-size: 0.82rem;
+    padding: 0.65rem 0.85rem !important;
+    border-radius: 12px !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    transition: all 0.2s ease !important;
+    border: 1px solid transparent;
+  }
+  .nav-links .dropdown-item:hover {
+    color: #ffffff !important;
+    background: rgba(59, 130, 246, 0.12) !important;
+    border-color: rgba(59, 130, 246, 0.2) !important;
+  }
+  .nav-collapse .d-flex.align-items-center.gap-2.ms-lg-2.mt-3.mt-lg-0.flex-wrap {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    gap: 1rem !important;
+    margin-top: 1.5rem !important;
+  }
+  .nav-collapse form {
+    width: 100%;
+  }
+  .nav-collapse .nav-search {
+    width: 100% !important;
+    min-width: unset !important;
+    border: 1px solid rgba(59, 130, 246, 0.2) !important;
+  }
+  .nav-collapse .btn-login,
+  .nav-collapse .btn-register {
+    width: 100% !important;
+    text-align: center !important;
+    padding: 0.75rem 1.5rem !important;
+    font-size: 0.9rem !important;
+    border-radius: 16px !important;
+  }
+  .nav-collapse .dropdown {
+    width: 100%;
+  }
+  .nav-collapse .user-btn {
+    width: 100% !important;
+    justify-content: space-between !important;
+    padding: 0.75rem 1.25rem !important;
+    border-radius: 16px !important;
+  }
+  
   .nav-search{
     min-width:unset;
     width:100%;
@@ -373,6 +568,176 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  
+  /* Hide old mobile menu controls */
+  .vt-toggler {
+    display: none !important;
+  }
+  .nav-collapse {
+    display: none !important;
+  }
+  .mob-drawer-backdrop {
+    display: none !important;
+  }
+
+  /* Shift utility floating buttons to the left to clear the right side for the Fluid Menu */
+  #back-to-top {
+    left: 24px !important;
+    right: auto !important;
+    bottom: 24px !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 10px rgba(59, 130, 246, 0.15) !important;
+  }
+  .whatsapp-float {
+    left: 24px !important;
+    right: auto !important;
+    bottom: 84px !important;
+  }
+  .whatsapp-popup {
+    left: 0 !important;
+    right: auto !important;
+    transform-origin: bottom left !important;
+  }
+  .analytics-widget {
+    left: 24px !important;
+    right: auto !important;
+    bottom: 144px !important;
+  }
+  .analytics-panel {
+    left: 0 !important;
+    right: auto !important;
+    transform-origin: bottom left !important;
+  }
+
+  /* Fluid Menu Wrapper */
+  .vt-fluid-menu-wrapper {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1060;
+    width: 56px;
+    height: 56px;
+  }
+  .vt-fluid-menu-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Trigger Button */
+  .vt-fluid-menu-trigger {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    border-radius: 50% !important;
+    border: 1.5px solid rgba(59, 130, 246, 0.3) !important;
+    background: linear-gradient(135deg, #1e40af, #2563eb) !important;
+    color: #fff !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4), 0 0 10px rgba(0, 242, 254, 0.2);
+    z-index: 60;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .vt-fluid-menu-trigger:active {
+    transform: scale(0.92);
+  }
+  
+  /* Icons transition inside trigger */
+  .vt-fluid-menu-trigger .icon-wrap {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .vt-fluid-menu-trigger .icon-menu,
+  .vt-fluid-menu-trigger .icon-close {
+    position: absolute;
+    font-size: 1.4rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .vt-fluid-menu-trigger .icon-close {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0);
+  }
+  
+  /* Open state trigger styling */
+  .vt-fluid-menu-wrapper.expanded .vt-fluid-menu-trigger {
+    background: linear-gradient(135deg, #dc2626, #ef4444) !important;
+    border-color: rgba(239, 68, 68, 0.3) !important;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+  }
+  .vt-fluid-menu-wrapper.expanded .vt-fluid-menu-trigger .icon-menu {
+    opacity: 0;
+    transform: rotate(180deg) scale(0);
+  }
+  .vt-fluid-menu-wrapper.expanded .vt-fluid-menu-trigger .icon-close {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+  
+  /* Menu Items styling */
+  .vt-fluid-menu-item {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1.2px solid rgba(59, 130, 246, 0.2) !important;
+    background: rgba(6, 11, 30, 0.94) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: rgba(255, 255, 255, 0.85) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    z-index: calc(50 - var(--index));
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.6) translateY(0);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.25s ease,
+                background-color 0.2s ease;
+  }
+  .vt-fluid-menu-item i {
+    font-size: 1.15rem;
+  }
+  .vt-fluid-menu-item:hover,
+  .vt-fluid-menu-item:active {
+    color: #fff !important;
+    background: rgba(37, 99, 235, 0.25) !important;
+    border-color: rgba(0, 242, 254, 0.45) !important;
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+  }
+  
+  /* User Profile specific item */
+  .vt-fluid-menu-item.user-item .fluid-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Expanded Items Placement */
+  .vt-fluid-menu-wrapper.expanded .vt-fluid-menu-item {
+    opacity: 1;
+    pointer-events: auto;
+    /* Translate upwards: index 1 -> -54px, index 2 -> -108px, etc. */
+    transform: scale(1) translateY(calc(var(--index) * -54px));
   }
 }
 @media(min-width:992px){
@@ -574,6 +939,45 @@
   </div><!-- /container -->
 </nav>
 
+<!-- Mobile Fluid Action Menu -->
+<div class="d-lg-none vt-fluid-menu-wrapper" id="fluidMenuWrapper">
+  <div class="vt-fluid-menu-container" id="fluidMenuContainer">
+    <!-- Trigger Button -->
+    <button class="vt-fluid-menu-trigger" id="fluidMenuTrigger" aria-label="Toggle Navigation Menu">
+      <div class="icon-wrap">
+        <i class="bi bi-list icon-menu"></i>
+        <i class="bi bi-x-lg icon-close"></i>
+      </div>
+    </button>
+
+    <!-- Navigation Items -->
+    <a href="{% url 'core:home' %}" class="vt-fluid-menu-item" style="--index: 1" title="Home" aria-label="Home">
+      <i class="bi bi-house-fill"></i>
+    </a>
+    <a href="{% url 'projects:list' %}" class="vt-fluid-menu-item" style="--index: 2" title="Projects" aria-label="Projects">
+      <i class="bi bi-grid-fill"></i>
+    </a>
+    <a href="{% url 'internships:list' %}" class="vt-fluid-menu-item" style="--index: 3" title="Internships" aria-label="Internships">
+      <i class="bi bi-briefcase-fill"></i>
+    </a>
+    <a href="{% url 'courses:list' %}" class="vt-fluid-menu-item" style="--index: 4" title="Courses" aria-label="Courses">
+      <i class="bi bi-book-fill"></i>
+    </a>
+    <a href="{% url 'core:contact' %}" class="vt-fluid-menu-item" style="--index: 5" title="Contact" aria-label="Contact">
+      <i class="bi bi-envelope-fill"></i>
+    </a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'accounts:profile' %}" class="vt-fluid-menu-item user-item" style="--index: 6" title="Profile" aria-label="Profile">
+      <div class="fluid-avatar">{{ user.first_name|first|upper|default:"U" }}</div>
+    </a>
+    {% else %}
+    <a href="{% url 'accounts:login' %}" class="vt-fluid-menu-item" style="--index: 6" title="Login" aria-label="Login">
+      <i class="bi bi-person-fill"></i>
+    </a>
+    {% endif %}
+  </div>
+</div>
+
 <script>
 // Mobile Drawer Overlay Script
 (function() {
@@ -661,5 +1065,30 @@
       nav.classList.toggle('scrolled', window.scrollY > 20);
     }
   });
+
+  // Mobile Fluid Action Menu Controller
+  const fluidTrigger = document.getElementById('fluidMenuTrigger');
+  const fluidWrapper = document.getElementById('fluidMenuWrapper');
+  if (fluidTrigger && fluidWrapper) {
+    fluidTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      fluidWrapper.classList.toggle('expanded');
+    });
+    
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#fluidMenuWrapper')) {
+        fluidWrapper.classList.remove('expanded');
+      }
+    });
+
+    // Close on tapping any menu link
+    const fluidItems = fluidWrapper.querySelectorAll('.vt-fluid-menu-item');
+    fluidItems.forEach(item => {
+      item.addEventListener('click', () => {
+        fluidWrapper.classList.remove('expanded');
+      });
+    });
+  }
 })();
 </script>

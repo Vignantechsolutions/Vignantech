@@ -135,3 +135,26 @@ def handler500(request):
         return HttpResponse(tb_text, status=500, content_type="text/plain; charset=utf-8")
     return render(request, '500.html', status=500)
 
+
+def db_debug(request):
+    import traceback
+    from django.http import HttpResponse
+    from django.db import connection
+    try:
+        db_conn = connection.settings_dict
+        host = db_conn.get('HOST')
+        port = db_conn.get('PORT')
+        name = db_conn.get('NAME')
+        user = db_conn.get('USER')
+        engine = db_conn.get('ENGINE')
+        
+        from django.contrib.auth.models import User
+        count = User.objects.count()
+        
+        info = f"Database configuration:\nEngine: {engine}\nHost: {host}\nPort: {port}\nName: {name}\nUser: {user}\n\nQuery Success: User count is {count}"
+        return HttpResponse(info, content_type="text/plain; charset=utf-8")
+    except Exception as e:
+        tb = traceback.format_exc()
+        return HttpResponse(f"Database Query Failed!\n\nTraceback:\n{tb}", content_type="text/plain; charset=utf-8")
+
+

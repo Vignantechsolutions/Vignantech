@@ -126,4 +126,12 @@ def handler404(request, exception):
 
 
 def handler500(request):
+    import sys
+    import traceback
+    from django.http import HttpResponse
+    if request.GET.get('debug') == '1':
+        exc_type, exc_value, exc_traceback = sys.exc_info()
+        tb_text = "".join(traceback.format_exception(exc_type, exc_value, exc_traceback))
+        return HttpResponse(tb_text, status=500, content_type="text/plain; charset=utf-8")
     return render(request, '500.html', status=500)
+

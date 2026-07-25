@@ -9,7 +9,5 @@ class DebugExceptionMiddleware:
         return self.get_response(request)
 
     def process_exception(self, request, exception):
-        if request.GET.get('debug') == '1':
-            tb_text = traceback.format_exc()
-            return HttpResponse(tb_text, status=500, content_type="text/plain; charset=utf-8")
-        return None
+        tb_text = traceback.format_exc()
+        return HttpResponse(tb_text, status=500, content_type="text/plain; charset=utf-8")

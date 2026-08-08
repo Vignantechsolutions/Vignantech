@@ -24,13 +24,25 @@
 </section>
 
 <!-- ═══════════════════════════════════════════
-     VIGNAN AD BANNER — Professional Animated
+     VIGNAN AD BANNER — Professional Scrolling
 ════════════════════════════════════════════ -->
 <section class="vt-ad-section">
 <style>
 .vt-ad-section{background:#fff;padding:60px 0;overflow:hidden;position:relative}
 .vt-ad-wrap{background:linear-gradient(135deg,#0a1628 0%,#0d2144 40%,#0a1628 100%);border-radius:28px;overflow:hidden;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.35)}
 .vt-ad-wrap::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M0 0h40v40H0zm40 40h40v40H40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+
+/* MARQUEE SCROLLING STRIP */
+.vt-ad-marquee-wrap{overflow:hidden;position:relative;background:linear-gradient(90deg,#0d2144,#1a3a6b,#0d2144);border-top:1px solid rgba(0,242,254,.15);border-bottom:1px solid rgba(0,242,254,.15);padding:14px 0}
+.vt-ad-marquee-wrap::before,.vt-ad-marquee-wrap::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
+.vt-ad-marquee-wrap::before{left:0;background:linear-gradient(to right,#0d2144,transparent)}
+.vt-ad-marquee-wrap::after{right:0;background:linear-gradient(to left,#0d2144,transparent)}
+.vt-ad-marquee-track{display:flex;width:max-content;animation:marquee-scroll 30s linear infinite}
+.vt-ad-marquee-track:hover{animation-play-state:paused}
+@keyframes marquee-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.vt-ad-marquee-item{display:flex;align-items:center;gap:10px;padding:0 32px;white-space:nowrap;color:rgba(255,255,255,.85);font-size:.82rem;font-weight:600;letter-spacing:.03em}
+.vt-ad-marquee-item i{color:#00f2fe;font-size:.9rem}
+.vt-ad-marquee-dot{width:4px;height:4px;border-radius:50%;background:#00f2fe;opacity:.5;flex-shrink:0}
 
 /* TOP BAR */
 .vt-ad-topbar{background:linear-gradient(90deg,#1a3a6b,#0d2144);padding:12px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06)}
@@ -90,14 +102,6 @@
 @keyframes float-badge{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .vt-ad-float-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 
-/* OFFER STRIP */
-.vt-ad-offer{background:linear-gradient(90deg,#1a1a2e,#16213e,#0f3460);border-top:1px solid rgba(255,255,255,.06);padding:20px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
-@media(max-width:768px){.vt-ad-offer{padding:16px 24px}}
-.vt-ad-offer-badge{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;font-weight:900;font-size:.75rem;padding:4px 12px;border-radius:50px;letter-spacing:.08em;text-transform:uppercase;animation:pulse-badge 2s ease-in-out infinite}
-@keyframes pulse-badge{0%,100%{box-shadow:0 0 0 0 rgba(245,158,11,.4)}50%{box-shadow:0 0 0 8px rgba(245,158,11,0)}}
-.vt-ad-offer-text{color:#fff;font-size:1.1rem;font-weight:800}
-.vt-ad-offer-text span{color:#fbbf24;font-size:1.6rem}
-.vt-ad-offer-sub{color:rgba(255,255,255,.5);font-size:.75rem;margin-top:2px}
 
 /* SERVICES GRID */
 .vt-ad-services{padding:36px 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;border-top:1px solid rgba(255,255,255,.06)}
@@ -110,21 +114,6 @@
 .vt-ad-svc-list li{color:rgba(255,255,255,.55);font-size:.75rem;display:flex;align-items:center;gap:6px}
 .vt-ad-svc-list li::before{content:'✓';color:#00f2fe;font-weight:700;font-size:.7rem;flex-shrink:0}
 
-/* TRUST BAR */
-.vt-ad-trust{padding:20px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
-@media(max-width:768px){.vt-ad-trust{padding:16px 24px;justify-content:center}}
-.vt-ad-trust-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.6);font-size:.78rem}
-.vt-ad-trust-item i{color:#00f2fe;font-size:1rem}
-
-/* CONTACT BAR */
-.vt-ad-contact{background:linear-gradient(90deg,#0d2144,#1a3a6b);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid rgba(255,255,255,.08)}
-@media(max-width:768px){.vt-ad-contact{padding:16px 24px;justify-content:center;text-align:center}}
-.vt-ad-contact-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.8);font-size:.82rem;font-weight:600}
-.vt-ad-contact-item i{color:#00f2fe;font-size:1.1rem}
-.vt-ad-contact-divider{width:1px;height:30px;background:rgba(255,255,255,.1)}
-@media(max-width:576px){.vt-ad-contact-divider{display:none}}
-.vt-ad-footer-tag{color:#fff;font-weight:800;font-size:.85rem;text-align:center;letter-spacing:.05em}
-.vt-ad-footer-tag span{background:linear-gradient(90deg,#00f2fe,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 </style>
 
 <div class="container" data-aos="fade-up">
@@ -194,22 +183,32 @@
       </div>
     </div>
 
-    <!-- SPECIAL OFFER STRIP -->
-    <div class="vt-ad-offer">
-      <div class="d-flex align-items-center gap-16" style="gap:16px">
-        <div style="font-size:2.5rem">🎁</div>
-        <div>
-          <div class="d-flex align-items-center gap-2 mb-1">
-            <span class="vt-ad-offer-badge">Special Offer</span>
-            <span style="color:rgba(255,255,255,.5);font-size:.75rem">For the first 10 members</span>
-          </div>
-          <div class="vt-ad-offer-text">GET <span>10% OFF</span> — First Come, First Serve!</div>
-          <div class="vt-ad-offer-sub">Limited time offer on all project & internship enrollments</div>
-        </div>
+    <!-- SPECIAL OFFER SCROLLING MARQUEE -->
+    <div class="vt-ad-marquee-wrap">
+      <div class="vt-ad-marquee-track">
+        {% for i in "12" %}
+        <div class="vt-ad-marquee-item"><i class="bi bi-gift-fill"></i>🎁 SPECIAL OFFER — GET 10% OFF for First 10 Members!</div>
+        <div class="vt-ad-marquee-dot"></div>
+        <div class="vt-ad-marquee-item"><i class="bi bi-kanban-fill"></i>75+ MCA Major Projects Ready</div>
+        <div class="vt-ad-marquee-dot"></div>
+        <div class="vt-ad-marquee-item"><i class="bi bi-patch-check-fill"></i>MSME Registered &amp; ISO Certified</div>
+        <div class="vt-ad-marquee-dot"></div>
+        <div class="vt-ad-marquee-item"><i class="bi bi-shield-fill-check"></i>100% Plagiarism-Free Documentation</div>
+        <div class="vt-ad-marquee-dot"></div>
+        <div class="vt-ad-marquee-item"><i class="bi bi-mortarboard-fill"></i>VTU CPGS Aligned Projects</div>
+        <div class="vt-ad-marquee-dot"></div>
+        <div class="vt-ad-marquee-item"><i class="bi bi-telephone-fill"></i>Call: 9110478047 / 9148215446</div>
+        <div class="vt-ad-marquee-dot"></div>
+        <div class="vt-ad-marquee-item"><i class="bi bi-whatsapp"></i>WhatsApp Us for Instant Support</div>
+        <div class="vt-ad-marquee-dot"></div>
+        <div class="vt-ad-marquee-item"><i class="bi bi-award-fill"></i>Verified Certificates Issued</div>
+        <div class="vt-ad-marquee-dot"></div>
+        <div class="vt-ad-marquee-item"><i class="bi bi-people-fill"></i>Expert Mentors &amp; 1-on-1 Viva Prep</div>
+        <div class="vt-ad-marquee-dot"></div>
+        <div class="vt-ad-marquee-item"><i class="bi bi-lightning-charge-fill"></i>AI &bull; Python &bull; MERN &bull; Java &bull; Data Science</div>
+        <div class="vt-ad-marquee-dot"></div>
+        {% endfor %}
       </div>
-      <a href="{% url 'core:contact' %}" class="vt-ad-btn-primary" style="white-space:nowrap">
-        <i class="bi bi-arrow-right-circle-fill"></i>Claim Offer
-      </a>
     </div>
 
     <!-- SERVICES GRID -->
@@ -246,24 +245,6 @@
           <li>Great for Placements</li>
         </ul>
       </div>
-    </div>
-
-    <!-- TRUST BAR -->
-    <div class="vt-ad-trust">
-      <div class="vt-ad-trust-item"><i class="bi bi-people-fill"></i><span>Domain Experts — Guidance from experienced professionals</span></div>
-      <div class="vt-ad-trust-item"><i class="bi bi-puzzle-fill"></i><span>Customized Solutions — Tailored to your requirements</span></div>
-      <div class="vt-ad-trust-item"><i class="bi bi-shield-fill-check"></i><span>Plagiarism-Free — 100% original with complete documentation</span></div>
-      <div class="vt-ad-trust-item"><i class="bi bi-headset"></i><span>End-to-End Support — Idea to deployment</span></div>
-    </div>
-
-    <!-- CONTACT BAR -->
-    <div class="vt-ad-contact">
-      <div class="vt-ad-contact-item"><i class="bi bi-telephone-fill"></i><div><div style="color:rgba(255,255,255,.4);font-size:.65rem;text-transform:uppercase;letter-spacing:.1em">Get in Touch</div><div>9110478047 &nbsp;·&nbsp; 9148215446</div></div></div>
-      <div class="vt-ad-contact-divider"></div>
-      <div class="vt-ad-contact-item"><i class="bi bi-globe2"></i><div><div style="color:rgba(255,255,255,.4);font-size:.65rem;text-transform:uppercase;letter-spacing:.1em">Visit Website</div><div>vignantech.onrender.com</div></div></div>
-      <div class="vt-ad-contact-divider"></div>
-      <div class="vt-ad-contact-item"><i class="bi bi-instagram"></i><div><div style="color:rgba(255,255,255,.4);font-size:.65rem;text-transform:uppercase;letter-spacing:.1em">Follow Us</div><div>vignan_techsolutions</div></div></div>
-      <div class="vt-ad-footer-tag">LET'S BUILD SOMETHING <span>AMAZING</span> TOGETHER!</div>
     </div>
 
   </div>

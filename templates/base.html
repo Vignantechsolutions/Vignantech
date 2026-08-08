@@ -34,8 +34,8 @@
     <meta name="twitter:image" content="{% static 'images/Vignan_Techsolutions_Logo_4K.png' %}">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{% static 'images/logo_main.png' %}">
-    <link rel="apple-touch-icon" href="{% static 'images/logo_main.png' %}">
+    <link rel="icon" type="image/jpeg" href="{% static 'images/logo_new.jpg' %}">
+    <link rel="apple-touch-icon" href="{% static 'images/logo_new.jpg' %}">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -68,16 +68,24 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <style>body{padding-top:68px}.gh-hero{margin-top:-68px}</style>
     {% block extra_css %}{% endblock %}
 </head>
-<body>
+<body class="dark-cosmic">
+
+
+
+<!-- Cosmic Canvas Background Elements -->
+<div class="cosmic-grid-overlay" style="position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;z-index:-1;opacity:0.7"></div>
+<div class="cosmic-glow-orb-bg" style="position:fixed;top:-200px;left:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(59,130,246,0.06) 0%,transparent 70%);border-radius:50%;pointer-events:none;z-index:-1"></div>
+<div class="cosmic-glow-orb-bg" style="position:fixed;bottom:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(6,182,212,0.06) 0%,transparent 70%);border-radius:50%;pointer-events:none;z-index:-1"></div>
 
 {% include 'partials/navbar.html' %}
 
@@ -97,9 +105,6 @@
 
 {% include 'partials/footer.html' %}
 
-<a href="https://wa.me/919110478047?text=Hello%20Vignan%20TechSolutions%2C%20I%20need%20more%20information" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-    <i class="bi bi-whatsapp"></i>
-</a>
 <button id="back-to-top" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
 
 <!-- Mobile Bottom Navigation -->
@@ -114,9 +119,10 @@
         <span>Internships</span>
         <span class="mob-active-dot"></span>
     </a>
-    <a href="{% url 'projects:list' %}" class="mob-cta">
+    <a href="{% url 'projects:list' %}" class="{% if 'project' in request.resolver_match.url_name %}active{% endif %}">
         <i class="bi bi-kanban-fill"></i>
         <span>Projects</span>
+        <span class="mob-active-dot"></span>
     </a>
     <a href="{% url 'courses:list' %}" class="{% if 'course' in request.resolver_match.url_name %}active{% endif %}">
         <i class="bi bi-book-fill"></i>
@@ -133,6 +139,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="{% static 'js/main.js' %}"></script>
+<script src="{% static 'js/chatbot.js' %}"></script>
+<script src="{% static 'js/project-recommender.js' %}"></script>
+<script src="{% static 'js/whatsapp-analytics.js' %}"></script>
+
 {% block extra_js %}{% endblock %}
 </body>
 </html>

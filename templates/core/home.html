@@ -24,6 +24,253 @@
 </section>
 
 <!-- ═══════════════════════════════════════════
+     VIGNAN AD BANNER — Professional Animated
+════════════════════════════════════════════ -->
+<section class="vt-ad-section">
+<style>
+.vt-ad-section{background:#fff;padding:60px 0;overflow:hidden;position:relative}
+.vt-ad-wrap{background:linear-gradient(135deg,#0a1628 0%,#0d2144 40%,#0a1628 100%);border-radius:28px;overflow:hidden;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.vt-ad-wrap::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M0 0h40v40H0zm40 40h40v40H40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+
+/* TOP BAR */
+.vt-ad-topbar{background:linear-gradient(90deg,#1a3a6b,#0d2144);padding:12px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06)}
+.vt-ad-tagline{display:flex;gap:24px}
+.vt-ad-tagline span{color:rgba(255,255,255,.7);font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:6px}
+.vt-ad-tagline span::before{content:'●';color:#00f2fe;font-size:.5rem}
+
+/* HERO AREA */
+.vt-ad-hero{padding:50px 40px 40px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+@media(max-width:768px){.vt-ad-hero{grid-template-columns:1fr;padding:30px 24px 24px}.vt-ad-topbar{padding:10px 24px;flex-wrap:wrap;gap:8px}}
+
+.vt-ad-headline{font-size:clamp(2rem,4vw,3rem);font-weight:900;line-height:1.1;color:#fff;margin-bottom:16px}
+.vt-ad-headline .hl-blue{color:#00f2fe}
+.vt-ad-headline .hl-gold{color:#fbbf24}
+.vt-ad-sub{color:rgba(255,255,255,.6);font-size:.95rem;line-height:1.7;margin-bottom:28px;max-width:440px}
+
+/* Animated underline */
+.vt-ad-headline span{position:relative;display:inline-block}
+.vt-ad-headline span::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:3px;background:linear-gradient(90deg,#00f2fe,#3b82f6);border-radius:2px;animation:underline-grow 1.5s ease forwards .5s}
+@keyframes underline-grow{to{width:100%}}
+
+/* Feature pills */
+.vt-ad-pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.vt-ad-pill{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:50px;padding:6px 16px;color:rgba(255,255,255,.8);font-size:.78rem;font-weight:600;display:flex;align-items:center;gap:6px;transition:all .3s}
+.vt-ad-pill:hover{background:rgba(0,242,254,.1);border-color:rgba(0,242,254,.3);color:#00f2fe;transform:translateY(-2px)}
+.vt-ad-pill i{color:#00f2fe;font-size:.7rem}
+
+/* CTA buttons */
+.vt-ad-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.vt-ad-btn-primary{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;text-decoration:none;padding:12px 28px;border-radius:12px;font-weight:700;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;transition:all .3s;box-shadow:0 8px 24px rgba(37,99,235,.35)}
+.vt-ad-btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(37,99,235,.5);color:#fff}
+.vt-ad-btn-wa{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;text-decoration:none;padding:12px 28px;border-radius:12px;font-weight:700;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;transition:all .3s;box-shadow:0 8px 24px rgba(37,211,102,.25)}
+.vt-ad-btn-wa:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(37,211,102,.4);color:#fff}
+
+/* Right visual */
+.vt-ad-visual{position:relative;display:flex;align-items:center;justify-content:center}
+.vt-ad-laptop{width:100%;max-width:420px;position:relative}
+.vt-ad-laptop-screen{background:linear-gradient(135deg,#0f172a,#1e3a8a);border-radius:16px 16px 4px 4px;padding:20px;border:2px solid rgba(255,255,255,.1);position:relative;overflow:hidden}
+.vt-ad-laptop-screen::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(transparent 0deg,rgba(0,242,254,.05) 60deg,transparent 120deg);animation:rotate-glow 6s linear infinite}
+@keyframes rotate-glow{to{transform:rotate(360deg)}}
+.vt-ad-code-lines{display:flex;flex-direction:column;gap:8px;position:relative;z-index:1}
+.vt-ad-code-line{height:8px;border-radius:4px;animation:code-pulse 2s ease-in-out infinite}
+.vt-ad-code-line:nth-child(1){width:70%;background:linear-gradient(90deg,#00f2fe,#3b82f6);animation-delay:0s}
+.vt-ad-code-line:nth-child(2){width:50%;background:rgba(255,255,255,.15);animation-delay:.2s}
+.vt-ad-code-line:nth-child(3){width:85%;background:rgba(255,255,255,.1);animation-delay:.4s}
+.vt-ad-code-line:nth-child(4){width:40%;background:linear-gradient(90deg,#8b5cf6,#6d28d9);animation-delay:.6s}
+.vt-ad-code-line:nth-child(5){width:65%;background:rgba(255,255,255,.1);animation-delay:.8s}
+.vt-ad-code-line:nth-child(6){width:55%;background:linear-gradient(90deg,#10b981,#059669);animation-delay:1s}
+@keyframes code-pulse{0%,100%{opacity:.6}50%{opacity:1}}
+.vt-ad-laptop-base{height:12px;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.05));border-radius:0 0 8px 8px;margin:0 10px}
+.vt-ad-laptop-stand{width:60px;height:8px;background:rgba(255,255,255,.08);margin:0 auto;border-radius:0 0 8px 8px}
+
+/* Floating badges */
+.vt-ad-float{position:absolute;background:rgba(255,255,255,.95);border-radius:12px;padding:10px 14px;box-shadow:0 8px 24px rgba(0,0,0,.2);display:flex;align-items:center;gap:8px;font-size:.75rem;font-weight:700;color:#0f172a;animation:float-badge 3s ease-in-out infinite}
+.vt-ad-float-1{top:10%;right:-10px;animation-delay:0s}
+.vt-ad-float-2{bottom:15%;left:-10px;animation-delay:1.5s}
+@keyframes float-badge{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.vt-ad-float-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* OFFER STRIP */
+.vt-ad-offer{background:linear-gradient(90deg,#1a1a2e,#16213e,#0f3460);border-top:1px solid rgba(255,255,255,.06);padding:20px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+@media(max-width:768px){.vt-ad-offer{padding:16px 24px}}
+.vt-ad-offer-badge{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;font-weight:900;font-size:.75rem;padding:4px 12px;border-radius:50px;letter-spacing:.08em;text-transform:uppercase;animation:pulse-badge 2s ease-in-out infinite}
+@keyframes pulse-badge{0%,100%{box-shadow:0 0 0 0 rgba(245,158,11,.4)}50%{box-shadow:0 0 0 8px rgba(245,158,11,0)}}
+.vt-ad-offer-text{color:#fff;font-size:1.1rem;font-weight:800}
+.vt-ad-offer-text span{color:#fbbf24;font-size:1.6rem}
+.vt-ad-offer-sub{color:rgba(255,255,255,.5);font-size:.75rem;margin-top:2px}
+
+/* SERVICES GRID */
+.vt-ad-services{padding:36px 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;border-top:1px solid rgba(255,255,255,.06)}
+@media(max-width:768px){.vt-ad-services{grid-template-columns:1fr;padding:24px}.vt-ad-service-card{flex-direction:row!important}}
+.vt-ad-service-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:24px;transition:all .3s;cursor:default}
+.vt-ad-service-card:hover{background:rgba(255,255,255,.06);border-color:rgba(0,242,254,.2);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.2)}
+.vt-ad-svc-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:14px;flex-shrink:0}
+.vt-ad-svc-title{color:#fff;font-weight:700;font-size:.9rem;margin-bottom:8px}
+.vt-ad-svc-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px}
+.vt-ad-svc-list li{color:rgba(255,255,255,.55);font-size:.75rem;display:flex;align-items:center;gap:6px}
+.vt-ad-svc-list li::before{content:'✓';color:#00f2fe;font-weight:700;font-size:.7rem;flex-shrink:0}
+
+/* TRUST BAR */
+.vt-ad-trust{padding:20px 40px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+@media(max-width:768px){.vt-ad-trust{padding:16px 24px;justify-content:center}}
+.vt-ad-trust-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.6);font-size:.78rem}
+.vt-ad-trust-item i{color:#00f2fe;font-size:1rem}
+
+/* CONTACT BAR */
+.vt-ad-contact{background:linear-gradient(90deg,#0d2144,#1a3a6b);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid rgba(255,255,255,.08)}
+@media(max-width:768px){.vt-ad-contact{padding:16px 24px;justify-content:center;text-align:center}}
+.vt-ad-contact-item{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.8);font-size:.82rem;font-weight:600}
+.vt-ad-contact-item i{color:#00f2fe;font-size:1.1rem}
+.vt-ad-contact-divider{width:1px;height:30px;background:rgba(255,255,255,.1)}
+@media(max-width:576px){.vt-ad-contact-divider{display:none}}
+.vt-ad-footer-tag{color:#fff;font-weight:800;font-size:.85rem;text-align:center;letter-spacing:.05em}
+.vt-ad-footer-tag span{background:linear-gradient(90deg,#00f2fe,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+</style>
+
+<div class="container" data-aos="fade-up">
+  <div class="vt-ad-wrap">
+
+    <!-- TOP BAR -->
+    <div class="vt-ad-topbar">
+      <div class="d-flex align-items-center gap-3">
+        <img src="{% static 'images/logo_main.png' %}" alt="Vignan TechSolutions" style="height:36px;filter:brightness(0) invert(1)">
+      </div>
+      <div class="vt-ad-tagline">
+        <span>Innovate</span>
+        <span>Develop</span>
+        <span>Deliver</span>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="vt-ad-hero">
+      <div>
+        <div class="vt-ad-headline">
+          IDEAS <span class="hl-blue">TODAY.</span><br>
+          SOLUTIONS <span class="hl-gold">TOMORROW.</span><br>
+          IMPACT <span class="hl-blue">ALWAYS.</span>
+        </div>
+        <p class="vt-ad-sub">We transform your concepts into successful projects with innovation, quality and dedication. Empowering students and professionals with industry-ready skills.</p>
+        <div class="vt-ad-pills">
+          <span class="vt-ad-pill"><i class="bi bi-lightbulb-fill"></i>Innovative Ideas</span>
+          <span class="vt-ad-pill"><i class="bi bi-gear-fill"></i>Smart Solutions</span>
+          <span class="vt-ad-pill"><i class="bi bi-shield-check"></i>Quality Delivery</span>
+          <span class="vt-ad-pill"><i class="bi bi-headset"></i>End-to-End Support</span>
+        </div>
+        <div class="vt-ad-ctas">
+          <a href="{% url 'projects:list' %}" class="vt-ad-btn-primary">
+            <i class="bi bi-kanban-fill"></i>Browse Projects
+          </a>
+          <a href="https://wa.me/919110478047?text=Hi%2C+I+need+help+with+my+project" target="_blank" rel="noopener" class="vt-ad-btn-wa">
+            <i class="bi bi-whatsapp"></i>WhatsApp Us
+          </a>
+        </div>
+      </div>
+      <div class="vt-ad-visual">
+        <div class="vt-ad-laptop">
+          <div class="vt-ad-laptop-screen">
+            <div class="vt-ad-code-lines">
+              <div class="vt-ad-code-line"></div>
+              <div class="vt-ad-code-line"></div>
+              <div class="vt-ad-code-line"></div>
+              <div class="vt-ad-code-line"></div>
+              <div class="vt-ad-code-line"></div>
+              <div class="vt-ad-code-line"></div>
+              <div class="vt-ad-code-line"></div>
+              <div class="vt-ad-code-line"></div>
+            </div>
+          </div>
+          <div class="vt-ad-laptop-base"></div>
+          <div class="vt-ad-laptop-stand"></div>
+        </div>
+        <div class="vt-ad-float vt-ad-float-1">
+          <div class="vt-ad-float-dot" style="background:#10b981"></div>
+          <span>75+ Projects Ready</span>
+        </div>
+        <div class="vt-ad-float vt-ad-float-2">
+          <div class="vt-ad-float-dot" style="background:#3b82f6"></div>
+          <span>MSME Registered</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPECIAL OFFER STRIP -->
+    <div class="vt-ad-offer">
+      <div class="d-flex align-items-center gap-16" style="gap:16px">
+        <div style="font-size:2.5rem">🎁</div>
+        <div>
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="vt-ad-offer-badge">Special Offer</span>
+            <span style="color:rgba(255,255,255,.5);font-size:.75rem">For the first 10 members</span>
+          </div>
+          <div class="vt-ad-offer-text">GET <span>10% OFF</span> — First Come, First Serve!</div>
+          <div class="vt-ad-offer-sub">Limited time offer on all project & internship enrollments</div>
+        </div>
+      </div>
+      <a href="{% url 'core:contact' %}" class="vt-ad-btn-primary" style="white-space:nowrap">
+        <i class="bi bi-arrow-right-circle-fill"></i>Claim Offer
+      </a>
+    </div>
+
+    <!-- SERVICES GRID -->
+    <div class="vt-ad-services">
+      <div class="vt-ad-service-card">
+        <div class="vt-ad-svc-icon" style="background:rgba(59,130,246,.15)">🎓</div>
+        <div class="vt-ad-svc-title">UG Major Projects</div>
+        <ul class="vt-ad-svc-list">
+          <li>AI &amp; Machine Learning</li>
+          <li>Web Development</li>
+          <li>App Development</li>
+          <li>IoT &amp; Embedded Systems</li>
+          <li>Data Science &amp; Analytics</li>
+        </ul>
+      </div>
+      <div class="vt-ad-service-card">
+        <div class="vt-ad-svc-icon" style="background:rgba(16,185,129,.15)">🏫</div>
+        <div class="vt-ad-svc-title">PG Major Projects</div>
+        <ul class="vt-ad-svc-list">
+          <li>Deep Learning</li>
+          <li>Computer Vision</li>
+          <li>Cloud Computing</li>
+          <li>Blockchain</li>
+          <li>Big Data</li>
+        </ul>
+      </div>
+      <div class="vt-ad-service-card">
+        <div class="vt-ad-svc-icon" style="background:rgba(139,92,246,.15)">&lt;/&gt;</div>
+        <div class="vt-ad-svc-title">Mini Projects</div>
+        <ul class="vt-ad-svc-list">
+          <li>Quick Execution</li>
+          <li>Skill Building</li>
+          <li>Resume Booster</li>
+          <li>Great for Placements</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TRUST BAR -->
+    <div class="vt-ad-trust">
+      <div class="vt-ad-trust-item"><i class="bi bi-people-fill"></i><span>Domain Experts — Guidance from experienced professionals</span></div>
+      <div class="vt-ad-trust-item"><i class="bi bi-puzzle-fill"></i><span>Customized Solutions — Tailored to your requirements</span></div>
+      <div class="vt-ad-trust-item"><i class="bi bi-shield-fill-check"></i><span>Plagiarism-Free — 100% original with complete documentation</span></div>
+      <div class="vt-ad-trust-item"><i class="bi bi-headset"></i><span>End-to-End Support — Idea to deployment</span></div>
+    </div>
+
+    <!-- CONTACT BAR -->
+    <div class="vt-ad-contact">
+      <div class="vt-ad-contact-item"><i class="bi bi-telephone-fill"></i><div><div style="color:rgba(255,255,255,.4);font-size:.65rem;text-transform:uppercase;letter-spacing:.1em">Get in Touch</div><div>9110478047 &nbsp;·&nbsp; 9148215446</div></div></div>
+      <div class="vt-ad-contact-divider"></div>
+      <div class="vt-ad-contact-item"><i class="bi bi-globe2"></i><div><div style="color:rgba(255,255,255,.4);font-size:.65rem;text-transform:uppercase;letter-spacing:.1em">Visit Website</div><div>vignantech.onrender.com</div></div></div>
+      <div class="vt-ad-contact-divider"></div>
+      <div class="vt-ad-contact-item"><i class="bi bi-instagram"></i><div><div style="color:rgba(255,255,255,.4);font-size:.65rem;text-transform:uppercase;letter-spacing:.1em">Follow Us</div><div>vignan_techsolutions</div></div></div>
+      <div class="vt-ad-footer-tag">LET'S BUILD SOMETHING <span>AMAZING</span> TOGETHER!</div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════════════════════
      JOURNEY STEPS — Redesigned timeline
      ════════════════════════════════════════════ -->
 <section class="py-5">

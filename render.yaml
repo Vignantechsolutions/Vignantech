@@ -1,9 +1,3 @@
-databases:
-  - name: vignan-db
-    databaseName: vignan_techsolutions
-    region: singapore
-    plan: free
-
 services:
   - type: web
     name: vignantech
@@ -14,9 +8,7 @@ services:
     startCommand: "gunicorn vignan_tech.wsgi:application --bind 0.0.0.0:$PORT --workers 1 --timeout 120 --preload"
     envVars:
       - key: DATABASE_URL
-        fromDatabase:
-          name: vignan-db
-          property: connectionString
+        value: "postgresql://postgres.setyrsampeemjxcoeweo:Tsuresh%408055@aws-0-ap-south-1.pooler.supabase.com:6543/postgres"
       - key: DEBUG
         value: "False"
       - key: ALLOWED_HOSTS

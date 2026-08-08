@@ -32,17 +32,16 @@
 .vt-ad-wrap{background:linear-gradient(135deg,#0a1628 0%,#0d2144 40%,#0a1628 100%);border-radius:28px;overflow:hidden;position:relative;box-shadow:0 30px 80px rgba(0,0,0,.35)}
 .vt-ad-wrap::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M0 0h40v40H0zm40 40h40v40H40z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
 
-/* MARQUEE SCROLLING STRIP */
-.vt-ad-marquee-wrap{overflow:hidden;position:relative;background:linear-gradient(90deg,#0d2144,#1a3a6b,#0d2144);border-top:1px solid rgba(0,242,254,.15);border-bottom:1px solid rgba(0,242,254,.15);padding:14px 0}
-.vt-ad-marquee-wrap::before,.vt-ad-marquee-wrap::after{content:'';position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
-.vt-ad-marquee-wrap::before{left:0;background:linear-gradient(to right,#0d2144,transparent)}
-.vt-ad-marquee-wrap::after{right:0;background:linear-gradient(to left,#0d2144,transparent)}
-.vt-ad-marquee-track{display:flex;width:max-content;animation:marquee-scroll 30s linear infinite}
-.vt-ad-marquee-track:hover{animation-play-state:paused}
-@keyframes marquee-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.vt-ad-marquee-item{display:flex;align-items:center;gap:10px;padding:0 32px;white-space:nowrap;color:rgba(255,255,255,.85);font-size:.82rem;font-weight:600;letter-spacing:.03em}
-.vt-ad-marquee-item i{color:#00f2fe;font-size:.9rem}
-.vt-ad-marquee-dot{width:4px;height:4px;border-radius:50%;background:#00f2fe;opacity:.5;flex-shrink:0}
+/* LAPTOP TICKER BELOW SCREEN */
+.vt-ad-ticker{overflow:hidden;background:rgba(0,0,0,.4);border:1px solid rgba(0,242,254,.2);border-top:none;border-radius:0 0 6px 6px;padding:7px 0;position:relative}
+.vt-ad-ticker::before,.vt-ad-ticker::after{content:'';position:absolute;top:0;bottom:0;width:30px;z-index:2;pointer-events:none}
+.vt-ad-ticker::before{left:0;background:linear-gradient(to right,rgba(0,0,0,.4),transparent)}
+.vt-ad-ticker::after{right:0;background:linear-gradient(to left,rgba(0,0,0,.4),transparent)}
+.vt-ad-ticker-track{display:flex;width:max-content;animation:ticker-scroll 18s linear infinite;align-items:center;gap:12px}
+.vt-ad-ticker-track:hover{animation-play-state:paused}
+@keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-33.333%)}}
+.vt-ad-ticker-track span{color:rgba(255,255,255,.85);font-size:.65rem;font-weight:700;white-space:nowrap;display:flex;align-items:center;gap:4px}
+.vt-ad-ticker-sep{color:rgba(0,242,254,.4)!important;font-size:.5rem!important}
 
 /* TOP BAR */
 .vt-ad-topbar{background:linear-gradient(90deg,#1a3a6b,#0d2144);padding:12px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06)}
@@ -103,16 +102,6 @@
 .vt-ad-float-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 
 
-/* SERVICES GRID */
-.vt-ad-services{padding:36px 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;border-top:1px solid rgba(255,255,255,.06)}
-@media(max-width:768px){.vt-ad-services{grid-template-columns:1fr;padding:24px}.vt-ad-service-card{flex-direction:row!important}}
-.vt-ad-service-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:24px;transition:all .3s;cursor:default}
-.vt-ad-service-card:hover{background:rgba(255,255,255,.06);border-color:rgba(0,242,254,.2);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.2)}
-.vt-ad-svc-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:14px;flex-shrink:0}
-.vt-ad-svc-title{color:#fff;font-weight:700;font-size:.9rem;margin-bottom:8px}
-.vt-ad-svc-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px}
-.vt-ad-svc-list li{color:rgba(255,255,255,.55);font-size:.75rem;display:flex;align-items:center;gap:6px}
-.vt-ad-svc-list li::before{content:'✓';color:#00f2fe;font-weight:700;font-size:.7rem;flex-shrink:0}
 
 </style>
 
@@ -169,6 +158,25 @@
               <div class="vt-ad-code-line"></div>
             </div>
           </div>
+          <!-- SCROLLING TICKER BELOW SCREEN -->
+          <div class="vt-ad-ticker">
+            <div class="vt-ad-ticker-track">
+              {% for i in "123" %}
+              <span><i class="bi bi-gift-fill" style="color:#fbbf24"></i> 10% OFF</span>
+              <span class="vt-ad-ticker-sep">●</span>
+              <span><i class="bi bi-kanban-fill" style="color:#00f2fe"></i> 75+ Projects</span>
+              <span class="vt-ad-ticker-sep">●</span>
+              <span><i class="bi bi-patch-check-fill" style="color:#10b981"></i> MSME Certified</span>
+              <span class="vt-ad-ticker-sep">●</span>
+              <span><i class="bi bi-shield-fill-check" style="color:#3b82f6"></i> Plagiarism-Free</span>
+              <span class="vt-ad-ticker-sep">●</span>
+              <span><i class="bi bi-mortarboard-fill" style="color:#a78bfa"></i> VTU CPGS</span>
+              <span class="vt-ad-ticker-sep">●</span>
+              <span><i class="bi bi-whatsapp" style="color:#25d366"></i> WhatsApp Support</span>
+              <span class="vt-ad-ticker-sep">●</span>
+              {% endfor %}
+            </div>
+          </div>
           <div class="vt-ad-laptop-base"></div>
           <div class="vt-ad-laptop-stand"></div>
         </div>
@@ -183,69 +191,6 @@
       </div>
     </div>
 
-    <!-- SPECIAL OFFER SCROLLING MARQUEE -->
-    <div class="vt-ad-marquee-wrap">
-      <div class="vt-ad-marquee-track">
-        {% for i in "12" %}
-        <div class="vt-ad-marquee-item"><i class="bi bi-gift-fill"></i>🎁 SPECIAL OFFER — GET 10% OFF for First 10 Members!</div>
-        <div class="vt-ad-marquee-dot"></div>
-        <div class="vt-ad-marquee-item"><i class="bi bi-kanban-fill"></i>75+ MCA Major Projects Ready</div>
-        <div class="vt-ad-marquee-dot"></div>
-        <div class="vt-ad-marquee-item"><i class="bi bi-patch-check-fill"></i>MSME Registered &amp; ISO Certified</div>
-        <div class="vt-ad-marquee-dot"></div>
-        <div class="vt-ad-marquee-item"><i class="bi bi-shield-fill-check"></i>100% Plagiarism-Free Documentation</div>
-        <div class="vt-ad-marquee-dot"></div>
-        <div class="vt-ad-marquee-item"><i class="bi bi-mortarboard-fill"></i>VTU CPGS Aligned Projects</div>
-        <div class="vt-ad-marquee-dot"></div>
-        <div class="vt-ad-marquee-item"><i class="bi bi-telephone-fill"></i>Call: 9110478047 / 9148215446</div>
-        <div class="vt-ad-marquee-dot"></div>
-        <div class="vt-ad-marquee-item"><i class="bi bi-whatsapp"></i>WhatsApp Us for Instant Support</div>
-        <div class="vt-ad-marquee-dot"></div>
-        <div class="vt-ad-marquee-item"><i class="bi bi-award-fill"></i>Verified Certificates Issued</div>
-        <div class="vt-ad-marquee-dot"></div>
-        <div class="vt-ad-marquee-item"><i class="bi bi-people-fill"></i>Expert Mentors &amp; 1-on-1 Viva Prep</div>
-        <div class="vt-ad-marquee-dot"></div>
-        <div class="vt-ad-marquee-item"><i class="bi bi-lightning-charge-fill"></i>AI &bull; Python &bull; MERN &bull; Java &bull; Data Science</div>
-        <div class="vt-ad-marquee-dot"></div>
-        {% endfor %}
-      </div>
-    </div>
-
-    <!-- SERVICES GRID -->
-    <div class="vt-ad-services">
-      <div class="vt-ad-service-card">
-        <div class="vt-ad-svc-icon" style="background:rgba(59,130,246,.15)">🎓</div>
-        <div class="vt-ad-svc-title">UG Major Projects</div>
-        <ul class="vt-ad-svc-list">
-          <li>AI &amp; Machine Learning</li>
-          <li>Web Development</li>
-          <li>App Development</li>
-          <li>IoT &amp; Embedded Systems</li>
-          <li>Data Science &amp; Analytics</li>
-        </ul>
-      </div>
-      <div class="vt-ad-service-card">
-        <div class="vt-ad-svc-icon" style="background:rgba(16,185,129,.15)">🏫</div>
-        <div class="vt-ad-svc-title">PG Major Projects</div>
-        <ul class="vt-ad-svc-list">
-          <li>Deep Learning</li>
-          <li>Computer Vision</li>
-          <li>Cloud Computing</li>
-          <li>Blockchain</li>
-          <li>Big Data</li>
-        </ul>
-      </div>
-      <div class="vt-ad-service-card">
-        <div class="vt-ad-svc-icon" style="background:rgba(139,92,246,.15)">&lt;/&gt;</div>
-        <div class="vt-ad-svc-title">Mini Projects</div>
-        <ul class="vt-ad-svc-list">
-          <li>Quick Execution</li>
-          <li>Skill Building</li>
-          <li>Resume Booster</li>
-          <li>Great for Placements</li>
-        </ul>
-      </div>
-    </div>
 
   </div>
 </div>
